@@ -1,0 +1,353 @@
+/* Approved Superdesign A/B, scoped to catalogue and product pages. */
+.paxig-reference {
+ --paxig-ref-black:#111111; --paxig-ref-white:#fff; --paxig-ref-panel:#f5f5f5;
+ --paxig-ref-muted:#757575; --paxig-ref-border:#e5e5e5; --paxig-ref-sale:#d93025;
+ background:var(--paxig-ref-white); color:var(--paxig-ref-black); font-family:inherit;
+}
+.paxig-reference :is(a,button,input,select,summary):focus-visible {outline:3px solid #111;outline-offset:3px}
+.paxig-reference .paxig-header {position:sticky;top:0;background:#fff;border-bottom:1px solid var(--paxig-ref-border);color:#111}
+.paxig-reference .paxig-header .paxig-container {width:min(1440px,calc(100% - 96px));gap:24px}
+.paxig-reference .paxig-brand {color:#111;font-weight:700;letter-spacing:-1px;font-size:24px;text-transform:uppercase}
+.paxig-reference .paxig-nav > li > a {color:#111;font-size:13px;text-transform:uppercase}
+.paxig-reference .paxig-nav {gap:24px}
+.paxig-reference .paxig-header-action {color:#111;min-width:44px;min-height:44px}
+.paxig-reference .paxig-product-search {background:#f5f5f5;border:0;border-radius:24px}
+.paxig-reference .paxig-product-search input[type=search] {color:#111;background:transparent}
+.paxig-reference .paxig-product-search button {color:#111}
+.paxig-reference .paxig-cart-count {background:#d93025;color:#fff}
+.paxig-reference-search-toggle {display:none}
+.paxig-reference #main.site-main {width:min(1440px,calc(100% - 96px));margin:auto;padding:40px 0 72px}
+.paxig-reference .woocommerce-breadcrumb {display:block;margin:0 0 24px;color:#757575;font-size:13px}
+.paxig-reference .woocommerce-products-header__title {margin:0;font-size:36px;font-weight:700;letter-spacing:-.6px;text-transform:uppercase}
+.paxig-reference-count {margin:8px 0 24px;color:#757575;font-size:14px}
+.paxig-reference .paxig-shop-layout {grid-template-columns:240px minmax(0,1fr);gap:40px}
+.paxig-reference .paxig-shop-sidebar {position:static;padding:16px 0;border-color:#e5e5e5}
+.paxig-reference-filters > summary {display:none}
+.paxig-reference .woocommerce-ordering {float:none;margin:0 0 32px;text-align:right}
+.paxig-reference .woocommerce-ordering select {min-height:48px;max-width:100%;border:1px solid #e5e5e5;border-radius:6px;background:#fff;padding:0 12px;font:inherit;font-size:13px;color:#111}
+.paxig-reference ul.products {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px}
+.paxig-reference ul.products li.product {float:none;width:auto!important;min-width:0;margin:0!important;padding:0;border:0;background:none;box-shadow:none;border-radius:0}
+.paxig-reference-image {position:relative;aspect-ratio:1;background:#f5f5f5;border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:16px}
+.paxig-reference ul.products li.product a img {width:100%;height:100%;object-fit:contain;aspect-ratio:1;margin:0;border-radius:0}
+.paxig-reference-badge {display:inline-block;padding:4px 8px;border-radius:2px;background:#111;color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;line-height:1.3;margin-bottom:12px}
+.paxig-reference-image .paxig-reference-badge {position:absolute;top:8px;left:8px;z-index:2;margin:0;max-width:calc(100% - 16px)}
+.paxig-reference-badge.is-sale {background:#d93025}
+.paxig-reference-category {color:#757575;font-size:13px;margin:12px 0 4px;line-height:1.4}
+.paxig-reference ul.products li.product .woocommerce-loop-product__title {min-height:40px;padding:0;font-size:15px;font-weight:700;line-height:1.35;color:#111}
+.paxig-reference ul.products li.product .price {font-size:15px;font-weight:700;color:#111;margin:8px 0 0;line-height:1.4}
+.paxig-reference .price del {color:#757575;font-size:.85em;font-weight:400;opacity:1}
+.paxig-reference .price ins {color:#d93025;text-decoration:none;font-weight:700}
+.paxig-reference ul.products li.product .price:has(ins) {display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.paxig-reference ul.products li.product .price ins {order:-1}
+.paxig-reference ul.products li.product .button {border-radius:4px;min-height:44px;font-size:13px;white-space:normal;padding:12px 16px}
+.paxig-reference .woocommerce-pagination {margin-top:48px}
+.paxig-reference .woocommerce-pagination ul {border-color:#e5e5e5}
+.paxig-reference .woocommerce-pagination ul li a,.paxig-reference .woocommerce-pagination ul li span {min-width:48px;min-height:48px;display:flex;align-items:center;justify-content:center}
+.paxig-reference .woocommerce-pagination ul li span.current {background:#111;color:#fff}
+
+/* Preserve the native gallery and form; replace obsolete stacked CSS overrides. */
+.single-product.paxig-reference div.product {display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:64px;align-items:start}
+.single-product.paxig-reference div.product::before,.single-product.paxig-reference div.product::after {display:none}
+.single-product.paxig-reference div.product div.images {position:static;display:block;width:auto;float:none;min-width:0;margin:0}
+.single-product.paxig-reference div.product div.summary {position:static;width:auto;float:none;min-width:0;margin:0;padding:0}
+.single-product.paxig-reference .woocommerce-product-gallery__wrapper {background:#f5f5f5}
+.single-product.paxig-reference .woocommerce-product-gallery__image img {aspect-ratio:1;object-fit:contain}
+.single-product.paxig-reference .woocommerce-product-gallery .flex-control-thumbs {display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:14px 0 0!important;padding:0!important}
+.single-product.paxig-reference .woocommerce-product-gallery .flex-control-thumbs li {float:none!important;width:auto!important;margin:0!important}
+.single-product.paxig-reference .woocommerce-product-gallery .flex-control-thumbs img {width:100%;aspect-ratio:1;object-fit:contain;opacity:1;border:2px solid transparent;background:#f5f5f5;border-radius:4px}
+.single-product.paxig-reference .woocommerce-product-gallery .flex-control-thumbs img.flex-active {border-color:#111}
+.single-product.paxig-reference .summary .paxig-reference-category {margin:0 0 8px;text-transform:uppercase;font-weight:600}
+.single-product.paxig-reference .product_title {margin:0 0 18px;font-size:clamp(32px,3vw,42px);line-height:1.2;font-weight:700;letter-spacing:-1px;text-transform:uppercase}
+.single-product.paxig-reference .summary .price {font-size:22px!important;font-weight:700;margin:0 0 12px;color:#111!important}
+.single-product.paxig-reference .stock {font-size:14px;line-height:1.5;margin:8px 0}
+.paxig-reference-attribute {font-size:14px;margin:16px 0}
+.single-product.paxig-reference table.variations {margin:28px 0 0}
+.single-product.paxig-reference table.variations label {font-size:13px;font-weight:700;gap:12px}
+.single-product.paxig-reference .paxig-size-guide-link {font-size:12px;font-weight:400;color:#757575}
+.single-product.paxig-reference .paxig-size-picker__buttons {grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+.single-product.paxig-reference .paxig-size-button {border:1px solid #111!important;border-radius:4px!important;min-height:48px!important;padding:8px!important;font-size:14px!important}
+.single-product.paxig-reference .paxig-size-button.is-selected {background:#111!important;color:#fff!important}
+.single-product.paxig-reference .paxig-size-button:disabled {background:#f5f5f5!important;color:#757575!important;border-color:#e5e5e5!important;text-decoration:line-through;cursor:not-allowed!important}
+.single-product.paxig-reference .reset_variations {display:inline-block!important;margin-top:12px;font-size:13px;color:#757575}
+.single-product.paxig-reference .woocommerce-variation-add-to-cart {display:flex;flex-direction:column;align-items:stretch;gap:20px}
+.single-product.paxig-reference form.cart .quantity {display:inline-flex!important;align-self:flex-start;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;float:none;margin:0 0 20px!important}
+.single-product.paxig-reference div.quantity .qty {width:52px;min-height:48px;border:0;border-radius:0;text-align:center;padding:0;appearance:textfield}
+.paxig-quantity-step {width:44px;min-height:48px;background:#fff;border:0;color:#111;font-size:20px;cursor:pointer}
+.single-product.paxig-reference .single_add_to_cart_button {width:100%;flex:none;min-height:52px;border-radius:4px!important;font-size:15px!important;font-weight:700!important;background:#111!important;color:#fff!important}
+.paxig-reference-policy {background:#f5f5f5;padding:18px;font-size:13px;line-height:1.6;margin:20px 0;color:#757575}
+.paxig-reference-policy a {color:#111;text-underline-offset:3px}
+.paxig-reference-accordions details {border-bottom:1px solid #e5e5e5}
+.paxig-reference-accordions summary {min-height:62px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:13px;font-weight:700;text-transform:uppercase;list-style:none}
+.paxig-reference-accordions summary::after {content:'+';font-size:20px;margin-left:16px}
+.paxig-reference-accordions details[open] summary::after {content:'−'}
+.paxig-reference-accordions summary::-webkit-details-marker {display:none}
+.paxig-reference-content {font-size:14px;line-height:1.7;padding-bottom:22px;color:#757575;overflow-wrap:anywhere}
+.paxig-reference-content h2 {font-size:18px}
+.single-product.paxig-reference .woocommerce-tabs,.single-product.paxig-reference .related,.single-product.paxig-reference .up-sells,.single-product.paxig-reference .paxig-recent-native {grid-column:1/-1;min-width:0}
+.single-product.paxig-reference .related,.single-product.paxig-reference .up-sells {margin-top:48px;padding-top:48px;border-top:1px solid #e5e5e5}
+.single-product.paxig-reference .related > h2,.single-product.paxig-reference .up-sells > h2 {font-size:30px;font-weight:700;text-transform:uppercase;margin:0 0 32px}
+.single-product.paxig-reference .related ul.products {grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(min-width:1500px){.paxig-reference .paxig-shop-products ul.products{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1100px){
+ .paxig-reference #main.site-main,.paxig-reference .paxig-header .paxig-container{width:calc(100% - 48px)}
+ .single-product.paxig-reference div.product{grid-template-columns:1fr;gap:40px}
+ .paxig-reference .paxig-shop-layout{grid-template-columns:1fr;gap:8px}
+ .paxig-reference-filters > summary{display:flex;align-items:center;justify-content:center;min-height:48px;border:1px solid #e5e5e5;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;list-style:none}
+ .paxig-reference-filters{width:calc(50% - 4px)}
+ .paxig-reference-filters[open]{width:100%}
+ .paxig-reference .paxig-shop-sidebar ul{display:flex;flex-wrap:wrap;gap:8px 24px}
+ .paxig-reference .woocommerce-ordering{margin:0 0 24px 50%;width:50%;text-align:unset}
+ .paxig-reference .woocommerce-ordering select{width:100%}
+ .paxig-reference-filters:not([open]) + .paxig-shop-products .woocommerce-ordering{margin-top:-56px}
+ .single-product.paxig-reference .related ul.products{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){
+ .paxig-reference .paxig-header .paxig-container{position:relative;display:flex;flex-direction:row;align-items:center;min-height:72px;gap:8px;padding:0;width:calc(100% - 32px)}
+ .paxig-reference .paxig-menu-toggle{display:flex;position:static;order:-1;min-width:44px;min-height:44px;color:#111;background:transparent;border:0}
+ .paxig-reference .paxig-brand{font-size:18px;letter-spacing:-.7px}
+ .paxig-reference .paxig-header-actions{margin:0 0 0 auto;gap:0;flex:none}
+ .paxig-reference .paxig-header-action{display:inline-flex;width:44px;height:44px;background:transparent}
+ .paxig-reference .paxig-header-action[aria-label="My Account"]{display:none}
+ .paxig-reference-search-toggle{display:flex;align-items:center;justify-content:center;width:44px;min-height:44px;padding:0;color:#111;background:transparent;border:0}
+ .paxig-reference-search-toggle svg{fill:none;stroke:currentColor;stroke-width:2}
+ .paxig-reference .paxig-product-search{display:none;position:absolute;top:76px;left:0;right:0;width:100%;background:#f5f5f5;border:1px solid #e5e5e5;padding:4px 8px}
+ .paxig-reference .paxig-product-search.is-open{display:flex}
+ .paxig-reference .paxig-product-search input[type=search]{display:block;width:calc(100% - 44px)}
+ .paxig-reference .paxig-navigation{position:absolute;top:72px;left:-16px;width:calc(100% + 32px);margin:0;background:#fff;max-height:calc(100vh - 72px);overflow:auto}
+ .paxig-reference .paxig-nav > li > a{color:#111}
+ .paxig-reference .paxig-submenu-toggle{color:#111}
+}
+@media(max-width:600px){
+ .paxig-reference #main.site-main{width:calc(100% - 32px);padding:24px 0 48px}
+ .paxig-reference .woocommerce-products-header__title{font-size:26px;line-height:1.15}
+ .paxig-reference ul.products,.paxig-reference .paxig-shop-products ul.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 12px}
+ .paxig-reference-image{padding:12px}
+ .paxig-reference ul.products li.product .woocommerce-loop-product__title{font-size:14px;min-height:38px}
+ .paxig-reference-category{font-size:12px}
+ .paxig-reference-image .paxig-reference-badge{font-size:9px;padding:4px 7px}
+ .single-product.paxig-reference .product_title{font-size:30px}
+ .single-product.paxig-reference .woocommerce-product-gallery .flex-control-thumbs{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+ .single-product.paxig-reference .related > h2{font-size:24px}
+ .paxig-reference .price .woocommerce-Price-amount{white-space:nowrap}
+}
+
+@media(max-width:900px){.paxig-reference .paxig-header .paxig-header-actions{width:auto!important}.paxig-reference .paxig-header .paxig-brand{flex:1;min-width:0}}
+
+
+.single-product.paxig-reference div.product div.images{position:relative}
+
+
+body.paxig-reference .woocommerce-breadcrumb{display:block}
+.paxig-reference .woocommerce-ordering select{min-width:0}
+.paxig-reference .woocommerce-products-header{margin-bottom:0;padding-bottom:0;border:0}
+
+
+.single-product.paxig-reference .stock.in-stock{color:#256c35}
+
+
+.single-product.paxig-reference .single_add_to_cart_button{min-height:52px!important}
+
+/* Commerce pages extend the approved reference components; native Woo remains authoritative. */
+.paxig-reference-commerce #main.site-main{max-width:1344px}
+.paxig-reference-commerce .entry-title{font-size:clamp(28px,3vw,40px);letter-spacing:-1px;margin:0 0 32px}
+.paxig-reference-commerce .woocommerce{font-size:15px;line-height:1.6}
+.paxig-reference-commerce :is(h2,h3){color:var(--paxig-ref-black);font-weight:700;line-height:1.3}
+.paxig-reference-commerce h2{font-size:24px;margin:0 0 24px}
+.paxig-reference-commerce .woocommerce :is(a.button,button.button,input.button),.paxig-reference-commerce #place_order{background:var(--paxig-ref-black);color:#fff;border:1px solid #111;border-radius:4px;min-height:48px;padding:14px 20px;font:inherit;font-weight:700;line-height:1.3;white-space:normal}
+.paxig-reference-commerce .woocommerce :is(a.button,button.button):hover{background:#333;color:#fff}
+.paxig-reference-commerce .woocommerce form :is(input.input-text,select,textarea),.paxig-reference-commerce .paxig-customer-order input{font:inherit;color:#111;background:#fff;border:1px solid #e5e5e5;border-radius:4px;min-height:48px;padding:12px;max-width:100%;box-sizing:border-box}
+.paxig-reference-commerce .woocommerce form label{font-weight:600;line-height:1.5;margin-bottom:8px}
+.paxig-reference-commerce .woocommerce form .required{color:#d93025}
+.paxig-reference-commerce .woocommerce form .woocommerce-invalid :is(input,select){border-color:#d93025}
+.paxig-reference-commerce :is(a,button,input,select,textarea):focus-visible{outline:3px solid #111;outline-offset:3px}
+.paxig-reference-commerce :is(.woocommerce-info,.woocommerce-message,.woocommerce-error){background:#f5f5f5;border:0;border-left:3px solid #111;padding:20px 24px 20px 48px;color:#111;line-height:1.6;border-radius:0}
+.paxig-reference-commerce .woocommerce-error{border-left-color:#d93025}
+.paxig-reference-commerce .woocommerce-error::before{color:#d93025}
+.paxig-reference-commerce table.shop_table{border:0;border-collapse:collapse;border-radius:0;width:100%;margin-bottom:28px}
+.paxig-reference-commerce table.shop_table :is(th,td){padding:18px 12px;border-bottom:1px solid #e5e5e5;vertical-align:middle;overflow-wrap:anywhere}
+.paxig-reference-commerce table.shop_table th{font-size:13px;font-weight:600;color:#757575}
+.paxig-reference-commerce table.shop_table a{color:#111}
+.paxig-reference-commerce .order-total :is(th,td){font-size:20px;font-weight:700;color:#111}
+.paxig-reference-commerce .woocommerce-cart-form .quantity{display:inline-flex;align-items:center;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;white-space:nowrap}
+.paxig-reference-commerce .quantity input.qty{width:42px;min-height:48px;border:0;padding:0;text-align:center;appearance:textfield}
+.paxig-reference-commerce .quantity .paxig-quantity-step{width:36px;flex-shrink:0}
+.paxig-reference-commerce table.cart .product-thumbnail img{width:104px;max-width:104px;background:#f5f5f5;border-radius:4px}
+.paxig-reference-commerce table.cart td.product-name{font-weight:700}
+.paxig-reference-commerce table.cart dl.variation{font-size:13px;font-weight:400;color:#757575}
+.paxig-reference-commerce .woocommerce a.remove{width:44px;height:44px;line-height:44px;color:#d93025!important;font-weight:400}
+.paxig-reference-commerce .woocommerce a.remove:hover{background:#f5f5f5}
+.paxig-reference-commerce .cart_totals{float:none!important;width:100%!important;background:#f5f5f5;padding:28px;border-radius:4px;box-sizing:border-box}
+.paxig-reference-commerce .cart-collaterals{width:100%;min-width:0}
+.paxig-reference-commerce .wc-proceed-to-checkout a.checkout-button{display:flex;align-items:center;justify-content:center;min-height:52px;margin:0}
+.paxig-reference-commerce .coupon{display:flex;gap:8px;flex-wrap:wrap}
+.paxig-reference-commerce table.cart td.actions .coupon input.input-text{width:180px;margin:0;min-height:48px}
+.paxig-reference-commerce .coupon button.button,.paxig-reference-commerce button[name=update_cart]{background:#fff!important;color:#111!important;border-color:#e5e5e5!important}
+.paxig-reference-commerce .cross-sells{float:none!important;width:100%!important;margin-top:40px}
+.paxig-reference-commerce .cross-sells ul.products{grid-template-columns:repeat(2,minmax(0,1fr))}
+.paxig-reference-commerce form.checkout{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);gap:0 48px;align-items:start}
+.paxig-reference-commerce #customer_details{grid-column:1;grid-row:1/3;width:100%;min-width:0}
+.paxig-reference-commerce #customer_details .col-1,.paxig-reference-commerce #customer_details .col-2{float:none;width:100%;margin-bottom:32px}
+.paxig-reference-commerce #order_review_heading{grid-column:2;margin:0;background:#f5f5f5;padding:28px 28px 0}
+.paxig-reference-commerce #order_review{grid-column:2;background:#f5f5f5;padding:24px 28px 28px;min-width:0}
+.paxig-reference-commerce #payment{background:transparent;border-radius:0}
+.paxig-reference-commerce #payment ul.payment_methods{padding:0;border-bottom:1px solid #e5e5e5}
+.paxig-reference-commerce #payment .wc_payment_method{background:#fff;border:1px solid #e5e5e5;border-radius:4px;padding:16px;margin-bottom:12px}
+.paxig-reference-commerce #payment .wc_payment_method:has(input:checked){border-color:#111}
+.paxig-reference-commerce #payment .wc_payment_method label{cursor:pointer}
+.paxig-reference-commerce #payment div.payment_box{background:#f5f5f5;color:#757575;font-size:13px;margin-bottom:0}
+.paxig-reference-commerce #payment div.payment_box::before{border-bottom-color:#f5f5f5}
+.paxig-reference-commerce #payment .place-order{padding:24px 0 0}
+.paxig-reference-commerce #place_order{width:100%;min-height:52px}
+.paxig-reference-commerce .select2-container .select2-selection--single{height:48px;border-color:#e5e5e5;border-radius:4px}
+.paxig-reference-commerce .select2-container .select2-selection--single .select2-selection__rendered{line-height:46px;padding-left:12px}
+.paxig-reference-commerce .select2-container .select2-selection--single .select2-selection__arrow{height:46px}
+.paxig-reference-commerce .woocommerce-MyAccount-navigation{float:left;width:23%}
+.paxig-reference-commerce .woocommerce-MyAccount-navigation ul{list-style:none;margin:0;padding:0;border-top:1px solid #e5e5e5}
+.paxig-reference-commerce .woocommerce-MyAccount-navigation li{border-bottom:1px solid #e5e5e5}
+.paxig-reference-commerce .woocommerce-MyAccount-navigation li a{display:block;min-height:48px;padding:14px 16px;text-decoration:none;border-radius:4px}
+.paxig-reference-commerce .woocommerce-MyAccount-navigation .is-active a{background:#111;color:#fff}
+.paxig-reference-commerce .woocommerce-MyAccount-content{float:right;width:72%;min-width:0}
+.paxig-reference-commerce .woocommerce-MyAccount-content>p:first-child{font-size:17px;margin-top:0}
+.paxig-reference-commerce .woocommerce-orders-table .button,.paxig-reference-commerce .woocommerce-Address .edit{background:#fff!important;color:#111!important;border:1px solid #e5e5e5!important}
+.paxig-reference-commerce .woocommerce-orders-table :is(.woocommerce-orders-table__cell-order-status,.woocommerce-orders-table__cell-paxig_fulfillment,.woocommerce-orders-table__cell-paxig_payment){font-size:13px;font-weight:600}
+.paxig-reference-commerce .paxig-customer-order{border-top:1px solid #e5e5e5;margin:32px 0;padding-top:32px}
+.paxig-reference-commerce .paxig-customer-order dl{display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,2fr);gap:12px 20px;margin:0 0 32px}
+.paxig-reference-commerce .paxig-customer-order dt{font-size:13px;color:#757575}
+.paxig-reference-commerce .paxig-customer-order dd{margin:0;justify-self:start;padding:4px 10px;background:#f5f5f5;border-radius:4px;font-size:13px;font-weight:600;max-width:100%;box-sizing:border-box}
+.paxig-reference-commerce .paxig-customer-order form{padding:24px;background:#f5f5f5;border:1px solid #e5e5e5;border-radius:4px;margin-top:24px}
+.paxig-reference-commerce .paxig-customer-order form input[name=reason]{width:100%;margin-top:8px}
+.paxig-reference-commerce .paxig-customer-order fieldset{padding:16px;border:1px solid #e5e5e5;margin-bottom:20px;min-width:0}
+.paxig-reference-commerce .paxig-customer-order button{min-height:48px;background:#fff;border:1px solid #111;color:#111;border-radius:4px;padding:12px 20px;font:inherit;font-weight:600;cursor:pointer}
+.paxig-reference-commerce .paxig-customer-cancel button{color:#d93025;border-color:#d93025}
+.paxig-reference-commerce .paxig-customer-order details{border-bottom:1px solid #e5e5e5;padding:16px 0}
+.paxig-reference-commerce .paxig-customer-order summary{cursor:pointer;min-height:48px}
+.paxig-reference-commerce .woocommerce :is(.woocommerce-Address,.woocommerce-customer-details address){border:1px solid #e5e5e5;border-radius:4px;padding:24px;box-sizing:border-box;background:#fff}
+.paxig-reference-commerce .woocommerce-EditAccountForm fieldset{border:1px solid #e5e5e5;padding:24px;margin:24px 0;min-width:0}
+@media(min-width:1101px){
+ .paxig-reference-commerce.woocommerce-cart .woocommerce-notices-wrapper{grid-column:1/-1}
+ .paxig-reference-commerce.woocommerce-cart .woocommerce-cart-form{min-width:0}
+ .paxig-reference-commerce.woocommerce-cart .cart-collaterals{display:flex;flex-direction:column}
+ .paxig-reference-commerce.woocommerce-cart .cart_totals{order:-1}
+}
+@media(max-width:1100px){.paxig-reference-commerce form.checkout{gap:0 24px}.paxig-reference-commerce #order_review{padding:20px}.paxig-reference-commerce #order_review_heading{padding:20px 20px 0}}
+@media(max-width:768px){
+ .paxig-reference-commerce form.checkout{display:block}
+ .paxig-reference-commerce .woocommerce-MyAccount-navigation,.paxig-reference-commerce .woocommerce-MyAccount-content{float:none;width:100%}
+ .paxig-reference-commerce .woocommerce-MyAccount-navigation{margin-bottom:32px}
+ .paxig-reference-commerce .woocommerce-MyAccount-navigation ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;border:0}
+ .paxig-reference-commerce .woocommerce-MyAccount-navigation li{border:0}
+ .paxig-reference-commerce .woocommerce-MyAccount-navigation li a{border:1px solid #e5e5e5;padding:12px;font-size:13px}
+ .paxig-reference-commerce .cart-collaterals{display:flex;flex-direction:column}
+ .paxig-reference-commerce .cart_totals{order:-1}
+ .paxig-reference-commerce table.cart thead{display:none}
+ .paxig-reference-commerce table.cart tr.cart_item{display:grid;grid-template-columns:80px minmax(0,1fr);position:relative;padding:20px 0;border-bottom:1px solid #e5e5e5;gap:8px 16px}
+ .paxig-reference-commerce table.cart tr.cart_item td{display:block!important;border:0;padding:0;text-align:left!important;background:none}
+ .paxig-reference-commerce table.cart tr.cart_item td::before{display:none}
+ .paxig-reference-commerce table.cart .product-thumbnail{grid-column:1;grid-row:1/5}
+ .paxig-reference-commerce table.cart .product-thumbnail img{width:80px;max-width:80px}
+ .paxig-reference-commerce table.cart .product-name{grid-column:2;padding-right:36px!important}
+ .paxig-reference-commerce table.cart :is(.product-price,.product-quantity,.product-subtotal){grid-column:2}
+ .paxig-reference-commerce table.cart .product-subtotal{font-weight:700}
+ .paxig-reference-commerce table.cart .product-remove{position:absolute;right:0;top:12px}
+ .paxig-reference-commerce table.cart td.actions{padding:20px 0}
+ .paxig-reference-commerce table.cart td.actions .coupon{float:none;display:flex;margin-bottom:16px}
+ .paxig-reference-commerce table.cart td.actions .coupon input.input-text{flex:1;width:0;min-width:100px}
+ .paxig-reference-commerce table.cart td.actions .coupon .button{width:auto}
+ .paxig-reference-commerce table.cart td.actions>button{width:100%}
+ .paxig-reference-commerce .cart_totals{padding:20px}
+ .paxig-reference-commerce .woocommerce-orders-table tr{margin-bottom:20px;border:1px solid #e5e5e5;border-radius:4px;padding:12px;background:#fff}
+ .paxig-reference-commerce .woocommerce-orders-table td{background:none!important;text-align:right!important;padding:12px;border:0}
+ .paxig-reference-commerce .woocommerce-orders-table td::before{color:#757575;font-weight:400;max-width:48%}
+ .paxig-reference-commerce .woocommerce form .form-row-first,.paxig-reference-commerce .woocommerce form .form-row-last{width:100%;float:none}
+ .paxig-reference-commerce .paxig-customer-order form{padding:16px}
+ .paxig-reference-commerce .woocommerce .col2-set .col-1,.paxig-reference-commerce .woocommerce .col2-set .col-2{width:100%;float:none;margin-bottom:24px}
+}
+/* Generic WordPress pages use index.php's article shell. */
+.paxig-reference-commerce .paxig-main>.paxig-container{width:min(1344px,calc(100% - 96px));padding:40px 0 72px}
+.paxig-reference-commerce .paxig-main article>h1{font-size:clamp(28px,3vw,40px);letter-spacing:-1px;margin:0 0 32px}
+@media(min-width:1101px){.paxig-reference-commerce.woocommerce-cart article>.woocommerce{display:grid;grid-template-columns:minmax(0,65fr) minmax(0,35fr);gap:32px;align-items:start}}
+@media(max-width:1100px){.paxig-reference-commerce .paxig-main>.paxig-container{width:calc(100% - 48px)}}
+@media(max-width:600px){.paxig-reference-commerce .paxig-main>.paxig-container{width:calc(100% - 32px);padding:24px 0 48px}}
+.paxig-reference-commerce .woocommerce form .quantity input.qty{padding:0;border:0;border-radius:0;text-align:center;appearance:textfield}
+.paxig-reference-commerce .quantity input.qty::-webkit-inner-spin-button,.paxig-reference-commerce .quantity input.qty::-webkit-outer-spin-button{appearance:none;margin:0}
+.paxig-reference-commerce table.shop_table th{font-family:inherit}
+.paxig-reference-commerce .woocommerce a.button.paxig-cancel-request{background:#fff!important;color:#d93025!important;border-color:#d93025!important}
+.paxig-reference-commerce .woocommerce-MyAccount-content a:not(.button){color:#111;text-underline-offset:3px}
+.paxig-reference-commerce .coupon .coupon-error-notice{flex-basis:100%;font-size:13px!important;line-height:1.6;color:#d93025;border-left:3px solid #d93025;padding:12px 16px;margin:8px 0;background:#fff}
+
+.paxig-reference-commerce form.checkout::before,.paxig-reference-commerce form.checkout::after{display:none}
+.paxig-reference-commerce form.checkout{grid-template-rows:auto 1fr}
+.paxig-reference-commerce #order_review_heading{grid-row:1}
+.paxig-reference-commerce #order_review{grid-row:2}
+
+
+/* PAXIG-VISUAL-POLISH-01: header alignment and commerce presentation only. */
+.paxig-reference .paxig-brand{font-size:26px;line-height:1.2}
+.paxig-reference .paxig-header-actions{align-items:center}
+.paxig-reference .paxig-header-action svg{width:22px;height:22px}
+@media(min-width:1200px){.paxig-reference .paxig-nav{gap:28px}}
+@media(max-width:900px){.paxig-reference .paxig-brand{font-size:19px}}
+.paxig-reference-commerce:is(.woocommerce-cart,.woocommerce-checkout) .paxig-main>.paxig-container{padding-top:32px;padding-bottom:64px}
+.paxig-reference-commerce:is(.woocommerce-cart,.woocommerce-checkout) article>h1{margin-bottom:24px;line-height:1.2}
+.paxig-reference-commerce.woocommerce-cart table.cart tr.cart_item td{padding-top:24px;padding-bottom:24px}
+.paxig-reference-commerce.woocommerce-cart table.cart .product-thumbnail img{width:112px;max-width:112px;border-radius:0}
+.paxig-reference-commerce.woocommerce-cart table.cart .product-name a{font-size:15px;line-height:1.5;text-decoration:none}
+.paxig-reference-commerce.woocommerce-cart table.cart .product-name a:hover{text-decoration:underline}
+.paxig-reference-commerce.woocommerce-cart table.cart dl.variation{line-height:1.6;margin:8px 0 0}
+.paxig-reference-commerce.woocommerce-cart table.cart a.remove{display:inline-flex;align-items:center;justify-content:center;line-height:1;background:#fff;border:1px solid #e5e5e5;border-radius:4px;font-size:22px}
+.paxig-reference-commerce.woocommerce-cart table.cart a.remove:hover{background:#fff5f4;border-color:#d93025}
+.paxig-reference-commerce.woocommerce-cart .coupon{gap:10px;align-items:center}
+.paxig-reference-commerce.woocommerce-cart table.cart td.actions .coupon input.input-text{width:160px;font-size:14px}
+.paxig-reference-commerce.woocommerce-cart .coupon button.button{font-size:14px;padding:12px 16px}
+.paxig-reference-commerce.woocommerce-cart .woocommerce-cart-form button[name=update_cart]{background:#fff!important;color:#111!important;border:1px solid #ccc!important;font-size:14px}
+.paxig-reference-commerce.woocommerce-cart .woocommerce-cart-form button[name=update_cart]:disabled{background:#f7f7f7!important;color:#757575!important;opacity:1}
+.paxig-reference-commerce.woocommerce-cart .cart_totals{background:#f7f7f7;padding:28px}
+.paxig-reference-commerce.woocommerce-cart .cart_totals h2{font-size:24px;line-height:1.2;margin:0 0 20px}
+.paxig-reference-commerce.woocommerce-cart .cart_totals table{margin-bottom:20px}
+.paxig-reference-commerce.woocommerce-cart .cart_totals :is(th,td){padding:16px 0;line-height:1.6}
+.paxig-reference-commerce.woocommerce-cart .cart_totals th{width:36%;padding-right:16px}
+.paxig-reference-commerce.woocommerce-cart .cart_totals .woocommerce-shipping-destination{font-size:13px;color:#666;margin:12px 0 8px}
+.paxig-reference-commerce.woocommerce-cart .cart_totals .order-total th{font-size:15px;color:#111}
+.paxig-reference-commerce.woocommerce-cart .cart_totals .order-total td{font-size:22px}
+.paxig-reference-commerce.woocommerce-cart .wc-proceed-to-checkout{padding:0}
+.paxig-reference-commerce.woocommerce-checkout .demo-notice{background:#f7f7f7;border:1px solid #e5e5e5;border-left:0;border-radius:4px;padding:18px 20px;margin:0 0 16px;color:#444;font-size:14px;line-height:1.65}
+.paxig-reference-commerce.woocommerce-checkout .demo-notice strong{display:block;color:#111;font-size:15px;margin-bottom:4px}
+.paxig-reference-commerce.woocommerce-checkout .woocommerce-form-coupon-toggle .woocommerce-info{background:#fff;border:1px solid #e5e5e5;border-radius:4px;padding:14px 20px 14px 44px;font-size:14px;margin-bottom:24px}
+.paxig-reference-commerce.woocommerce-checkout .woocommerce-form-coupon-toggle .woocommerce-info:before{left:18px;top:16px;color:#666}
+.paxig-reference-commerce.woocommerce-checkout .woocommerce form.checkout .form-row{padding:0;margin:0 0 18px}
+.paxig-reference-commerce.woocommerce-checkout form.checkout label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.paxig-reference-commerce.woocommerce-checkout form.checkout label.screen-reader-text{display:initial}
+.paxig-reference-commerce.woocommerce-checkout form.checkout input.input-text{height:48px;min-height:48px}
+.paxig-reference-commerce.woocommerce-checkout form.checkout textarea{min-height:112px;line-height:1.6}
+.paxig-reference-commerce.woocommerce-checkout #customer_details h3{font-size:20px;line-height:1.2;margin:0 0 24px}
+.paxig-reference-commerce.woocommerce-checkout #order_review_heading{background:#f7f7f7;padding:24px 24px 0;font-size:20px;line-height:1.2}
+.paxig-reference-commerce.woocommerce-checkout #order_review{background:#f7f7f7;padding:20px 24px 24px}
+.paxig-reference-commerce.woocommerce-checkout #order_review table{margin-bottom:24px}
+.paxig-reference-commerce.woocommerce-checkout #order_review :is(th,td){padding:16px 8px;line-height:1.6}
+.paxig-reference-commerce.woocommerce-checkout #order_review .order-total th{font-size:15px;color:#111}
+.paxig-reference-commerce.woocommerce-checkout #order_review .order-total td{font-size:22px}
+.paxig-reference-commerce.woocommerce-checkout #payment .wc_payment_method{padding:18px 16px;margin-bottom:12px}
+.paxig-reference-commerce.woocommerce-checkout #payment .wc_payment_method:has(input:checked){border-color:#111;background:#fafafa}
+.paxig-reference-commerce.woocommerce-checkout #payment .input-radio{width:16px;height:16px;vertical-align:middle;margin-right:10px;accent-color:#111}
+.paxig-reference-commerce.woocommerce-checkout #payment label{display:inline;vertical-align:middle;line-height:1.6}
+.paxig-reference-commerce.woocommerce-checkout #payment .payment_box{background:#f3f3f3;color:#555;line-height:1.6;padding:14px;margin-top:14px}
+.paxig-reference-commerce.woocommerce-checkout #payment .place-order{padding-top:20px}
+@media(max-width:1100px){
+ .paxig-reference-commerce.woocommerce-cart table.cart .product-thumbnail img{width:96px;max-width:96px}
+}
+@media(max-width:768px){
+ .paxig-reference-commerce.woocommerce-cart table.cart tr.cart_item{grid-template-columns:88px minmax(0,1fr);gap:10px 16px;padding:24px 0}
+ .paxig-reference-commerce.woocommerce-cart table.cart tr.cart_item td{padding:0}
+ .paxig-reference-commerce.woocommerce-cart table.cart .product-thumbnail img{width:88px;max-width:88px}
+ .paxig-reference-commerce.woocommerce-cart table.cart td.actions .coupon input.input-text{width:0;flex:1;min-width:100px}
+ .paxig-reference-commerce.woocommerce-cart table.cart .product-remove{top:20px}
+ .paxig-reference-commerce.woocommerce-cart .cart_totals{padding:24px 20px}
+ .paxig-reference-commerce.woocommerce-checkout #order_review_heading{margin-top:24px;padding:24px 20px 0}
+ .paxig-reference-commerce.woocommerce-checkout #order_review{padding:20px}
+}
+@media(max-width:600px){
+ .paxig-reference-commerce:is(.woocommerce-cart,.woocommerce-checkout) .paxig-main>.paxig-container{padding-top:24px;padding-bottom:48px}
+ .paxig-reference-commerce.woocommerce-checkout .demo-notice{padding:16px}
+ .paxig-reference-commerce.woocommerce-checkout .woocommerce-form-coupon-toggle .woocommerce-info{padding-right:16px}
+}
+.paxig-reference-commerce.woocommerce-cart .quantity .paxig-quantity-step{width:44px;min-width:44px;min-height:48px}

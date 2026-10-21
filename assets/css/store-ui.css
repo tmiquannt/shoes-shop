@@ -1,0 +1,258 @@
+/* PAXIG storefront design system. Native Woo/PAXIG controls remain authoritative. */
+body.paxig-store{--store-ink:#111;--store-paper:#fff;--store-surface:#f5f5f5;--store-line:#e5e5e5;--store-muted:#757575;--store-sale:#d93025;--store-gutter:48px;--store-radius:4px;color:var(--store-ink);background:var(--store-paper);font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6}
+.paxig-store :is(h1,h2,h3){line-height:1.2;color:#111;font-weight:700;letter-spacing:-.6px}
+.paxig-store :is(a,button,input,select,textarea,summary):focus-visible{outline:3px solid #111;outline-offset:3px}
+.paxig-store .paxig-container,.paxig-store .paxig-home-container,.paxig-store .paxig-home-hero-copy,.paxig-store .paxig-header .paxig-container,.paxig-store .paxig-main>.paxig-container{width:min(1440px,calc(100% - var(--store-gutter)*2));margin-left:auto;margin-right:auto}
+body.paxig-store #main.site-main,body.paxig-store.paxig-plp #main.site-main{width:min(1440px,calc(100% - var(--store-gutter)*2));margin:auto;padding:32px 0 64px}
+.paxig-store .paxig-main>.paxig-container{padding:40px 0 64px}
+.paxig-store .paxig-main article>h1{font-size:40px;line-height:1.2;margin:0 0 32px;letter-spacing:-1px}
+.paxig-store .woocommerce-breadcrumb{font-size:12px;margin-bottom:20px;color:#757575}
+/* Retail header: original WordPress menu hierarchy and destinations. */
+.paxig-store .paxig-header{background:#fff;border-bottom:1px solid #e5e5e5;box-shadow:none}
+.paxig-store .paxig-header .paxig-container{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:24px;align-items:center;min-height:76px}
+.paxig-store .paxig-brand{font-size:24px;letter-spacing:-.9px;line-height:1.2;color:#111;white-space:nowrap}
+.paxig-store .paxig-navigation{margin:0;justify-self:center}
+.paxig-store .paxig-nav{flex-wrap:nowrap;gap:24px}
+.paxig-store .paxig-nav>li>a{font-size:13px;font-weight:600;text-transform:none;padding:27px 0;white-space:nowrap;color:#111}
+.paxig-store .paxig-header-actions{display:flex;align-items:center;gap:4px;margin:0;width:auto}
+.paxig-store .paxig-product-search{width:168px;border:0;border-radius:4px;background:#f5f5f5;min-height:44px}
+.paxig-store .paxig-product-search input[type=search]{font-size:13px;min-width:0}
+.paxig-store .paxig-header-action{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:#111}
+.paxig-store .paxig-header-action svg{width:22px;height:22px}
+.paxig-store .paxig-cart-count{background:#111;color:#fff;font-size:10px}
+.paxig-store .paxig-mobile-account{display:none}
+/* Primary/secondary controls share the same restrained shape and height. */
+.paxig-store .paxig-button,.paxig-store .woocommerce :is(a.button,button.button,input.button),.paxig-store #place_order{border-radius:4px;min-height:48px;font-family:inherit;font-size:14px;font-weight:600;box-shadow:none;text-decoration:none;line-height:1.4}
+.paxig-store .paxig-button{padding:14px 24px;min-height:52px;border-radius:4px}
+.paxig-store .paxig-button--secondary{border:1px solid currentColor}
+.paxig-store .paxig-home-editorial-cta{border-radius:4px;font-weight:600;padding:12px 20px}
+.paxig-store :is(.paxig-home-more,.paxig-size-guide-link){text-underline-offset:4px}
+/* Home: product-led editorial rather than a continuous catalog. */
+.paxig-store .paxig-home-announcement{background:#111;color:#fff;padding:8px 16px;font-size:12px;font-weight:400}
+.paxig-store .paxig-home-hero{height:62vh;min-height:520px;max-height:700px}
+.paxig-store .paxig-home-hero h1{font-size:clamp(48px,4.2vw,64px);line-height:1.1;letter-spacing:-2px;max-width:660px;margin-bottom:24px;color:#fff}
+.paxig-store .paxig-home-eyebrow{font-size:11px;letter-spacing:1.6px;font-weight:600}
+.paxig-store .paxig-home-hero-copy>p:not(.paxig-home-eyebrow){font-size:16px;max-width:370px;line-height:1.6;margin-bottom:28px}
+.paxig-store .paxig-home-section{margin-top:80px}
+.paxig-store .paxig-home-section-head{margin-bottom:28px}
+.paxig-store .paxig-home-section-head h2{font-size:30px;text-transform:none;letter-spacing:-.7px}
+.paxig-store .paxig-home-section-head p{font-size:14px;line-height:1.6}
+.paxig-store .paxig-home-featured{gap:24px}
+.paxig-store .paxig-home-editorial-copy h3{font-size:34px;line-height:1.15;max-width:340px;color:#fff}
+.paxig-store .paxig-home-campaign{margin-top:80px}
+.paxig-store .paxig-home-campaign h2{font-size:clamp(38px,3.3vw,52px);letter-spacing:-1.6px;line-height:1.1}
+.paxig-store .paxig-home-main{padding-bottom:80px}
+/* Shared cards: image, factual badge, product name, taxonomy, real price. */
+.paxig-store .paxig-reference-image{background:#f5f5f5;aspect-ratio:1;border-radius:0;padding:8px;overflow:hidden}
+.paxig-store .paxig-reference-image img{object-fit:contain;aspect-ratio:1;max-width:100%;width:100%;height:100%}
+.paxig-store .paxig-reference-badge{font-size:11px;font-weight:600;line-height:1.5}
+.paxig-store .paxig-reference-category{font-size:13px;font-weight:400;color:#757575;line-height:1.5}
+.paxig-store .price{font-size:15px;font-weight:600;line-height:1.5}
+.paxig-store .price ins{color:#d93025;background:none;text-decoration:none;font-weight:600}
+.paxig-store .price del{color:#757575;font-size:12px;font-weight:400;opacity:1}
+.paxig-store ul.products li.product .woocommerce-loop-product__title{font-size:16px;font-weight:600;line-height:1.4;text-transform:none;letter-spacing:0}
+.paxig-store .paxig-home-product-link{display:flex;flex-direction:column}
+.paxig-store .paxig-home-product .paxig-reference-image{order:0}
+.paxig-store .paxig-home-product .paxig-reference-category{order:2;margin:4px 0 0}
+.paxig-store .paxig-home-product h3{order:1;margin:14px 0 0;min-height:2.8em;font-size:16px;font-weight:600;line-height:1.4;letter-spacing:0}
+.paxig-store .paxig-home-product .price{order:3;margin-top:10px;min-height:24px}
+.paxig-store .paxig-home-product .paxig-reference-badge{background:#111;color:#fff;border-radius:0;padding:3px 8px;position:absolute;top:12px;left:12px}
+.paxig-store .paxig-home-product .paxig-reference-badge.is-sale{background:#fff;color:#d93025}
+/* Catalog, product search and category pages share one browsing system. */
+.paxig-store.paxig-plp .woocommerce-products-header__title{font-size:38px;line-height:1.2;text-transform:none;letter-spacing:-1px}
+.paxig-store.paxig-plp .paxig-plp-count{margin-top:8px;font-size:14px;color:#757575}
+.paxig-store .paxig-plp-quick{margin-top:20px}
+.paxig-store .paxig-plp-quick ul{gap:28px}
+.paxig-store .paxig-plp-quick a{font-size:14px;min-height:44px}
+.paxig-store .paxig-plp-toolbar{margin:12px 0 28px}
+.paxig-store .paxig-plp-filter-toggle{font-size:14px;min-height:44px}
+.paxig-store.paxig-plp .woocommerce-ordering select{font-size:14px;font-weight:400}
+.paxig-store.paxig-plp .paxig-shop-layout{grid-template-columns:240px minmax(0,1fr);gap:40px}
+.paxig-store.paxig-plp .paxig-plp-layout.is-filters-hidden{grid-template-columns:minmax(0,1fr)}
+.paxig-store.paxig-plp .paxig-shop-products ul.products{gap:44px 24px}
+.paxig-store .paxig-plp-group{padding-bottom:16px}
+.paxig-store .paxig-plp-group>summary{font-size:14px;font-weight:600;min-height:56px}
+.paxig-store .paxig-plp-group a{font-size:14px;min-height:44px}
+.paxig-store .paxig-plp-dialog{border-radius:0;background:#fff}
+.paxig-store.paxig-plp ul.products li.product .paxig-reference-badge{position:static;font-size:11px;margin:14px 0 8px;padding:0;background:none;color:#111}
+.paxig-store.paxig-plp ul.products li.product .paxig-reference-badge.is-sale{color:#d93025}
+.paxig-store.paxig-plp ul.products li.product .woocommerce-loop-product__title{font-size:16px;min-height:2.8em}
+.paxig-store.paxig-plp ul.products li.product .price{margin-top:10px;font-size:15px;min-height:24px}
+/* Native PDP gallery and variation form: 58/42, no fake variant controls. */
+.paxig-store.single-product div.product{grid-template-columns:minmax(0,58fr) minmax(0,42fr);gap:48px}
+.paxig-store.single-product .product_title{font-size:36px;line-height:1.2;letter-spacing:-1px;text-transform:none;margin-bottom:20px}
+.paxig-store.single-product .summary .paxig-reference-category{text-transform:none;font-weight:400;font-size:14px;margin-bottom:10px}
+.paxig-store.single-product .summary .paxig-reference-badge{position:static;background:none;color:#111;font-size:12px;padding:0;display:block;margin:0 0 8px}
+.paxig-store.single-product .summary .paxig-reference-badge.is-sale{color:#d93025}
+.paxig-store.single-product .summary .price{font-size:24px!important;font-weight:600;margin-bottom:16px}
+.paxig-store.single-product .woocommerce-product-gallery__image{background:#f5f5f5}
+.paxig-store.single-product .woocommerce-product-gallery__image img{padding:12px;box-sizing:border-box;object-fit:contain}
+.paxig-store.single-product .woocommerce-product-gallery__trigger{display:flex!important;align-items:center;justify-content:center;width:44px!important;height:44px!important;text-indent:0!important;color:#111}
+.paxig-store.single-product .woocommerce-product-gallery__trigger::before,.paxig-store.single-product .woocommerce-product-gallery__trigger::after{display:none!important}
+.paxig-store.single-product .woocommerce-product-gallery .flex-control-thumbs{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.paxig-store.single-product .paxig-size-picker__buttons{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+.paxig-store.single-product .paxig-size-button{font-size:14px!important;font-weight:400!important;min-height:48px!important;border-radius:4px!important}
+.paxig-store.single-product .paxig-size-button.is-selected{font-weight:600!important}
+.paxig-store.single-product table.variations label{font-size:14px;font-weight:600}
+.paxig-store.single-product form.cart .quantity{margin-bottom:0!important;border-radius:4px}
+.paxig-store.single-product .woocommerce-variation-add-to-cart{gap:16px}
+.paxig-store.single-product .single_add_to_cart_button{font-weight:600!important;border-radius:4px!important;min-height:52px}
+.paxig-store .paxig-reference-policy{font-size:13px;line-height:1.6;padding:16px;background:#f5f5f5;margin:24px 0}
+.paxig-store .paxig-reference-accordions summary{font-size:14px;text-transform:none;font-weight:600;min-height:60px}
+.paxig-store .paxig-reference-content{font-size:14px;line-height:1.65;color:#555}
+.paxig-store.single-product .related>h2,.paxig-store.single-product .up-sells>h2{font-size:30px;text-transform:none;font-weight:600}
+.paxig-store.single-product .stock.in-stock{color:#555}
+.paxig-store.single-product :is(.woocommerce-tabs,.paxig-recent-native){border-top:1px solid #e5e5e5;padding-top:32px;margin-top:32px}
+.paxig-store.single-product #reviews h2{font-size:24px;margin-bottom:24px}
+.paxig-store.single-product #review_form{max-width:720px}
+.paxig-store.single-product #respond label{display:block;font-size:14px;margin-bottom:8px}
+.paxig-store.single-product #respond :is(input[type=text],input[type=email],textarea){width:100%;min-height:48px;border:1px solid #e5e5e5;border-radius:4px;padding:12px;font:inherit;background:#fff}
+.paxig-store.single-product #respond textarea{min-height:144px}
+.paxig-store.single-product #review_form #respond input#submit{min-height:48px;padding:12px 24px!important;border-radius:4px!important;font-size:14px;font-weight:600!important;background:#111;color:#fff}
+.paxig-store.single-product #respond .comment-form-cookies-consent label{display:inline;font-size:13px}
+.paxig-store.single-product p.stars a{width:44px;height:44px;color:#111;font-size:22px}
+.paxig-store.single-product p.stars a::before{color:#111}
+.paxig-store.single-product .paxig-recent-native h2{font-size:30px;margin-bottom:24px}
+.paxig-store.single-product .paxig-recent-native ul.product_list_widget{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding:0}
+.paxig-store.single-product .paxig-recent-native ul.product_list_widget li{padding:0;list-style:none;min-width:0}
+.paxig-store.single-product .paxig-recent-native ul.product_list_widget a{display:block;font-size:16px;font-weight:600;line-height:1.4;color:#111;text-decoration:none;margin-bottom:10px}
+.paxig-store.single-product .paxig-recent-native ul.product_list_widget img{display:block;float:none;width:100%!important;max-width:none;height:auto;max-height:none;aspect-ratio:1;object-fit:contain;margin:0 0 16px;background:#f5f5f5;padding:8px}
+.paxig-store .paxig-quantity-step{color:#111}
+.paxig-store :is(.cart_totals,#order_review,.paxig-customer-order dl) :is(th,dt){color:#555}
+.paxig-store.single-product .paxig-recent-native ul.product_list_widget .amount{font-size:15px;font-weight:600;color:#111}
+.paxig-store.single-product .paxig-recent-native ul.product_list_widget del .amount{font-size:12px;color:#757575}
+.paxig-store.single-product .paxig-recent-native ul.product_list_widget ins{background:none;text-decoration:none}
+.paxig-store.single-product .paxig-recent-native ul.product_list_widget ins .amount{color:#d93025}
+/* Shared commerce forms and restrained notices. */
+.paxig-store.paxig-reference-commerce .woocommerce form :is(input.input-text,select,textarea){border:1px solid #e5e5e5;border-radius:4px;min-height:48px;font-size:15px;font-family:inherit}
+.paxig-store.paxig-reference-commerce .woocommerce form label{font-size:14px;font-weight:500;line-height:1.5}
+.paxig-store.paxig-reference-commerce table.shop_table :is(th,td){font-family:inherit;line-height:1.6}
+.paxig-store.paxig-reference-commerce table.shop_table th{font-weight:500}
+.paxig-store.paxig-reference-commerce :is(.woocommerce-info,.woocommerce-message,.woocommerce-error){font-size:14px;line-height:1.6;background:#f5f5f5;box-shadow:none}
+.paxig-store.woocommerce-cart .cart_totals,.paxig-store.woocommerce-checkout :is(#order_review,#order_review_heading){background:#f5f5f5;border-radius:0}
+.paxig-store.woocommerce-cart .cart_totals{padding:28px}
+.paxig-store.woocommerce-cart .cart_totals h2{font-size:24px;font-weight:600;margin-bottom:24px}
+.paxig-store.woocommerce-cart table.cart .product-name a{font-weight:600;line-height:1.5}
+.paxig-store.woocommerce-cart .cart_totals .order-total th,.paxig-store.woocommerce-checkout #order_review .order-total th{font-size:14px;font-weight:600}
+.paxig-store.woocommerce-cart .cart_totals .order-total td,.paxig-store.woocommerce-checkout #order_review .order-total td{font-size:22px;font-weight:600}
+.paxig-store .wc-proceed-to-checkout .checkout-button,.paxig-store #place_order{font-weight:600;min-height:52px}
+.paxig-store.woocommerce-checkout #customer_details h3,.paxig-store.woocommerce-checkout #order_review_heading{font-size:22px;font-weight:600;letter-spacing:-.5px}
+.paxig-store.woocommerce-checkout #order_review{padding:24px 28px 28px}
+.paxig-store.woocommerce-checkout #order_review_heading{padding:28px 28px 0}
+.paxig-store.woocommerce-checkout .demo-notice{background:#fff;border:1px solid #e5e5e5;font-size:13px;color:#555}
+.paxig-store.woocommerce-checkout #payment .wc_payment_method{border-radius:4px;padding:18px 16px;background:#fff}
+.paxig-store.woocommerce-checkout #payment .wc_payment_method:has(input:checked){border-color:#111;background:#fff}
+.paxig-store.woocommerce-checkout #payment .payment_box{font-size:13px;line-height:1.6}
+/* Customer account: navigation, meaningful separate states, original permission gates. */
+.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation{width:23%;float:left}
+.paxig-store.woocommerce-account .woocommerce-MyAccount-content{width:72%;float:right}
+.paxig-store .woocommerce-MyAccount-navigation ul{border-top:0}
+.paxig-store .woocommerce-MyAccount-navigation li{border:0;margin-bottom:4px}
+.paxig-store .woocommerce-MyAccount-navigation li a{font-size:14px;min-height:48px;border-radius:4px;padding:12px 16px}
+.paxig-store .woocommerce-MyAccount-navigation li:not(.is-active) a:hover{background:#f5f5f5}
+.paxig-store .woocommerce-MyAccount-content>p:first-child{font-size:18px;line-height:1.6}
+.paxig-store .woocommerce-orders-table :is(.woocommerce-orders-table__cell-order-status,.woocommerce-orders-table__cell-paxig_fulfillment,.woocommerce-orders-table__cell-paxig_payment){font-size:13px;font-weight:500}
+.paxig-store .paxig-customer-order{margin:32px 0;border-top:1px solid #e5e5e5;padding-top:32px}
+.paxig-store .paxig-customer-order h2{font-size:24px;font-weight:600;margin:0 0 24px}
+.paxig-store .paxig-customer-order dl{grid-template-columns:minmax(100px,1fr) minmax(0,2fr);gap:12px 20px;padding:20px;background:#f5f5f5}
+.paxig-store .paxig-customer-order dd{background:#fff;border:1px solid #e5e5e5;border-radius:4px;font-weight:500;line-height:1.5}
+.paxig-store .paxig-customer-order :is(.paxig-customer-cancel,.paxig-customer-return){background:#fff;border:1px solid #e5e5e5;padding:24px;border-radius:4px}
+.paxig-store .paxig-customer-order :is(.paxig-customer-cancel,.paxig-customer-return) button{background:#fff;color:#d93025;border:1px solid #d93025;font-weight:600;min-height:48px}
+.paxig-store .woocommerce a.button.paxig-cancel-request{background:#fff!important;color:#d93025!important;border-color:#d93025!important}
+.paxig-store .woocommerce :is(.woocommerce-Address,.woocommerce-customer-details address){border-radius:4px;background:#fff}
+.paxig-store .cart-empty,.paxig-store .woocommerce-no-products-found,.paxig-store .paxig-plp-empty-reset{font-size:16px;line-height:1.6}
+/* Footer links are existing WordPress/Woo destinations only. */
+.paxig-store .paxig-footer{background:#111;color:#fff;padding:56px 0 24px}
+.paxig-store .paxig-footer__grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.paxig-store .paxig-footer :is(h2,a){color:#fff}
+.paxig-store .paxig-footer h2{font-size:13px;line-height:1.5;letter-spacing:1px;text-transform:uppercase;font-weight:600;margin:0 0 16px}
+.paxig-store .paxig-footer__brand>a{font-size:26px;font-weight:600;letter-spacing:-.8px}
+.paxig-store .paxig-footer p{color:#bdbdbd;font-size:13px;line-height:1.6}
+.paxig-store .paxig-footer__column a{font-size:13px;line-height:1.6;min-height:36px;display:flex;align-items:center;text-decoration:none}
+.paxig-store .paxig-footer__column a:hover{text-decoration:underline}
+.paxig-store .paxig-footer__bottom{border-color:#333;margin-top:40px;padding-top:20px}
+@media(max-width:1200px){
+ .paxig-store{--store-gutter:24px}
+ .paxig-store .paxig-header .paxig-container{gap:16px}
+ .paxig-store .paxig-brand{font-size:22px}
+ .paxig-store .paxig-nav{gap:16px}
+ .paxig-store .paxig-nav>li>a{font-size:12px}
+ .paxig-store .paxig-product-search{width:128px}
+ .paxig-store.single-product div.product{gap:32px}
+ .paxig-store.single-product .product_title{font-size:30px}
+ .paxig-store .paxig-home-section{margin-top:64px}
+ .paxig-store .paxig-footer__grid{gap:24px}
+}
+@media(max-width:900px){
+ .paxig-store .paxig-header .paxig-container{display:flex;min-height:72px;gap:0;position:relative}
+ .paxig-store .paxig-menu-toggle{display:flex;width:44px;height:44px;margin:0;flex:none}
+ .paxig-store .paxig-brand{position:absolute;left:50%;transform:translateX(-50%);font-size:19px;flex:none}
+ .paxig-store .paxig-header-actions{margin-left:auto;gap:0}
+ .paxig-store .paxig-header-action[aria-label="My Account"]{display:none}
+ .paxig-store .paxig-reference-search-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px}
+ .paxig-store .paxig-product-search{display:none;width:100%;border:1px solid #e5e5e5;border-radius:4px}
+ .paxig-store .paxig-product-search.is-open{display:flex;position:absolute;top:calc(100% + 8px);left:0;right:0;width:100%;height:52px;background:#fff;z-index:102}
+ .paxig-store .paxig-navigation{position:absolute;top:100%;left:0;right:0;width:100%;max-height:calc(100dvh - 72px);overflow:auto;border:1px solid #e5e5e5;background:#fff;margin:0;display:none}
+ .paxig-store .paxig-navigation.is-open{display:block}
+ .paxig-store .paxig-nav{display:block;padding:12px 16px}
+ .paxig-store .paxig-nav>li>a{font-size:15px;padding:14px 44px 14px 0;min-height:48px;white-space:normal}
+ .paxig-store .paxig-mobile-account{display:block;border-top:1px solid #e5e5e5;margin-top:8px;padding-top:8px}
+ .paxig-store.paxig-plp .paxig-shop-layout{grid-template-columns:minmax(0,1fr);gap:0}
+ .paxig-store.single-product div.product{display:block}
+ .paxig-store.single-product div.product div.images{margin-bottom:32px}
+ .paxig-store .paxig-home-hero{height:560px;min-height:0}
+ .paxig-store .paxig-home-hero h1{font-size:48px}
+}
+@media(max-width:768px){
+ .paxig-store.woocommerce-account .woocommerce-MyAccount-navigation,.paxig-store.woocommerce-account .woocommerce-MyAccount-content{width:100%;float:none}
+ .paxig-store .woocommerce-MyAccount-navigation{margin-bottom:24px}
+ .paxig-store .woocommerce-MyAccount-navigation ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .paxig-store .paxig-footer__grid{grid-template-columns:2fr 1fr 1fr;gap:32px}
+ .paxig-store .paxig-footer__brand{grid-column:1/-1}
+ .paxig-store .paxig-footer__column a{min-height:44px}
+}
+@media(max-width:600px){
+ .paxig-store.single-product .paxig-recent-native ul.product_list_widget{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+ body.paxig-store{--store-gutter:16px}
+ body.paxig-store #main.site-main,body.paxig-store.paxig-plp #main.site-main{padding:24px 0 48px}
+ .paxig-store .paxig-main>.paxig-container{padding:28px 0 48px}
+ .paxig-store .paxig-main article>h1{font-size:30px;margin-bottom:24px}
+ .paxig-store .paxig-home-announcement{font-size:10px;padding:8px 12px;line-height:1.5}
+ .paxig-store .paxig-home-hero{height:600px;max-height:none;align-items:flex-end}
+ .paxig-store .paxig-home-hero-copy{padding:28px 0}
+ .paxig-store .paxig-home-hero h1{font-size:42px;line-height:1.1;letter-spacing:-1.4px;margin-bottom:20px}
+ .paxig-store .paxig-home-hero-copy>p:not(.paxig-home-eyebrow){font-size:14px;max-width:320px;margin-bottom:24px}
+ .paxig-store .paxig-home-actions{gap:10px}
+ .paxig-store.paxig-home .paxig-button{font-size:13px;padding:12px 16px;min-height:48px}
+ .paxig-store .paxig-home-section,.paxig-store .paxig-home-campaign{margin-top:48px}
+ .paxig-store .paxig-home-section-head{margin-bottom:24px}
+ .paxig-store .paxig-home-section-head h2{font-size:24px}
+ .paxig-store .paxig-home-more{font-size:12px}
+ .paxig-store .paxig-home-section-head p{font-size:12px}
+ .paxig-store .paxig-home-editorial-copy h3{font-size:30px}
+ .paxig-store .paxig-home-campaign h2{font-size:36px}
+ .paxig-store .paxig-home-main{padding-bottom:48px}
+ .paxig-store .paxig-home-product h3,.paxig-store.paxig-plp ul.products li.product .woocommerce-loop-product__title{font-size:14px}
+ .paxig-store .paxig-home-product .price,.paxig-store.paxig-plp ul.products li.product .price{font-size:14px}
+ .paxig-store.paxig-plp .woocommerce-products-header__title{font-size:30px}
+ .paxig-store .paxig-plp-quick{margin-top:16px}
+ .paxig-store .paxig-plp-quick ul{gap:20px}
+ .paxig-store .paxig-plp-toolbar{margin:12px 0 24px;gap:12px}
+ .paxig-store.paxig-plp .paxig-shop-products ul.products{gap:32px 12px}
+ .paxig-store.paxig-plp .woocommerce-ordering select{font-size:12px}
+ .paxig-store .paxig-reference-image{padding:4px}
+ .paxig-store.single-product .product_title{font-size:30px}
+ .paxig-store.single-product .summary .price{font-size:22px!important}
+ .paxig-store.single-product .paxig-size-picker__buttons{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .paxig-store .paxig-footer{padding:40px 0 20px}
+ .paxig-store .paxig-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+ .paxig-store .paxig-footer__bottom{margin-top:24px}
+ .paxig-store .paxig-customer-order dl{padding:16px;grid-template-columns:1fr;gap:8px}
+ .paxig-store .paxig-customer-order dd{margin-bottom:8px}
+ .paxig-store .paxig-customer-order h2{font-size:22px}
+ .paxig-store.woocommerce-checkout #order_review{padding:20px}
+ .paxig-store.woocommerce-checkout #order_review_heading{padding:24px 20px 0}
+}
+@media(prefers-reduced-motion:reduce){.paxig-store *{scroll-behavior:auto!important;transition:none!important}}
+
+.paxig-checkout-login{max-width:760px;margin:32px auto;padding:32px;border:1px solid #ddd;border-radius:8px;background:#fff}.paxig-checkout-login h2{line-height:1.3}.paxig-checkout-login p{line-height:1.7}.paxig-checkout-login-actions{display:flex;gap:16px;flex-wrap:wrap;margin:24px 0}.paxig-checkout-login-actions .button{text-align:center;white-space:normal}@media(max-width:600px){.paxig-checkout-login{padding:20px;margin:20px 0}.paxig-checkout-login-actions{flex-direction:column}.paxig-checkout-login-actions .button{width:100%}}

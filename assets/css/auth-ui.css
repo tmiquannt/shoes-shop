@@ -1,0 +1,41 @@
+/* Guest authentication presentation only; existing store tokens and native Woo JS. */
+.paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main>.paxig-container{padding-top:56px;padding-bottom:80px}
+.paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main article>h1{max-width:520px;margin:0 auto 28px;font-size:36px;text-align:center;letter-spacing:-1px}
+.paxig-store:is(.paxig-auth,.paxig-auth-reset) .woocommerce{max-width:520px;margin:0 auto}
+.paxig-store .paxig-auth-card{background:#fff;border:1px solid #e5e5e5;border-radius:4px;padding:36px;box-shadow:none}
+.paxig-store .paxig-auth-card-heading{margin-bottom:28px}
+.paxig-store .paxig-auth-card-heading h2{font-size:26px;margin:0 0 12px;font-weight:600;letter-spacing:-.5px}
+.paxig-store .paxig-auth-card-heading p{font-size:14px;line-height:1.6;color:#757575;margin:0}
+.paxig-store.paxig-auth .woocommerce form:is(.login,.register){border:0;padding:0;margin:0;box-shadow:none;border-radius:0}
+.paxig-store.paxig-auth .woocommerce form .form-row{padding:0;margin:0 0 24px;float:none;width:100%}
+.paxig-store.paxig-auth .woocommerce form label{font-size:14px;font-weight:500;line-height:1.5;margin-bottom:8px}
+.paxig-store.paxig-auth .woocommerce form input.input-text{height:52px;min-height:52px;border:1px solid #e5e5e5;border-radius:4px;font-size:15px;padding:12px 14px;background:#fff;color:#111;width:100%;font-family:Arial,Helvetica,sans-serif}
+.paxig-store.paxig-auth .woocommerce form .password-input{display:block;position:relative;width:100%}
+.paxig-store.paxig-auth .woocommerce form .password-input input{padding-right:56px}
+.paxig-store.paxig-auth .woocommerce form .show-password-input{position:absolute;right:4px;top:4px;width:44px;height:44px;min-height:44px;margin:0;padding:0;background:transparent;border:0;border-radius:4px;color:#111;display:flex;align-items:center;justify-content:center}
+.paxig-store.paxig-auth .woocommerce form .show-password-input::after{margin:0;font-size:18px;line-height:1}
+.paxig-store.paxig-auth .woocommerce form .woocommerce-form-login__rememberme{display:flex;align-items:center;gap:8px;min-height:44px;margin:0 0 12px;font-size:14px;font-weight:400;float:none}
+.paxig-store.paxig-auth .woocommerce form input[type=checkbox]{width:16px;height:16px;accent-color:#111;margin:0;flex:none}
+.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit,.woocommerce-form-register__submit){display:block;float:none;width:100%;min-height:52px;height:auto;margin:0;padding:14px 20px;border:1px solid #111;border-radius:4px;background:#111;color:#fff;font-size:14px;font-weight:600;line-height:1.5}
+.paxig-store.paxig-auth .woocommerce-LostPassword{margin:0;font-size:14px}
+.paxig-store.paxig-auth .woocommerce-LostPassword a{display:inline-flex;align-items:center;min-height:44px;color:#111;text-underline-offset:4px}
+.paxig-store .paxig-auth-switch{border-top:1px solid #e5e5e5;margin:24px 0 0;padding-top:20px;font-size:14px;line-height:1.6;color:#757575;text-align:center}
+.paxig-store .paxig-auth-switch a{color:#111;font-weight:600;text-underline-offset:4px;display:inline-flex;align-items:center;min-height:44px}
+.paxig-store.paxig-auth .woocommerce-privacy-policy-text{background:#f5f5f5;color:#555;padding:12px 16px;border-radius:4px;margin:0 0 24px;font-size:13px;line-height:1.6}
+.paxig-store.paxig-auth .woocommerce-privacy-policy-text p{margin:0}
+.paxig-store:is(.paxig-auth,.paxig-auth-reset) :is(.woocommerce-error,.woocommerce-message,.woocommerce-info){font-size:14px;line-height:1.6;overflow-wrap:anywhere}
+.paxig-store:is(.paxig-auth,.paxig-auth-reset) .woocommerce-error{border-top-color:#d93025}
+.paxig-store:is(.paxig-auth,.paxig-auth-reset) .woocommerce-error::before{color:#d93025}
+.paxig-store.paxig-auth-reset .woocommerce-ResetPassword{padding:32px;border:1px solid #e5e5e5;border-radius:4px;margin:0}
+.paxig-store.paxig-auth-reset .woocommerce-ResetPassword .form-row{float:none;width:100%}
+.paxig-store.paxig-auth-reset .woocommerce-ResetPassword button{width:100%;min-height:52px;background:#111;color:#fff;border-radius:4px}
+@media(max-width:768px){.paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main>.paxig-container{padding-top:40px;padding-bottom:56px}}
+@media(max-width:600px){
+ .paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main>.paxig-container{padding-top:32px;padding-bottom:48px}
+ .paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main article>h1{font-size:30px;margin-bottom:24px}
+ .paxig-store .paxig-auth-card{padding:24px 20px}
+ .paxig-store .paxig-auth-card-heading h2{font-size:24px}
+ .paxig-store.paxig-auth-reset .woocommerce-ResetPassword{padding:24px 20px}
+}
+
+.paxig-store.paxig-auth .woocommerce form .show-password-input{transform:none}
