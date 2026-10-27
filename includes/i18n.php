@@ -89,34 +89,53 @@ function paxig_filter_language_attributes( $attributes ) {
 add_filter( 'language_attributes', 'paxig_filter_language_attributes', 20 );
 
 /**
- * Render sleek language switcher toggle (VI | EN).
+ * Render sleek language switcher dropdown selector.
  *
  * @param string $class Additional CSS classes.
  */
 function paxig_render_language_switcher( $class = '' ) {
+	static $switcher_index = 0;
+	$switcher_index++;
+	$select_id = 'paxig-lang-select-' . $switcher_index;
+
 	$current_lang = paxig_get_current_language();
 
 	// Preserve current URL parameters while updating lang
 	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : home_url( '/' );
-	$vi_url = add_query_arg( 'lang', 'vi', $request_uri );
-	$en_url = add_query_arg( 'lang', 'en', $request_uri );
+	$vi_url      = add_query_arg( 'lang', 'vi', $request_uri );
+	$en_url      = add_query_arg( 'lang', 'en', $request_uri );
 	?>
-	<div class="paxig-lang-switch <?php echo esc_attr( $class ); ?>" role="group" aria-label="<?php echo esc_attr__( 'Language Switcher', 'paxig-shoes' ); ?>">
-		<a
-			href="<?php echo esc_url( $vi_url ); ?>"
-			class="paxig-lang-btn <?php echo 'vi' === $current_lang ? 'is-active' : ''; ?>"
-			hreflang="vi"
-			title="Tiếng Việt"
-			aria-pressed="<?php echo 'vi' === $current_lang ? 'true' : 'false'; ?>"
-		>VI</a>
-		<span class="paxig-lang-divider" aria-hidden="true">/</span>
-		<a
-			href="<?php echo esc_url( $en_url ); ?>"
-			class="paxig-lang-btn <?php echo 'en' === $current_lang ? 'is-active' : ''; ?>"
-			hreflang="en"
-			title="English"
-			aria-pressed="<?php echo 'en' === $current_lang ? 'true' : 'false'; ?>"
-		>EN</a>
+	<div class="paxig-lang-dropdown paxig-lang-switch <?php echo esc_attr( $class ); ?>">
+		<label for="<?php echo esc_attr( $select_id ); ?>" class="screen-reader-text">
+			<?php echo esc_html__( 'Language Switcher', 'paxig-shoes' ); ?>
+		</label>
+		<div class="paxig-lang-control">
+			<span class="paxig-lang-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8">
+					<circle cx="12" cy="12" r="10"></circle>
+					<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+					<path d="M2 12h20"></path>
+				</svg>
+			</span>
+			<select
+				id="<?php echo esc_attr( $select_id ); ?>"
+				class="paxig-lang-select"
+				aria-label="<?php echo esc_attr__( 'Language Switcher', 'paxig-shoes' ); ?>"
+				onchange="if (this.value) window.location.href = this.value;"
+			>
+				<option value="<?php echo esc_url( $vi_url ); ?>" <?php selected( $current_lang, 'vi' ); ?>>
+					Tiếng Việt (VI)
+				</option>
+				<option value="<?php echo esc_url( $en_url ); ?>" <?php selected( $current_lang, 'en' ); ?>>
+					English (EN)
+				</option>
+			</select>
+			<span class="paxig-lang-chevron" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.2">
+					<polyline points="6 9 12 15 18 9"></polyline>
+				</svg>
+			</span>
+		</div>
 	</div>
 	<?php
 }
