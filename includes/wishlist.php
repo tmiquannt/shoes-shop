@@ -56,7 +56,7 @@ function paxig_wishlist_card_button() {
 		type="button"
 		class="paxig-wishlist-btn paxig-wishlist-card-btn"
 		data-product-id="<?php echo esc_attr( $product_id ); ?>"
-		aria-label="<?php echo esc_attr( sprintf( __( 'Favorite %s', 'woocommerce' ), $product->get_name() ) ); ?>"
+		aria-label="<?php echo esc_attr( sprintf( __( 'Favorite %s', 'paxig-shoes' ), $product->get_name() ) ); ?>"
 	>
 		<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
 			<path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
@@ -80,12 +80,12 @@ function paxig_wishlist_pdp_button() {
 		type="button"
 		class="paxig-wishlist-btn paxig-wishlist-pdp-btn"
 		data-product-id="<?php echo esc_attr( $product_id ); ?>"
-		aria-label="<?php echo esc_attr( sprintf( __( 'Favorite %s', 'woocommerce' ), $product->get_name() ) ); ?>"
+		aria-label="<?php echo esc_attr( sprintf( __( 'Favorite %s', 'paxig-shoes' ), $product->get_name() ) ); ?>"
 	>
 		<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
 			<path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
 		</svg>
-		<span class="paxig-wishlist-btn-text">Favorite</span>
+		<span class="paxig-wishlist-btn-text"><?php echo esc_html__( 'Favorite', 'paxig-shoes' ); ?></span>
 	</button>
 	<?php
 }
@@ -101,9 +101,9 @@ function paxig_render_wishlist_drawer() {
 		<div class="paxig-drawer-panel">
 			<div class="paxig-drawer-header">
 				<h2 id="paxig-wishlist-drawer-title" class="paxig-drawer-title">
-					Favorites (<span class="paxig-wishlist-count">0</span>)
+					<?php echo esc_html__( 'Favorites', 'paxig-shoes' ); ?> (<span class="paxig-wishlist-count">0</span>)
 				</h2>
-				<button type="button" class="paxig-drawer-close" aria-label="Close favorites">&times;</button>
+				<button type="button" class="paxig-drawer-close" aria-label="<?php echo esc_attr__( 'Close favorites', 'paxig-shoes' ); ?>">&times;</button>
 			</div>
 
 			<div class="paxig-wishlist-drawer-content">
@@ -113,10 +113,10 @@ function paxig_render_wishlist_drawer() {
 							<path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
 						</svg>
 					</div>
-					<h3>Your Wishlist is Empty</h3>
-					<p>Explore our catalogue and tap the heart icon on any pair to save it here.</p>
+					<h3><?php echo esc_html__( 'Your Wishlist is Empty', 'paxig-shoes' ); ?></h3>
+					<p><?php echo esc_html__( 'Explore our catalogue and tap the heart icon on any pair to save it here.', 'paxig-shoes' ); ?></p>
 					<a class="paxig-drawer-btn paxig-drawer-btn--primary" href="<?php echo esc_url( $shop_url ); ?>">
-						Explore Shoes
+						<?php echo esc_html__( 'Explore Shoes', 'paxig-shoes' ); ?>
 					</a>
 				</div>
 
@@ -234,6 +234,20 @@ function paxig_enqueue_wishlist_assets() {
 		'nonce'        => wp_create_nonce( 'paxig_wishlist_nonce' ),
 		'is_logged_in' => is_user_logged_in(),
 		'user_ids'     => array_values( array_filter( $initial_user_ids ) ),
+		'i18n'         => [
+			'read_error'   => __( 'Could not read saved favorites on this device.', 'paxig-shoes' ),
+			'save_error'   => __( 'Could not save favorites on this device.', 'paxig-shoes' ),
+			'update_error' => __( 'Could not update favorites. Please try again.', 'paxig-shoes' ),
+			'sync_error'   => __( 'Could not sync favorites to your account. Please try again.', 'paxig-shoes' ),
+			'max_limit'    => __( 'You can save up to 100 favorites.', 'paxig-shoes' ),
+			'remove'       => __( 'Remove from favorites', 'paxig-shoes' ),
+			'select_size'  => __( 'Select Size / View →', 'paxig-shoes' ),
+			'out_of_stock' => __( 'Out of stock', 'paxig-shoes' ),
+			'loading'      => __( 'Loading saved shoes…', 'paxig-shoes' ),
+			'detail_error' => __( 'Could not load favorites. Please try again.', 'paxig-shoes' ),
+			'favorite'     => __( 'Favorite', 'paxig-shoes' ),
+			'favorited'    => __( 'Favorited', 'paxig-shoes' ),
+		],
 	] );
 }
 add_action( 'wp_enqueue_scripts', 'paxig_enqueue_wishlist_assets', 106 );

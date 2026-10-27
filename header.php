@@ -21,7 +21,7 @@
     aria-controls="paxig-primary-navigation"
     aria-expanded="false"
 >
-    <span class="screen-reader-text">Open menu</span>
+    <span class="screen-reader-text"><?php echo esc_html__( 'Open menu', 'paxig-shoes' ); ?></span>
 
     <svg
         viewBox="0 0 24 24"
@@ -38,7 +38,7 @@
 <nav
     id="paxig-primary-navigation"
     class="paxig-navigation"
-    aria-label="Main navigation"
+    aria-label="<?php echo esc_attr__( 'Main navigation', 'paxig-shoes' ); ?>"
 >
     <?php if (is_front_page()) :
         $shop_url = wc_get_page_permalink('shop');
@@ -47,13 +47,14 @@
         $basketball = function_exists('paxig_home_term') ? paxig_home_term('basketball') : false;
         $sale = function_exists('paxig_home_term') ? paxig_home_term('sale') : false;
         $accessories = function_exists('paxig_home_term') ? paxig_home_term('accessories') : false;
+        $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
         $home_nav = [
-            'NAM' => $men_url,
-            'NỮ' => $women_url,
-            'SNEAKER' => $shop_url,
-            'BASKETBALL' => $basketball ? $basketball['url'] : $shop_url,
-            'PHỤ KIỆN' => $accessories ? $accessories['url'] : $shop_url,
-            'ƯU ĐÃI' => $sale ? $sale['url'] : add_query_arg('paxig_sale', '1', $shop_url),
+            ( $is_vi ? 'NAM' : 'MEN' ) => $men_url,
+            ( $is_vi ? 'NỮ' : 'WOMEN' ) => $women_url,
+            ( $is_vi ? 'SNEAKER' : 'SNEAKERS' ) => $shop_url,
+            ( $is_vi ? 'BÓNG RỔ' : 'BASKETBALL' ) => $basketball ? $basketball['url'] : $shop_url,
+            ( $is_vi ? 'PHỤ KIỆN' : 'ACCESSORIES' ) => $accessories ? $accessories['url'] : $shop_url,
+            ( $is_vi ? 'ƯU ĐÃI' : 'SALE' ) => $sale ? $sale['url'] : add_query_arg('paxig_sale', '1', $shop_url),
         ];
     ?>
         <ul class="paxig-nav paxig-nav--poster">
@@ -72,8 +73,11 @@
             )
         );
     endif; ?>
+    <?php if ( function_exists( 'paxig_render_language_switcher' ) ) paxig_render_language_switcher( 'paxig-lang-switch--mobile' ); ?>
 </nav>
 <div class="paxig-header-actions">
+    <?php if ( function_exists( 'paxig_render_language_switcher' ) ) paxig_render_language_switcher(); ?>
+
     <form
         class="paxig-product-search"
         role="search"
@@ -81,20 +85,20 @@
         action="<?php echo esc_url( home_url( '/' ) ); ?>"
     >
         <label class="screen-reader-text" for="paxig-product-search">
-            Search products
+            <?php echo esc_html__( 'Search products', 'paxig-shoes' ); ?>
         </label>
 
         <input
             id="paxig-product-search"
             type="search"
             name="s"
-            placeholder="Search sneakers"
+            placeholder="<?php echo esc_attr__( 'Search sneakers', 'paxig-shoes' ); ?>"
             value="<?php echo esc_attr( get_search_query() ); ?>"
         >
 
         <input type="hidden" name="post_type" value="product">
 
-        <button type="submit" aria-label="Search">
+        <button type="submit" aria-label="<?php echo esc_attr__( 'Search', 'paxig-shoes' ); ?>">
             <svg
                 viewBox="0 0 24 24"
                 width="22"
@@ -110,7 +114,7 @@
     <a
         class="paxig-header-action"
         href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"
-        aria-label="My Account"
+        aria-label="<?php echo esc_attr__( 'My Account', 'paxig-shoes' ); ?>"
     >
         <svg
             viewBox="0 0 24 24"
@@ -126,7 +130,7 @@
     <button
         class="paxig-header-action paxig-header-wishlist"
         type="button"
-        aria-label="Wishlist"
+        aria-label="<?php echo esc_attr__( 'Wishlist', 'paxig-shoes' ); ?>"
         aria-controls="paxig-wishlist-drawer"
         aria-expanded="false"
     >
@@ -145,7 +149,7 @@
     <a
         class="paxig-header-action paxig-header-cart"
         href="<?php echo esc_url( wc_get_cart_url() ); ?>"
-        aria-label="Cart"
+        aria-label="<?php echo esc_attr__( 'Cart', 'paxig-shoes' ); ?>"
         aria-controls="paxig-cart-drawer"
         aria-expanded="false"
     >

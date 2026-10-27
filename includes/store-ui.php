@@ -4,9 +4,9 @@ defined('ABSPATH') || exit;
 function paxig_store_frontend() {
     return PHP_SAPI !== 'cli' && !is_admin() && !(defined('REST_REQUEST') && REST_REQUEST);
 }
-add_filter('locale',fn($locale)=>paxig_store_frontend()?'en_US':$locale,999);
-add_filter('determine_locale',fn($locale)=>paxig_store_frontend()?'en_US':$locale,999);
-add_filter('language_attributes',fn($attributes)=>paxig_store_frontend()?'lang="en-US"':$attributes,999);
+add_filter('locale',fn($locale)=>paxig_store_frontend()?(function_exists('paxig_filter_locale')?paxig_filter_locale($locale):'en_US'):$locale,999);
+add_filter('determine_locale',fn($locale)=>paxig_store_frontend()?(function_exists('paxig_filter_locale')?paxig_filter_locale($locale):'en_US'):$locale,999);
+add_filter('language_attributes',fn($attributes)=>paxig_store_frontend()?(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi'?'lang="vi"':'lang="en-US"'):$attributes,999);
 add_filter('body_class',function($classes){if(paxig_store_frontend())$classes[]='paxig-store';return $classes;});
 add_action('wp_enqueue_scripts',function(){
     if(!paxig_store_frontend())return;
@@ -53,8 +53,16 @@ function paxig_store_labels(){
       'Hủy đơn đã thanh toán'=>'Paid Order Cancellation','Không có phí vận chuyển cần hoàn'=>'No shipping charge to refund','Không hoàn phí vận chuyển'=>'Shipping is not refunded','Ghi nhận hoàn tiền thủ công theo tham chiếu; phương thức thanh toán gốc không xác nhận kênh chuyển tiền hoàn.'=>'A manual refund is recorded against its reference. The original payment method does not identify the refund transfer channel.',
     ];
 }
-function paxig_store_text($text){$map=paxig_store_labels();uksort($map,fn($a,$b)=>strlen($b)<=>strlen($a));return strtr($text,$map);}
+function paxig_store_text($text){
+    if (function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi') {
+        return $text;
+    }
+    $map=paxig_store_labels();uksort($map,fn($a,$b)=>strlen($b)<=>strlen($a));return strtr($text,$map);
+}
 function paxig_store_visible_text($text){
+    if (function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi') {
+        return $text;
+    }
     $trimmed=trim($text);$map=paxig_store_labels();
     if(isset($map[$trimmed]))return str_replace($trimmed,$map[$trimmed],$text);
     if(str_ends_with($trimmed,':')&&isset($map[rtrim($trimmed,':')]))return str_replace($trimmed,$map[rtrim($trimmed,':')].':',$text);
@@ -76,29 +84,56 @@ function paxig_store_html($html){
 }
 add_filter('gettext',function($translated,$text,$domain){
     if(!paxig_store_frontend())return $translated;
+    if(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi')return $translated;
     if(in_array($domain,['woocommerce','default'],true))return $text;
     return paxig_store_text($translated);
 },999,3);
-add_filter('ngettext',function($translated,$single,$plural,$number,$domain){return paxig_store_frontend()&&in_array($domain,['woocommerce','default'],true)?($number==1?$single:$plural):$translated;},999,5);
+add_filter('ngettext',function($translated,$single,$plural,$number,$domain){
+    if(!paxig_store_frontend())return $translated;
+    if(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi')return $translated;
+    return in_array($domain,['woocommerce','default'],true)?($number==1?$single:$plural):$translated;
+},999,5);
 add_filter('the_title',function($title,$id){
     if(!paxig_store_frontend()||get_post_type($id)==='product')return $title;
+    if(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi')return $title;
     $slug=get_post_field('post_name',$id);
     return ['cart'=>'Cart','checkout'=>'Checkout','my-account'=>'My Account','huong-dan'=>'Shopping Guide','ve-paxig'=>"About PAXIG'S SHOES"][$slug]??paxig_store_text($title);
 },999,2);
 function paxig_store_term($term){
     if(!paxig_store_frontend()||!$term instanceof WP_Term||!in_array($term->taxonomy,['product_cat','pa_gender','pa_sport','pa_color','pa_kich-thuoc'],true))return $term;
+    if(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi')return $term;
     $copy=clone $term;$copy->name=paxig_store_text($copy->name);return $copy;
 }
 add_filter('get_term','paxig_store_term',999);
 add_filter('get_terms',function($terms){return is_array($terms)?array_map('paxig_store_term',$terms):$terms;},999);
 add_filter('woocommerce_attribute_label',function($label,$name){
     if(!paxig_store_frontend())return $label;
+    if(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi') {
+        return ['pa_kich-thuoc'=>'Kích cỡ','pa_color'=>'Màu sắc','pa_gender'=>'Giới tính','pa_sport'=>'Môn thể thao'][$name]??$label;
+    }
     if($name==='pa_kich-thuoc'&&str_contains($label,'<a'))return $label;
     return ['pa_kich-thuoc'=>'Size','pa_color'=>'Color','pa_gender'=>'Gender','pa_sport'=>'Sport'][$name]??paxig_store_text($label);
 },999,2);
-add_filter('woocommerce_catalog_orderby',fn($labels)=>paxig_store_frontend()?['menu_order'=>'Featured','popularity'=>'Popularity','rating'=>'Rating','date'=>'Newest','price'=>'Price: Low to High','price-desc'=>'Price: High to Low']:$labels,999);
+add_filter('woocommerce_catalog_orderby',function($labels){
+    if(!paxig_store_frontend())return $labels;
+    if(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi') {
+        return [
+            'menu_order' => 'Thứ tự mặc định',
+            'popularity' => 'Mức độ phổ biến',
+            'rating'     => 'Điểm đánh giá',
+            'date'       => 'Mới nhất',
+            'price'      => 'Giá: Thấp đến Cao',
+            'price-desc' => 'Giá: Cao đến Thấp',
+        ];
+    }
+    return ['menu_order'=>'Featured','popularity'=>'Popularity','rating'=>'Rating','date'=>'Newest','price'=>'Price: Low to High','price-desc'=>'Price: High to Low'];
+},999);
 add_filter('woocommerce_page_title',function($title){
     if(!paxig_store_frontend())return $title;
+    if(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi') {
+        if(is_search())return 'Kết quả tìm kiếm';
+        return $title;
+    }
     if(is_search())return 'Search Results';
     return paxig_store_text($title)==='Tất cả giày'?'All Shoes':paxig_store_text($title);
 },999);
@@ -128,13 +163,27 @@ add_action('woocommerce_after_shop_loop_item_title',function(){
 },11);
 add_filter('the_content',function($content){
     if(!paxig_store_frontend())return $content;
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
     if(is_product()){
         global $product;if($product instanceof WC_Product&&str_contains($product->get_sku(),'PAXIG-DEMO-')){
+            if ($is_vi) {
+                return '<p>Khám phá '.esc_html($product->get_name()).' từ bộ sưu tập PAXIG demo.</p><p>Chọn kích cỡ EU của bạn bằng cách tham khảo bảng kích thước. Đây là hình ảnh minh họa cho giày mẫu; không xác nhận kiểu dáng, thông số hay giá thực tế.</p>'.paxig_store_demo_image_credit_html($product->get_id()).'<p>Yêu cầu hủy và trả hàng tuân theo trạng thái đơn hàng hiện tại và quyền hạn tài khoản.</p>';
+            }
             return '<p>Explore '.esc_html($product->get_name()).' from the PAXIG demo collection.</p><p>Select your EU size using the size guide. This is an illustrative shoe photo; it does not confirm the exact model, specifications, or price.</p>'.paxig_store_demo_image_credit_html($product->get_id()).'<p>Cancellation and return requests follow the current order status and account permissions.</p>';
         }
     }
-    if(is_page('huong-dan'))return '<h2>Find Your EU Size</h2><p>Measure your foot length and compare it with your usual EU size. Demo size values do not replace the manufacturer’s size chart.</p><h2>Shipping</h2><p>'.esc_html(paxig_shipping_summary()).'</p><h2>Cancellation &amp; Returns</h2><p>Open My Account → Orders → View Details to submit an eligible request. Our team reviews requests under the existing order policy.</p><p>This is a demonstration store. Do not make a real payment.</p>';
-    if(is_page('ve-paxig'))return '<p>PAXIG’S SHOES is a demonstration footwear store. Brand and model names describe the demo catalog and do not imply an official dealership.</p><p>Product photos are illustrative catalog images; source and license credits appear with each listing. Products, prices and orders are demonstration data. No real payments or purchases are accepted.</p>';
+    if(is_page('huong-dan')){
+        if ($is_vi) {
+            return '<h2>Tìm kích cỡ EU của bạn</h2><p>Đo chiều dài bàn chân và đối chiếu với kích cỡ EU bạn thường mang. Bảng size demo không thay thế bảng size chính thức của nhà sản xuất.</p><h2>Vận chuyển</h2><p>'.esc_html(paxig_shipping_summary()).'</p><h2>Hủy đơn &amp; Đổi trả</h2><p>Vào Tài khoản → Đơn hàng → Xem chi tiết để gửi yêu cầu hợp lệ. Đội ngũ chúng tôi sẽ xem xét yêu cầu theo chính sách hiện hành.</p><p>Đây là cửa hàng mô phỏng. Vui lòng không thực hiện thanh toán thật.</p>';
+        }
+        return '<h2>Find Your EU Size</h2><p>Measure your foot length and compare it with your usual EU size. Demo size values do not replace the manufacturer’s size chart.</p><h2>Shipping</h2><p>'.esc_html(paxig_shipping_summary()).'</p><h2>Cancellation &amp; Returns</h2><p>Open My Account → Orders → View Details to submit an eligible request. Our team reviews requests under the existing order policy.</p><p>This is a demonstration store. Do not make a real payment.</p>';
+    }
+    if(is_page('ve-paxig')){
+        if ($is_vi) {
+            return '<p>PAXIG’S SHOES là cửa hàng giày thể thao thử nghiệm. Tên thương hiệu và mẫu mã mô tả danh mục mẫu và không ngụ ý đại lý phân phối chính thức.</p><p>Hình ảnh sản phẩm là hình ảnh minh họa danh mục; thông tin nguồn và giấy phép xuất hiện cùng từng mục. Sản phẩm, giá cả và đơn hàng là dữ liệu thử nghiệm. Không chấp nhận thanh toán hoặc mua hàng thật.</p>';
+        }
+        return '<p>PAXIG’S SHOES is a demonstration footwear store. Brand and model names describe the demo catalog and do not imply an official dealership.</p><p>Product photos are illustrative catalog images; source and license credits appear with each listing. Products, prices and orders are demonstration data. No real payments or purchases are accepted.</p>';
+    }
     return $content;
 },999);
 add_action('wp',function(){

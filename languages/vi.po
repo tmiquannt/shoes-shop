@@ -1,0 +1,420 @@
+# Translation of PAXIG's Shoes in Vietnamese
+# Copyright (C) 2026 PAXIG's Shoes
+msgid ""
+msgstr ""
+"Project-Id-Version: PAXIG's Shoes 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: Vietnamese\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: paxig-shoes\n"
+
+msgid " — Out of stock or unavailable"
+msgstr " — Hết hàng hoặc không khả dụng"
+
+msgid "%s product"
+msgstr "%s sản phẩm"
+
+msgid "%s products"
+msgstr "%s sản phẩm"
+
+msgid "+ Show more"
+msgstr "+ Xem thêm"
+
+msgid "About"
+msgstr "Về chúng tôi"
+
+msgid "About PAXIG"
+msgstr "Về PAXIG"
+
+msgid "Accessories"
+msgstr "Phụ kiện"
+
+msgid "Add to Bag"
+msgstr "Thêm vào giỏ hàng"
+
+msgid "All Shoes"
+msgstr "Tất cả giày"
+
+msgid "All rights reserved."
+msgstr "Đã đăng ký bản quyền."
+
+msgid "Already have an account? <a href=\"%s\">Sign in</a> for faster checkout and order tracking, or continue as guest below."
+msgstr "Đã có tài khoản? <a href=\"%s\">Đăng nhập</a> để thanh toán nhanh hơn và theo dõi đơn hàng, hoặc tiếp tục thanh toán với tư cách khách bên dưới."
+
+msgid "Available shipping methods and charges are calculated at checkout for your address."
+msgstr "Phương thức và phí vận chuyển khả dụng sẽ được tính tại bước thanh toán theo địa chỉ của bạn."
+
+msgid "Basketball"
+msgstr "Bóng rổ"
+
+msgid "Bring your own rhythm to the court."
+msgstr "Tự tin tạo nhịp điệu riêng trên sân đấu."
+
+msgid "Browse more pairs from the live catalogue."
+msgstr "Khám phá thêm các mẫu giày từ danh mục mới nhất."
+
+msgid "Cart"
+msgstr "Giỏ hàng"
+
+msgid "Category"
+msgstr "Danh mục"
+
+msgid "Check the product size guide"
+msgstr "Kiểm tra bảng kích cỡ sản phẩm"
+
+msgid "Checkout"
+msgstr "Thanh toán"
+
+msgid "Choose for the way you move"
+msgstr "Chọn giày theo phong cách của bạn"
+
+msgid "Choose your movement"
+msgstr "Chọn phong cách chuyển động"
+
+msgid "Clear Filters"
+msgstr "Xóa bộ lọc"
+
+msgid "Close bag"
+msgstr "Đóng giỏ hàng"
+
+msgid "Close favorites"
+msgstr "Đóng danh sách yêu thích"
+
+msgid "Close filters"
+msgstr "Đóng bộ lọc"
+
+msgid "Collection"
+msgstr "Bộ sưu tập"
+
+msgid "Collections"
+msgstr "Bộ sưu tập"
+
+msgid "Color"
+msgstr "Màu sắc"
+
+msgid "Color: %s"
+msgstr "Màu: %s"
+
+msgid "Communication error. Please check your connection and try again."
+msgstr "Lỗi kết nối. Vui lòng kiểm tra mạng và thử lại."
+
+msgid "Could not add item to bag."
+msgstr "Không thể thêm sản phẩm vào giỏ hàng."
+
+msgid "Could not load favorites. Please try again."
+msgstr "Không thể tải danh sách yêu thích. Vui lòng thử lại."
+
+msgid "Could not read saved favorites on this device."
+msgstr "Không thể đọc danh sách yêu thích trên thiết bị này."
+
+msgid "Could not remove item from bag."
+msgstr "Không thể xóa sản phẩm khỏi giỏ hàng."
+
+msgid "Could not save favorites on this device."
+msgstr "Không thể lưu danh sách yêu thích trên thiết bị này."
+
+msgid "Could not sync favorites to your account. Please try again."
+msgstr "Không thể đồng bộ danh sách yêu thích với tài khoản. Vui lòng thử lại."
+
+msgid "Could not update favorites. Please try again."
+msgstr "Không thể cập nhật danh sách yêu thích. Vui lòng thử lại."
+
+msgid "Could not update quantity."
+msgstr "Không thể cập nhật số lượng."
+
+msgid "Curated Pick"
+msgstr "Gợi ý nổi bật"
+
+msgid "Decrease quantity"
+msgstr "Giảm số lượng"
+
+msgid "Delivery & Returns"
+msgstr "Giao hàng & Đổi trả"
+
+msgid "Description"
+msgstr "Mô tả"
+
+msgid "Everyday pairs for life in motion."
+msgstr "Những đôi giày mỗi ngày cho cuộc sống năng động."
+
+msgid "Explore Collection"
+msgstr "Khám phá bộ sưu tập"
+
+msgid "Explore Lifestyle for everyday outfits, Running for your next run, or Basketball for the court. Read each product's details before choosing."
+msgstr "Khám phá Lifestyle cho trang phục thường ngày, Running cho buổi chạy tiếp theo, hoặc Basketball cho sân đấu. Đọc kỹ chi tiết sản phẩm trước khi chọn."
+
+msgid "Explore Shoes"
+msgstr "Khám phá giày"
+
+msgid "Explore categories"
+msgstr "Khám phá danh mục"
+
+msgid "Explore our catalogue and tap the heart icon on any pair to save it here."
+msgstr "Khám phá danh mục và nhấn vào biểu tượng trái tim để lưu lại đôi giày bạn yêu thích tại đây."
+
+msgid "Favorite"
+msgstr "Yêu thích"
+
+msgid "Favorite %s"
+msgstr "Thêm %s vào yêu thích"
+
+msgid "Favorited"
+msgstr "Đã yêu thích"
+
+msgid "Favorites"
+msgstr "Yêu thích"
+
+msgid "Filters"
+msgstr "Bộ lọc"
+
+msgid "Find your fit"
+msgstr "Tìm cỡ giày phù hợp"
+
+msgid "Find your pace from the first step."
+msgstr "Tìm nhịp chạy ngay từ bước chân đầu tiên."
+
+msgid "Footer help navigation"
+msgstr "Điều hướng trợ giúp chân trang"
+
+msgid "Footer shop navigation"
+msgstr "Điều hướng mua sắm chân trang"
+
+msgid "Fresh pairs from the current catalogue."
+msgstr "Những mẫu giày mới nhất từ danh mục hiện tại."
+
+msgid "From city streets to the court. Find the collection that moves with you."
+msgstr "Từ đường phố đến sân bóng. Tìm bộ sưu tập đồng hành cùng bạn trên mọi hành trình."
+
+msgid "Gender"
+msgstr "Giới tính"
+
+msgid "Help"
+msgstr "Trợ giúp"
+
+msgid "Hide Filters"
+msgstr "Ẩn bộ lọc"
+
+msgid "In Stock"
+msgstr "Còn hàng"
+
+msgid "Increase quantity"
+msgstr "Tăng số lượng"
+
+msgid "Kids’ Shoes"
+msgstr "Giày trẻ em"
+
+msgid "Language Switcher"
+msgstr "Chuyển đổi ngôn ngữ"
+
+msgid "Lifestyle"
+msgstr "Lifestyle"
+
+msgid "Loading saved shoes…"
+msgstr "Đang tải danh sách giày yêu thích…"
+
+msgid "Looks like you haven’t added any sneakers to your bag yet."
+msgstr "Có vẻ như bạn chưa thêm đôi giày nào vào giỏ hàng."
+
+msgid "Main navigation"
+msgstr "Điều hướng chính"
+
+msgid "Measure both feet"
+msgstr "Đo kích thước hai bàn chân"
+
+msgid "Men"
+msgstr "Nam"
+
+msgid "Men’s Shoes"
+msgstr "Giày Nam"
+
+msgid "My Account"
+msgstr "Tài khoản của tôi"
+
+msgid "New"
+msgstr "Mới"
+
+msgid "New Arrivals"
+msgstr "Hàng mới về"
+
+msgid "Open menu"
+msgstr "Mở menu"
+
+msgid "Our Store"
+msgstr "Cửa hàng của chúng tôi"
+
+msgid "Out of Stock"
+msgstr "Hết hàng"
+
+msgid "Out of stock"
+msgstr "Hết hàng"
+
+msgid "Outdoor"
+msgstr "Dã ngoại & Ngoài trời"
+
+msgid "Picked for the next move"
+msgstr "Tuyển chọn cho bước tiến mới"
+
+msgid "Price"
+msgstr "Giá"
+
+msgid "Privacy Policy"
+msgstr "Chính sách bảo mật"
+
+msgid "Product Details"
+msgstr "Chi tiết sản phẩm"
+
+msgid "Product Information"
+msgstr "Thông tin sản phẩm"
+
+msgid "Product filters"
+msgstr "Bộ lọc sản phẩm"
+
+msgid "Read the shopping, cancellation and returns guide"
+msgstr "Đọc hướng dẫn mua sắm, hủy đơn và đổi trả hàng"
+
+msgid "Read the size guide"
+msgstr "Xem hướng dẫn chọn cỡ giày"
+
+msgid "Remove %s from bag"
+msgstr "Xóa %s khỏi giỏ hàng"
+
+msgid "Remove from favorites"
+msgstr "Xóa khỏi danh sách yêu thích"
+
+msgid "Returns & Refunds"
+msgstr "Đổi trả & Hoàn tiền"
+
+msgid "Reviews (%d)"
+msgstr "Đánh giá (%d)"
+
+msgid "Running"
+msgstr "Chạy bộ"
+
+msgid "Sale"
+msgstr "Giảm giá"
+
+msgid "Sale items"
+msgstr "Sản phẩm giảm giá"
+
+msgid "Search"
+msgstr "Tìm kiếm"
+
+msgid "Search products"
+msgstr "Tìm sản phẩm"
+
+msgid "Search sneakers"
+msgstr "Tìm kiếm giày thể thao"
+
+msgid "Select Size"
+msgstr "Chọn cỡ giày"
+
+msgid "Select Size / View →"
+msgstr "Chọn kích cỡ / Xem →"
+
+msgid "Shipping & Returns"
+msgstr "Vận chuyển & Đổi trả"
+
+msgid "Shipping and taxes calculated at checkout."
+msgstr "Phí vận chuyển và thuế được tính tại bước thanh toán."
+
+msgid "Shipping in Vietnam: standard shipping %1$s VND per order; free shipping from %2$s VND after discounts. Available rates are confirmed at checkout."
+msgstr "Vận chuyển tại Việt Nam: phí giao hàng tiêu chuẩn %1$s đ/đơn; miễn phí vận chuyển cho đơn từ %2$s đ sau giảm giá. Mức phí chính xác sẽ được xác nhận khi thanh toán."
+
+msgid "Shoes for every move, every day and every style."
+msgstr "Giày cho mọi bước chuyển động, mỗi ngày và mọi phong cách."
+
+msgid "Shop"
+msgstr "Cửa hàng"
+
+msgid "Shop %s"
+msgstr "Mua %s"
+
+msgid "Shop All"
+msgstr "Xem tất cả"
+
+msgid "Shop All Shoes"
+msgstr "Xem tất cả giày"
+
+msgid "Shop all shoes"
+msgstr "Xem tất cả giày"
+
+msgid "Shop by sport"
+msgstr "Mua sắm theo môn thể thao"
+
+msgid "Shopping Bag"
+msgstr "Giỏ hàng"
+
+msgid "Shopping Guide"
+msgstr "Hướng dẫn mua hàng"
+
+msgid "Shopping help →"
+msgstr "Hỗ trợ mua hàng →"
+
+msgid "Shopping support"
+msgstr "Hỗ trợ mua sắm"
+
+msgid "Show Filters"
+msgstr "Hiện bộ lọc"
+
+msgid "Size"
+msgstr "Kích cỡ"
+
+msgid "Size Guide"
+msgstr "Bảng kích cỡ"
+
+msgid "Sizing varies by brand and model. Compare your measurement with the product information, then select an available size on its product page."
+msgstr "Kích thước giày có thể khác nhau tùy theo thương hiệu và mẫu mã. Hãy so sánh số đo của bạn với thông tin kích cỡ và chọn size phù hợp trên trang sản phẩm."
+
+msgid "Skate"
+msgstr "Trượt ván"
+
+msgid "Sort By: "
+msgstr "Sắp xếp theo: "
+
+msgid "Sport"
+msgstr "Thể thao"
+
+msgid "Stand on a sheet of paper in your usual socks. Mark your heel and longest toe, then measure the distance. Use the longer measurement."
+msgstr "Đứng trên một tờ giấy khi đang đi tất thông thường. Đánh dấu gót chân và ngón chân dài nhất rồi đo khoảng cách. Chọn số đo bàn chân dài hơn."
+
+msgid "Subtotal"
+msgstr "Tạm tính"
+
+msgid "Track your orders →"
+msgstr "Theo dõi đơn hàng →"
+
+msgid "Use these steps to help choose the right size for your next pair."
+msgstr "Thực hiện các bước sau để chọn kích cỡ phù hợp nhất cho đôi giày tiếp theo của bạn."
+
+msgid "View Results"
+msgstr "Xem kết quả"
+
+msgid "View Shopping Bag"
+msgstr "Xem giỏ hàng"
+
+msgid "Wishlist"
+msgstr "Danh sách yêu thích"
+
+msgid "Women"
+msgstr "Nữ"
+
+msgid "Women’s Shoes"
+msgstr "Giày Nữ"
+
+msgid "You can save up to 100 favorites."
+msgstr "Bạn có thể lưu tối đa 100 sản phẩm yêu thích."
+
+msgid "Your Shopping Bag is Empty"
+msgstr "Giỏ hàng của bạn đang trống"
+
+msgid "Your Wishlist is Empty"
+msgstr "Danh sách yêu thích của bạn đang trống"
+
+msgid "− Show less"
+msgstr "− Thu gọn"
+

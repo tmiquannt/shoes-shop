@@ -13,9 +13,9 @@ function paxig_shipping_summary() {
             if ($method->id==='flat_rate' && is_numeric($method->get_option('cost'))) $flat=(float)$method->get_option('cost');
             if ($method->id==='free_shipping' && $method->get_option('requires')==='min_amount' && $method->get_option('ignore_discounts')==='no') $free=(float)$method->get_option('min_amount');
         }
-        if ($flat!==null && $free!==null) return 'Shipping in Vietnam: standard shipping '.number_format($flat,0,'.',',').' VND per order; free shipping from '.number_format($free,0,'.',',').' VND after discounts. Available rates are confirmed at checkout.';
+        if ($flat!==null && $free!==null) return sprintf( __( 'Shipping in Vietnam: standard shipping %1$s VND per order; free shipping from %2$s VND after discounts. Available rates are confirmed at checkout.', 'paxig-shoes' ), number_format($flat,0,'.',','), number_format($free,0,'.',',') );
     }
-    return 'Available shipping methods and charges are calculated at checkout for your address.';
+    return __( 'Available shipping methods and charges are calculated at checkout for your address.', 'paxig-shoes' );
 }
 
 // Support guest purchase while retaining secure account association for logged-in customers.
@@ -46,7 +46,7 @@ add_filter('woocommerce_checkout_posted_data', function ($data) {
 
 add_action('woocommerce_before_checkout_form', function () {
     if (!is_user_logged_in() && function_exists('wc_get_page_permalink')) {
-        echo '<div class="paxig-checkout-guest-prompt"><p>Already have an account? <a href="' . esc_url(paxig_checkout_auth_url()) . '">Sign in</a> for faster checkout and order tracking, or continue as guest below.</p></div>';
+        echo '<div class="paxig-checkout-guest-prompt"><p>' . sprintf( __( 'Already have an account? <a href="%s">Sign in</a> for faster checkout and order tracking, or continue as guest below.', 'paxig-shoes' ), esc_url(paxig_checkout_auth_url()) ) . '</p></div>';
     }
 }, 10);
 

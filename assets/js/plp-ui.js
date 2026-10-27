@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
     drawer.setAttribute('aria-labelledby', 'paxig-plp-drawer-title');
     document.body.append(drawer);
     let desktopVisible = true;
+    const labels = window.paxigPlpLabels || {};
+    const lblFilters = labels.filters || 'Filters';
+    const lblHide = labels.hide_filters || 'Hide Filters';
+    const lblShow = labels.show_filters || 'Show Filters';
+    const lblShowMore = labels.show_more || '+ Show more';
+    const lblShowLess = labels.show_less || '− Show less';
+    const lblSortBy = labels.sort_by || 'Sort By: ';
+
     const close = () => { if (drawer.open) drawer.close(); };
     drawer.addEventListener('close', () => { document.body.classList.remove('paxig-plp-drawer-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus(); });
     drawer.addEventListener('click', event => {
@@ -24,13 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mobile.matches) {
             drawer.append(sidebar);
             layout.classList.remove('is-filters-hidden');
-            toggle.querySelector('span').textContent = 'Filters';
+            toggle.querySelector('span').textContent = lblFilters;
             toggle.setAttribute('aria-expanded', 'false');
             toggle.setAttribute('aria-haspopup', 'dialog');
         } else {
             layout.prepend(sidebar);
             layout.classList.toggle('is-filters-hidden', !desktopVisible);
-            toggle.querySelector('span').textContent = desktopVisible ? 'Hide Filters' : 'Show Filters';
+            toggle.querySelector('span').textContent = desktopVisible ? lblHide : lblShow;
             toggle.setAttribute('aria-expanded', String(desktopVisible));
             toggle.removeAttribute('aria-haspopup');
         }
@@ -60,13 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
         list.id = 'paxig-plp-options-' + Array.from(sidebar.querySelectorAll('.paxig-plp-group')).indexOf(group);
         more.setAttribute('aria-controls', list.id);
         let expanded = false;
-        const show = () => { extras.forEach(item => item.hidden = !expanded); more.textContent = expanded ? '− Show less' : '+ Show more'; more.setAttribute('aria-expanded', String(expanded)); };
+        const show = () => { extras.forEach(item => item.hidden = !expanded); more.textContent = expanded ? lblShowLess : lblShowMore; more.setAttribute('aria-expanded', String(expanded)); };
         more.addEventListener('click', () => { expanded = !expanded; show(); });
         group.querySelector('.paxig-plp-group-body').append(more); show();
     });
     const sort = document.querySelector('.woocommerce-ordering select');
     if (sort) {
-        sort.setAttribute('aria-label', 'Sort products');
-        Array.from(sort.options).forEach(option => { option.textContent = 'Sort By: ' + option.textContent; });
+        sort.setAttribute('aria-label', lblFilters);
+        Array.from(sort.options).forEach(option => { option.textContent = lblSortBy + option.textContent; });
     }
 });

@@ -1,0 +1,421 @@
+# Copyright (C) 2026 PAXIG's Shoes
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: PAXIG's Shoes 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-27 07:38:29+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: PAXIG I18n Tool\n"
+"X-Domain: paxig-shoes\n"
+
+msgid " — Out of stock or unavailable"
+msgstr ""
+
+msgid "%s product"
+msgstr ""
+
+msgid "%s products"
+msgstr ""
+
+msgid "+ Show more"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "About PAXIG"
+msgstr ""
+
+msgid "Accessories"
+msgstr ""
+
+msgid "Add to Bag"
+msgstr ""
+
+msgid "All Shoes"
+msgstr ""
+
+msgid "All rights reserved."
+msgstr ""
+
+msgid "Already have an account? <a href=\"%s\">Sign in</a> for faster checkout and order tracking, or continue as guest below."
+msgstr ""
+
+msgid "Available shipping methods and charges are calculated at checkout for your address."
+msgstr ""
+
+msgid "Basketball"
+msgstr ""
+
+msgid "Bring your own rhythm to the court."
+msgstr ""
+
+msgid "Browse more pairs from the live catalogue."
+msgstr ""
+
+msgid "Cart"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Check the product size guide"
+msgstr ""
+
+msgid "Checkout"
+msgstr ""
+
+msgid "Choose for the way you move"
+msgstr ""
+
+msgid "Choose your movement"
+msgstr ""
+
+msgid "Clear Filters"
+msgstr ""
+
+msgid "Close bag"
+msgstr ""
+
+msgid "Close favorites"
+msgstr ""
+
+msgid "Close filters"
+msgstr ""
+
+msgid "Collection"
+msgstr ""
+
+msgid "Collections"
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
+msgid "Color: %s"
+msgstr ""
+
+msgid "Communication error. Please check your connection and try again."
+msgstr ""
+
+msgid "Could not add item to bag."
+msgstr ""
+
+msgid "Could not load favorites. Please try again."
+msgstr ""
+
+msgid "Could not read saved favorites on this device."
+msgstr ""
+
+msgid "Could not remove item from bag."
+msgstr ""
+
+msgid "Could not save favorites on this device."
+msgstr ""
+
+msgid "Could not sync favorites to your account. Please try again."
+msgstr ""
+
+msgid "Could not update favorites. Please try again."
+msgstr ""
+
+msgid "Could not update quantity."
+msgstr ""
+
+msgid "Curated Pick"
+msgstr ""
+
+msgid "Decrease quantity"
+msgstr ""
+
+msgid "Delivery & Returns"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Everyday pairs for life in motion."
+msgstr ""
+
+msgid "Explore Collection"
+msgstr ""
+
+msgid "Explore Lifestyle for everyday outfits, Running for your next run, or Basketball for the court. Read each product's details before choosing."
+msgstr ""
+
+msgid "Explore Shoes"
+msgstr ""
+
+msgid "Explore categories"
+msgstr ""
+
+msgid "Explore our catalogue and tap the heart icon on any pair to save it here."
+msgstr ""
+
+msgid "Favorite"
+msgstr ""
+
+msgid "Favorite %s"
+msgstr ""
+
+msgid "Favorited"
+msgstr ""
+
+msgid "Favorites"
+msgstr ""
+
+msgid "Filters"
+msgstr ""
+
+msgid "Find your fit"
+msgstr ""
+
+msgid "Find your pace from the first step."
+msgstr ""
+
+msgid "Footer help navigation"
+msgstr ""
+
+msgid "Footer shop navigation"
+msgstr ""
+
+msgid "Fresh pairs from the current catalogue."
+msgstr ""
+
+msgid "From city streets to the court. Find the collection that moves with you."
+msgstr ""
+
+msgid "Gender"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Hide Filters"
+msgstr ""
+
+msgid "In Stock"
+msgstr ""
+
+msgid "Increase quantity"
+msgstr ""
+
+msgid "Kids’ Shoes"
+msgstr ""
+
+msgid "Language Switcher"
+msgstr ""
+
+msgid "Lifestyle"
+msgstr ""
+
+msgid "Loading saved shoes…"
+msgstr ""
+
+msgid "Looks like you haven’t added any sneakers to your bag yet."
+msgstr ""
+
+msgid "Main navigation"
+msgstr ""
+
+msgid "Measure both feet"
+msgstr ""
+
+msgid "Men"
+msgstr ""
+
+msgid "Men’s Shoes"
+msgstr ""
+
+msgid "My Account"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "New Arrivals"
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
+msgid "Our Store"
+msgstr ""
+
+msgid "Out of Stock"
+msgstr ""
+
+msgid "Out of stock"
+msgstr ""
+
+msgid "Outdoor"
+msgstr ""
+
+msgid "Picked for the next move"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Product Details"
+msgstr ""
+
+msgid "Product Information"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
+msgid "Read the shopping, cancellation and returns guide"
+msgstr ""
+
+msgid "Read the size guide"
+msgstr ""
+
+msgid "Remove %s from bag"
+msgstr ""
+
+msgid "Remove from favorites"
+msgstr ""
+
+msgid "Returns & Refunds"
+msgstr ""
+
+msgid "Reviews (%d)"
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Sale"
+msgstr ""
+
+msgid "Sale items"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search products"
+msgstr ""
+
+msgid "Search sneakers"
+msgstr ""
+
+msgid "Select Size"
+msgstr ""
+
+msgid "Select Size / View →"
+msgstr ""
+
+msgid "Shipping & Returns"
+msgstr ""
+
+msgid "Shipping and taxes calculated at checkout."
+msgstr ""
+
+msgid "Shipping in Vietnam: standard shipping %1$s VND per order; free shipping from %2$s VND after discounts. Available rates are confirmed at checkout."
+msgstr ""
+
+msgid "Shoes for every move, every day and every style."
+msgstr ""
+
+msgid "Shop"
+msgstr ""
+
+msgid "Shop %s"
+msgstr ""
+
+msgid "Shop All"
+msgstr ""
+
+msgid "Shop All Shoes"
+msgstr ""
+
+msgid "Shop all shoes"
+msgstr ""
+
+msgid "Shop by sport"
+msgstr ""
+
+msgid "Shopping Bag"
+msgstr ""
+
+msgid "Shopping Guide"
+msgstr ""
+
+msgid "Shopping help →"
+msgstr ""
+
+msgid "Shopping support"
+msgstr ""
+
+msgid "Show Filters"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Size Guide"
+msgstr ""
+
+msgid "Sizing varies by brand and model. Compare your measurement with the product information, then select an available size on its product page."
+msgstr ""
+
+msgid "Skate"
+msgstr ""
+
+msgid "Sort By: "
+msgstr ""
+
+msgid "Sport"
+msgstr ""
+
+msgid "Stand on a sheet of paper in your usual socks. Mark your heel and longest toe, then measure the distance. Use the longer measurement."
+msgstr ""
+
+msgid "Subtotal"
+msgstr ""
+
+msgid "Track your orders →"
+msgstr ""
+
+msgid "Use these steps to help choose the right size for your next pair."
+msgstr ""
+
+msgid "View Results"
+msgstr ""
+
+msgid "View Shopping Bag"
+msgstr ""
+
+msgid "Wishlist"
+msgstr ""
+
+msgid "Women"
+msgstr ""
+
+msgid "Women’s Shoes"
+msgstr ""
+
+msgid "You can save up to 100 favorites."
+msgstr ""
+
+msgid "Your Shopping Bag is Empty"
+msgstr ""
+
+msgid "Your Wishlist is Empty"
+msgstr ""
+
+msgid "− Show less"
+msgstr ""
+

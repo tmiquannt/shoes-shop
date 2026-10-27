@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const selected = available && button.dataset.value === select.value;
                 button.classList.toggle('is-selected', selected);
                 button.setAttribute('aria-pressed', String(selected));
-                button.setAttribute('aria-label', button.textContent.trim() + (available ? '' : ' — Out of stock or unavailable'));
+                button.setAttribute('aria-label', button.textContent.trim() + (available ? '' : ((window.paxigSingleProduct && window.paxigSingleProduct.i18n && window.paxigSingleProduct.i18n.unavailable_suffix) || ' — Out of stock or unavailable')));
             });
         }
         form.addEventListener('change', sync);
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const priceElem = document.querySelector('.summary .price');
 
     if (mainBuyBtn && productTitle && window.innerWidth <= 900) {
+        const addToBagText = (window.paxigSingleProduct && window.paxigSingleProduct.i18n && window.paxigSingleProduct.i18n.add_to_bag) || 'Add to Bag';
         const bar = document.createElement('div');
         bar.className = 'paxig-sticky-buy-bar';
         bar.innerHTML = `
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p class="paxig-sticky-buy-bar__title"></p>
                 <span class="paxig-sticky-buy-bar__price">${priceElem ? priceElem.innerHTML : ''}</span>
             </div>
-            <button type="button" class="paxig-sticky-buy-bar__btn">Add to Bag</button>
+            <button type="button" class="paxig-sticky-buy-bar__btn">${addToBagText}</button>
         `;
         const barTitle = bar.querySelector('.paxig-sticky-buy-bar__title');
         if (barTitle) {
@@ -150,7 +151,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         window.jQuery(document.body).trigger('wc_fragment_refresh');
                     }
                 } else {
-                    const msg = (response.data && response.data.message) || 'Could not add item to bag.';
+                    const msg = (response.data && response.data.message)
+                        || (window.paxigSingleProduct && window.paxigSingleProduct.i18n && window.paxigSingleProduct.i18n.add_to_cart_error)
+                        || 'Could not add item to bag.';
                     if (typeof CustomEvent === 'function') {
                         document.body.dispatchEvent(new CustomEvent('paxig_add_to_cart_error', {
                             detail: { message: msg }

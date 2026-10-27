@@ -43,26 +43,40 @@ add_action('wp_enqueue_scripts', function () {
     if (!paxig_plp_page()) return;
     wp_enqueue_style('paxig-plp',get_template_directory_uri().'/assets/css/plp-ui.css',['paxig-reference'],filemtime(get_template_directory().'/assets/css/plp-ui.css'));
     wp_enqueue_script('paxig-plp',get_template_directory_uri().'/assets/js/plp-ui.js',[],filemtime(get_template_directory().'/assets/js/plp-ui.js'),true);
+    wp_localize_script('paxig-plp', 'paxigPlpLabels', [
+        'filters'      => __( 'Filters', 'paxig-shoes' ),
+        'hide_filters' => __( 'Hide Filters', 'paxig-shoes' ),
+        'show_filters' => __( 'Show Filters', 'paxig-shoes' ),
+        'show_more'    => __( '+ Show more', 'paxig-shoes' ),
+        'show_less'    => __( '− Show less', 'paxig-shoes' ),
+        'sort_by'      => __( 'Sort By: ', 'paxig-shoes' ),
+    ]);
 }, 31);
 add_filter('woocommerce_page_title',function ($title) {
     if (!paxig_plp_page()) return $title;
-    return ['men'=>'Men’s Shoes','women'=>'Women’s Shoes','kids'=>'Kids’ Shoes'][paxig_plp_profile()] ?? $title;
+    return [
+        'men'   => __( 'Men’s Shoes', 'paxig-shoes' ),
+        'women' => __( 'Women’s Shoes', 'paxig-shoes' ),
+        'kids'  => __( 'Kids’ Shoes', 'paxig-shoes' ),
+    ][paxig_plp_profile()] ?? $title;
 }, 120);
 function paxig_plp_header() {
     $profile = paxig_plp_profile();
     $slugs = ['men'=>['lifestyle','running','basketball','football','training','jordan'],'women'=>['lifestyle','running','training','jordan','dunk','air-max'],'kids'=>['lifestyle','running','basketball','football','jordan']][$profile] ?? ['lifestyle','running','basketball','football','training'];
-    echo '<header class="woocommerce-products-header paxig-plp-heading"><div class="paxig-plp-title-row"><h1 class="woocommerce-products-header__title page-title">'.esc_html(woocommerce_page_title(false)).'</h1><p class="paxig-plp-count">'.esc_html(number_format_i18n(wc_get_loop_prop('total'))).' products</p></div>';
+    $total = wc_get_loop_prop('total');
+    $count_text = sprintf( _n( '%s product', '%s products', $total, 'paxig-shoes' ), number_format_i18n( $total ) );
+    echo '<header class="woocommerce-products-header paxig-plp-heading"><div class="paxig-plp-title-row"><h1 class="woocommerce-products-header__title page-title">'.esc_html(woocommerce_page_title(false)).'</h1><p class="paxig-plp-count">'.esc_html($count_text).'</p></div>';
     do_action('woocommerce_archive_description');
     $terms = paxig_plp_terms($slugs);
     if ($terms) {
-        echo '<nav class="paxig-plp-quick" aria-label="Explore categories"><ul>';
+        echo '<nav class="paxig-plp-quick" aria-label="'.esc_attr__( 'Explore categories', 'paxig-shoes' ).'"><ul>';
         foreach ($terms as $term) echo '<li><a '.(is_product_category($term->slug) ? 'aria-current="page" ' : '').'href="'.esc_url(paxig_plp_term_url($term)).'">'.esc_html($term->name).'</a></li>';
         echo '</ul></nav>';
     }
     echo '</header>';
 }
 function paxig_plp_toolbar() {
-    echo '<div class="paxig-plp-toolbar"><button class="paxig-plp-filter-toggle" type="button" aria-controls="paxig-plp-filters" aria-expanded="true"><span>Hide Filters</span><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6M16 14v6"/></svg></button><div class="paxig-plp-sort">';
+    echo '<div class="paxig-plp-toolbar"><button class="paxig-plp-filter-toggle" type="button" aria-controls="paxig-plp-filters" aria-expanded="true"><span>'.esc_html__( 'Hide Filters', 'paxig-shoes' ).'</span><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6M16 14v6"/></svg></button><div class="paxig-plp-sort">';
     woocommerce_catalog_ordering();
     echo '</div></div>';
 }
@@ -84,23 +98,23 @@ function paxig_plp_widget($class,$instance) {
     return ob_get_clean();
 }
 function paxig_plp_layout_open() {
-    echo '<div class="paxig-shop-layout paxig-plp-layout"><aside class="paxig-shop-sidebar" id="paxig-plp-filters" aria-label="Product filters"><div class="paxig-plp-drawer-head"><h2 id="paxig-plp-drawer-title">Filters</h2><button type="button" class="paxig-plp-drawer-close" aria-label="Close filters">×</button></div><div class="paxig-plp-filter-content">';
-    paxig_plp_term_group('categories','Category',['lifestyle','running','basketball','football','training']);
-    foreach (['gender'=>'Gender','sport'=>'Sport','kich-thuoc'=>'Size','color'=>'Color'] as $attribute=>$label) {
+    echo '<div class="paxig-shop-layout paxig-plp-layout"><aside class="paxig-shop-sidebar" id="paxig-plp-filters" aria-label="'.esc_attr__( 'Product filters', 'paxig-shoes' ).'"><div class="paxig-plp-drawer-head"><h2 id="paxig-plp-drawer-title">'.esc_html__( 'Filters', 'paxig-shoes' ).'</h2><button type="button" class="paxig-plp-drawer-close" aria-label="'.esc_attr__( 'Close filters', 'paxig-shoes' ).'">×</button></div><div class="paxig-plp-filter-content">';
+    paxig_plp_term_group('categories', __( 'Category', 'paxig-shoes' ), ['lifestyle','running','basketball','football','training']);
+    foreach (['gender'=>__( 'Gender', 'paxig-shoes' ),'sport'=>__( 'Sport', 'paxig-shoes' ),'kich-thuoc'=>__( 'Size', 'paxig-shoes' ),'color'=>__( 'Color', 'paxig-shoes' )] as $attribute=>$label) {
         paxig_plp_group($attribute,$label,paxig_plp_widget('WC_Widget_Layered_Nav',['title'=>'','attribute'=>$attribute,'display_type'=>'list','query_type'=>'or']));
     }
-    paxig_plp_group('price','Price',paxig_plp_widget('WC_Widget_Price_Filter',['title'=>'']));
-    paxig_plp_term_group('collections','Collection',['air-force-1','jordan','air-max','dunk','cortez','pegasus','vomero','revolution','metcon','mercurial']);
+    paxig_plp_group('price', __( 'Price', 'paxig-shoes' ), paxig_plp_widget('WC_Widget_Price_Filter',['title'=>'']));
+    paxig_plp_term_group('collections', __( 'Collection', 'paxig-shoes' ), ['air-force-1','jordan','air-max','dunk','cortez','pegasus','vomero','revolution','metcon','mercurial']);
     // Existing sale filter is supported only on the native shop archive.
     if (is_shop()) {
         $args=paxig_plp_args(); $selected=isset($args['paxig_sale']) && $args['paxig_sale']==='1';
         if ($selected) unset($args['paxig_sale']); else $args['paxig_sale']='1';
-        paxig_plp_group('sale','Sale','<a class="paxig-plp-sale-link" '.($selected?'aria-current="true" ':'').'href="'.esc_url(add_query_arg($args,wc_get_page_permalink('shop'))).'">Sale items</a>');
+        paxig_plp_group('sale', __( 'Sale', 'paxig-shoes' ), '<a class="paxig-plp-sale-link" '.($selected?'aria-current="true" ':'').'href="'.esc_url(add_query_arg($args,wc_get_page_permalink('shop'))).'">'.esc_html__( 'Sale items', 'paxig-shoes' ).'</a>');
     }
-    echo '</div><div class="paxig-plp-drawer-actions"><a class="paxig-plp-reset" href="'.esc_url(paxig_plp_reset_url()).'">Clear Filters</a><button class="paxig-plp-drawer-view" type="button">View Results</button></div></aside><div class="paxig-shop-products">';
+    echo '</div><div class="paxig-plp-drawer-actions"><a class="paxig-plp-reset" href="'.esc_url(paxig_plp_reset_url()).'">'.esc_html__( 'Clear Filters', 'paxig-shoes' ).'</a><button class="paxig-plp-drawer-view" type="button">'.esc_html__( 'View Results', 'paxig-shoes' ).'</button></div></aside><div class="paxig-shop-products">';
 }
 function paxig_plp_layout_close() { echo '</div></div>'; }
-function paxig_plp_empty_reset() { echo '<p class="paxig-plp-empty-reset"><a class="button" href="'.esc_url(paxig_plp_reset_url()).'">Clear Filters</a></p>'; }
+function paxig_plp_empty_reset() { echo '<p class="paxig-plp-empty-reset"><a class="button" href="'.esc_url(paxig_plp_reset_url()).'">'.esc_html__( 'Clear Filters', 'paxig-shoes' ).'</a></p>'; }
 add_action('wp',function () {
     if (!paxig_plp_page()) return;
     remove_action('woocommerce_shop_loop_header','woocommerce_product_taxonomy_archive_header',10);

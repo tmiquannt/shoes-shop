@@ -70,7 +70,7 @@ function paxig_home_product_section($id, $title, $items, $url = '', $rail = fals
     ?>
     <section class="paxig-home-section paxig-home-section--<?php echo esc_attr($id); ?>" id="<?php echo esc_attr($id); ?>" aria-labelledby="<?php echo esc_attr($id); ?>-title">
         <div class="paxig-home-section-head"><div><h2 id="<?php echo esc_attr($id); ?>-title"><?php echo esc_html($title); ?></h2><?php if ($note) : ?><p><?php echo esc_html($note); ?></p><?php endif; ?></div>
-            <?php if ($url) : ?><a class="paxig-home-more" href="<?php echo esc_url($url); ?>">Shop All <span aria-hidden="true">↗</span></a><?php endif; ?>
+            <?php if ($url) : ?><a class="paxig-home-more" href="<?php echo esc_url($url); ?>"><?php echo esc_html__( 'Shop All', 'paxig-shoes' ); ?> <span aria-hidden="true">↗</span></a><?php endif; ?>
         </div>
         <ul class="paxig-home-products <?php echo $rail ? 'paxig-home-rail' : ''; ?>" <?php if ($rail) echo 'tabindex="0" aria-label="'.esc_attr($title).'"'; ?>><?php foreach ($items as $item) paxig_home_card($item); ?></ul>
     </section>

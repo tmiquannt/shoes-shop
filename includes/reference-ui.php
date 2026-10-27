@@ -33,25 +33,25 @@ function paxig_reference_category() {
 function paxig_reference_badge() {
     global $product;
     if (!$product instanceof WC_Product) return;
-    if ($product->is_on_sale()) echo '<span class="paxig-reference-badge is-sale">Sale</span>';
-    elseif (has_term('new-arrivals','product_cat',$product->get_id())) echo '<span class="paxig-reference-badge">New</span>';
-    elseif (has_term('best-sellers','product_cat',$product->get_id())) echo '<span class="paxig-reference-badge">Curated Pick</span>';
+    if ($product->is_on_sale()) echo '<span class="paxig-reference-badge is-sale">'.esc_html__( 'Sale', 'paxig-shoes' ).'</span>';
+    elseif (has_term('new-arrivals','product_cat',$product->get_id())) echo '<span class="paxig-reference-badge">'.esc_html__( 'New', 'paxig-shoes' ).'</span>';
+    elseif (has_term('best-sellers','product_cat',$product->get_id())) echo '<span class="paxig-reference-badge">'.esc_html__( 'Curated Pick', 'paxig-shoes' ).'</span>';
 }
 function paxig_reference_details() {
     global $product;
     if (!$product instanceof WC_Product) return;
     echo '<div class="paxig-reference-accordions">';
     if ($product->get_description() || $product->get_short_description()) {
-        echo '<details open><summary>Description</summary><div class="paxig-reference-content">';
+        echo '<details open><summary>'.esc_html__( 'Description', 'paxig-shoes' ).'</summary><div class="paxig-reference-content">';
         echo apply_filters('the_content', $product->get_description() ?: $product->get_short_description());
         echo '</div></details>';
     }
     if ($product->has_attributes() || $product->has_dimensions() || $product->has_weight()) {
-        echo '<details><summary>Product Details</summary><div class="paxig-reference-content">';
+        echo '<details><summary>'.esc_html__( 'Product Details', 'paxig-shoes' ).'</summary><div class="paxig-reference-content">';
         woocommerce_product_additional_information_tab();
         echo '</div></details>';
     }
-    echo '<details><summary>Delivery &amp; Returns</summary><div class="paxig-reference-content"><p>'.esc_html(paxig_shipping_summary()).'</p><p><a href="'.esc_url(home_url('/huong-dan/')).'">Read the shopping, cancellation and returns guide</a></p></div></details></div>';
+    echo '<details><summary>'.esc_html__( 'Delivery & Returns', 'paxig-shoes' ).'</summary><div class="paxig-reference-content"><p>'.esc_html(paxig_shipping_summary()).'</p><p><a href="'.esc_url(home_url('/huong-dan/')).'">'.esc_html__( 'Read the shopping, cancellation and returns guide', 'paxig-shoes' ).'</a></p></div></details></div>';
 }
 add_action('wp', function () {
     if (!paxig_reference_page()) return;
@@ -64,7 +64,9 @@ add_action('wp', function () {
     if (!is_product()) {
         remove_action('woocommerce_before_shop_loop','woocommerce_result_count',20);
         add_action('woocommerce_before_shop_loop', function () {
-            echo '<p class="paxig-reference-count">'.esc_html(number_format_i18n(wc_get_loop_prop('total'))).' products</p>';
+            $total = wc_get_loop_prop('total');
+            $count_text = sprintf( _n( '%s product', '%s products', $total, 'paxig-shoes' ), number_format_i18n( $total ) );
+            echo '<p class="paxig-reference-count">'.esc_html($count_text).'</p>';
         }, 1);
     } else {
         remove_action('woocommerce_before_single_product_summary','woocommerce_show_product_sale_flash',10);
@@ -76,13 +78,17 @@ add_action('wp', function () {
         add_action('woocommerce_single_product_summary', function () {
             global $product;
             $stock_html = wc_get_stock_html($product);
-            echo $stock_html ?: '<p class="stock '.($product->is_in_stock() ? 'in-stock' : 'out-of-stock').'">'.($product->is_in_stock() ? 'In Stock' : 'Out of Stock').'</p>';
+            $in_stock = $product->is_in_stock();
+            $stock_text = $in_stock ? __( 'In Stock', 'paxig-shoes' ) : __( 'Out of Stock', 'paxig-shoes' );
+            echo $stock_html ?: '<p class="stock '.($in_stock ? 'in-stock' : 'out-of-stock').'">'.esc_html($stock_text).'</p>';
             $color = $product->get_attribute('pa_color');
             $variation_attributes = $product->is_type('variable') ? $product->get_variation_attributes() : [];
-            if ($color && !array_key_exists('pa_color', $variation_attributes)) echo '<p class="paxig-reference-attribute">Color: '.esc_html($color).'</p>';
+            if ($color && !array_key_exists('pa_color', $variation_attributes)) {
+                echo '<p class="paxig-reference-attribute">'.esc_html( sprintf( __( 'Color: %s', 'paxig-shoes' ), $color ) ).'</p>';
+            }
         }, 15);
         add_action('woocommerce_single_product_summary', function () {
-            echo '<div class="paxig-reference-policy">'.esc_html(paxig_shipping_summary()).' <a href="'.esc_url(home_url('/huong-dan/')).'">Delivery &amp; Returns</a></div>';
+            echo '<div class="paxig-reference-policy">'.esc_html(paxig_shipping_summary()).' <a href="'.esc_url(home_url('/huong-dan/')).'">'.esc_html__( 'Delivery & Returns', 'paxig-shoes' ).'</a></div>';
         }, 34);
         add_action('woocommerce_single_product_summary','paxig_reference_details',35);
         add_filter('woocommerce_product_tabs', function ($tabs) { unset($tabs['additional_information']); return $tabs; }, 110);

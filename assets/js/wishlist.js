@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const parsed = JSON.parse(raw);
             return normalizeIds(parsed);
         } catch (error) {
-            setPersistenceError('Could not read saved favorites on this device.');
+            setPersistenceError(config.i18n?.read_error || 'Could not read saved favorites on this device.');
             return [];
         }
     }
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
             clearPersistenceError();
         } catch (error) {
-            setPersistenceError('Could not save favorites on this device.');
+            setPersistenceError(config.i18n?.save_error || 'Could not save favorites on this device.');
         }
     }
 
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
             button.classList.toggle('is-favorited', isFavorite);
             button.setAttribute('aria-pressed', String(isFavorite));
             const label = button.querySelector('.paxig-wishlist-btn-text');
-            if (label) label.textContent = isFavorite ? 'Favorited' : 'Favorite';
+            if (label) label.textContent = isFavorite ? (config.i18n?.favorited || 'Favorited') : (config.i18n?.favorite || 'Favorite');
         });
 
         document.querySelectorAll('.paxig-home-product').forEach((card) => {
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
         syncQueue = syncQueue.then(send, send).catch(() => {
-            if (revision === syncRevision) setPersistenceError('Could not sync favorites to your account. Please try again.');
+            if (revision === syncRevision) setPersistenceError(config.i18n?.sync_error || 'Could not sync favorites to your account. Please try again.');
         });
     }
 
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (index >= 0) wishlist.splice(index, 1);
         else if (wishlist.length < MAX_IDS) wishlist.push(id);
         else {
-            setPersistenceError('You can save up to 100 favorites.');
+            setPersistenceError(config.i18n?.max_limit || 'You can save up to 100 favorites.');
             return;
         }
 
@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function () {
             removeButton.type = 'button';
             removeButton.className = 'paxig-wishlist-item-remove';
             removeButton.dataset.productId = String(id);
-            removeButton.setAttribute('aria-label', 'Remove from favorites');
+            removeButton.setAttribute('aria-label', config.i18n?.remove || 'Remove from favorites');
             removeButton.textContent = '×';
             header.append(title, removeButton);
 
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function () {
             action.className = 'paxig-wishlist-drawer-item__action';
             const actionLink = document.createElement('a');
             if (permalink) actionLink.href = permalink;
-            actionLink.textContent = 'Select Size / View →';
+            actionLink.textContent = config.i18n?.select_size || 'Select Size / View →';
             action.append(actionLink);
             info.append(header, price, action);
             row.append(media, info);
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function () {
         itemsList.style.display = 'flex';
         const loading = document.createElement('div');
         loading.className = 'paxig-wishlist-loading';
-        loading.textContent = 'Loading saved shoes…';
+        loading.textContent = config.i18n?.loading || 'Loading saved shoes…';
         itemsList.replaceChildren(loading);
 
         post('paxig_get_wishlist_details', ids).then((data) => {
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const message = document.createElement('div');
             message.classList.add('woocommerce-error', 'paxig-wishlist-detail-error');
             message.setAttribute('role', 'alert');
-            message.textContent = 'Could not load favorites. Please try again.';
+            message.textContent = config.i18n?.detail_error || 'Could not load favorites. Please try again.';
             styleNotice(message);
             itemsList.replaceChildren(message);
         });

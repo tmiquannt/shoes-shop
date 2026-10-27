@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/includes/i18n.php';
 require_once __DIR__ . '/includes/home-ui.php';
 require_once __DIR__ . '/includes/style-3.php';
 /**
@@ -68,6 +69,18 @@ function paxig_shoes_enqueue_assets() {
 				. '/assets/js/single-product.js'
 			),
 			true
+		);
+
+		wp_localize_script(
+			'paxig-shoes-single-product',
+			'paxigSingleProduct',
+			array(
+				'i18n' => array(
+					'add_to_bag'         => __( 'Add to Bag', 'paxig-shoes' ),
+					'unavailable_suffix' => __( ' — Out of stock or unavailable', 'paxig-shoes' ),
+					'add_to_cart_error'  => __( 'Could not add item to bag.', 'paxig-shoes' ),
+				),
+			)
 		);
 	}
 }
@@ -206,7 +219,7 @@ function paxig_shoes_render_size_buttons( $html, $args ) {
 		. $html
 		. '</div>'
 		. '<div class="paxig-size-picker__buttons"'
-		. ' role="group" aria-label="Select Size">'
+		. ' role="group" aria-label="' . esc_attr__( 'Select Size', 'paxig-shoes' ) . '">'
 		. $buttons
 		. '</div>'
 		. '</div>';
@@ -222,7 +235,7 @@ add_filter(
  * Single-product Add to Bag text.
  */
 function paxig_shoes_add_to_cart_text() {
-	return 'Add to Bag';
+	return __( 'Add to Bag', 'paxig-shoes' );
 }
 add_filter(
 	'woocommerce_product_single_add_to_cart_text',
@@ -240,18 +253,31 @@ function paxig_shoes_product_subtitle() {
 	}
 
 	$gender = $product->get_attribute( 'pa_gender' );
+	$is_vi  = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
 
-	$subtitle_map = array(
-		'Men'    => 'Men’s Shoes',
-        'Nam' => 'Men’s Shoes',
-		'Women'  => 'Women’s Shoes',
-        'Nữ' => 'Women’s Shoes',
-		'Unisex' => 'Unisex Shoes',
-	);
+	if ( $is_vi ) {
+		$subtitle_map = array(
+			'Men'    => 'Giày Nam',
+			'Nam'    => 'Giày Nam',
+			'Women'  => 'Giày Nữ',
+			'Nữ'     => 'Giày Nữ',
+			'Unisex' => 'Giày Unisex',
+		);
+		$default_subtitle = 'Giày';
+	} else {
+		$subtitle_map = array(
+			'Men'    => "Men's Shoes",
+			'Nam'    => "Men's Shoes",
+			'Women'  => "Women's Shoes",
+			'Nữ'     => "Women's Shoes",
+			'Unisex' => 'Unisex Shoes',
+		);
+		$default_subtitle = 'Shoes';
+	}
 
 	$subtitle = isset( $subtitle_map[ $gender ] )
 		? $subtitle_map[ $gender ]
-		: 'Shoes';
+		: $default_subtitle;
 
 	echo '<p class="paxig-product-subtitle">'
 		. esc_html( $subtitle )
@@ -289,7 +315,7 @@ function paxig_shoes_product_details_in_summary() {
 	}
 
 	echo '<section class="paxig-product-details">';
-	echo '<h2>Product Details</h2>';
+	echo '<h2>' . esc_html__( 'Product Details', 'paxig-shoes' ) . '</h2>';
 	echo apply_filters( 'the_content', $description );
 	echo '</section>';
 }
@@ -309,7 +335,7 @@ function paxig_shoes_product_tabs( $tabs ) {
 
 	if ( isset( $tabs['additional_information'] ) ) {
 		$tabs['additional_information']['title'] =
-			'Product Information';
+			__( 'Product Information', 'paxig-shoes' );
 	}
 
 	if (
@@ -317,7 +343,7 @@ function paxig_shoes_product_tabs( $tabs ) {
 		$product instanceof WC_Product
 	) {
 		$tabs['reviews']['title'] = sprintf(
-			'Reviews (%d)',
+			__( 'Reviews (%d)', 'paxig-shoes' ),
 			$product->get_review_count()
 		);
 	}
@@ -684,7 +710,7 @@ function paxig_shoes_shop_layout_open() {
 
 	echo '<div class="paxig-shop-layout">';
 	echo '<aside class="paxig-shop-sidebar">';
-	echo '<h2>Category</h2>';
+	echo '<h2>' . esc_html__( 'Category', 'paxig-shoes' ) . '</h2>';
 	echo '<ul>';
 
 	$category_terms = get_terms(

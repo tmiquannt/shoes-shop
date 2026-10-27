@@ -44,40 +44,48 @@ $footer_sale_url = add_query_arg(
 					PAXIG
 				</a>
 				<p>
-					Shoes for every move, every day and every style.
+					<?php echo esc_html__( 'Shoes for every move, every day and every style.', 'paxig-shoes' ); ?>
 				</p>
 			</div>
 
-			<nav class="paxig-footer__column" aria-label="Footer shop navigation">
-				<h2>Shop</h2>
-				<a href="<?php echo esc_url( $footer_shop_url ); ?>">All Shoes</a>
-				<a href="<?php echo esc_url( $footer_men_url ); ?>">Men</a>
-				<a href="<?php echo esc_url( $footer_women_url ); ?>">Women</a>
-				<a href="<?php echo esc_url( $footer_sale_url ); ?>">Sale</a>
+			<nav class="paxig-footer__column" aria-label="<?php echo esc_attr__( 'Footer shop navigation', 'paxig-shoes' ); ?>">
+				<h2><?php echo esc_html__( 'Shop', 'paxig-shoes' ); ?></h2>
+				<a href="<?php echo esc_url( $footer_shop_url ); ?>"><?php echo esc_html__( 'All Shoes', 'paxig-shoes' ); ?></a>
+				<a href="<?php echo esc_url( $footer_men_url ); ?>"><?php echo esc_html__( 'Men', 'paxig-shoes' ); ?></a>
+				<a href="<?php echo esc_url( $footer_women_url ); ?>"><?php echo esc_html__( 'Women', 'paxig-shoes' ); ?></a>
+				<a href="<?php echo esc_url( $footer_sale_url ); ?>"><?php echo esc_html__( 'Sale', 'paxig-shoes' ); ?></a>
 			</nav>
 
-			<nav class="paxig-footer__column" aria-label="Footer help navigation">
-				<h2>Help</h2>
-				<a href="<?php echo esc_url( home_url('/huong-dan/') ); ?>">Size Guide</a>
-				<a href="<?php echo esc_url( home_url('/huong-dan/') ); ?>">Shipping &amp; Returns</a>
-				<a href="<?php echo esc_url( wc_get_page_permalink('myaccount') ); ?>">My Account</a>
-				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>">Shopping Bag</a>
+			<nav class="paxig-footer__column" aria-label="<?php echo esc_attr__( 'Footer help navigation', 'paxig-shoes' ); ?>">
+				<h2><?php echo esc_html__( 'Help', 'paxig-shoes' ); ?></h2>
+				<a href="<?php echo esc_url( home_url('/huong-dan/') ); ?>"><?php echo esc_html__( 'Size Guide', 'paxig-shoes' ); ?></a>
+				<a href="<?php echo esc_url( home_url('/huong-dan/') ); ?>"><?php echo esc_html__( 'Shipping & Returns', 'paxig-shoes' ); ?></a>
+				<a href="<?php echo esc_url( wc_get_page_permalink('myaccount') ); ?>"><?php echo esc_html__( 'My Account', 'paxig-shoes' ); ?></a>
+				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php echo esc_html__( 'Shopping Bag', 'paxig-shoes' ); ?></a>
 			</nav>
 
-			<nav class="paxig-footer__column" aria-label="About PAXIG">
-				<h2>About</h2>
-				<a href="<?php echo esc_url(home_url('/ve-paxig/')); ?>">Our Store</a>
-				<a href="<?php echo esc_url(home_url('/huong-dan/')); ?>">Shopping Guide</a>
-				<?php foreach (['refund_returns'=>'Returns & Refunds','privacy-policy'=>'Privacy Policy'] as $slug=>$label) : $policy = get_page_by_path($slug); if ($policy && $policy->post_status === 'publish') : ?>
-				<a href="<?php echo esc_url(get_permalink($policy)); ?>"><?php echo esc_html($label); ?></a>
-				<?php endif; endforeach; ?>
+			<nav class="paxig-footer__column" aria-label="<?php echo esc_attr__( 'About PAXIG', 'paxig-shoes' ); ?>">
+				<h2><?php echo esc_html__( 'About', 'paxig-shoes' ); ?></h2>
+				<a href="<?php echo esc_url(home_url('/ve-paxig/')); ?>"><?php echo esc_html__( 'Our Store', 'paxig-shoes' ); ?></a>
+				<a href="<?php echo esc_url(home_url('/huong-dan/')); ?>"><?php echo esc_html__( 'Shopping Guide', 'paxig-shoes' ); ?></a>
+				<?php
+				$policies = [
+					'refund_returns' => __( 'Returns & Refunds', 'paxig-shoes' ),
+					'privacy-policy' => __( 'Privacy Policy', 'paxig-shoes' ),
+				];
+				foreach ( $policies as $slug => $label ) :
+					$policy = get_page_by_path( $slug );
+					if ( $policy && $policy->post_status === 'publish' ) : ?>
+					<a href="<?php echo esc_url( get_permalink( $policy ) ); ?>"><?php echo esc_html( $label ); ?></a>
+					<?php endif;
+				endforeach; ?>
 			</nav>
 		</div>
 
 		<div class="paxig-footer__bottom">
 			<p>
 				© <?php echo esc_html( wp_date( 'Y' ) ); ?> PAXIG's Shoes.
-				All rights reserved.
+				<?php echo esc_html__( 'All rights reserved.', 'paxig-shoes' ); ?>
 			</p>
 		</div>
 	</div>

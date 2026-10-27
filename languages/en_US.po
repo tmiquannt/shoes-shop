@@ -1,0 +1,420 @@
+# Translation of PAXIG's Shoes in English (US)
+# Copyright (C) 2026 PAXIG's Shoes
+msgid ""
+msgstr ""
+"Project-Id-Version: PAXIG's Shoes 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: English (US)\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: paxig-shoes\n"
+
+msgid " — Out of stock or unavailable"
+msgstr " — Out of stock or unavailable"
+
+msgid "%s product"
+msgstr "%s product"
+
+msgid "%s products"
+msgstr "%s products"
+
+msgid "+ Show more"
+msgstr "+ Show more"
+
+msgid "About"
+msgstr "About"
+
+msgid "About PAXIG"
+msgstr "About PAXIG"
+
+msgid "Accessories"
+msgstr "Accessories"
+
+msgid "Add to Bag"
+msgstr "Add to Bag"
+
+msgid "All Shoes"
+msgstr "All Shoes"
+
+msgid "All rights reserved."
+msgstr "All rights reserved."
+
+msgid "Already have an account? <a href=\"%s\">Sign in</a> for faster checkout and order tracking, or continue as guest below."
+msgstr "Already have an account? <a href=\"%s\">Sign in</a> for faster checkout and order tracking, or continue as guest below."
+
+msgid "Available shipping methods and charges are calculated at checkout for your address."
+msgstr "Available shipping methods and charges are calculated at checkout for your address."
+
+msgid "Basketball"
+msgstr "Basketball"
+
+msgid "Bring your own rhythm to the court."
+msgstr "Bring your own rhythm to the court."
+
+msgid "Browse more pairs from the live catalogue."
+msgstr "Browse more pairs from the live catalogue."
+
+msgid "Cart"
+msgstr "Cart"
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Check the product size guide"
+msgstr "Check the product size guide"
+
+msgid "Checkout"
+msgstr "Checkout"
+
+msgid "Choose for the way you move"
+msgstr "Choose for the way you move"
+
+msgid "Choose your movement"
+msgstr "Choose your movement"
+
+msgid "Clear Filters"
+msgstr "Clear Filters"
+
+msgid "Close bag"
+msgstr "Close bag"
+
+msgid "Close favorites"
+msgstr "Close favorites"
+
+msgid "Close filters"
+msgstr "Close filters"
+
+msgid "Collection"
+msgstr "Collection"
+
+msgid "Collections"
+msgstr "Collections"
+
+msgid "Color"
+msgstr "Color"
+
+msgid "Color: %s"
+msgstr "Color: %s"
+
+msgid "Communication error. Please check your connection and try again."
+msgstr "Communication error. Please check your connection and try again."
+
+msgid "Could not add item to bag."
+msgstr "Could not add item to bag."
+
+msgid "Could not load favorites. Please try again."
+msgstr "Could not load favorites. Please try again."
+
+msgid "Could not read saved favorites on this device."
+msgstr "Could not read saved favorites on this device."
+
+msgid "Could not remove item from bag."
+msgstr "Could not remove item from bag."
+
+msgid "Could not save favorites on this device."
+msgstr "Could not save favorites on this device."
+
+msgid "Could not sync favorites to your account. Please try again."
+msgstr "Could not sync favorites to your account. Please try again."
+
+msgid "Could not update favorites. Please try again."
+msgstr "Could not update favorites. Please try again."
+
+msgid "Could not update quantity."
+msgstr "Could not update quantity."
+
+msgid "Curated Pick"
+msgstr "Curated Pick"
+
+msgid "Decrease quantity"
+msgstr "Decrease quantity"
+
+msgid "Delivery & Returns"
+msgstr "Delivery & Returns"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Everyday pairs for life in motion."
+msgstr "Everyday pairs for life in motion."
+
+msgid "Explore Collection"
+msgstr "Explore Collection"
+
+msgid "Explore Lifestyle for everyday outfits, Running for your next run, or Basketball for the court. Read each product's details before choosing."
+msgstr "Explore Lifestyle for everyday outfits, Running for your next run, or Basketball for the court. Read each product's details before choosing."
+
+msgid "Explore Shoes"
+msgstr "Explore Shoes"
+
+msgid "Explore categories"
+msgstr "Explore categories"
+
+msgid "Explore our catalogue and tap the heart icon on any pair to save it here."
+msgstr "Explore our catalogue and tap the heart icon on any pair to save it here."
+
+msgid "Favorite"
+msgstr "Favorite"
+
+msgid "Favorite %s"
+msgstr "Favorite %s"
+
+msgid "Favorited"
+msgstr "Favorited"
+
+msgid "Favorites"
+msgstr "Favorites"
+
+msgid "Filters"
+msgstr "Filters"
+
+msgid "Find your fit"
+msgstr "Find your fit"
+
+msgid "Find your pace from the first step."
+msgstr "Find your pace from the first step."
+
+msgid "Footer help navigation"
+msgstr "Footer help navigation"
+
+msgid "Footer shop navigation"
+msgstr "Footer shop navigation"
+
+msgid "Fresh pairs from the current catalogue."
+msgstr "Fresh pairs from the current catalogue."
+
+msgid "From city streets to the court. Find the collection that moves with you."
+msgstr "From city streets to the court. Find the collection that moves with you."
+
+msgid "Gender"
+msgstr "Gender"
+
+msgid "Help"
+msgstr "Help"
+
+msgid "Hide Filters"
+msgstr "Hide Filters"
+
+msgid "In Stock"
+msgstr "In Stock"
+
+msgid "Increase quantity"
+msgstr "Increase quantity"
+
+msgid "Kids’ Shoes"
+msgstr "Kids’ Shoes"
+
+msgid "Language Switcher"
+msgstr "Language Switcher"
+
+msgid "Lifestyle"
+msgstr "Lifestyle"
+
+msgid "Loading saved shoes…"
+msgstr "Loading saved shoes…"
+
+msgid "Looks like you haven’t added any sneakers to your bag yet."
+msgstr "Looks like you haven’t added any sneakers to your bag yet."
+
+msgid "Main navigation"
+msgstr "Main navigation"
+
+msgid "Measure both feet"
+msgstr "Measure both feet"
+
+msgid "Men"
+msgstr "Men"
+
+msgid "Men’s Shoes"
+msgstr "Men’s Shoes"
+
+msgid "My Account"
+msgstr "My Account"
+
+msgid "New"
+msgstr "New"
+
+msgid "New Arrivals"
+msgstr "New Arrivals"
+
+msgid "Open menu"
+msgstr "Open menu"
+
+msgid "Our Store"
+msgstr "Our Store"
+
+msgid "Out of Stock"
+msgstr "Out of Stock"
+
+msgid "Out of stock"
+msgstr "Out of stock"
+
+msgid "Outdoor"
+msgstr "Outdoor"
+
+msgid "Picked for the next move"
+msgstr "Picked for the next move"
+
+msgid "Price"
+msgstr "Price"
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+msgid "Product Details"
+msgstr "Product Details"
+
+msgid "Product Information"
+msgstr "Product Information"
+
+msgid "Product filters"
+msgstr "Product filters"
+
+msgid "Read the shopping, cancellation and returns guide"
+msgstr "Read the shopping, cancellation and returns guide"
+
+msgid "Read the size guide"
+msgstr "Read the size guide"
+
+msgid "Remove %s from bag"
+msgstr "Remove %s from bag"
+
+msgid "Remove from favorites"
+msgstr "Remove from favorites"
+
+msgid "Returns & Refunds"
+msgstr "Returns & Refunds"
+
+msgid "Reviews (%d)"
+msgstr "Reviews (%d)"
+
+msgid "Running"
+msgstr "Running"
+
+msgid "Sale"
+msgstr "Sale"
+
+msgid "Sale items"
+msgstr "Sale items"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Search products"
+msgstr "Search products"
+
+msgid "Search sneakers"
+msgstr "Search sneakers"
+
+msgid "Select Size"
+msgstr "Select Size"
+
+msgid "Select Size / View →"
+msgstr "Select Size / View →"
+
+msgid "Shipping & Returns"
+msgstr "Shipping & Returns"
+
+msgid "Shipping and taxes calculated at checkout."
+msgstr "Shipping and taxes calculated at checkout."
+
+msgid "Shipping in Vietnam: standard shipping %1$s VND per order; free shipping from %2$s VND after discounts. Available rates are confirmed at checkout."
+msgstr "Shipping in Vietnam: standard shipping %1$s VND per order; free shipping from %2$s VND after discounts. Available rates are confirmed at checkout."
+
+msgid "Shoes for every move, every day and every style."
+msgstr "Shoes for every move, every day and every style."
+
+msgid "Shop"
+msgstr "Shop"
+
+msgid "Shop %s"
+msgstr "Shop %s"
+
+msgid "Shop All"
+msgstr "Shop All"
+
+msgid "Shop All Shoes"
+msgstr "Shop All Shoes"
+
+msgid "Shop all shoes"
+msgstr "Shop all shoes"
+
+msgid "Shop by sport"
+msgstr "Shop by sport"
+
+msgid "Shopping Bag"
+msgstr "Shopping Bag"
+
+msgid "Shopping Guide"
+msgstr "Shopping Guide"
+
+msgid "Shopping help →"
+msgstr "Shopping help →"
+
+msgid "Shopping support"
+msgstr "Shopping support"
+
+msgid "Show Filters"
+msgstr "Show Filters"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "Size Guide"
+msgstr "Size Guide"
+
+msgid "Sizing varies by brand and model. Compare your measurement with the product information, then select an available size on its product page."
+msgstr "Sizing varies by brand and model. Compare your measurement with the product information, then select an available size on its product page."
+
+msgid "Skate"
+msgstr "Skate"
+
+msgid "Sort By: "
+msgstr "Sort By: "
+
+msgid "Sport"
+msgstr "Sport"
+
+msgid "Stand on a sheet of paper in your usual socks. Mark your heel and longest toe, then measure the distance. Use the longer measurement."
+msgstr "Stand on a sheet of paper in your usual socks. Mark your heel and longest toe, then measure the distance. Use the longer measurement."
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Track your orders →"
+msgstr "Track your orders →"
+
+msgid "Use these steps to help choose the right size for your next pair."
+msgstr "Use these steps to help choose the right size for your next pair."
+
+msgid "View Results"
+msgstr "View Results"
+
+msgid "View Shopping Bag"
+msgstr "View Shopping Bag"
+
+msgid "Wishlist"
+msgstr "Wishlist"
+
+msgid "Women"
+msgstr "Women"
+
+msgid "Women’s Shoes"
+msgstr "Women’s Shoes"
+
+msgid "You can save up to 100 favorites."
+msgstr "You can save up to 100 favorites."
+
+msgid "Your Shopping Bag is Empty"
+msgstr "Your Shopping Bag is Empty"
+
+msgid "Your Wishlist is Empty"
+msgstr "Your Wishlist is Empty"
+
+msgid "− Show less"
+msgstr "− Show less"
+

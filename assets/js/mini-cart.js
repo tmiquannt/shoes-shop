@@ -211,11 +211,11 @@ document.addEventListener('DOMContentLoaded', function () {
             if (response.success && response.data.fragments) {
                 applyFragments(response.data.fragments);
             } else {
-                showAlert(response.data?.message || 'Could not remove item from bag.');
+                showAlert(response.data?.message || (window.paxigMiniCart?.i18n?.remove_error || 'Could not remove item from bag.'));
             }
         })
         .catch(() => {
-            showAlert('Communication error. Please check your connection and try again.');
+            showAlert(window.paxigMiniCart?.i18n?.comm_error || 'Communication error. Please check your connection and try again.');
         })
         .finally(() => {
             setControlsDisabled(false);
@@ -256,11 +256,11 @@ document.addEventListener('DOMContentLoaded', function () {
             if (response.success && response.data.fragments) {
                 applyFragments(response.data.fragments);
             } else {
-                showAlert(response.data?.message || 'Could not update quantity.');
+                showAlert(response.data?.message || (window.paxigMiniCart?.i18n?.update_error || 'Could not update quantity.'));
             }
         })
         .catch(() => {
-            showAlert('Communication error. Please check your connection and try again.');
+            showAlert(window.paxigMiniCart?.i18n?.comm_error || 'Communication error. Please check your connection and try again.');
         })
         .finally(() => {
             setControlsDisabled(false);
