@@ -604,3 +604,39 @@ msgstr "Your shopping bag will be kept while you sign in or create an account."
 msgid "− Show less"
 msgstr "− Show less"
 
+
+msgid "No active shopping bag session found."
+msgstr "No active shopping bag session found."
+
+msgid "Invalid cart item key."
+msgstr "Invalid cart item key."
+
+msgid "The selected shoe is no longer in your bag. Please refresh."
+msgstr "The selected shoe is no longer in your bag. Please refresh."
+
+msgid "Quantity must be a valid integer."
+msgstr "Quantity must be a valid integer."
+
+msgid "Quantity must be a valid non-negative integer."
+msgstr "Quantity must be a valid non-negative integer."
+
+msgid "Requested quantity exceeds the allowable limit."
+msgstr "Requested quantity exceeds the allowable limit."
+
+msgid "Could not remove shoe from bag."
+msgstr "Could not remove shoe from bag."
+
+msgid "This shoe is no longer available in the catalogue."
+msgstr "This shoe is no longer available in the catalogue."
+
+msgid "This shoe is currently not available for purchase."
+msgstr "This shoe is currently not available for purchase."
+
+msgid "Item validation failed. Please check your bag."
+msgstr "Item validation failed. Please check your bag."
+
+msgid "Missing cart item key."
+msgstr "Missing cart item key."
+
+msgid "Missing required parameters."
+msgstr "Missing required parameters."

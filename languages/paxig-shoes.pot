@@ -605,3 +605,39 @@ msgstr ""
 msgid "− Show less"
 msgstr ""
 
+
+msgid "No active shopping bag session found."
+msgstr ""
+
+msgid "Invalid cart item key."
+msgstr ""
+
+msgid "The selected shoe is no longer in your bag. Please refresh."
+msgstr ""
+
+msgid "Quantity must be a valid integer."
+msgstr ""
+
+msgid "Quantity must be a valid non-negative integer."
+msgstr ""
+
+msgid "Requested quantity exceeds the allowable limit."
+msgstr ""
+
+msgid "Could not remove shoe from bag."
+msgstr ""
+
+msgid "This shoe is no longer available in the catalogue."
+msgstr ""
+
+msgid "This shoe is currently not available for purchase."
+msgstr ""
+
+msgid "Item validation failed. Please check your bag."
+msgstr ""
+
+msgid "Missing cart item key."
+msgstr ""
+
+msgid "Missing required parameters."
+msgstr ""

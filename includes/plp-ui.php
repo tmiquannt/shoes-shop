@@ -155,5 +155,9 @@ add_filter('woocommerce_widget_get_current_page_url',function($url){
 });
 add_filter('gettext',function($translated,$text,$domain){
     if ($domain!=='woocommerce'||!paxig_plp_page()) return $translated;
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    if ($is_vi) {
+        return ['Filter'=>'Áp dụng','Price:'=>'Giá:','Min price'=>'Giá tối thiểu','Max price'=>'Giá tối đa'][$text] ?? $translated;
+    }
     return ['Filter'=>'Apply Price','Price:'=>'Price:'][$text] ?? $translated;
 },140,3);

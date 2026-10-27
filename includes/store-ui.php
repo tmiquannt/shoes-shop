@@ -143,7 +143,14 @@ add_filter('woocommerce_page_title',function($title){
 },999);
 add_filter('woocommerce_get_breadcrumb',function($crumbs){if(paxig_store_frontend())foreach($crumbs as &$crumb)$crumb[0]=paxig_store_text($crumb[0]);return $crumbs;},999);
 add_filter('wp_get_nav_menu_objects',function($items){if(paxig_store_frontend())foreach($items as &$item){$item=clone $item;$item->title=paxig_store_text($item->title);}return $items;},999);
-add_filter('wp_nav_menu_items',function($html,$args){if(paxig_store_frontend()&&$args->theme_location==='primary')$html.='<li class="paxig-mobile-account"><a href="'.esc_url(wc_get_page_permalink('myaccount')).'">My Account</a></li>';return $html;},999,2);
+add_filter('wp_nav_menu_items',function($html,$args){
+    if(paxig_store_frontend()&&$args->theme_location==='primary') {
+        $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+        $label = $is_vi ? 'Tài khoản' : 'My Account';
+        $html.='<li class="paxig-mobile-account"><a href="'.esc_url(wc_get_page_permalink('myaccount')).'">'.esc_html($label).'</a></li>';
+    }
+    return $html;
+},999,2);
 add_filter('wp_get_attachment_image_attributes',function($attrs){if(paxig_store_frontend())$attrs['alt']=str_replace('Giày minh họa AI cho khóa luận','Illustrative demo footwear',paxig_store_text($attrs['alt']??''));return $attrs;},999);
 add_filter('woocommerce_cart_shipping_method_full_label',fn($label)=>paxig_store_frontend()?paxig_store_html('<span>'.$label.'</span>'):$label,999);
 add_filter('woocommerce_order_shipping_to_display',fn($label)=>paxig_store_frontend()?paxig_store_text($label):$label,999);
@@ -200,6 +207,21 @@ add_action('wp',function(){
 },90);
 add_filter('woocommerce_my_account_my_orders_columns',function($columns){if(paxig_store_frontend())foreach($columns as &$label)$label=paxig_store_text($label);return $columns;},999);
 add_filter('woocommerce_my_account_my_orders_actions',function($actions){if(paxig_store_frontend())foreach($actions as &$action){$action['name']=paxig_store_text($action['name']);if(isset($action['aria-label']))$action['aria-label']=paxig_store_text($action['aria-label']);}return $actions;},999);
+add_filter('document_title_parts',function($parts){
+    if(!paxig_store_frontend())return $parts;
+    $is_vi=function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi';
+    if(!$is_vi)return $parts;
+    if(is_front_page()){$parts['title']="PAXIG'S SHOES";}
+    elseif(is_cart()){$parts['title']='Giỏ hàng';}
+    elseif(is_checkout()){$parts['title']='Thanh toán';}
+    elseif(is_account_page()){$parts['title']='Tài khoản của tôi';}
+    elseif(is_shop()){$parts['title']='Cửa hàng';}
+    elseif(is_page('huong-dan')){$parts['title']='Hướng dẫn mua sắm';}
+    elseif(is_page('ve-paxig')){$parts['title']="Về PAXIG'S SHOES";}
+    elseif(is_search()){$parts['title']='Tìm kiếm: '.get_search_query();}
+    return $parts;
+},999);
+
 // The original print handler still validates nonce, ownership and document visibility.
 // Only its customer HTML is localized; finance and REST responses stay untouched.
 add_action('template_redirect',function(){
@@ -207,6 +229,8 @@ add_action('template_redirect',function(){
     ob_start(function($html){
         $values=[];
         $html=preg_replace_callback('/(<strong>(?:Họ tên:|Email:|Điện thoại:|Địa chỉ:)<\/strong>)([^<]*)(<\/p>)/u',function($m)use(&$values){$key='PAXIG_SNAPSHOT_VALUE_'.count($values);$values[$key]=$m[2];return $m[1].$key.$m[3];},$html);
-        return strtr(str_replace('lang="vi"','lang="en-US"',paxig_store_html($html)),$values);
+        $is_vi=function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi';
+        $lang_attr=$is_vi?'lang="vi"':'lang="en-US"';
+        return strtr(str_replace('lang="vi"',$lang_attr,paxig_store_html($html)),$values);
     });
 },-1);

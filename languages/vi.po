@@ -604,3 +604,39 @@ msgstr "Giỏ hàng của bạn sẽ được giữ nguyên khi bạn đăng nh�
 msgid "− Show less"
 msgstr "− Thu gọn"
 
+
+msgid "No active shopping bag session found."
+msgstr "Không tìm thấy phiên giỏ hàng hoạt động."
+
+msgid "Invalid cart item key."
+msgstr "Khóa sản phẩm giỏ hàng không hợp lệ."
+
+msgid "The selected shoe is no longer in your bag. Please refresh."
+msgstr "Đôi giày đã chọn không còn trong giỏ hàng. Vui lòng tải lại trang."
+
+msgid "Quantity must be a valid integer."
+msgstr "Số lượng phải là một số nguyên hợp lệ."
+
+msgid "Quantity must be a valid non-negative integer."
+msgstr "Số lượng phải là một số nguyên không âm hợp lệ."
+
+msgid "Requested quantity exceeds the allowable limit."
+msgstr "Số lượng yêu cầu vượt quá giới hạn cho phép."
+
+msgid "Could not remove shoe from bag."
+msgstr "Không thể xóa giày khỏi giỏ hàng."
+
+msgid "This shoe is no longer available in the catalogue."
+msgstr "Đôi giày này không còn trong danh mục sản phẩm."
+
+msgid "This shoe is currently not available for purchase."
+msgstr "Đôi giày này hiện không mở bán."
+
+msgid "Item validation failed. Please check your bag."
+msgstr "Kiểm tra sản phẩm thất bại. Vui lòng kiểm tra lại giỏ hàng."
+
+msgid "Missing cart item key."
+msgstr "Thiếu mã định danh sản phẩm giỏ hàng."
+
+msgid "Missing required parameters."
+msgstr "Thiếu các tham số bắt buộc."

@@ -15,15 +15,33 @@ add_filter('gettext',function($translated,$text,$domain){
     $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
     if ($is_vi) {
         $vi_map = [
-            'Home'=>'Trang chủ','Cart'=>'Giỏ hàng','Checkout'=>'Thanh toán','My account'=>'Tài khoản của tôi','Description'=>'Mô tả','Additional information'=>'Thông tin bổ sung','Reviews'=>'Đánh giá','Choose an option'=>'Chọn kích cỡ','Clear'=>'Xóa lựa chọn','Quantity'=>'Số lượng','Out of stock'=>'Hết hàng','Your cart is currently empty.'=>'Giỏ hàng của bạn đang trống.','Return to shop'=>'Tiếp tục mua sắm','No products were found matching your selection.'=>'Không có sản phẩm nào phù hợp với lựa chọn của bạn. Thử tìm kiếm khác hoặc xóa bộ lọc.','Product'=>'Sản phẩm','Price'=>'Giá','Subtotal'=>'Tạm tính','Total'=>'Tổng cộng','Shipping'=>'Vận chuyển','Cart totals'=>'Tóm tắt đơn hàng','Proceed to checkout'=>'Tiến hành thanh toán','Update cart'=>'Cập nhật giỏ hàng','Coupon code'=>'Mã ưu đãi','Apply coupon'=>'Áp dụng','Billing details'=>'Thông tin thanh toán','Your order'=>'Đơn hàng của bạn','Place order'=>'Đặt hàng','Your account was created successfully. Your login details have been sent to your email address.'=>'Tài khoản của bạn đã được tạo. Vui lòng kiểm tra email để lấy liên kết xác thực trước khi đăng nhập.','First name'=>'Tên','Last name'=>'Họ','Country / Region'=>'Quốc gia / Khu vực','Street address'=>'Địa chỉ đường phố','Town / City'=>'Tỉnh / Thành phố','State / County'=>'Quận / Huyện','Phone'=>'Số điện thoại','Email address'=>'Địa chỉ email','Username or email address'=>'Tên tài khoản hoặc email','Password'=>'Mật khẩu','Log in'=>'Đăng nhập','Login'=>'Đăng nhập','Register'=>'Đăng ký','Remember me'=>'Ghi nhớ đăng nhập','Lost your password?'=>'Quên mật khẩu?','Orders'=>'Đơn hàng','Order'=>'Đơn hàng','Date'=>'Ngày','Status'=>'Trạng thái','Actions'=>'Thao tác','View'=>'Xem chi tiết','Order details'=>'Chi tiết đơn hàng','Billing address'=>'Địa chỉ thanh toán','Shipping address'=>'Địa chỉ nhận hàng','No order has been made yet.'=>'Bạn chưa có đơn hàng nào.','Browse products'=>'Khám phá sản phẩm','Save changes'=>'Lưu thay đổi','Remove this item'=>'Xóa sản phẩm này','Free shipping'=>'Miễn phí vận chuyển','Product Details'=>'Chi tiết sản phẩm','Product Information'=>'Thông tin sản phẩm',
-            'Order number:'=>'Mã đơn hàng:','Order number'=>'Mã đơn hàng','Date:'=>'Ngày:','Total:'=>'Tổng cộng:','Payment method:'=>'Phương thức thanh toán:','Thank you. Your order has been received.'=>'Cảm ơn bạn. Đơn hàng của bạn đã được tiếp nhận.','Pay with cash upon delivery.'=>'Thanh toán tiền mặt khi giao hàng.','Make your payment directly into our bank account.'=>'Thanh toán chuyển khoản ngân hàng.',
+            'Home'=>'Trang chủ','Cart'=>'Giỏ hàng','Checkout'=>'Thanh toán','My account'=>'Tài khoản của tôi','Description'=>'Mô tả','Additional information'=>'Thông tin bổ sung','Reviews'=>'Đánh giá','Choose an option'=>'Chọn kích cỡ','Clear'=>'Xóa lựa chọn','Quantity'=>'Số lượng','Out of stock'=>'Hết hàng','Your cart is currently empty.'=>'Giỏ hàng của bạn đang trống.','Return to shop'=>'Tiếp tục mua sắm','No products were found matching your selection.'=>'Không có sản phẩm nào phù hợp với lựa chọn của bạn. Thử tìm kiếm khác hoặc xóa bộ lọc.','Product'=>'Sản phẩm','Price'=>'Giá','Subtotal'=>'Tạm tính','Subtotal:'=>'Tạm tính:','Total'=>'Tổng cộng','Total:'=>'Tổng cộng:','Shipping'=>'Vận chuyển','Shipping:'=>'Vận chuyển:','Cart totals'=>'Tóm tắt đơn hàng','Proceed to checkout'=>'Tiến hành thanh toán','Update cart'=>'Cập nhật giỏ hàng','Coupon code'=>'Mã ưu đãi','Apply coupon'=>'Áp dụng','Billing details'=>'Thông tin thanh toán','Your order'=>'Đơn hàng của bạn','Place order'=>'Đặt hàng','Your account was created successfully. Your login details have been sent to your email address.'=>'Tài khoản của bạn đã được tạo. Vui lòng kiểm tra email để lấy liên kết xác thực trước khi đăng nhập.','First name'=>'Tên','Last name'=>'Họ','Country / Region'=>'Quốc gia / Khu vực','Street address'=>'Địa chỉ đường phố','Town / City'=>'Tỉnh / Thành phố','State / County'=>'Quận / Huyện','Phone'=>'Số điện thoại','Email address'=>'Địa chỉ email','Username or email address'=>'Tên tài khoản hoặc email','Password'=>'Mật khẩu','Log in'=>'Đăng nhập','Login'=>'Đăng nhập','Register'=>'Đăng ký','Remember me'=>'Ghi nhớ đăng nhập','Lost your password?'=>'Quên mật khẩu?','Forgot your password?'=>'Quên mật khẩu?','Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.'=>'Quên mật khẩu? Vui lòng nhập tên tài khoản hoặc địa chỉ email. Bạn sẽ nhận được liên kết qua email để tạo mật khẩu mới.','Username or email'=>'Tên tài khoản hoặc email','Reset password'=>'Đặt lại mật khẩu','Password reset email has been sent.'=>'Email đặt lại mật khẩu đã được gửi.','The following addresses will be used on the checkout page by default.'=>'Các địa chỉ sau sẽ được dùng mặc định tại trang thanh toán.','You have not set up this type of address yet.'=>'Bạn chưa thiết lập loại địa chỉ này.','Add billing address'=>'Thêm địa chỉ thanh toán','Add shipping address'=>'Thêm địa chỉ nhận hàng','Edit billing address'=>'Sửa địa chỉ thanh toán','Edit shipping address'=>'Sửa địa chỉ nhận hàng','Display name'=>'Tên hiển thị','This will be how your name will be displayed in the account section and in reviews'=>'Tên này sẽ hiển thị trong mục tài khoản và phần đánh giá sản phẩm','Password change'=>'Thay đổi mật khẩu','Current password (leave blank to leave unchanged)'=>'Mật khẩu hiện tại (bỏ trống nếu không đổi)','New password (leave blank to leave unchanged)'=>'Mật khẩu mới (bỏ trống nếu không đổi)','Confirm new password'=>'Xác nhận mật khẩu mới','Order #%1$s was placed on %2$s and is currently %3$s.'=>'Đơn hàng #%1$s được đặt vào ngày %2$s và hiện đang %3$s.','Pending payment'=>'Chờ thanh toán','Processing'=>'Đang xử lý','On hold'=>'Tạm giữ','Completed'=>'Đã hoàn thành','Cancelled'=>'Đã hủy','Refunded'=>'Đã hoàn tiền','Failed'=>'Thất bại','Order again'=>'Đặt lại đơn hàng','Order updates'=>'Cập nhật đơn hàng','Invalid order.'=>'Đơn hàng không hợp lệ.','Orders'=>'Đơn hàng','Order'=>'Đơn hàng','Date'=>'Ngày','Status'=>'Trạng thái','Actions'=>'Thao tác','View'=>'Xem chi tiết','Order details'=>'Chi tiết đơn hàng','Billing address'=>'Địa chỉ thanh toán','Shipping address'=>'Địa chỉ nhận hàng','No order has been made yet.'=>'Bạn chưa có đơn hàng nào.','Browse products'=>'Khám phá sản phẩm','Save changes'=>'Lưu thay đổi','Remove this item'=>'Xóa sản phẩm này','Free shipping'=>'Miễn phí vận chuyển','Product Details'=>'Chi tiết sản phẩm','Product Information'=>'Thông tin sản phẩm',
+            'Order number:'=>'Mã đơn hàng:','Order number'=>'Mã đơn hàng','Date:'=>'Ngày:','Payment method:'=>'Phương thức thanh toán:','Thank you. Your order has been received.'=>'Cảm ơn bạn. Đơn hàng của bạn đã được tiếp nhận.','Pay with cash upon delivery.'=>'Thanh toán tiền mặt khi giao hàng.','Make your payment directly into our bank account.'=>'Thanh toán chuyển khoản ngân hàng.',
             'Related products'=>'Sản phẩm liên quan','Required'=>'Bắt buộc','Email'=>'Email','Customer Details'=>'Thông tin khách hàng','Order Summary'=>'Tóm tắt đơn hàng','Proceed to Checkout'=>'Tiến hành thanh toán','Update Cart'=>'Cập nhật giỏ hàng','View Details'=>'Xem chi tiết','Explore products'=>'Khám phá sản phẩm','Your Order'=>'Đơn hàng của bạn','Place Order'=>'Đặt hàng','Billing Address'=>'Địa chỉ thanh toán','Shipping Address'=>'Địa chỉ nhận hàng',
+            'Relevance'=>'Phù hợp nhất','Shop order'=>'Thứ tự sắp xếp','Min price'=>'Giá tối thiểu','Max price'=>'Giá tối đa','Price:'=>'Giá:','Filter'=>'Lọc','Apply'=>'Áp dụng','View cart'=>'Xem giỏ hàng','Show password'=>'Hiện mật khẩu','Hide password'=>'Ẩn mật khẩu',
+            'Save my name, email, and website in this browser for the next time I comment.'=>'Lưu tên, email và trang web của tôi trong trình duyệt này cho lần bình luận tiếp theo.',
+            'Your email address will not be published.'=>'Địa chỉ email của bạn sẽ không được hiển thị công khai.',
+            'Required fields are marked %s'=>'Các trường bắt buộc được đánh dấu %s',
+            'Required fields are marked *'=>'Các trường bắt buộc được đánh dấu *',
+            'Cancel reply'=>'Hủy trả lời','Rate…'=>'Xếp hạng…','Perfect'=>'Rất tốt','Good'=>'Tốt','Average'=>'Trung bình','Not that bad'=>'Không tệ','Very poor'=>'Rất tệ',
+            'Contact information'=>'Thông tin liên hệ','Shipping methods'=>'Phương thức vận chuyển','Order note'=>'Ghi chú đơn hàng','Notes about your order, e.g. special notes for delivery.'=>'Ghi chú về đơn hàng, ví dụ: lưu ý khi giao hàng.','Add a note to your order'=>'Thêm ghi chú cho đơn hàng','Enter a coupon'=>'Nhập mã ưu đãi','Taxes'=>'Thuế','Discount'=>'Giảm giá','Fee'=>'Phụ phí',
         ];
         return $vi_map[$text] ?? $translated;
     }
-    $map=['Home'=>'Home','Cart'=>'Cart','Checkout'=>'Checkout','My account'=>'My Account','Description'=>'Description','Additional information'=>'Additional information','Reviews'=>'Reviews','Choose an option'=>'Select Size','Clear'=>'Clear selection','Quantity'=>'Quantity','Out of stock'=>'Out of Stock','Your cart is currently empty.'=>'Your cart is empty.','Return to shop'=>'Continue Shopping','No products were found matching your selection.'=>'No products match your selection. Try another search or clear your filters.','Product'=>'Product','Price'=>'Price','Subtotal'=>'Subtotal','Total'=>'Total','Shipping'=>'Shipping','Cart totals'=>'Order Summary','Proceed to checkout'=>'Proceed to Checkout','Update cart'=>'Update Cart','Coupon code'=>'Coupon code','Apply coupon'=>'Apply','Billing details'=>'Customer Details','Your order'=>'Your Order','Place order'=>'Place Order','Your account was created successfully. Your login details have been sent to your email address.'=>'Your account was created. Check your email for the verification link before logging in.','First name'=>'First name','Last name'=>'Last name','Country / Region'=>'Country / Region','Street address'=>'Street address','Town / City'=>'Town / City','State / County'=>'State / County','Phone'=>'Phone','Email address'=>'Email','Username or email address'=>'Username or email address','Password'=>'Password','Log in'=>'Log In','Login'=>'Log In','Register'=>'Register','Remember me'=>'Remember me','Lost your password?'=>'Lost your password?','Orders'=>'Orders','Order'=>'Orders','Date'=>'Date','Status'=>'Status','Actions'=>'Actions','View'=>'View Details','Order details'=>'Order Details','Billing address'=>'Billing Address','Shipping address'=>'Shipping Address','No order has been made yet.'=>'You have no orders yet.','Browse products'=>'Explore products','Save changes'=>'Save Changes','Remove this item'=>'Remove this item','Free shipping'=>'Free shipping','Product Details'=>'Product Details','Product Information'=>'Product Information'];
+    $map=['Home'=>'Home','Cart'=>'Cart','Checkout'=>'Checkout','My account'=>'My Account','Description'=>'Description','Additional information'=>'Additional information','Reviews'=>'Reviews','Choose an option'=>'Select Size','Clear'=>'Clear selection','Quantity'=>'Quantity','Out of stock'=>'Out of Stock','Your cart is currently empty.'=>'Your cart is empty.','Return to shop'=>'Continue Shopping','No products were found matching your selection.'=>'No products match your selection. Try another search or clear your filters.','Product'=>'Product','Price'=>'Price','Subtotal'=>'Subtotal','Subtotal:'=>'Subtotal:','Total'=>'Total','Total:'=>'Total:','Shipping'=>'Shipping','Shipping:'=>'Shipping:','Cart totals'=>'Order Summary','Proceed to checkout'=>'Proceed to Checkout','Update cart'=>'Update Cart','Coupon code'=>'Coupon code','Apply coupon'=>'Apply','Billing details'=>'Customer Details','Your order'=>'Your Order','Place order'=>'Place Order','Your account was created successfully. Your login details have been sent to your email address.'=>'Your account was created. Check your email for the verification link before logging in.','First name'=>'First name','Last name'=>'Last name','Country / Region'=>'Country / Region','Street address'=>'Street address','Town / City'=>'Town / City','State / County'=>'State / County','Phone'=>'Phone','Email address'=>'Email','Username or email address'=>'Username or email address','Password'=>'Password','Log in'=>'Log In','Login'=>'Log In','Register'=>'Register','Remember me'=>'Remember me','Lost your password?'=>'Lost your password?','Forgot your password?'=>'Forgot your password?','Orders'=>'Orders','Order'=>'Orders','Date'=>'Date','Status'=>'Status','Actions'=>'Actions','View'=>'View Details','Order details'=>'Order Details','Billing address'=>'Billing Address','Shipping address'=>'Shipping Address','No order has been made yet.'=>'You have no orders yet.','Browse products'=>'Explore products','Save changes'=>'Save Changes','Remove this item'=>'Remove this item','Free shipping'=>'Free shipping','Product Details'=>'Product Details','Product Information'=>'Product Information'];
     return $map[$text]??$translated;
 },100,3);
+
+add_filter('gettext_with_context',function($translated,$text,$context,$domain){
+    if(is_admin()||!in_array($domain,['woocommerce','default'],true))return $translated;
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    if ($is_vi) {
+        if ($context === 'breadcrumb' && $text === 'Home') return 'Trang chủ';
+    } else {
+        if ($context === 'breadcrumb' && $text === 'Home') return 'Home';
+    }
+    return $translated;
+},100,4);
 
 add_filter('woocommerce_get_related_product_cat_terms',function($ids){$allowed=['lifestyle','running','basketball','football','training','air-force-1','jordan','air-max','dunk','cortez','pegasus','vomero','revolution','metcon','mercurial'];return array_values(array_filter($ids,function($id)use($allowed){$t=get_term($id,'product_cat');return $t&&!is_wp_error($t)&&in_array($t->slug,$allowed,true);}));});
 add_filter('woocommerce_get_related_product_tag_terms',fn()=>[]);
@@ -123,6 +141,48 @@ add_action('woocommerce_no_products_found',function(){
     echo '<p class="paxig-empty-action"><a class="button" href="'.esc_url(wc_get_page_permalink('shop')).'">' . esc_html( $label ) . '</a></p>';
 },20);
 
+// Breadcrumb translations
+add_filter('woocommerce_breadcrumb_defaults', function($defaults) {
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    if ($is_vi) {
+        $defaults['home'] = 'Trang chủ';
+        $defaults['wrap_before'] = '<nav class="woocommerce-breadcrumb" aria-label="Đường dẫn điều hướng">';
+    } else {
+        $defaults['home'] = 'Home';
+        $defaults['wrap_before'] = '<nav class="woocommerce-breadcrumb" aria-label="Breadcrumb">';
+    }
+    return $defaults;
+}, 20);
+
+add_filter('woocommerce_get_breadcrumb', function($crumbs) {
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    if ($is_vi) {
+        $crumb_map = [
+            'Home'         => 'Trang chủ',
+            'New Arrivals' => 'Mới lên kệ',
+            'Best Sellers' => 'Bán chạy',
+            'Sale'         => 'Ưu đãi',
+            'Trending'     => 'Xu hướng',
+            'Lifestyle'    => 'Lifestyle',
+            'Running'      => 'Chạy bộ',
+            'Basketball'   => 'Bóng rổ',
+            'Football'     => 'Bóng đá',
+            'Training'     => 'Tập luyện',
+            'Shop'         => 'Cửa hàng',
+            'All Shoes'    => 'Tất cả giày',
+        ];
+        foreach ($crumbs as &$crumb) {
+            if (isset($crumb_map[$crumb[0]])) {
+                $crumb[0] = $crumb_map[$crumb[0]];
+            } elseif (is_string($crumb[0]) && str_starts_with($crumb[0], 'Search results for')) {
+                $crumb[0] = preg_replace('/Search results for &ldquo;(.*)&rdquo;/u', 'Kết quả tìm kiếm cho “$1”', $crumb[0]);
+                $crumb[0] = preg_replace('/Search results for “(.*)”/u', 'Kết quả tìm kiếm cho “$1”', $crumb[0]);
+            }
+        }
+    }
+    return $crumbs;
+}, 20);
+
 // Translate WooCommerce Gutenberg Blocks content (Cart, Checkout, Empty Cart)
 add_filter('render_block', function($block_content, $block) {
     if (is_admin()) return $block_content;
@@ -136,6 +196,13 @@ add_filter('render_block', function($block_content, $block) {
         'You may be interested in…' => 'Có thể bạn sẽ thích…',
         'Browse store' => 'Khám phá cửa hàng',
         'Return to shop' => 'Tiếp tục mua sắm',
+        'Contact information' => 'Thông tin liên hệ',
+        'Shipping address' => 'Địa chỉ nhận hàng',
+        'Billing address' => 'Địa chỉ thanh toán',
+        'Shipping methods' => 'Phương thức vận chuyển',
+        'Payment options' => 'Tùy chọn thanh toán',
+        'Order summary' => 'Tóm tắt đơn hàng',
+        'Order note' => 'Ghi chú đơn hàng',
     ];
     return strtr($block_content, $block_map);
 }, 20, 2);

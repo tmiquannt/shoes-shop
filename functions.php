@@ -389,6 +389,22 @@ function paxig_shoes_english_review_text(
 		return $translated;
 	}
 
+	$is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
+	if ( $is_vi ) {
+		$vi_review_text = array(
+			'Reviews'                                 => 'Đánh giá',
+			'Add a review'                            => 'Thêm đánh giá',
+			'There are no reviews yet.'               => 'Chưa có đánh giá nào.',
+			'Be the first to review “%s”'             => 'Hãy là người đầu tiên đánh giá “%s”',
+			'Be the first to review &ldquo;%s&rdquo;' => 'Hãy là người đầu tiên đánh giá “%s”',
+			'Your rating'                             => 'Đánh giá của bạn',
+			'Your review'                             => 'Nhận xét của bạn',
+			'Submit'                                  => 'Gửi đánh giá',
+		);
+
+		return $vi_review_text[ $text ] ?? $translated;
+	}
+
 	$review_text = array(
 		'Reviews' =>
 			'Reviews',
@@ -535,14 +551,15 @@ add_action(
 );
 
 /**
- * English archive title.
+ * Archive title.
  */
 function paxig_shoes_archive_title( $title ) {
 	if (
 		function_exists( 'is_shop' ) &&
 		is_shop()
 	) {
-		return 'All Shoes';
+		$is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
+		return $is_vi ? 'Tất cả giày' : 'All Shoes';
 	}
 
 	return $title;
@@ -553,9 +570,20 @@ add_filter(
 );
 
 /**
- * English catalog sorting labels.
+ * Catalog sorting labels.
  */
 function paxig_shoes_catalog_orderby() {
+	$is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
+	if ( $is_vi ) {
+		return array(
+			'menu_order' => 'Nổi bật',
+			'popularity' => 'Mức độ phổ biến',
+			'rating'     => 'Đánh giá cao',
+			'date'       => 'Mới nhất',
+			'price'      => 'Giá: Thấp đến Cao',
+			'price-desc' => 'Giá: Cao đến Thấp',
+		);
+	}
 	return array(
 		'menu_order' => 'Featured',
 		'popularity' => 'Popularity',
@@ -577,14 +605,15 @@ function paxig_shoes_loop_button_text(
 	$text,
 	$product
 ) {
+	$is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
 	if (
 		$product instanceof WC_Product &&
 		$product->is_type( 'variable' )
 	) {
-		return 'Choose Options';
+		return $is_vi ? 'Chọn kích cỡ' : 'Choose Options';
 	}
 
-	return 'Add to Bag';
+	return $is_vi ? 'Thêm vào giỏ hàng' : 'Add to Bag';
 }
 add_filter(
 	'woocommerce_product_add_to_cart_text',
@@ -594,7 +623,7 @@ add_filter(
 );
 
 /**
- * Remaining English archive strings.
+ * Remaining archive strings.
  */
 function paxig_shoes_english_archive_text(
 	$translated,
@@ -612,14 +641,20 @@ function paxig_shoes_english_archive_text(
 		return $translated;
 	}
 
-	$archive_text = array(
-		'Home' =>
-			'Home',
-		'Showing the single result' =>
-			'Showing 1 product',
-		'Select options' =>
-			'Choose Options',
-	);
+	$is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
+	if ( $is_vi ) {
+		$archive_text = array(
+			'Home'                      => 'Trang chủ',
+			'Showing the single result' => 'Hiển thị 1 sản phẩm',
+			'Select options'            => 'Chọn kích cỡ',
+		);
+	} else {
+		$archive_text = array(
+			'Home'                      => 'Home',
+			'Showing the single result' => 'Showing 1 product',
+			'Select options'            => 'Choose Options',
+		);
+	}
 
 	return isset( $archive_text[ $text ] )
 		? $archive_text[ $text ]
@@ -633,7 +668,7 @@ add_filter(
 );
 
 /**
- * English plural archive result count.
+ * Plural archive result count.
  */
 function paxig_shoes_archive_plural_text(
 	$translation,
@@ -651,7 +686,8 @@ function paxig_shoes_archive_plural_text(
 		) &&
 		'Showing all %1$d results' === $plural
 	) {
-		return 'Showing all %1$d products';
+		$is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
+		return $is_vi ? 'Hiển thị tất cả %1$d sản phẩm' : 'Showing all %1$d products';
 	}
 
 	return $translation;

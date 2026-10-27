@@ -76,7 +76,10 @@ foreach (['woocommerce_login_redirect','woocommerce_registration_redirect'] as $
 
 // Native Woo status, fulfillment and payment are independent read models.
 add_filter('woocommerce_my_account_my_orders_columns', function ($columns) {
-    if (isset($columns['order-status'])) $columns['order-status']='Order Status (WooCommerce)';
+    if (isset($columns['order-status'])) {
+        $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+        $columns['order-status'] = $is_vi ? 'Trạng thái (WooCommerce)' : 'Order Status (WooCommerce)';
+    }
     return $columns;
 }, 1100);
 add_action('woocommerce_order_details_after_order_table', function ($order) {
@@ -88,14 +91,18 @@ add_action('woocommerce_order_details_after_order_table', function ($order) {
 add_filter('wp_nav_menu_objects', function ($items) {
     if (is_admin()) return $items;
     $items = array_filter($items, function ($item) {return strpos($item->url, 'paxig_original_category=') === false;});
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
     foreach ($items as &$item) {
         $item=clone $item;
-        if (strpos($item->url,'paxig_best_sellers=1') !== false) $item->title='Curated Picks';
-        if (strpos($item->url,'orderby=popularity') !== false && $item->title==='Trending') $item->title='Popular Products';
+        if (strpos($item->url,'paxig_best_sellers=1') !== false) $item->title = $is_vi ? 'Tuyển chọn' : 'Curated Picks';
+        if (strpos($item->url,'orderby=popularity') !== false && $item->title==='Trending') $item->title = $is_vi ? 'Phổ biến' : 'Popular Products';
     }
     return array_values($items);
 }, 1100);
 add_filter('gettext', function ($translated,$text,$domain) {
-    if (!is_admin() && $domain==='woocommerce' && $text==='Best Seller') return 'Curated Pick';
+    if (!is_admin() && $domain==='woocommerce' && $text==='Best Seller') {
+        $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+        return $is_vi ? 'Tuyển chọn' : 'Curated Pick';
+    }
     return $translated;
 }, 1100, 3);

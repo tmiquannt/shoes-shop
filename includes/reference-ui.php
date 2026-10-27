@@ -96,6 +96,15 @@ add_action('wp', function () {
 });
 add_filter('gettext', function ($translation, $text, $domain) {
     if ($domain !== 'woocommerce' || !paxig_reference_page()) return $translation;
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    if ($is_vi) {
+        $labels = [
+            'Be the first to review “%s”'              => 'Hãy là người đầu tiên đánh giá “%s”',
+            'Be the first to review &ldquo;%s&rdquo;'  => 'Hãy là người đầu tiên đánh giá “%s”',
+        ];
+        if (is_cart()) $labels['You may be interested in&hellip;'] = 'Có thể bạn sẽ thích…';
+        return $labels[$text] ?? $translation;
+    }
     $labels = ['Be the first to review “%s”'=>'Be the first to review “%s”', 'Be the first to review &ldquo;%s&rdquo;'=>'Be the first to review “%s”'];
     if (is_cart()) $labels['You may be interested in&hellip;'] = 'You May Also Like';
     return $labels[$text] ?? $translation;

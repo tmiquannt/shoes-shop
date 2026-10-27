@@ -12,8 +12,57 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function paxig_shoes_load_textdomain() {
 	load_theme_textdomain( 'paxig-shoes', get_template_directory() . '/languages' );
+	$lang = paxig_get_current_language();
+	if ( 'vi' === $lang ) {
+		load_default_textdomain( 'vi' );
+		if ( defined( 'WP_LANG_DIR' ) ) {
+			load_plugin_textdomain( 'woocommerce', false, 'plugins' );
+		}
+	}
 }
 add_action( 'after_setup_theme', 'paxig_shoes_load_textdomain' );
+
+/**
+ * Register client-side i18n locale data fallback for WooCommerce Blocks.
+ */
+function paxig_shoes_enqueue_block_i18n_fallback() {
+	$is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
+	if ( ! $is_vi ) {
+		return;
+	}
+
+	$vi_wc_strings = array(
+		''                              => array( 'domain' => 'woocommerce', 'lang' => 'vi' ),
+		'Proceed to Checkout'           => array( 'Tiến hành thanh toán' ),
+		'Order summary'                 => array( 'Tóm tắt đơn hàng' ),
+		'Subtotal'                      => array( 'Tạm tính' ),
+		'Shipping'                      => array( 'Vận chuyển' ),
+		'Total'                         => array( 'Tổng cộng' ),
+		'Taxes'                         => array( 'Thuế' ),
+		'Discount'                      => array( 'Giảm giá' ),
+		'Fee'                           => array( 'Phụ phí' ),
+		'Coupon code'                   => array( 'Mã ưu đãi' ),
+		'Apply'                         => array( 'Áp dụng' ),
+		'Remove item'                   => array( 'Xóa sản phẩm' ),
+		'Reduce quantity'               => array( 'Giảm số lượng' ),
+		'Increase quantity'             => array( 'Tăng số lượng' ),
+		'Contact information'           => array( 'Thông tin liên hệ' ),
+		'Shipping address'              => array( 'Địa chỉ nhận hàng' ),
+		'Billing address'               => array( 'Địa chỉ thanh toán' ),
+		'Shipping methods'              => array( 'Phương thức vận chuyển' ),
+		'Payment options'               => array( 'Tùy chọn thanh toán' ),
+		'Place Order'                   => array( 'Đặt hàng' ),
+		'Your cart is currently empty!' => array( 'Giỏ hàng của bạn đang trống!' ),
+		'Browse store'                  => array( 'Khám phá cửa hàng' ),
+		'Return to Cart'                => array( 'Quay lại giỏ hàng' ),
+		'Order notes'                   => array( 'Ghi chú đơn hàng' ),
+		'Add a note to your order'      => array( 'Thêm ghi chú cho đơn hàng' ),
+	);
+
+	$script = 'if ( window.wp && window.wp.i18n ) { window.wp.i18n.setLocaleData( ' . wp_json_encode( $vi_wc_strings ) . ', "woocommerce" ); }';
+	wp_add_inline_script( 'wp-i18n', $script, 'after' );
+}
+add_action( 'wp_enqueue_scripts', 'paxig_shoes_enqueue_block_i18n_fallback', 50 );
 
 /**
  * Detect current active language ('vi' or 'en').

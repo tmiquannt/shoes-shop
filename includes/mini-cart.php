@@ -189,33 +189,33 @@ function paxig_validate_and_update_cart_quantity( $cart_item_key, $raw_quantity,
 	}
 
 	if ( ! $cart ) {
-		return [ 'success' => false, 'message' => 'No active shopping bag session found.' ];
+		return [ 'success' => false, 'message' => __( 'No active shopping bag session found.', 'paxig-shoes' ) ];
 	}
 
 	// 1. Strict cart_item_key check
 	if ( ! is_string( $cart_item_key ) || '' === trim( $cart_item_key ) ) {
-		return [ 'success' => false, 'message' => 'Invalid cart item key.' ];
+		return [ 'success' => false, 'message' => __( 'Invalid cart item key.', 'paxig-shoes' ) ];
 	}
 
 	$cart_item_key = sanitize_text_field( $cart_item_key );
 	$cart_contents = $cart->get_cart();
 
 	if ( ! isset( $cart_contents[ $cart_item_key ] ) ) {
-		return [ 'success' => false, 'message' => 'The selected shoe is no longer in your bag. Please refresh.' ];
+		return [ 'success' => false, 'message' => __( 'The selected shoe is no longer in your bag. Please refresh.', 'paxig-shoes' ) ];
 	}
 
 	// 2. Strict scalar non-negative integer input validation (no absint on floats/negatives/arrays)
 	if ( ! is_scalar( $raw_quantity ) || is_bool( $raw_quantity ) ) {
-		return [ 'success' => false, 'message' => 'Quantity must be a valid integer.' ];
+		return [ 'success' => false, 'message' => __( 'Quantity must be a valid integer.', 'paxig-shoes' ) ];
 	}
 
 	$str_qty = trim( (string) $raw_quantity );
 	if ( '' === $str_qty || ! preg_match( '/^\d+$/', $str_qty ) ) {
-		return [ 'success' => false, 'message' => 'Quantity must be a valid non-negative integer.' ];
+		return [ 'success' => false, 'message' => __( 'Quantity must be a valid non-negative integer.', 'paxig-shoes' ) ];
 	}
 
 	if ( strlen( $str_qty ) > 4 ) {
-		return [ 'success' => false, 'message' => 'Requested quantity exceeds the allowable limit.' ];
+		return [ 'success' => false, 'message' => __( 'Requested quantity exceeds the allowable limit.', 'paxig-shoes' ) ];
 	}
 
 	$quantity = (int) $str_qty;
@@ -231,7 +231,7 @@ function paxig_validate_and_update_cart_quantity( $cart_item_key, $raw_quantity,
 				'count'   => $cart->get_cart_contents_count(),
 			];
 		}
-		return [ 'success' => false, 'message' => 'Could not remove shoe from bag.' ];
+		return [ 'success' => false, 'message' => __( 'Could not remove shoe from bag.', 'paxig-shoes' ) ];
 	}
 
 	// 4. Product checks (exists, purchasable)
@@ -239,11 +239,11 @@ function paxig_validate_and_update_cart_quantity( $cart_item_key, $raw_quantity,
 	$_product  = $cart_item['data'] ?? null;
 
 	if ( ! $_product || ! ( method_exists( $_product, 'exists' ) ? $_product->exists() : true ) ) {
-		return [ 'success' => false, 'message' => 'This shoe is no longer available in the catalogue.' ];
+		return [ 'success' => false, 'message' => __( 'This shoe is no longer available in the catalogue.', 'paxig-shoes' ) ];
 	}
 
 	if ( method_exists( $_product, 'is_purchasable' ) && ! $_product->is_purchasable() ) {
-		return [ 'success' => false, 'message' => 'This shoe is currently not available for purchase.' ];
+		return [ 'success' => false, 'message' => __( 'This shoe is currently not available for purchase.', 'paxig-shoes' ) ];
 	}
 
 	// 5. Sold individually check
@@ -293,14 +293,14 @@ function paxig_validate_and_update_cart_quantity( $cart_item_key, $raw_quantity,
 	if ( ! $passed_validation ) {
 		return [
 			'success' => false,
-			'message' => 'Item validation failed. Please check your bag.',
+			'message' => __( 'Item validation failed. Please check your bag.', 'paxig-shoes' ),
 		];
 	}
 
 	// 8. Mutation and totals calculation
 	$updated = $cart->set_quantity( $cart_item_key, $quantity, false );
 	if ( ! $updated ) {
-		return [ 'success' => false, 'message' => 'Could not update quantity.' ];
+		return [ 'success' => false, 'message' => __( 'Could not update quantity.', 'paxig-shoes' ) ];
 	}
 
 	$cart->calculate_totals();
@@ -320,7 +320,7 @@ function paxig_ajax_remove_cart_item() {
 	check_ajax_referer( 'paxig_cart_nonce', 'nonce' );
 
 	if ( ! isset( $_POST['cart_item_key'] ) ) {
-		wp_send_json_error( [ 'message' => 'Missing cart item key.' ] );
+		wp_send_json_error( [ 'message' => __( 'Missing cart item key.', 'paxig-shoes' ) ] );
 		return;
 	}
 
@@ -348,7 +348,7 @@ function paxig_ajax_update_cart_quantity() {
 	check_ajax_referer( 'paxig_cart_nonce', 'nonce' );
 
 	if ( ! isset( $_POST['cart_item_key'] ) || ! isset( $_POST['quantity'] ) ) {
-		wp_send_json_error( [ 'message' => 'Missing required parameters.' ] );
+		wp_send_json_error( [ 'message' => __( 'Missing required parameters.', 'paxig-shoes' ) ] );
 		return;
 	}
 
