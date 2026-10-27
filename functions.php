@@ -768,5 +768,7 @@ require_once get_template_directory().'/includes/plp-ui.php';
 require_once get_template_directory().'/includes/store-ui.php';
 
 require_once get_template_directory() . '/includes/auth-ui.php';
+require_once get_template_directory() . '/includes/email-verification.php';
+require_once get_template_directory() . '/includes/customer-account.php';
 
 require_once get_template_directory() . '/includes/checkout-alignment.php';

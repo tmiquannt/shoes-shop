@@ -21,6 +21,11 @@
 .paxig-store.paxig-auth .woocommerce-LostPassword a{display:inline-flex;align-items:center;min-height:44px;color:#111;text-underline-offset:4px}
 .paxig-store .paxig-auth-switch{border-top:1px solid #e5e5e5;margin:24px 0 0;padding-top:20px;font-size:14px;line-height:1.6;color:#757575;text-align:center}
 .paxig-store .paxig-auth-switch a{color:#111;font-weight:600;text-underline-offset:4px;display:inline-flex;align-items:center;min-height:44px}
+.paxig-store .paxig-resend-verification{border-top:1px solid #e5e5e5;margin:24px 0 0;padding:20px 0 0}
+.paxig-store .paxig-resend-verification h3{font-size:16px;margin:0 0 8px;font-weight:600}
+.paxig-store .paxig-resend-verification>p{font-size:14px;line-height:1.6;color:#757575;margin:0 0 20px}
+.paxig-store.paxig-auth .woocommerce form.paxig-resend-verification__form{border:0;padding:0;margin:0;box-shadow:none;border-radius:0}
+.paxig-store.paxig-auth .woocommerce form.paxig-resend-verification__form .form-row{margin-bottom:16px}
 .paxig-store.paxig-auth .woocommerce-privacy-policy-text{background:#f5f5f5;color:#555;padding:12px 16px;border-radius:4px;margin:0 0 24px;font-size:13px;line-height:1.6}
 .paxig-store.paxig-auth .woocommerce-privacy-policy-text p{margin:0}
 .paxig-store:is(.paxig-auth,.paxig-auth-reset) :is(.woocommerce-error,.woocommerce-message,.woocommerce-info){font-size:14px;line-height:1.6;overflow-wrap:anywhere}

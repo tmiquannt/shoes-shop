@@ -13,39 +13,42 @@ do_action('woocommerce_before_customer_login_form');
 <section class="paxig-auth-card" aria-labelledby="paxig-auth-title">
 <header class="paxig-auth-card-heading">
 <h2 id="paxig-auth-title"><?php echo $register_view ? 'Create Account' : 'Log In'; ?></h2>
-<p><?php echo $register_view ? "Create your PAXIG’S SHOES account." : 'Welcome back. Sign in to your account.'; ?></p>
+<p><?php echo $register_view ? 'Create your PAXIG’S SHOES account. We’ll email you a verification link before you can sign in.' : 'Welcome back. Sign in to your account.'; ?></p>
 </header>
 <?php if ($register_view) : ?>
 		<form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action( 'woocommerce_register_form_tag' ); ?> >
 
 			<?php do_action( 'woocommerce_register_form_start' ); ?>
 
-			<?php if ( 'no' === get_option( 'woocommerce_registration_generate_username' ) ) : ?>
+			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="reg_first_name">First name&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
+				<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="first_name" id="reg_first_name" autocomplete="given-name" value="<?php echo isset( $_POST['first_name'] ) && is_string( $_POST['first_name'] ) ? esc_attr( wp_unslash( $_POST['first_name'] ) ) : ''; ?>" required aria-required="true" />
+			</p>
 
-				<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-					<label for="reg_username"><?php esc_html_e( 'Username', 'woocommerce' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
-					<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="reg_username" autocomplete="username" value="<?php echo ( ! empty( $_POST['username'] ) ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>" required aria-required="true" /><?php // @codingStandardsIgnoreLine ?>
-				</p>
-
-			<?php endif; ?>
+			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="reg_last_name">Last name&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
+				<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="last_name" id="reg_last_name" autocomplete="family-name" value="<?php echo isset( $_POST['last_name'] ) && is_string( $_POST['last_name'] ) ? esc_attr( wp_unslash( $_POST['last_name'] ) ) : ''; ?>" required aria-required="true" />
+			</p>
 
 			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 				<label for="reg_email"><?php esc_html_e( 'Email address', 'woocommerce' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
 				<input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="reg_email" autocomplete="email" value="<?php echo ( ! empty( $_POST['email'] ) ) ? esc_attr( wp_unslash( $_POST['email'] ) ) : ''; ?>" required aria-required="true" /><?php // @codingStandardsIgnoreLine ?>
 			</p>
 
-			<?php if ( 'no' === get_option( 'woocommerce_registration_generate_password' ) ) : ?>
+			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="reg_phone">Phone&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
+				<input type="tel" class="woocommerce-Input woocommerce-Input--text input-text" name="phone" id="reg_phone" autocomplete="tel" value="<?php echo isset( $_POST['phone'] ) && is_string( $_POST['phone'] ) ? esc_attr( wp_unslash( $_POST['phone'] ) ) : ''; ?>" required aria-required="true" />
+			</p>
 
-				<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-					<label for="reg_password"><?php esc_html_e( 'Password', 'woocommerce' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
-					<input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="reg_password" autocomplete="new-password" required aria-required="true" />
-				</p>
+			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="reg_password"><?php esc_html_e( 'Password', 'woocommerce' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
+				<input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="reg_password" autocomplete="new-password" required aria-required="true" />
+			</p>
 
-			<?php else : ?>
-
-				<p><?php esc_html_e( 'A link to set a new password will be sent to your email address.', 'woocommerce' ); ?></p>
-
-			<?php endif; ?>
+			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="reg_password_confirm">Confirm password&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
+				<input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password_confirm" id="reg_password_confirm" autocomplete="new-password" required aria-required="true" />
+			</p>
 
 			<?php do_action( 'woocommerce_register_form' ); ?>
 
@@ -90,6 +93,21 @@ do_action('woocommerce_before_customer_login_form');
 		</form>
 <?php if ($registration_enabled) : ?>
 <p class="paxig-auth-switch">Don’t have an account? <a href="<?php echo esc_url(paxig_auth_switch_url(true)); ?>">Register</a></p>
+<section class="paxig-resend-verification" id="paxig-resend-verification" aria-labelledby="paxig-resend-verification-title">
+	<h3 id="paxig-resend-verification-title">Didn’t receive your verification email?</h3>
+	<p>Enter your email address and we’ll send a new link if your account is waiting for verification.</p>
+	<form class="woocommerce-form woocommerce-form-login login paxig-resend-verification__form" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+		<input type="hidden" name="action" value="paxig_resend_email_verification" />
+		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+			<label for="paxig-resend-email">Email address&nbsp;<span class="required" aria-hidden="true">*</span></label>
+			<input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="paxig-resend-email" autocomplete="email" required aria-required="true" />
+		</p>
+		<?php wp_nonce_field('paxig_resend_email_verification', 'paxig_resend_email_verification_nonce'); ?>
+		<p class="form-row">
+			<button type="submit" class="woocommerce-button button woocommerce-form-login__submit">Resend verification email</button>
+		</p>
+	</form>
+</section>
 <?php endif; ?>
 <?php endif; ?>
 </section>
