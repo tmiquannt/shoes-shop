@@ -18,22 +18,37 @@ function paxig_shipping_summary() {
     return 'Available shipping methods and charges are calculated at checkout for your address.';
 }
 
-add_filter('woocommerce_checkout_registration_required', '__return_true', 1000);
-add_filter('woocommerce_checkout_registration_enabled', '__return_false', 1000);
-add_action('woocommerce_after_checkout_validation', function ($data, $errors) {
-    if (!is_user_logged_in()) $errors->add('paxig_login_required', 'Please sign in or create an account to continue checkout.');
-}, 1000, 2);
+// Support guest purchase while retaining secure account association for logged-in customers.
 add_action('woocommerce_checkout_create_order', function ($order) {
-    if (!is_user_logged_in() || get_current_user_id() < 1) throw new Exception('Please sign in before placing an order.');
-    // Storefront orders always belong to the authenticated actor, never a submitted customer ID.
-    $order->set_customer_id(get_current_user_id());
-}, 1000);
-add_filter('rest_pre_dispatch', function ($result, $server, $request) {
-    if (!is_user_logged_in() && preg_match('#^/wc/store/v[0-9]+/checkout(?:/|$)#', $request->get_route())) {
-        return new WP_Error('paxig_login_required', 'Please sign in before checkout.', ['status'=>401]);
+    if (is_user_logged_in() && get_current_user_id() > 0) {
+        // Authenticated storefront orders belong to the authenticated actor.
+        $order->set_customer_id(get_current_user_id());
     }
-    return $result;
-}, 5, 3);
+}, 1000);
+
+// Enforce guest-capable checkout: registration is never required to place an order.
+add_filter('woocommerce_checkout_registration_required', '__return_false', 1000);
+add_filter('option_woocommerce_enable_guest_checkout', function () { return 'yes'; }, 1000);
+
+// Disable checkout-level account creation: account creation is deferred post-purchase.
+// This preserves existing sign-in and independent My Account registration.
+add_filter('woocommerce_checkout_registration_enabled', '__return_false', 1000);
+add_filter('option_woocommerce_enable_signup_and_login_from_checkout', function () { return 'no'; }, 1000);
+
+// Defense-in-depth: strip any forged createaccount or account credentials from posted checkout data.
+add_filter('woocommerce_checkout_posted_data', function ($data) {
+    if (is_array($data)) {
+        $data['createaccount'] = 0;
+        unset($data['account_password'], $data['account_username']);
+    }
+    return $data;
+}, 1000);
+
+add_action('woocommerce_before_checkout_form', function () {
+    if (!is_user_logged_in() && function_exists('wc_get_page_permalink')) {
+        echo '<div class="paxig-checkout-guest-prompt"><p>Already have an account? <a href="' . esc_url(paxig_checkout_auth_url()) . '">Sign in</a> for faster checkout and order tracking, or continue as guest below.</p></div>';
+    }
+}, 10);
 
 function paxig_checkout_return_requested() {
     $value = $_POST['redirect_to'] ?? $_GET['redirect_to'] ?? '';
@@ -57,10 +72,7 @@ foreach (['woocommerce_login_form_start','woocommerce_register_form_start'] as $
 foreach (['woocommerce_login_redirect','woocommerce_registration_redirect'] as $hook) {
     add_filter($hook, function ($url) {return paxig_checkout_return_requested() ? wc_get_checkout_url() : $url;}, 1000);
 }
-add_filter('woocommerce_locate_template', function ($template, $name) {
-    if ($name === 'checkout/form-checkout.php' && !is_user_logged_in()) return get_template_directory().'/woocommerce/checkout/login-required.php';
-    return $template;
-}, 100, 2);
+
 
 // Native Woo status, fulfillment and payment are independent read models.
 add_filter('woocommerce_my_account_my_orders_columns', function ($columns) {

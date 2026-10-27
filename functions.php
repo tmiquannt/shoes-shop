@@ -140,7 +140,7 @@ function paxig_shoes_add_size_guide_link(
 	$product
 ) {
 	if (
-		'pa_kich-thuoc' !== $name ||
+		! in_array( $name, [ 'pa_kich-thuoc', 'pa_size', 'size' ], true ) ||
 		! function_exists( 'is_product' ) ||
 		! is_product() ||
 		empty( $GLOBALS['paxig_rendering_variations'] )
@@ -171,7 +171,7 @@ function paxig_shoes_render_size_buttons( $html, $args ) {
 	if (
 		! function_exists( 'is_product' ) ||
 		! is_product() ||
-		'pa_kich-thuoc' !== $attribute ||
+		! in_array( $attribute, [ 'pa_kich-thuoc', 'pa_size', 'size' ], true ) ||
 		empty( $args['options'] )
 	) {
 		return $html;
@@ -772,3 +772,5 @@ require_once get_template_directory() . '/includes/email-verification.php';
 require_once get_template_directory() . '/includes/customer-account.php';
 
 require_once get_template_directory() . '/includes/checkout-alignment.php';
+require_once get_template_directory() . '/includes/mini-cart.php';
+require_once get_template_directory() . '/includes/wishlist.php';

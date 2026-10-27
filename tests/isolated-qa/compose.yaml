@@ -1,0 +1,60 @@
+name: paxig-isolated-qa
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: paxig_qa
+      MYSQL_USER: paxig_qa
+      MYSQL_PASSWORD: synthetic-local-only
+      MYSQL_ROOT_PASSWORD: synthetic-root-local-only
+    volumes:
+      - qa_db:/var/lib/mysql
+    networks: [isolated]
+    healthcheck:
+      test: [CMD, mysqladmin, ping, -h, localhost]
+      interval: 2s
+      timeout: 2s
+      retries: 40
+  web:
+    image: wordpress:6.8.3-php8.3-apache
+    depends_on:
+      db: {condition: service_healthy}
+    environment: &wp_environment
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: paxig_qa
+      WORDPRESS_DB_USER: paxig_qa
+      WORDPRESS_DB_PASSWORD: synthetic-local-only
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_ENVIRONMENT_TYPE', 'local');
+        define('DISABLE_WP_CRON', true);
+        define('AUTOMATIC_UPDATER_DISABLED', true);
+        define('WP_HTTP_BLOCK_EXTERNAL', true);
+        define('DISALLOW_FILE_MODS', true);
+    volumes: &wp_volumes
+      - qa_wordpress:/var/www/html
+      - ../..:/var/www/html/wp-content/themes/paxig-shoes:ro
+      - ${PAXIG_QA_PLUGIN_DIR:?Set disposable plugin source directory}:/var/www/html/wp-content/plugins/woocommerce:ro
+      - ./safety.php:/var/www/html/wp-content/mu-plugins/paxig-qa-safety.php:ro
+    networks: [isolated]
+  ingress:
+    image: nginx:1.27-alpine
+    depends_on: [web]
+    ports: ["127.0.0.1:8087:80"]
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks: [isolated, ingress]
+  cli:
+    image: wordpress:cli-2.11.0-php8.3
+    entrypoint: [wp]
+    user: "33:33"
+    environment: *wp_environment
+    volumes: *wp_volumes
+    networks: [isolated]
+    profiles: [tools]
+networks:
+  isolated:
+    internal: true
+  ingress: {}
+volumes:
+  qa_db:
+  qa_wordpress:

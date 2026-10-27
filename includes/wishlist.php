@@ -1,0 +1,239 @@
+<?php
+/**
+ * Wishlist / Favorites System for PAXIG's Shoes.
+ * Production-ready WooCommerce integration benchmarked against Nike VN Favorites UX.
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+if ( ! defined( 'PAXIG_WISHLIST_MAX_IDS' ) ) {
+	define( 'PAXIG_WISHLIST_MAX_IDS', 100 );
+}
+
+/** Validate a bounded list of positive integer product IDs without coercion. */
+function paxig_wishlist_normalize_product_ids( $value, &$valid = null ) {
+	$valid = false;
+	if ( ! is_array( $value ) || count( $value ) > PAXIG_WISHLIST_MAX_IDS ) {
+		return [];
+	}
+
+	$ids = [];
+	foreach ( $value as $candidate ) {
+		if ( is_int( $candidate ) ) {
+			$id = $candidate;
+		} elseif ( is_string( $candidate ) && 1 === preg_match( '/^[1-9][0-9]*$/D', $candidate ) ) {
+			$id = filter_var( $candidate, FILTER_VALIDATE_INT, [ 'options' => [ 'min_range' => 1 ] ] );
+			if ( false === $id ) {
+				return [];
+			}
+		} else {
+			return [];
+		}
+
+		if ( $id < 1 ) {
+			return [];
+		}
+		$ids[] = $id;
+	}
+
+	$valid = true;
+	return array_values( array_unique( $ids ) );
+}
+
+/**
+ * Render Wishlist button on loop product cards.
+ */
+function paxig_wishlist_card_button() {
+	global $product;
+	if ( ! $product instanceof WC_Product ) {
+		return;
+	}
+	$product_id = $product->get_id();
+	?>
+	<button
+		type="button"
+		class="paxig-wishlist-btn paxig-wishlist-card-btn"
+		data-product-id="<?php echo esc_attr( $product_id ); ?>"
+		aria-label="<?php echo esc_attr( sprintf( __( 'Favorite %s', 'woocommerce' ), $product->get_name() ) ); ?>"
+	>
+		<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+			<path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
+		</svg>
+	</button>
+	<?php
+}
+add_action( 'woocommerce_before_shop_loop_item_title', 'paxig_wishlist_card_button', 22 );
+
+/**
+ * Render Wishlist button on Single Product Page (beside/below Add to Cart).
+ */
+function paxig_wishlist_pdp_button() {
+	global $product;
+	if ( ! $product instanceof WC_Product ) {
+		return;
+	}
+	$product_id = $product->get_id();
+	?>
+	<button
+		type="button"
+		class="paxig-wishlist-btn paxig-wishlist-pdp-btn"
+		data-product-id="<?php echo esc_attr( $product_id ); ?>"
+		aria-label="<?php echo esc_attr( sprintf( __( 'Favorite %s', 'woocommerce' ), $product->get_name() ) ); ?>"
+	>
+		<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+			<path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
+		</svg>
+		<span class="paxig-wishlist-btn-text">Favorite</span>
+	</button>
+	<?php
+}
+add_action( 'woocommerce_after_add_to_cart_button', 'paxig_wishlist_pdp_button', 10 );
+
+/**
+ * Render the Wishlist drawer in wp_footer.
+ */
+function paxig_render_wishlist_drawer() {
+	$shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' );
+	?>
+	<dialog id="paxig-wishlist-drawer" class="paxig-drawer paxig-wishlist-drawer" aria-labelledby="paxig-wishlist-drawer-title">
+		<div class="paxig-drawer-panel">
+			<div class="paxig-drawer-header">
+				<h2 id="paxig-wishlist-drawer-title" class="paxig-drawer-title">
+					Favorites (<span class="paxig-wishlist-count">0</span>)
+				</h2>
+				<button type="button" class="paxig-drawer-close" aria-label="Close favorites">&times;</button>
+			</div>
+
+			<div class="paxig-wishlist-drawer-content">
+				<div class="paxig-drawer-empty paxig-wishlist-empty">
+					<div class="paxig-drawer-empty__icon" aria-hidden="true">
+						<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+							<path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
+						</svg>
+					</div>
+					<h3>Your Wishlist is Empty</h3>
+					<p>Explore our catalogue and tap the heart icon on any pair to save it here.</p>
+					<a class="paxig-drawer-btn paxig-drawer-btn--primary" href="<?php echo esc_url( $shop_url ); ?>">
+						Explore Shoes
+					</a>
+				</div>
+
+				<div class="paxig-wishlist-drawer-items" role="list"></div>
+			</div>
+		</div>
+	</dialog>
+	<?php
+}
+add_action( 'wp_footer', 'paxig_render_wishlist_drawer', 55 );
+
+/**
+ * AJAX endpoint to fetch product details for wishlist IDs.
+ */
+function paxig_ajax_get_wishlist_details() {
+	check_ajax_referer( 'paxig_wishlist_nonce', 'nonce' );
+
+	$submitted_ids = isset( $_POST['product_ids'] ) ? $_POST['product_ids'] : [];
+	$ids           = paxig_wishlist_normalize_product_ids( $submitted_ids, $valid );
+	if ( ! $valid ) {
+		wp_send_json_error( [ 'message' => __( 'Invalid favorites list.', 'woocommerce' ) ], 400 );
+	}
+
+	if ( empty( $ids ) ) {
+		wp_send_json_success( [ 'items' => [] ] );
+	}
+
+	$items = [];
+	foreach ( $ids as $id ) {
+		$product = wc_get_product( $id );
+		if ( ! $product || ! $product->is_visible() ) {
+			continue;
+		}
+
+		$items[] = [
+			'id'        => $product->get_id(),
+			'name'      => $product->get_name(),
+			'price'     => html_entity_decode( wp_strip_all_tags( $product->get_price_html() ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ),
+			'permalink' => $product->get_permalink(),
+			'image_url' => $product->get_image_id() ? wp_get_attachment_image_url( $product->get_image_id(), 'woocommerce_thumbnail' ) : '',
+			'in_stock'  => $product->is_in_stock(),
+		];
+	}
+
+	wp_send_json_success( [ 'items' => $items ] );
+}
+add_action( 'wp_ajax_paxig_get_wishlist_details', 'paxig_ajax_get_wishlist_details' );
+add_action( 'wp_ajax_nopriv_paxig_get_wishlist_details', 'paxig_ajax_get_wishlist_details' );
+
+/**
+ * AJAX endpoint to sync wishlist with logged-in user meta.
+ */
+function paxig_ajax_sync_user_wishlist() {
+	check_ajax_referer( 'paxig_wishlist_nonce', 'nonce' );
+
+	if ( ! is_user_logged_in() ) {
+		wp_send_json_error( [ 'message' => __( 'Sign in to sync favorites.', 'woocommerce' ) ], 401 );
+	}
+
+	$user_id       = get_current_user_id();
+	$submitted_ids = isset( $_POST['product_ids'] ) ? $_POST['product_ids'] : [];
+	$saved_ids     = paxig_wishlist_normalize_product_ids( $submitted_ids, $valid );
+	if ( ! $valid ) {
+		wp_send_json_error( [ 'message' => __( 'Invalid favorites list.', 'woocommerce' ) ], 400 );
+	}
+
+	$stored_ids = get_user_meta( $user_id, 'paxig_wishlist', true );
+	if ( ! ( is_array( $stored_ids ) && $stored_ids === $saved_ids ) ) {
+		if ( false === update_user_meta( $user_id, 'paxig_wishlist', $saved_ids ) ) {
+			wp_send_json_error( [ 'message' => __( 'Could not save favorites. Please try again.', 'woocommerce' ) ], 500 );
+		}
+	}
+
+	wp_send_json_success( [ 'saved_ids' => $saved_ids ] );
+}
+add_action( 'wp_ajax_paxig_sync_user_wishlist', 'paxig_ajax_sync_user_wishlist' );
+
+/**
+ * Enqueue wishlist scripts and styles.
+ */
+function paxig_enqueue_wishlist_assets() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$css_path = get_template_directory() . '/assets/css/wishlist.css';
+	$js_path  = get_template_directory() . '/assets/js/wishlist.js';
+
+	wp_enqueue_style(
+		'paxig-wishlist',
+		get_template_directory_uri() . '/assets/css/wishlist.css',
+		[ 'paxig-style-3' ],
+		file_exists( $css_path ) ? filemtime( $css_path ) : '1.0.0'
+	);
+
+	wp_enqueue_script(
+		'paxig-wishlist',
+		get_template_directory_uri() . '/assets/js/wishlist.js',
+		[],
+		file_exists( $js_path ) ? filemtime( $js_path ) : '1.0.0',
+		true
+	);
+
+	$initial_user_ids = [];
+	if ( is_user_logged_in() ) {
+		$stored_user_ids = get_user_meta( get_current_user_id(), 'paxig_wishlist', true );
+		$initial_user_ids = paxig_wishlist_normalize_product_ids( is_array( $stored_user_ids ) ? $stored_user_ids : [], $valid );
+		if ( ! $valid ) {
+			$initial_user_ids = [];
+		}
+	}
+
+	wp_localize_script( 'paxig-wishlist', 'paxigWishlist', [
+		'ajax_url'     => admin_url( 'admin-ajax.php' ),
+		'nonce'        => wp_create_nonce( 'paxig_wishlist_nonce' ),
+		'is_logged_in' => is_user_logged_in(),
+		'user_ids'     => array_values( array_filter( $initial_user_ids ) ),
+	] );
+}
+add_action( 'wp_enqueue_scripts', 'paxig_enqueue_wishlist_assets', 106 );

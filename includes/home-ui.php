@@ -58,7 +58,7 @@ function paxig_home_card($item) {
         <a href="<?php echo esc_url($item->get_permalink()); ?>" class="paxig-home-product-link">
             <div class="paxig-reference-image"><?php paxig_reference_badge(); echo $item->get_image('woocommerce_thumbnail', ['loading'=>'lazy']); ?></div>
             <?php paxig_reference_category(); ?>
-            <h3 class="screen-reader-text"><?php echo esc_html($item->get_name()); ?></h3>
+            <h3 class="paxig-home-product-title"><?php echo esc_html($item->get_name()); ?></h3>
             <span class="paxig-home-product-price-row"><span class="price"><?php echo wp_kses_post($item->get_price_html()); ?></span><span class="paxig-home-product-heart" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg></span></span>
         </a>
         <?php if (function_exists('paxig_store_demo_image_credit_html')) echo paxig_store_demo_image_credit_html($item->get_id()); ?>

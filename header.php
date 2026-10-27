@@ -123,10 +123,31 @@
         </svg>
     </a>
 
+    <button
+        class="paxig-header-action paxig-header-wishlist"
+        type="button"
+        aria-label="Wishlist"
+        aria-controls="paxig-wishlist-drawer"
+        aria-expanded="false"
+    >
+        <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            aria-hidden="true"
+        >
+            <path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"></path>
+        </svg>
+
+        <span class="paxig-wishlist-count">0</span>
+    </button>
+
     <a
         class="paxig-header-action paxig-header-cart"
         href="<?php echo esc_url( wc_get_cart_url() ); ?>"
         aria-label="Cart"
+        aria-controls="paxig-cart-drawer"
+        aria-expanded="false"
     >
         <svg
             viewBox="0 0 24 24"
