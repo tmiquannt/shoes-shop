@@ -110,15 +110,31 @@ add_filter('woocommerce_cart_shipping_method_full_label',fn($label)=>paxig_store
 add_filter('woocommerce_order_shipping_to_display',fn($label)=>paxig_store_frontend()?paxig_store_text($label):$label,999);
 add_filter('widget_title',fn($title)=>paxig_store_frontend()?paxig_store_text($title):$title,999);
 foreach(['woocommerce_gateway_title','woocommerce_gateway_description','woocommerce_order_get_payment_method_title'] as $filter)add_filter($filter,fn($text)=>paxig_store_frontend()?paxig_store_text($text):$text,999);
+function paxig_store_demo_image_credit_html($product_id){
+    $title=sanitize_text_field(get_post_meta($product_id,'_paxig_demo_image_title',true));
+    $author=sanitize_text_field(get_post_meta($product_id,'_paxig_demo_image_author',true));
+    $license=sanitize_text_field(get_post_meta($product_id,'_paxig_demo_image_license',true));
+    $license_url=esc_url(get_post_meta($product_id,'_paxig_demo_image_license_url',true));
+    $source_url=esc_url(get_post_meta($product_id,'_paxig_demo_image_source_url',true));
+    if(!$title||!$author||!$license||!$source_url)return '';
+    $credit='<span>Photo: <a href="'.$source_url.'" rel="noopener noreferrer" target="_blank">'.esc_html($title).'</a> by '.esc_html($author).' (resized for catalog)</span>';
+    $credit.=$license_url?' · <a href="'.$license_url.'" rel="license noopener noreferrer" target="_blank">'.esc_html($license).'</a>':' · '.esc_html($license);
+    return '<p class="paxig-demo-image-credit">'.$credit.'</p>';
+}
+add_action('woocommerce_after_shop_loop_item_title',function(){
+    if(!paxig_store_frontend())return;
+    global $product;
+    if($product instanceof WC_Product&&str_contains($product->get_sku(),'PAXIG-DEMO-'))echo paxig_store_demo_image_credit_html($product->get_id());
+},11);
 add_filter('the_content',function($content){
     if(!paxig_store_frontend())return $content;
     if(is_product()){
         global $product;if($product instanceof WC_Product&&str_contains($product->get_sku(),'PAXIG-DEMO-')){
-            return '<p>Explore '.esc_html($product->get_name()).' from the PAXIG demo collection.</p><p>Select your EU size using the size guide. Images are AI illustrations; product information and prices are demonstration data rather than verified manufacturer specifications.</p><p>Cancellation and return requests follow the current order status and account permissions.</p>';
+            return '<p>Explore '.esc_html($product->get_name()).' from the PAXIG demo collection.</p><p>Select your EU size using the size guide. This is an illustrative shoe photo; it does not confirm the exact model, specifications, or price.</p>'.paxig_store_demo_image_credit_html($product->get_id()).'<p>Cancellation and return requests follow the current order status and account permissions.</p>';
         }
     }
     if(is_page('huong-dan'))return '<h2>Find Your EU Size</h2><p>Measure your foot length and compare it with your usual EU size. Demo size values do not replace the manufacturer’s size chart.</p><h2>Shipping</h2><p>'.esc_html(paxig_shipping_summary()).'</p><h2>Cancellation &amp; Returns</h2><p>Open My Account → Orders → View Details to submit an eligible request. Our team reviews requests under the existing order policy.</p><p>This is a demonstration store. Do not make a real payment.</p>';
-    if(is_page('ve-paxig'))return '<p>PAXIG’S SHOES is a demonstration footwear store. Brand and model names describe the demo catalog and do not imply an official dealership.</p><p>Images are generated illustrations stored locally. Products, prices and orders are demonstration data. No real payments or purchases are accepted.</p>';
+    if(is_page('ve-paxig'))return '<p>PAXIG’S SHOES is a demonstration footwear store. Brand and model names describe the demo catalog and do not imply an official dealership.</p><p>Product photos are illustrative catalog images; source and license credits appear with each listing. Products, prices and orders are demonstration data. No real payments or purchases are accepted.</p>';
     return $content;
 },999);
 add_action('wp',function(){
