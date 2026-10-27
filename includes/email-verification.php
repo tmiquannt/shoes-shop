@@ -221,14 +221,14 @@ add_action('wp', function() {
     if (is_admin() || !function_exists('wc_add_notice') || !isset($_GET['paxig_email_verification']) || !is_string($_GET['paxig_email_verification'])) return;
     $status = sanitize_key(wp_unslash($_GET['paxig_email_verification']));
     $messages = [
-        'sent' => ['success', 'Account created. Check your inbox or spam folder for the verification link. It expires in 24 hours.'],
-        'delivery_failed' => ['error', 'Your account was created, but the verification email could not be sent. Check the SMTP settings and use the resend form.'],
-        'verified' => ['success', 'Your email is verified. Your account is ready.'],
-        'already_verified' => ['notice', 'This email address has already been verified.'],
-        'expired' => ['error', 'That verification link has expired. Use the resend form to get a new one.'],
-        'invalid' => ['error', 'That verification link is invalid or has already been used.'],
-        'resend_requested' => ['notice', 'If an unverified account exists for that email, a new verification link has been sent.'],
-        'smtp_unconfigured' => ['error', 'Google SMTP is not configured yet, so the verification email could not be sent.'],
+        'sent' => ['success', __( 'Account created. Check your inbox or spam folder for the verification link. It expires in 24 hours.', 'paxig-shoes' )],
+        'delivery_failed' => ['error', __( 'Your account was created, but the verification email could not be sent. Check the SMTP settings and use the resend form.', 'paxig-shoes' )],
+        'verified' => ['success', __( 'Your email is verified. Your account is ready.', 'paxig-shoes' )],
+        'already_verified' => ['notice', __( 'This email address has already been verified.', 'paxig-shoes' )],
+        'expired' => ['error', __( 'That verification link has expired. Use the resend form to get a new one.', 'paxig-shoes' )],
+        'invalid' => ['error', __( 'That verification link is invalid or has already been used.', 'paxig-shoes' )],
+        'resend_requested' => ['notice', __( 'If an unverified account exists for that email, a new verification link has been sent.', 'paxig-shoes' )],
+        'smtp_unconfigured' => ['error', __( 'Google SMTP is not configured yet, so the verification email could not be sent.', 'paxig-shoes' )],
     ];
     if (isset($messages[$status])) wc_add_notice($messages[$status][1], $messages[$status][0]);
 }, 20);

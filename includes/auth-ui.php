@@ -37,11 +37,11 @@ add_filter('woocommerce_registration_errors',function($errors,$username,$email){
     $password=isset($_POST['password']) && is_string($_POST['password']) ? wp_unslash($_POST['password']) : '';
     $password_confirm=isset($_POST['password_confirm']) && is_string($_POST['password_confirm']) ? wp_unslash($_POST['password_confirm']) : '';
 
-    if($first_name==='')$errors->add('paxig_registration_first_name','Please enter your first name.');
-    if($last_name==='')$errors->add('paxig_registration_last_name','Please enter your last name.');
-    if($phone==='')$errors->add('paxig_registration_phone','Please enter your phone number.');
-    if($password==='')$errors->add('paxig_registration_password','Please create a password.');
-    elseif($password!==$password_confirm)$errors->add('paxig_registration_password_confirm','Your passwords do not match.');
+    if($first_name==='')$errors->add('paxig_registration_first_name', __( 'Please enter your first name.', 'paxig-shoes' ));
+    if($last_name==='')$errors->add('paxig_registration_last_name', __( 'Please enter your last name.', 'paxig-shoes' ));
+    if($phone==='')$errors->add('paxig_registration_phone', __( 'Please enter your phone number.', 'paxig-shoes' ));
+    if($password==='')$errors->add('paxig_registration_password', __( 'Please create a password.', 'paxig-shoes' ));
+    elseif($password!==$password_confirm)$errors->add('paxig_registration_password_confirm', __( 'Your passwords do not match.', 'paxig-shoes' ));
 
     return $errors;
 },10,3);

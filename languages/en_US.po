@@ -25,6 +25,9 @@ msgstr "%s products"
 msgid "+ Show more"
 msgstr "+ Show more"
 
+msgid "+%d more"
+msgstr "+%d more"
+
 msgid "About"
 msgstr "About"
 
@@ -34,14 +37,29 @@ msgstr "About PAXIG"
 msgid "Accessories"
 msgstr "Accessories"
 
+msgid "Account created. Check your inbox or spam folder for the verification link. It expires in 24 hours."
+msgstr "Account created. Check your inbox or spam folder for the verification link. It expires in 24 hours."
+
 msgid "Add to Bag"
 msgstr "Add to Bag"
+
+msgid "Address book"
+msgstr "Address book"
+
+msgid "Addresses"
+msgstr "Addresses"
 
 msgid "All Shoes"
 msgstr "All Shoes"
 
+msgid "All orders"
+msgstr "All orders"
+
 msgid "All rights reserved."
 msgstr "All rights reserved."
+
+msgid "Already have an account? <a href=\"%s\">Log In</a>"
+msgstr "Already have an account? <a href=\"%s\">Log In</a>"
 
 msgid "Already have an account? <a href=\"%s\">Sign in</a> for faster checkout and order tracking, or continue as guest below."
 msgstr "Already have an account? <a href=\"%s\">Sign in</a> for faster checkout and order tracking, or continue as guest below."
@@ -52,11 +70,17 @@ msgstr "Available shipping methods and charges are calculated at checkout for yo
 msgid "Basketball"
 msgstr "Basketball"
 
+msgid "Billing address"
+msgstr "Billing address"
+
 msgid "Bring your own rhythm to the court."
 msgstr "Bring your own rhythm to the court."
 
 msgid "Browse more pairs from the live catalogue."
 msgstr "Browse more pairs from the live catalogue."
+
+msgid "CREATE ACCOUNT"
+msgstr "CREATE ACCOUNT"
 
 msgid "Cart"
 msgstr "Cart"
@@ -103,6 +127,9 @@ msgstr "Color: %s"
 msgid "Communication error. Please check your connection and try again."
 msgstr "Communication error. Please check your connection and try again."
 
+msgid "Confirm password"
+msgstr "Confirm password"
+
 msgid "Could not add item to bag."
 msgstr "Could not add item to bag."
 
@@ -127,6 +154,12 @@ msgstr "Could not update favorites. Please try again."
 msgid "Could not update quantity."
 msgstr "Could not update quantity."
 
+msgid "Create Account"
+msgstr "Create Account"
+
+msgid "Create your PAXIG’S SHOES account. We’ll email you a verification link before you can sign in."
+msgstr "Create your PAXIG’S SHOES account. We’ll email you a verification link before you can sign in."
+
 msgid "Curated Pick"
 msgstr "Curated Pick"
 
@@ -138,6 +171,24 @@ msgstr "Delivery & Returns"
 
 msgid "Description"
 msgstr "Description"
+
+msgid "Didn’t receive your verification email?"
+msgstr "Didn’t receive your verification email?"
+
+msgid "Don’t have an account? <a href=\"%s\">Register</a>"
+msgstr "Don’t have an account? <a href=\"%s\">Register</a>"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Email address"
+msgstr "Email address"
+
+msgid "Enter your email address and we’ll send a new link if your account is waiting for verification."
+msgstr "Enter your email address and we’ll send a new link if your account is waiting for verification."
 
 msgid "Everyday pairs for life in motion."
 msgstr "Everyday pairs for life in motion."
@@ -156,6 +207,12 @@ msgstr "Explore categories"
 
 msgid "Explore our catalogue and tap the heart icon on any pair to save it here."
 msgstr "Explore our catalogue and tap the heart icon on any pair to save it here."
+
+msgid "Explore our footwear collections."
+msgstr "Explore our footwear collections."
+
+msgid "Explore shoes"
+msgstr "Explore shoes"
 
 msgid "Favorite"
 msgstr "Favorite"
@@ -178,6 +235,9 @@ msgstr "Find your fit"
 msgid "Find your pace from the first step."
 msgstr "Find your pace from the first step."
 
+msgid "First name"
+msgstr "First name"
+
 msgid "Footer help navigation"
 msgstr "Footer help navigation"
 
@@ -190,14 +250,23 @@ msgstr "Fresh pairs from the current catalogue."
 msgid "From city streets to the court. Find the collection that moves with you."
 msgstr "From city streets to the court. Find the collection that moves with you."
 
+msgid "Fulfillment and payment are tracked separately below."
+msgstr "Fulfillment and payment are tracked separately below."
+
 msgid "Gender"
 msgstr "Gender"
+
+msgid "Google SMTP is not configured yet, so the verification email could not be sent."
+msgstr "Google SMTP is not configured yet, so the verification email could not be sent."
 
 msgid "Help"
 msgstr "Help"
 
 msgid "Hide Filters"
 msgstr "Hide Filters"
+
+msgid "If an unverified account exists for that email, a new verification link has been sent."
+msgstr "If an unverified account exists for that email, a new verification link has been sent."
 
 msgid "In Stock"
 msgstr "In Stock"
@@ -211,17 +280,29 @@ msgstr "Kids’ Shoes"
 msgid "Language Switcher"
 msgstr "Language Switcher"
 
+msgid "Last name"
+msgstr "Last name"
+
 msgid "Lifestyle"
 msgstr "Lifestyle"
 
 msgid "Loading saved shoes…"
 msgstr "Loading saved shoes…"
 
+msgid "Log In"
+msgstr "Log In"
+
+msgid "Log Out"
+msgstr "Log Out"
+
 msgid "Looks like you haven’t added any sneakers to your bag yet."
 msgstr "Looks like you haven’t added any sneakers to your bag yet."
 
 msgid "Main navigation"
 msgstr "Main navigation"
+
+msgid "Manage"
+msgstr "Manage"
 
 msgid "Measure both feet"
 msgstr "Measure both feet"
@@ -235,14 +316,35 @@ msgstr "Men’s Shoes"
 msgid "My Account"
 msgstr "My Account"
 
+msgid "Name"
+msgstr "Name"
+
 msgid "New"
 msgstr "New"
 
 msgid "New Arrivals"
 msgstr "New Arrivals"
 
+msgid "No shipping address saved yet."
+msgstr "No shipping address saved yet."
+
+msgid "Once you place an order, you can follow its progress and see every item here."
+msgstr "Once you place an order, you can follow its progress and see every item here."
+
 msgid "Open menu"
 msgstr "Open menu"
+
+msgid "Order #%s"
+msgstr "Order #%s"
+
+msgid "Order Status (WooCommerce)"
+msgstr "Order Status (WooCommerce)"
+
+msgid "Order items"
+msgstr "Order items"
+
+msgid "Orders"
+msgstr "Orders"
 
 msgid "Our Store"
 msgstr "Our Store"
@@ -256,8 +358,32 @@ msgstr "Out of stock"
 msgid "Outdoor"
 msgstr "Outdoor"
 
+msgid "Overview"
+msgstr "Overview"
+
+msgid "PAXIG's Shoes"
+msgstr "PAXIG's Shoes"
+
+msgid "Page Not Found"
+msgstr "Page Not Found"
+
+msgid "Phone"
+msgstr "Phone"
+
 msgid "Picked for the next move"
 msgstr "Picked for the next move"
+
+msgid "Please create a password."
+msgstr "Please create a password."
+
+msgid "Please enter your first name."
+msgstr "Please enter your first name."
+
+msgid "Please enter your last name."
+msgstr "Please enter your last name."
+
+msgid "Please enter your phone number."
+msgstr "Please enter your phone number."
 
 msgid "Price"
 msgstr "Price"
@@ -274,17 +400,26 @@ msgstr "Product Information"
 msgid "Product filters"
 msgstr "Product filters"
 
+msgid "Profile"
+msgstr "Profile"
+
 msgid "Read the shopping, cancellation and returns guide"
 msgstr "Read the shopping, cancellation and returns guide"
 
 msgid "Read the size guide"
 msgstr "Read the size guide"
 
+msgid "Recent orders"
+msgstr "Recent orders"
+
 msgid "Remove %s from bag"
 msgstr "Remove %s from bag"
 
 msgid "Remove from favorites"
 msgstr "Remove from favorites"
+
+msgid "Resend verification email"
+msgstr "Resend verification email"
 
 msgid "Returns & Refunds"
 msgstr "Returns & Refunds"
@@ -294,6 +429,12 @@ msgstr "Reviews (%d)"
 
 msgid "Running"
 msgstr "Running"
+
+msgid "SIGN IN"
+msgstr "SIGN IN"
+
+msgid "SIGN IN TO CONTINUE"
+msgstr "SIGN IN TO CONTINUE"
 
 msgid "Sale"
 msgstr "Sale"
@@ -318,6 +459,9 @@ msgstr "Select Size / View →"
 
 msgid "Shipping & Returns"
 msgstr "Shipping & Returns"
+
+msgid "Shipping address"
+msgstr "Shipping address"
 
 msgid "Shipping and taxes calculated at checkout."
 msgstr "Shipping and taxes calculated at checkout."
@@ -385,6 +529,18 @@ msgstr "Stand on a sheet of paper in your usual socks. Mark your heel and longes
 msgid "Subtotal"
 msgstr "Subtotal"
 
+msgid "That verification link has expired. Use the resend form to get a new one."
+msgstr "That verification link has expired. Use the resend form to get a new one."
+
+msgid "That verification link is invalid or has already been used."
+msgstr "That verification link is invalid or has already been used."
+
+msgid "The page you are looking for doesn't exist or has been moved."
+msgstr "The page you are looking for doesn't exist or has been moved."
+
+msgid "This email address has already been verified."
+msgstr "This email address has already been verified."
+
 msgid "Track your orders →"
 msgstr "Track your orders →"
 
@@ -396,6 +552,12 @@ msgstr "View Results"
 
 msgid "View Shopping Bag"
 msgstr "View Shopping Bag"
+
+msgid "View order"
+msgstr "View order"
+
+msgid "Welcome back. Sign in to your account."
+msgstr "Welcome back. Sign in to your account."
 
 msgid "Wishlist"
 msgstr "Wishlist"
@@ -409,11 +571,35 @@ msgstr "Women’s Shoes"
 msgid "You can save up to 100 favorites."
 msgstr "You can save up to 100 favorites."
 
+msgid "You haven’t ordered a pair yet."
+msgstr "You haven’t ordered a pair yet."
+
+msgid "You need an account to complete your order and manage order tracking, cancellation and returns."
+msgstr "You need an account to complete your order and manage order tracking, cancellation and returns."
+
 msgid "Your Shopping Bag is Empty"
 msgstr "Your Shopping Bag is Empty"
 
 msgid "Your Wishlist is Empty"
 msgstr "Your Wishlist is Empty"
+
+msgid "Your account was created, but the verification email could not be sent. Check the SMTP settings and use the resend form."
+msgstr "Your account was created, but the verification email could not be sent. Check the SMTP settings and use the resend form."
+
+msgid "Your details"
+msgstr "Your details"
+
+msgid "Your email is verified. Your account is ready."
+msgstr "Your email is verified. Your account is ready."
+
+msgid "Your latest pairs and their delivery status."
+msgstr "Your latest pairs and their delivery status."
+
+msgid "Your passwords do not match."
+msgstr "Your passwords do not match."
+
+msgid "Your shopping bag will be kept while you sign in or create an account."
+msgstr "Your shopping bag will be kept while you sign in or create an account."
 
 msgid "− Show less"
 msgstr "− Show less"

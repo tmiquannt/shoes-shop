@@ -25,6 +25,9 @@ msgstr "%s sản phẩm"
 msgid "+ Show more"
 msgstr "+ Xem thêm"
 
+msgid "+%d more"
+msgstr "+ thêm %d sản phẩm"
+
 msgid "About"
 msgstr "Về chúng tôi"
 
@@ -34,14 +37,29 @@ msgstr "Về PAXIG"
 msgid "Accessories"
 msgstr "Phụ kiện"
 
+msgid "Account created. Check your inbox or spam folder for the verification link. It expires in 24 hours."
+msgstr "Tài khoản đã được tạo. Vui lòng kiểm tra hộp thư đến hoặc thư rác để lấy liên kết xác thực. Liên kết sẽ hết hạn sau 24 giờ."
+
 msgid "Add to Bag"
 msgstr "Thêm vào giỏ hàng"
+
+msgid "Address book"
+msgstr "Sổ địa chỉ"
+
+msgid "Addresses"
+msgstr "Địa chỉ"
 
 msgid "All Shoes"
 msgstr "Tất cả giày"
 
+msgid "All orders"
+msgstr "Tất cả đơn hàng"
+
 msgid "All rights reserved."
 msgstr "Đã đăng ký bản quyền."
+
+msgid "Already have an account? <a href=\"%s\">Log In</a>"
+msgstr "Đã có tài khoản? <a href=\"%s\">Đăng nhập</a>"
 
 msgid "Already have an account? <a href=\"%s\">Sign in</a> for faster checkout and order tracking, or continue as guest below."
 msgstr "Đã có tài khoản? <a href=\"%s\">Đăng nhập</a> để thanh toán nhanh hơn và theo dõi đơn hàng, hoặc tiếp tục thanh toán với tư cách khách bên dưới."
@@ -52,11 +70,17 @@ msgstr "Phương thức và phí vận chuyển khả dụng sẽ được tính
 msgid "Basketball"
 msgstr "Bóng rổ"
 
+msgid "Billing address"
+msgstr "Địa chỉ thanh toán"
+
 msgid "Bring your own rhythm to the court."
 msgstr "Tự tin tạo nhịp điệu riêng trên sân đấu."
 
 msgid "Browse more pairs from the live catalogue."
 msgstr "Khám phá thêm các mẫu giày từ danh mục mới nhất."
+
+msgid "CREATE ACCOUNT"
+msgstr "TẠO TÀI KHOẢN"
 
 msgid "Cart"
 msgstr "Giỏ hàng"
@@ -103,6 +127,9 @@ msgstr "Màu: %s"
 msgid "Communication error. Please check your connection and try again."
 msgstr "Lỗi kết nối. Vui lòng kiểm tra mạng và thử lại."
 
+msgid "Confirm password"
+msgstr "Xác nhận mật khẩu"
+
 msgid "Could not add item to bag."
 msgstr "Không thể thêm sản phẩm vào giỏ hàng."
 
@@ -127,6 +154,12 @@ msgstr "Không thể cập nhật danh sách yêu thích. Vui lòng thử lại.
 msgid "Could not update quantity."
 msgstr "Không thể cập nhật số lượng."
 
+msgid "Create Account"
+msgstr "Tạo tài khoản"
+
+msgid "Create your PAXIG’S SHOES account. We’ll email you a verification link before you can sign in."
+msgstr "Tạo tài khoản PAXIG’S SHOES. Chúng tôi sẽ gửi email chứa liên kết xác thực trước khi bạn có thể đăng nhập."
+
 msgid "Curated Pick"
 msgstr "Gợi ý nổi bật"
 
@@ -138,6 +171,24 @@ msgstr "Giao hàng & Đổi trả"
 
 msgid "Description"
 msgstr "Mô tả"
+
+msgid "Didn’t receive your verification email?"
+msgstr "Chưa nhận được email xác thực?"
+
+msgid "Don’t have an account? <a href=\"%s\">Register</a>"
+msgstr "Chưa có tài khoản? <a href=\"%s\">Đăng ký</a>"
+
+msgid "Edit"
+msgstr "Chỉnh sửa"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Email address"
+msgstr "Địa chỉ email"
+
+msgid "Enter your email address and we’ll send a new link if your account is waiting for verification."
+msgstr "Nhập địa chỉ email và chúng tôi sẽ gửi liên kết mới nếu tài khoản của bạn đang chờ xác thực."
 
 msgid "Everyday pairs for life in motion."
 msgstr "Những đôi giày mỗi ngày cho cuộc sống năng động."
@@ -156,6 +207,12 @@ msgstr "Khám phá danh mục"
 
 msgid "Explore our catalogue and tap the heart icon on any pair to save it here."
 msgstr "Khám phá danh mục và nhấn vào biểu tượng trái tim để lưu lại đôi giày bạn yêu thích tại đây."
+
+msgid "Explore our footwear collections."
+msgstr "Khám phá các bộ sưu tập giày của chúng tôi."
+
+msgid "Explore shoes"
+msgstr "Khám phá giày"
 
 msgid "Favorite"
 msgstr "Yêu thích"
@@ -178,6 +235,9 @@ msgstr "Tìm cỡ giày phù hợp"
 msgid "Find your pace from the first step."
 msgstr "Tìm nhịp chạy ngay từ bước chân đầu tiên."
 
+msgid "First name"
+msgstr "Tên"
+
 msgid "Footer help navigation"
 msgstr "Điều hướng trợ giúp chân trang"
 
@@ -190,14 +250,23 @@ msgstr "Những mẫu giày mới nhất từ danh mục hiện tại."
 msgid "From city streets to the court. Find the collection that moves with you."
 msgstr "Từ đường phố đến sân bóng. Tìm bộ sưu tập đồng hành cùng bạn trên mọi hành trình."
 
+msgid "Fulfillment and payment are tracked separately below."
+msgstr "Quá trình giao hàng và thanh toán được theo dõi riêng biệt bên dưới."
+
 msgid "Gender"
 msgstr "Giới tính"
+
+msgid "Google SMTP is not configured yet, so the verification email could not be sent."
+msgstr "Google SMTP chưa được cấu hình nên không thể gửi email xác thực."
 
 msgid "Help"
 msgstr "Trợ giúp"
 
 msgid "Hide Filters"
 msgstr "Ẩn bộ lọc"
+
+msgid "If an unverified account exists for that email, a new verification link has been sent."
+msgstr "Nếu tồn tại tài khoản chưa xác thực với email đó, liên kết xác thực mới đã được gửi."
 
 msgid "In Stock"
 msgstr "Còn hàng"
@@ -211,17 +280,29 @@ msgstr "Giày trẻ em"
 msgid "Language Switcher"
 msgstr "Chuyển đổi ngôn ngữ"
 
+msgid "Last name"
+msgstr "Họ"
+
 msgid "Lifestyle"
 msgstr "Lifestyle"
 
 msgid "Loading saved shoes…"
 msgstr "Đang tải danh sách giày yêu thích…"
 
+msgid "Log In"
+msgstr "Đăng nhập"
+
+msgid "Log Out"
+msgstr "Đăng xuất"
+
 msgid "Looks like you haven’t added any sneakers to your bag yet."
 msgstr "Có vẻ như bạn chưa thêm đôi giày nào vào giỏ hàng."
 
 msgid "Main navigation"
 msgstr "Điều hướng chính"
+
+msgid "Manage"
+msgstr "Quản lý"
 
 msgid "Measure both feet"
 msgstr "Đo kích thước hai bàn chân"
@@ -235,14 +316,35 @@ msgstr "Giày Nam"
 msgid "My Account"
 msgstr "Tài khoản của tôi"
 
+msgid "Name"
+msgstr "Họ tên"
+
 msgid "New"
 msgstr "Mới"
 
 msgid "New Arrivals"
 msgstr "Hàng mới về"
 
+msgid "No shipping address saved yet."
+msgstr "Chưa lưu địa chỉ nhận hàng nào."
+
+msgid "Once you place an order, you can follow its progress and see every item here."
+msgstr "Khi bạn đặt hàng, bạn có thể theo dõi tiến độ và xem chi tiết sản phẩm tại đây."
+
 msgid "Open menu"
 msgstr "Mở menu"
+
+msgid "Order #%s"
+msgstr "Đơn hàng #%s"
+
+msgid "Order Status (WooCommerce)"
+msgstr "Trạng thái đơn hàng (WooCommerce)"
+
+msgid "Order items"
+msgstr "Sản phẩm đơn hàng"
+
+msgid "Orders"
+msgstr "Đơn hàng"
 
 msgid "Our Store"
 msgstr "Cửa hàng của chúng tôi"
@@ -256,8 +358,32 @@ msgstr "Hết hàng"
 msgid "Outdoor"
 msgstr "Dã ngoại & Ngoài trời"
 
+msgid "Overview"
+msgstr "Tổng quan"
+
+msgid "PAXIG's Shoes"
+msgstr "PAXIG's Shoes"
+
+msgid "Page Not Found"
+msgstr "Không tìm thấy trang"
+
+msgid "Phone"
+msgstr "Số điện thoại"
+
 msgid "Picked for the next move"
 msgstr "Tuyển chọn cho bước tiến mới"
+
+msgid "Please create a password."
+msgstr "Vui lòng tạo mật khẩu."
+
+msgid "Please enter your first name."
+msgstr "Vui lòng nhập tên của bạn."
+
+msgid "Please enter your last name."
+msgstr "Vui lòng nhập họ của bạn."
+
+msgid "Please enter your phone number."
+msgstr "Vui lòng nhập số điện thoại của bạn."
 
 msgid "Price"
 msgstr "Giá"
@@ -274,17 +400,26 @@ msgstr "Thông tin sản phẩm"
 msgid "Product filters"
 msgstr "Bộ lọc sản phẩm"
 
+msgid "Profile"
+msgstr "Hồ sơ"
+
 msgid "Read the shopping, cancellation and returns guide"
 msgstr "Đọc hướng dẫn mua sắm, hủy đơn và đổi trả hàng"
 
 msgid "Read the size guide"
 msgstr "Xem hướng dẫn chọn cỡ giày"
 
+msgid "Recent orders"
+msgstr "Đơn hàng gần đây"
+
 msgid "Remove %s from bag"
 msgstr "Xóa %s khỏi giỏ hàng"
 
 msgid "Remove from favorites"
 msgstr "Xóa khỏi danh sách yêu thích"
+
+msgid "Resend verification email"
+msgstr "Gửi lại email xác thực"
 
 msgid "Returns & Refunds"
 msgstr "Đổi trả & Hoàn tiền"
@@ -294,6 +429,12 @@ msgstr "Đánh giá (%d)"
 
 msgid "Running"
 msgstr "Chạy bộ"
+
+msgid "SIGN IN"
+msgstr "ĐĂNG NHẬP"
+
+msgid "SIGN IN TO CONTINUE"
+msgstr "ĐĂNG NHẬP ĐỂ TIẾP TỤC"
 
 msgid "Sale"
 msgstr "Giảm giá"
@@ -318,6 +459,9 @@ msgstr "Chọn kích cỡ / Xem →"
 
 msgid "Shipping & Returns"
 msgstr "Vận chuyển & Đổi trả"
+
+msgid "Shipping address"
+msgstr "Địa chỉ nhận hàng"
 
 msgid "Shipping and taxes calculated at checkout."
 msgstr "Phí vận chuyển và thuế được tính tại bước thanh toán."
@@ -385,6 +529,18 @@ msgstr "Đứng trên một tờ giấy khi đang đi tất thông thường. Đ
 msgid "Subtotal"
 msgstr "Tạm tính"
 
+msgid "That verification link has expired. Use the resend form to get a new one."
+msgstr "Liên kết xác thực đã hết hạn. Dùng biểu mẫu gửi lại để nhận liên kết mới."
+
+msgid "That verification link is invalid or has already been used."
+msgstr "Liên kết xác thực không hợp lệ hoặc đã được sử dụng."
+
+msgid "The page you are looking for doesn't exist or has been moved."
+msgstr "Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển."
+
+msgid "This email address has already been verified."
+msgstr "Địa chỉ email này đã được xác thực trước đó."
+
 msgid "Track your orders →"
 msgstr "Theo dõi đơn hàng →"
 
@@ -396,6 +552,12 @@ msgstr "Xem kết quả"
 
 msgid "View Shopping Bag"
 msgstr "Xem giỏ hàng"
+
+msgid "View order"
+msgstr "Xem đơn hàng"
+
+msgid "Welcome back. Sign in to your account."
+msgstr "Chào mừng bạn quay lại. Đăng nhập vào tài khoản của bạn."
 
 msgid "Wishlist"
 msgstr "Danh sách yêu thích"
@@ -409,11 +571,35 @@ msgstr "Giày Nữ"
 msgid "You can save up to 100 favorites."
 msgstr "Bạn có thể lưu tối đa 100 sản phẩm yêu thích."
 
+msgid "You haven’t ordered a pair yet."
+msgstr "Bạn chưa đặt mua đôi giày nào."
+
+msgid "You need an account to complete your order and manage order tracking, cancellation and returns."
+msgstr "Bạn cần có tài khoản để hoàn tất đơn hàng và theo dõi, hủy đơn hoặc đổi trả."
+
 msgid "Your Shopping Bag is Empty"
 msgstr "Giỏ hàng của bạn đang trống"
 
 msgid "Your Wishlist is Empty"
 msgstr "Danh sách yêu thích của bạn đang trống"
+
+msgid "Your account was created, but the verification email could not be sent. Check the SMTP settings and use the resend form."
+msgstr "Tài khoản đã được tạo, nhưng email xác thực chưa thể gửi. Kiểm tra cài đặt SMTP và dùng biểu mẫu gửi lại."
+
+msgid "Your details"
+msgstr "Thông tin của bạn"
+
+msgid "Your email is verified. Your account is ready."
+msgstr "Email của bạn đã được xác thực. Tài khoản đã sẵn sàng."
+
+msgid "Your latest pairs and their delivery status."
+msgstr "Các đơn hàng mới nhất và trạng thái giao hàng."
+
+msgid "Your passwords do not match."
+msgstr "Mật khẩu xác nhận không khớp."
+
+msgid "Your shopping bag will be kept while you sign in or create an account."
+msgstr "Giỏ hàng của bạn sẽ được giữ nguyên khi bạn đăng nhập hoặc tạo tài khoản."
 
 msgid "− Show less"
 msgstr "− Thu gọn"

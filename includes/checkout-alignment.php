@@ -81,7 +81,7 @@ add_filter('woocommerce_my_account_my_orders_columns', function ($columns) {
 }, 1100);
 add_action('woocommerce_order_details_after_order_table', function ($order) {
     if (!is_account_page() || !is_user_logged_in() || (int)$order->get_customer_id() !== get_current_user_id()) return;
-    echo '<section class="paxig-native-order-status"><h2>Order Status (WooCommerce)</h2><p>'.esc_html(wc_get_order_status_name($order->get_status())).'</p><p>Fulfillment and payment are tracked separately below.</p></section>';
+    echo '<section class="paxig-native-order-status"><h2>'.esc_html__( 'Order Status (WooCommerce)', 'paxig-shoes' ).'</h2><p>'.esc_html(wc_get_order_status_name($order->get_status())).'</p><p>'.esc_html__( 'Fulfillment and payment are tracked separately below.', 'paxig-shoes' ).'</p></section>';
 }, 9);
 
 // Do not advertise unsupported demo categories or sales-ranking semantics.

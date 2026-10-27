@@ -105,12 +105,18 @@ function paxig_shoes_checkout_optional_labels(
 		return $translated;
 	}
 
-	$labels = array(
-		'Postal code (optional)' =>
-			'Postcode (optional)',
-		'Phone (optional)' =>
-			'Phone (optional)',
-	);
+	$is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
+	if ( $is_vi ) {
+		$labels = array(
+			'Postal code (optional)' => 'Mã bưu điện (tùy chọn)',
+			'Phone (optional)'       => 'Số điện thoại (tùy chọn)',
+		);
+	} else {
+		$labels = array(
+			'Postal code (optional)' => 'Postcode (optional)',
+			'Phone (optional)'       => 'Phone (optional)',
+		);
+	}
 
 	return isset( $labels[ $text ] )
 		? $labels[ $text ]

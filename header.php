@@ -40,29 +40,24 @@
     class="paxig-navigation"
     aria-label="<?php echo esc_attr__( 'Main navigation', 'paxig-shoes' ); ?>"
 >
-    <?php if (is_front_page()) :
-        $shop_url = wc_get_page_permalink('shop');
-        $men_url = add_query_arg(['filter_gender'=>'men,unisex','query_type_gender'=>'or'], $shop_url);
-        $women_url = add_query_arg(['filter_gender'=>'women,unisex','query_type_gender'=>'or'], $shop_url);
-        $basketball = function_exists('paxig_home_term') ? paxig_home_term('basketball') : false;
-        $sale = function_exists('paxig_home_term') ? paxig_home_term('sale') : false;
-        $accessories = function_exists('paxig_home_term') ? paxig_home_term('accessories') : false;
-        $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
-        $home_nav = [
-            ( $is_vi ? 'NAM' : 'MEN' ) => $men_url,
-            ( $is_vi ? 'NỮ' : 'WOMEN' ) => $women_url,
-            ( $is_vi ? 'SNEAKER' : 'SNEAKERS' ) => $shop_url,
-            ( $is_vi ? 'BÓNG RỔ' : 'BASKETBALL' ) => $basketball ? $basketball['url'] : $shop_url,
-            ( $is_vi ? 'PHỤ KIỆN' : 'ACCESSORIES' ) => $accessories ? $accessories['url'] : $shop_url,
-            ( $is_vi ? 'ƯU ĐÃI' : 'SALE' ) => $sale ? $sale['url'] : add_query_arg('paxig_sale', '1', $shop_url),
-        ];
-    ?>
-        <ul class="paxig-nav paxig-nav--poster">
-            <?php foreach ($home_nav as $label => $url) : ?>
-                <li><a href="<?php echo esc_url($url); ?>"><?php echo esc_html($label); ?></a></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php else :
+    <?php
+    $shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' );
+    $men_url = add_query_arg(['filter_gender'=>'men,unisex','query_type_gender'=>'or'], $shop_url);
+    $women_url = add_query_arg(['filter_gender'=>'women,unisex','query_type_gender'=>'or'], $shop_url);
+    $basketball = function_exists('paxig_home_term') ? paxig_home_term('basketball') : false;
+    $sale = function_exists('paxig_home_term') ? paxig_home_term('sale') : false;
+    $accessories = function_exists('paxig_home_term') ? paxig_home_term('accessories') : false;
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    $home_nav = [
+        ( $is_vi ? 'NAM' : 'MEN' ) => $men_url,
+        ( $is_vi ? 'NỮ' : 'WOMEN' ) => $women_url,
+        ( $is_vi ? 'SNEAKER' : 'SNEAKERS' ) => $shop_url,
+        ( $is_vi ? 'BÓNG RỔ' : 'BASKETBALL' ) => $basketball ? $basketball['url'] : $shop_url,
+        ( $is_vi ? 'PHỤ KIỆN' : 'ACCESSORIES' ) => $accessories ? $accessories['url'] : $shop_url,
+        ( $is_vi ? 'ƯU ĐÃI' : 'SALE' ) => $sale ? $sale['url'] : add_query_arg('paxig_sale', '1', $shop_url),
+    ];
+
+    if ( has_nav_menu( 'primary' ) && ! is_front_page() ) :
         wp_nav_menu(
             array(
                 'theme_location' => 'primary',
@@ -72,7 +67,14 @@
                 'depth'          => 3,
             )
         );
-    endif; ?>
+    else :
+    ?>
+        <ul class="paxig-nav paxig-nav--poster">
+            <?php foreach ($home_nav as $label => $url) : ?>
+                <li><a href="<?php echo esc_url($url); ?>"><?php echo esc_html($label); ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
     <?php if ( function_exists( 'paxig_render_language_switcher' ) ) paxig_render_language_switcher( 'paxig-lang-switch--mobile' ); ?>
 </nav>
 <div class="paxig-header-actions">

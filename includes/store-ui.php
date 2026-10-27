@@ -95,8 +95,12 @@ add_filter('ngettext',function($translated,$single,$plural,$number,$domain){
 },999,5);
 add_filter('the_title',function($title,$id){
     if(!paxig_store_frontend()||get_post_type($id)==='product')return $title;
-    if(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi')return $title;
     $slug=get_post_field('post_name',$id);
+    $is_vi=function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi';
+    if($is_vi){
+        $vi_titles=['cart'=>'Giỏ hàng','checkout'=>'Thanh toán','my-account'=>'Tài khoản của tôi','shop'=>'Cửa hàng','huong-dan'=>'Hướng dẫn mua sắm','ve-paxig'=>"Về PAXIG'S SHOES"];
+        return $vi_titles[$slug]??$title;
+    }
     return ['cart'=>'Cart','checkout'=>'Checkout','my-account'=>'My Account','huong-dan'=>'Shopping Guide','ve-paxig'=>"About PAXIG'S SHOES"][$slug]??paxig_store_text($title);
 },999,2);
 function paxig_store_term($term){

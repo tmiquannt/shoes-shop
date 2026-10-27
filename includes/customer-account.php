@@ -7,11 +7,11 @@ add_filter('woocommerce_account_menu_items', function($items) {
     unset($items['downloads']);
 
     $labels = [
-        'dashboard' => 'Overview',
-        'orders' => 'Orders',
-        'edit-address' => 'Addresses',
-        'edit-account' => 'Profile',
-        'customer-logout' => 'Log Out',
+        'dashboard'       => __( 'Overview', 'paxig-shoes' ),
+        'orders'          => __( 'Orders', 'paxig-shoes' ),
+        'edit-address'    => __( 'Addresses', 'paxig-shoes' ),
+        'edit-account'    => __( 'Profile', 'paxig-shoes' ),
+        'customer-logout' => __( 'Log Out', 'paxig-shoes' ),
     ];
 
     foreach ($items as $key => $label) {
