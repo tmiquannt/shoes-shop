@@ -15,3 +15,12 @@ BẮT BUỘC ĐỌC VÀ TUÂN THỦ TRƯỚC KHI THỰC HIỆN BẤT KỲ TÁC V
 
 ## 3. Quy trình xác minh trực quan (Visual Verification)
 - Sau khi sửa bất kỳ mã CSS/UI nào, bắt buộc chụp ảnh màn hình bằng Google Chrome headless (`google-chrome --headless --screenshot=...`) để kiểm chứng mắt thấy trước khi báo hoàn thành cho người dùng.
+
+## 4. Quy tắc Typography Tiêu đề lớn & Giãn cách Dấu tiếng Việt (Headings & Diacritics Spacing)
+- **Tuyệt đối chống lỗi chữ/dấu đè lên nhau (Diacritics collision / overlapping text):**
+  - Font display thể thao/poster (`PAXIG Display` / `Oswald`) khi viết hoa tiếng Việt (`Ộ`, `Ậ`, `Ạ`, `Ỹ`...) có dấu nặng (dot below) hoặc dấu phụ rơi sâu xuống dưới baseline.
+  - **TUYỆT ĐỐI KHÔNG** đặt `line-height` quá thấp (`<= 1.06`) kết hợp với `margin: 0` hoặc margin-bottom quá hẹp (`< 12px`) trên các tiêu đề lớn (`.vyre-plp-title`, `.woocommerce-products-header__title`, heading hero/banner).
+  - **Quy chuẩn bắt buộc:**
+    - `line-height >= 1.15` cho các tiêu đề display để bao trọn bounding box của dấu phụ.
+    - Đảm bảo khoảng cách giữa tiêu đề và phụ đề liền kề (`.vyre-plp-subtitle`) tối thiểu `14px - 16px` (`margin-bottom: 16px;`).
+    - Kiểm soát độ ưu tiên selector (specificity), tránh để selector toàn cục hoặc modifier ghi đè `margin: 0` làm biến mất khoảng cách giữa tiêu đề và phụ đề.

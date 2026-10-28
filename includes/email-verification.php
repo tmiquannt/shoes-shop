@@ -2,11 +2,53 @@
 /** Gmail SMTP transport and storefront customer email verification. */
 defined('ABSPATH') || exit;
 
+function paxig_email_verification_env_setting($key) {
+    static $env_cache = null;
+    if (null === $env_cache) {
+        $env_cache = [];
+        $files = [];
+        if (function_exists('get_template_directory')) {
+            $files[] = get_template_directory() . '/.env';
+            if (defined('ABSPATH')) {
+                $files[] = ABSPATH . '.env';
+            }
+        }
+        foreach ($files as $file) {
+            if ($file && is_readable($file) && is_file($file)) {
+                $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+                if (false !== $lines) {
+                    foreach ($lines as $line) {
+                        $line = trim($line);
+                        if ($line === '' || strpos($line, '#') === 0) continue;
+                        if (strpos($line, '=') !== false) {
+                            list($k, $v) = explode('=', $line, 2);
+                            $k = trim($k);
+                            $v = trim($v, " \t\n\r\0\x0B\"'");
+                            if (!isset($env_cache[$k])) {
+                                $env_cache[$k] = $v;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return $env_cache[$key] ?? false;
+}
+
 function paxig_email_verification_setting($constant, $environment, $default = '') {
     if (defined($constant)) return trim((string) constant($constant));
     $value = getenv($environment);
+    if (false !== $value && '' !== trim((string) $value)) {
+        return trim((string) $value);
+    }
+    $file_value = paxig_email_verification_env_setting($environment);
+    if (false !== $file_value && '' !== trim((string) $file_value)) {
+        return trim((string) $file_value);
+    }
     return false === $value ? $default : trim((string) $value);
 }
+
 
 function paxig_email_verification_smtp_config() {
     $username = paxig_email_verification_setting('PAXIG_SMTP_USERNAME', 'PAXIG_SMTP_USERNAME');

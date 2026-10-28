@@ -118,12 +118,13 @@ function paxig_plp_toolbar() {
     $total = wc_get_loop_prop('total');
     $count_text = sprintf( _n( '%s PRODUCT', '%s PRODUCTS', $total, 'paxig-shoes' ), number_format_i18n( $total ) );
     echo '<div class="paxig-plp-toolbar vyre-plp-toolbar">';
-    echo '<p class="paxig-plp-count vyre-plp-count">' . esc_html($count_text) . '</p>';
     echo '<button type="button" class="paxig-plp-filter-toggle" aria-controls="paxig-plp-filters" aria-expanded="true"><span>' . esc_html__( 'Hide Filters', 'paxig-shoes' ) . '</span>' . paxig_icon('sliders-horizontal', 20) . '</button>';
+    echo '<div class="vyre-plp-toolbar-right">';
+    echo '<p class="paxig-plp-count vyre-plp-count">' . esc_html($count_text) . '</p>';
     echo '<div class="paxig-plp-sort vyre-plp-sort">';
     echo '<span class="vyre-sort-label">' . esc_html__( 'SORT BY', 'paxig-shoes' ) . '</span>';
     woocommerce_catalog_ordering();
-    echo '</div></div>';
+    echo '</div></div></div>';
 }
 function paxig_plp_group($id,$title,$content,$open=true) {
     if (!trim($content)) return;

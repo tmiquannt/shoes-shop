@@ -88,11 +88,12 @@ body.paxig-style-3.paxig-plp .paxig-plp-dialog .paxig-shop-sidebar{display:flex;
 @media(max-width:900px){
  .paxig-plp .paxig-shop-layout,.paxig-plp .paxig-plp-layout.is-filters-hidden{grid-template-columns:minmax(0,1fr);gap:0}
  .paxig-plp .paxig-shop-products ul.products,.paxig-plp .paxig-plp-layout.is-filters-hidden ul.products{grid-template-columns:repeat(3,minmax(0,1fr))}
- .paxig-plp-toolbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:24px 0}
- .paxig-plp-count{grid-column:1/-1}
- .paxig-plp-sort{grid-column:2;grid-row:2;min-width:0}
- .paxig-plp-filter-toggle{grid-column:1;grid-row:2;border:1px solid #e5e5e5;border-radius:0;min-height:48px;width:100%;padding:8px 12px}
- .paxig-plp .woocommerce-ordering select{width:100%;min-height:48px;height:auto;border:1px solid #e5e5e5;border-radius:4px;padding:12px 8px;font-size:var(--paxig-type-small)}
+ .paxig-plp-toolbar{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+ .vyre-plp-toolbar-right{display:contents}
+ .vyre-plp-count,.paxig-plp-count,.vyre-sort-label{display:none}
+ .paxig-plp-sort{grid-column:2;grid-row:1;min-width:0;width:100%}
+ .paxig-plp-filter-toggle{grid-column:1;grid-row:1;border:1px solid #d6d0c7;border-radius:0;min-height:46px;width:100%;padding:8px 12px}
+ .paxig-plp .woocommerce-ordering select{width:100%;min-height:46px;height:auto;border:1px solid #d6d0c7;border-radius:0;padding:8px;font-size:var(--paxig-type-small)}
  .paxig-plp .woocommerce-ordering{width:100%;margin:0}
  .paxig-plp-quick ul{gap:24px}
  .paxig-plp-quick a{font-size:var(--paxig-type-small)}
@@ -161,22 +162,64 @@ body.paxig-style-3.paxig-plp .paxig-container { max-width: 1360px; margin: 0 aut
 }
 .vyre-plp-subtitle { font-size: var(--paxig-type-card); color: #5f5d57; margin: 0; line-height: 1.5; }
 
+body.paxig-style-3.paxig-plp .vyre-plp-toolbar,
 .vyre-plp-toolbar {
+  display: flex !important; justify-content: space-between !important; align-items: center !important;
   border-bottom: 1px solid #e2ded7; padding-bottom: 16px; margin: 28px 0 36px;
 }
-.vyre-plp-count {
-  font-size: var(--paxig-type-caption); font-weight: 400; letter-spacing: .06em; text-transform: uppercase;
-  color: #76746e; margin: 0;
+@media(min-width: 901px) {
+  .vyre-plp-toolbar-right {
+    display: flex; align-items: center; gap: 24px;
+  }
 }
-.vyre-plp-sort { display: flex; align-items: center; gap: 10px; }
+body.paxig-style-3.paxig-plp .vyre-plp-toolbar .paxig-plp-filter-toggle,
+.vyre-plp-toolbar .paxig-plp-filter-toggle {
+  background: transparent !important; border: 1px solid #d6d0c7 !important; border-radius: 0 !important;
+  font-family: var(--paxig-font-display) !important; font-size: var(--paxig-type-caption) !important; font-weight: 700 !important;
+  letter-spacing: 0.06em !important; text-transform: uppercase !important; color: #151514 !important;
+  padding: 0 14px !important; height: 40px !important; min-height: 40px !important; max-height: 40px !important;
+  box-sizing: border-box !important; margin: 0 !important; cursor: pointer !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important;
+  line-height: 1 !important;
+  transition: border-color 0.15s ease, color 0.15s ease !important;
+}
+body.paxig-style-3.paxig-plp .vyre-plp-toolbar .paxig-plp-filter-toggle:hover,
+.vyre-plp-toolbar .paxig-plp-filter-toggle:hover {
+  border-color: #151514 !important; color: #151514 !important;
+}
+body.paxig-style-3.paxig-plp .vyre-plp-count,
+.vyre-plp-toolbar .vyre-plp-count,
+.vyre-plp-toolbar .paxig-plp-count {
+  font-family: var(--paxig-font-display) !important;
+  font-size: var(--paxig-type-caption) !important; font-weight: 400 !important; letter-spacing: .06em !important; text-transform: uppercase !important;
+  color: #76746e !important; margin: 0 !important; padding: 0 !important;
+  line-height: 1 !important; display: inline-flex !important; align-items: center !important;
+}
+body.paxig-style-3.paxig-plp .vyre-plp-sort,
+.vyre-plp-sort {
+  display: flex !important; align-items: center !important; gap: 10px !important; margin: 0 !important;
+}
+body.paxig-style-3.paxig-plp .vyre-sort-label,
 .vyre-sort-label {
-  font-size: var(--paxig-type-caption); font-weight: 400; letter-spacing: .06em; text-transform: uppercase;
-  color: #76746e;
+  font-family: var(--paxig-font-display) !important;
+  font-size: var(--paxig-type-caption) !important; font-weight: 400 !important; letter-spacing: .06em !important; text-transform: uppercase !important;
+  color: #76746e !important; margin: 0 !important; padding: 0 !important;
+  line-height: 1 !important; display: inline-flex !important; align-items: center !important;
 }
+body.paxig-style-3.paxig-plp .woocommerce-ordering,
+.vyre-plp-toolbar .woocommerce-ordering {
+  margin: 0 !important; padding: 0 !important; display: inline-flex !important; align-items: center !important;
+}
+body.paxig-style-3.paxig-plp .woocommerce-ordering select,
+body.paxig-style-3 .woocommerce-ordering select,
 .vyre-plp-sort select {
-  background: transparent; border: 1px solid #d6d0c7; border-radius: 0;
-  font-size: var(--paxig-type-caption); font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase;
-  color: #151514; padding: 6px 28px 6px 12px; height: 38px; cursor: pointer;
+  background: transparent !important; border: 1px solid #d6d0c7 !important; border-radius: 0 !important;
+  font-family: var(--paxig-font-display) !important; font-size: var(--paxig-type-caption) !important; font-weight: 400 !important;
+  letter-spacing: 0.06em !important; text-transform: uppercase !important;
+  color: #151514 !important; padding: 0 28px 0 12px !important;
+  height: 40px !important; min-height: 40px !important; max-height: 40px !important;
+  box-sizing: border-box !important; margin: 0 !important; cursor: pointer !important;
+  display: inline-flex !important; align-items: center !important; line-height: 1 !important;
 }
 
 .vyre-shop-layout {
@@ -278,6 +321,70 @@ body.paxig-style-3.paxig-plp .paxig-container { max-width: 1360px; margin: 0 aut
 }
 .vyre-shop-products ul.products li.product .price {
   font-size: var(--paxig-type-card) !important; font-weight: 400 !important; color: #151514 !important;
-  margin: 8px 0 0 !important; line-height: 1.2 !important;
+  margin: 0 !important; line-height: 1.2 !important;
 }
+.vyre-shop-products .vyre-card-footer,
+.vyre-card-footer {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-top: 8px !important;
+  gap: 8px !important;
+}
+.vyre-shop-products .vyre-card-footer .price,
+.vyre-shop-products .vyre-card-footer .vyre-card-price,
+.vyre-card-footer .price,
+.vyre-card-footer .vyre-card-price {
+  margin: 0 !important;
+}
+.vyre-card-add-to-cart {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  border: 1px solid var(--paxig-color-border, #d6d0c7) !important;
+  color: #151514 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+  text-decoration: none !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+}
+.vyre-card-add-to-cart:hover {
+  transform: scale(1.1) !important;
+  background: #151514 !important;
+  color: #ffffff !important;
+  border-color: #151514 !important;
+}
+.vyre-card-add-to-cart:hover svg {
+  stroke: #ffffff !important;
+}
+.vyre-card-add-to-cart:active {
+  transform: scale(0.95) !important;
+}
+.vyre-card-add-to-cart.is-loading {
+  opacity: 0.6 !important;
+  cursor: wait !important;
+  pointer-events: none !important;
+}
+.vyre-card-add-to-cart.is-added {
+  background: #151514 !important;
+  color: #ffffff !important;
+  border-color: #151514 !important;
+}
+.vyre-shop-products .paxig-wishlist-card-btn.is-favorited,
+.vyre-shop-products .vyre-card-wishlist.is-favorited {
+  background: #ffffff !important;
+  border-color: #e53935 !important;
+  color: #e53935 !important;
+}
+.vyre-shop-products .paxig-wishlist-card-btn.is-favorited svg,
+.vyre-shop-products .vyre-card-wishlist.is-favorited svg {
+  fill: #e53935 !important;
+  stroke: #e53935 !important;
+}
+
 

@@ -1314,14 +1314,14 @@ body.paxig-style-3 .woocommerce ul.products li.vyre-product-card :is(.vyre-card-
 .vyre-card-wishlist.is-favorited,
 .vyre-product-card .paxig-wishlist-card-btn.is-favorited {
     background: #ffffff !important;
-    border-color: #151514 !important;
-    color: #151514 !important;
+    border-color: #e53935 !important;
+    color: #e53935 !important;
 }
 
 .vyre-card-wishlist.is-favorited svg,
 .vyre-product-card .paxig-wishlist-card-btn.is-favorited svg {
-    fill: #151514 !important;
-    stroke: #151514 !important;
+    fill: #e53935 !important;
+    stroke: #e53935 !important;
 }
 
 .vyre-card-row {
@@ -1375,11 +1375,68 @@ body.paxig-style-3 .woocommerce ul.products li.vyre-product-card :is(.vyre-card-
     margin-bottom: 6px;
 }
 
+.vyre-card-footer {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-top: 8px !important;
+    gap: 8px !important;
+}
+
+.vyre-card-footer .vyre-card-price,
+.vyre-card-footer .price {
+    margin: 0 !important;
+}
+
 .vyre-card-price {
     font-family: var(--paxig-font-display);
     font-size: var(--paxig-type-body);
     font-weight: 700;
     color: var(--paxig-color-text);
+}
+
+.vyre-card-add-to-cart {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    border: 1px solid var(--paxig-color-border, #d6d0c7) !important;
+    color: #151514 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+    text-decoration: none !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+}
+
+.vyre-card-add-to-cart:hover {
+    transform: scale(1.1) !important;
+    background: #151514 !important;
+    color: #ffffff !important;
+    border-color: #151514 !important;
+}
+
+.vyre-card-add-to-cart:hover svg {
+    stroke: #ffffff !important;
+}
+
+.vyre-card-add-to-cart:active {
+    transform: scale(0.95) !important;
+}
+
+.vyre-card-add-to-cart.is-loading {
+    opacity: 0.6 !important;
+    cursor: wait !important;
+    pointer-events: none !important;
+}
+
+.vyre-card-add-to-cart.is-added {
+    background: #151514 !important;
+    color: #ffffff !important;
+    border-color: #151514 !important;
 }
 
 /* WHO WE ARE Section */

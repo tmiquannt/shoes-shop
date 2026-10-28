@@ -69,21 +69,21 @@
 }
 
 .paxig-wishlist-card-btn.is-favorited {
-  color: #151514;
-  border-color: #151514;
+  color: #e53935;
+  border-color: #e53935;
   background: #ffffff;
 }
 
 .paxig-wishlist-card-btn.is-favorited svg {
-  fill: #151514;
-  stroke: #151514;
+  fill: #e53935;
+  stroke: #e53935;
   animation: paxig-heart-pop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* Home Product Card Heart upgrade */
 .paxig-home-product-heart.is-favorited svg {
-  fill: #151514;
-  stroke: #151514;
+  fill: #e53935;
+  stroke: #e53935;
 }
 
 /* PDP Favorite Button */
@@ -115,14 +115,14 @@
 }
 
 .paxig-wishlist-pdp-btn.is-favorited {
-  border-color: var(--paxig-color-accent, #151514);
-  color: var(--paxig-color-accent, #151514);
-  background: var(--paxig-color-surface-raised, #e5e0d8);
+  border-color: #e53935;
+  color: #e53935;
+  background: #ffffff;
 }
 
 .paxig-wishlist-pdp-btn.is-favorited svg {
-  fill: #151514;
-  stroke: #151514;
+  fill: #e53935;
+  stroke: #e53935;
   animation: paxig-heart-pop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 

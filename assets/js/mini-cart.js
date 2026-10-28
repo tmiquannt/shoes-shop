@@ -267,6 +267,89 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Delegate card quick add-to-cart clicks
+    if (document.body && document.body.addEventListener) {
+        document.body.addEventListener('click', function (event) {
+            if (!event || !event.target || typeof event.target.closest !== 'function') return;
+            const btn = event.target.closest('.vyre-card-add-to-cart');
+            if (!btn || btn.tagName.toLowerCase() !== 'button') return;
+
+            const productId = btn.dataset.productId;
+            if (!productId || btn.classList.contains('is-loading')) return;
+
+            event.preventDefault();
+            if (typeof event.stopPropagation === 'function') {
+                event.stopPropagation();
+            }
+
+            btn.classList.add('is-loading');
+            btn.setAttribute('aria-busy', 'true');
+
+            const formData = new FormData();
+            formData.append('action', 'paxig_ajax_add_to_cart');
+            formData.append('product_id', productId);
+            formData.append('quantity', '1');
+            if (window.paxigMiniCart && window.paxigMiniCart.nonce) {
+                formData.append('nonce', window.paxigMiniCart.nonce);
+            }
+
+            const ajaxUrl = (window.paxigMiniCart && window.paxigMiniCart.ajax_url)
+                || (window.wc_add_to_cart_params && window.wc_add_to_cart_params.ajax_url)
+                || '/wp-admin/admin-ajax.php';
+
+            fetch(ajaxUrl, {
+                method: 'POST',
+                body: formData,
+                credentials: 'same-origin',
+            })
+            .then(function (res) { return res.json(); })
+            .then(function (response) {
+                if (response.success && response.data) {
+                    btn.classList.add('is-added');
+                    setTimeout(function () {
+                        btn.classList.remove('is-added');
+                    }, 1500);
+
+                    if (typeof CustomEvent === 'function') {
+                        document.body.dispatchEvent(new CustomEvent('paxig_added_to_cart', {
+                            detail: response.data
+                        }));
+                    }
+                    if (window.jQuery) {
+                        window.jQuery(document.body).trigger('added_to_cart', [response.data.fragments, response.data.cart_hash, window.jQuery(btn)]);
+                        window.jQuery(document.body).trigger('wc_fragment_refresh');
+                    }
+                } else {
+                    const msg = (response.data && response.data.message)
+                        || (window.paxigMiniCart && window.paxigMiniCart.i18n && window.paxigMiniCart.i18n.comm_error)
+                        || 'Could not add item to bag.';
+                    if (typeof CustomEvent === 'function') {
+                        document.body.dispatchEvent(new CustomEvent('paxig_add_to_cart_error', {
+                            detail: { message: msg }
+                        }));
+                    } else {
+                        alert(msg);
+                    }
+                }
+            })
+            .catch(function () {
+                const msg = (window.paxigMiniCart && window.paxigMiniCart.i18n && window.paxigMiniCart.i18n.comm_error)
+                    || 'Communication error. Please check your connection and try again.';
+                if (typeof CustomEvent === 'function') {
+                    document.body.dispatchEvent(new CustomEvent('paxig_add_to_cart_error', {
+                        detail: { message: msg }
+                    }));
+                } else {
+                    alert(msg);
+                }
+            })
+            .finally(function () {
+                btn.classList.remove('is-loading');
+                btn.removeAttribute('aria-busy');
+            });
+        });
+    }
+
     function applyFragments(fragments) {
         for (const [selector, html] of Object.entries(fragments)) {
             document.querySelectorAll(selector).forEach(el => {

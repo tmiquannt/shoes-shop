@@ -77,6 +77,28 @@ $classes = function_exists( 'wc_get_product_class' )
 		<?php if ( $subtitle ) : ?>
 			<div class="vyre-card-subtitle paxig-reference-category"><?php echo esc_html( $subtitle ); ?></div>
 		<?php endif; ?>
-		<div class="vyre-card-price price"><?php echo wp_kses_post( $price_html ); ?></div>
+		<div class="vyre-card-footer">
+			<div class="vyre-card-price price"><?php echo wp_kses_post( $price_html ); ?></div>
+			<?php if ( $product->is_type( 'variable' ) ) : ?>
+				<a
+					href="<?php echo esc_url( $permalink ); ?>"
+					class="vyre-card-add-to-cart paxig-add-to-cart-btn paxig-add-to-cart-btn--variable"
+					aria-label="<?php echo esc_attr( sprintf( __( 'Select options for %s', 'paxig-shoes' ), $name ) ); ?>"
+					title="<?php echo esc_attr( __( 'Select options', 'paxig-shoes' ) ); ?>"
+				>
+					<?php echo paxig_icon( 'shopping-bag', 18 ); ?>
+				</a>
+			<?php elseif ( $product->is_purchasable() && $product->is_in_stock() ) : ?>
+				<button
+					type="button"
+					class="vyre-card-add-to-cart paxig-add-to-cart-btn"
+					data-product-id="<?php echo esc_attr( $id ); ?>"
+					aria-label="<?php echo esc_attr( sprintf( __( 'Add %s to cart', 'paxig-shoes' ), $name ) ); ?>"
+					title="<?php echo esc_attr( __( 'Add to cart', 'paxig-shoes' ) ); ?>"
+				>
+					<?php echo paxig_icon( 'shopping-bag', 18 ); ?>
+				</button>
+			<?php endif; ?>
+		</div>
 	</div>
 </li>
