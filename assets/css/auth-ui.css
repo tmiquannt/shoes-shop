@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VYRE AUTHENTICATION — 19_Sign_In.png & 20_Create_Account.png
+   PAXG'Shop authentication — 19_Sign_In.png & 20_Create_Account.png
    Split-screen 50/50 hero visual + precision minimal auth form
    ========================================================================== */
 
@@ -14,7 +14,7 @@ body.paxig-auth .paxig-main article > h1 {
     display: none !important;
 }
 
-body.paxig-auth :is(.paxig-auth-card, .woocommerce form:is(.login, .register)) {
+body.paxig-auth :is(.paxig-auth-card, .woocommerce form:is(.login, .register, .lost_reset_password, .woocommerce-ResetPassword)) {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -88,14 +88,22 @@ body.paxig-auth .woocommerce {
 }
 
 .vyre-auth-left-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
     font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
     font-size: 26px;
     font-weight: 900;
     letter-spacing: -0.04em;
     color: #ffffff !important;
     text-decoration: none;
-    text-transform: uppercase;
+    text-transform: none;
 }
+
+.vyre-auth-left-logo .paxig-brand__mark { width: 42px; height: 40px; }
+.vyre-auth-left-logo .paxig-brand__wordmark { font-family: Arial, Helvetica, sans-serif; font-size: inherit; text-transform: none; }
+.vyre-auth-left-logo .paxig-brand__wordmark-primary { color: #ffffff; }
+.vyre-auth-left-logo .paxig-brand__wordmark-shop { color: #ff647c !important; }
 
 .vyre-auth-left-content {
     position: relative;
@@ -316,7 +324,7 @@ body.paxig-auth .woocommerce {
 }
 
 /* Solid Black Submit Buttons */
-.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit, .woocommerce-form-register__submit) {
+.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit, .woocommerce-form-register__submit, .woocommerce-form-lost-password__submit, [name="wc_reset_password"]) {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -338,12 +346,19 @@ body.paxig-auth .woocommerce {
     margin-top: 24px !important;
 }
 
-.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit, .woocommerce-form-register__submit) span {
+.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit, .woocommerce-form-register__submit, .woocommerce-form-lost-password__submit, [name="wc_reset_password"]) span {
     color: #ffffff !important;
 }
 
-.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit, .woocommerce-form-register__submit):hover {
+.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit, .woocommerce-form-register__submit, .woocommerce-form-lost-password__submit, [name="wc_reset_password"]):hover {
     background: #2e2e2d !important;
+}
+
+.vyre-auth-message {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: #76746e !important;
+    margin: 16px 0 24px !important;
 }
 
 /* Social Buttons */
