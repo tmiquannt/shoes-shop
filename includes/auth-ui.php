@@ -70,7 +70,10 @@ function paxig_render_auth_split_start() {
         <div class="vyre-auth-split-right">
             <header class="vyre-auth-right-topbar">
                 <span class="vyre-auth-path"><?php echo esc_html($path_text); ?></span>
-                <a href="<?php echo $store_url; ?>" class="vyre-auth-back-link"><?php echo $is_vi ? 'QUAY LẠI CỬA HÀNG ↗' : 'BACK TO STORE ↗'; ?></a>
+                <div class="vyre-auth-topbar-actions">
+                    <?php if ( function_exists( 'paxig_render_language_switcher' ) ) paxig_render_language_switcher( 'paxig-lang-switch--auth' ); ?>
+                    <a href="<?php echo $store_url; ?>" class="vyre-auth-back-link"><?php echo $is_vi ? 'QUAY LẠI CỬA HÀNG ↗' : 'BACK TO STORE ↗'; ?></a>
+                </div>
             </header>
             <div class="vyre-auth-form-inner">
     <?php
@@ -78,14 +81,17 @@ function paxig_render_auth_split_start() {
 
 function paxig_render_auth_split_end() {
     $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    $privacy_url = function_exists('paxig_storefront_page_url') ? paxig_storefront_page_url('privacy') : '';
+    $terms_url = function_exists('paxig_storefront_page_url') ? paxig_storefront_page_url('terms') : '';
+    $help_url = function_exists('paxig_storefront_page_url') ? paxig_storefront_page_url('guide') : '';
     ?>
             </div>
             <footer class="vyre-auth-right-footer">
                 <span>© PAXG'Shop <?php echo esc_html( wp_date('Y') ); ?></span>
                 <div class="vyre-auth-footer-links">
-                    <a href="<?php echo esc_url(home_url('/chinh-sach-bao-mat/')); ?>"><?php echo $is_vi ? 'CHÍNH SÁCH BẢO MẬT' : 'PRIVACY'; ?></a>
-                    <a href="<?php echo esc_url(home_url('/dieu-khoan/')); ?>"><?php echo $is_vi ? 'ĐIỀU KHOẢN' : 'TERMS'; ?></a>
-                    <a href="<?php echo esc_url(home_url('/huong-dan/')); ?>"><?php echo $is_vi ? 'TRỢ GIÚP' : 'HELP'; ?></a>
+                    <?php if ($privacy_url) : ?><a href="<?php echo esc_url($privacy_url); ?>"><?php echo $is_vi ? 'CHÍNH SÁCH BẢO MẬT' : 'PRIVACY'; ?></a><?php endif; ?>
+                    <?php if ($terms_url) : ?><a href="<?php echo esc_url($terms_url); ?>"><?php echo $is_vi ? 'ĐIỀU KHOẢN' : 'TERMS'; ?></a><?php endif; ?>
+                    <?php if ($help_url) : ?><a href="<?php echo esc_url($help_url); ?>"><?php echo $is_vi ? 'TRỢ GIÚP' : 'HELP'; ?></a><?php endif; ?>
                 </div>
             </footer>
         </div>
