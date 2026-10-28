@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Cart Page (VYRE UX Benchmark)
+ * Template Name: Cart Page
  * Matches 10_Shopping_Cart.png and 11_Empty_Cart.png
  */
 defined( 'ABSPATH' ) || exit;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Internationalization (i18n) & Bicultural Support (EN / VI) for PAXIG's Shoes.
+ * Internationalization (i18n) & Bicultural Support (EN / VI) for PAXG'Shop.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

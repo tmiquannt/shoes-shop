@@ -1,8 +1,8 @@
-# Copyright (C) 2026 PAXIG's Shoes
+# Copyright (C) 2026 PAXG'Shop
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: PAXIG's Shoes 1.0.0\n"
+"Project-Id-Version: PAXG'Shop 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-msgid "About PAXIG"
+msgid "About PAXG'Shop"
 msgstr ""
 
 msgid "Accessories"
@@ -158,7 +158,7 @@ msgstr ""
 msgid "Create Account"
 msgstr ""
 
-msgid "Create your PAXIG’S SHOES account. We’ll email you a verification link before you can sign in."
+msgid "Create your PAXG'Shop account. We’ll email you a verification link before you can sign in."
 msgstr ""
 
 msgid "Curated Pick"
@@ -362,7 +362,7 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-msgid "PAXIG's Shoes"
+msgid "PAXG'Shop"
 msgstr ""
 
 msgid "Page Not Found"
@@ -684,7 +684,7 @@ msgstr ""
 msgid "DRAG TO EXPLORE"
 msgstr ""
 
-msgid "VYRE / WORLDWIDE"
+msgid "PAXG'Shop / WORLDWIDE"
 msgstr ""
 
 msgid "BETTER MATERIALS. BOLDER IDEAS."
@@ -726,7 +726,7 @@ msgstr ""
 msgid "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
 msgstr ""
 
-msgid "NEW TO VYRE? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+msgid "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
 msgstr ""
 
 msgid "Email verification is temporarily unavailable. Please try again later."

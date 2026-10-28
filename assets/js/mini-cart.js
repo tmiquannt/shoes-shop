@@ -1,5 +1,5 @@
 /**
- * Mini-Cart Slide-Out Drawer Script for PAXIG's Shoes (CART-1 Safe Repair).
+ * Mini-Cart Slide-Out Drawer Script for PAXG'Shop (CART-1 Safe Repair).
  */
 document.addEventListener('DOMContentLoaded', function () {
     const drawer = document.getElementById('paxig-cart-drawer');

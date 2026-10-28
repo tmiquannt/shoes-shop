@@ -1,6 +1,6 @@
 <?php
 /**
- * Wishlist / Favorites System for PAXIG's Shoes.
+ * Wishlist / Favorites System for PAXG'Shop.
  * Production-ready WooCommerce integration benchmarked against Nike VN Favorites UX.
  */
 

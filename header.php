@@ -11,8 +11,9 @@
 
 <header class="paxig-header">
 	<div class="paxig-container">
-		<a class="paxig-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<span>VYRE<small class="vyre-tm">™</small></span>
+		<a class="paxig-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr__( "PAXG'Shop", 'paxig-shoes' ); ?>">
+			<img class="paxig-brand__mark" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/paxg-shop-symbol-header.png' ); ?>" width="176" height="166" alt="" aria-hidden="true">
+			<span class="paxig-brand__wordmark"><span class="paxig-brand__wordmark-primary">PAXG</span><span class="paxig-brand__wordmark-shop">'Shop</span></span>
 		</a>
 
 <button
@@ -157,9 +158,9 @@
             <div class="vyre-search-col">
                 <h4><?php echo esc_html__( 'RECOMMENDED FOR YOU', 'paxig-shoes' ); ?></h4>
                 <div class="vyre-search-recs">
-                    <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-rec-card"><div class="vyre-rec-img"></div><span>VYRE 001</span></a>
-                    <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-rec-card"><div class="vyre-rec-img"></div><span>VYRE 002</span></a>
-                    <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-rec-card"><div class="vyre-rec-img"></div><span>VYRE 003</span></a>
+                    <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-rec-card"><div class="vyre-rec-img"></div><span>PAXG 001</span></a>
+                    <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-rec-card"><div class="vyre-rec-img"></div><span>PAXG 002</span></a>
+                    <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-rec-card"><div class="vyre-rec-img"></div><span>PAXG 003</span></a>
                 </div>
                 <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-search-explore"><?php echo esc_html__( 'Shop the latest · Discover more ↗', 'paxig-shoes' ); ?></a>
             </div>

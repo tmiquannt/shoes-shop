@@ -1,5 +1,5 @@
 /*
- * PAXIG's Shoes - single product base layout
+ * PAXG'Shop - single product base layout
  */
 
 .single-product .paxig-main {
@@ -642,7 +642,7 @@
     }
 }
 
-/* VYRE PDP DESIGN (07_Product_Details.png & 08_Size_Guide_Modal.png) */
+/* PAXG'Shop product page design (07_Product_Details.png & 08_Size_Guide_Modal.png) */
 body.paxig-style-3.single-product {
     background: #faf8f5 !important;
     color: #151514 !important;

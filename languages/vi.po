@@ -1,8 +1,8 @@
-# Translation of PAXIG's Shoes in Vietnamese
-# Copyright (C) 2026 PAXIG's Shoes
+# Translation of PAXG'Shop in Vietnamese
+# Copyright (C) 2026 PAXG'Shop
 msgid ""
 msgstr ""
-"Project-Id-Version: PAXIG's Shoes 1.0.0\n"
+"Project-Id-Version: PAXG'Shop 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
@@ -31,8 +31,8 @@ msgstr "+ thêm %d sản phẩm"
 msgid "About"
 msgstr "Về chúng tôi"
 
-msgid "About PAXIG"
-msgstr "Về PAXIG"
+msgid "About PAXG'Shop"
+msgstr "Về PAXG'Shop"
 
 msgid "Accessories"
 msgstr "Phụ kiện"
@@ -157,8 +157,8 @@ msgstr "Không thể cập nhật số lượng."
 msgid "Create Account"
 msgstr "Tạo tài khoản"
 
-msgid "Create your PAXIG’S SHOES account. We’ll email you a verification link before you can sign in."
-msgstr "Tạo tài khoản PAXIG’S SHOES. Chúng tôi sẽ gửi email chứa liên kết xác thực trước khi bạn có thể đăng nhập."
+msgid "Create your PAXG'Shop account. We’ll email you a verification link before you can sign in."
+msgstr "Tạo tài khoản PAXG'Shop. Chúng tôi sẽ gửi email chứa liên kết xác thực trước khi bạn có thể đăng nhập."
 
 msgid "Curated Pick"
 msgstr "Gợi ý nổi bật"
@@ -361,8 +361,8 @@ msgstr "Dã ngoại & Ngoài trời"
 msgid "Overview"
 msgstr "Tổng quan"
 
-msgid "PAXIG's Shoes"
-msgstr "PAXIG's Shoes"
+msgid "PAXG'Shop"
+msgstr "PAXG'Shop"
 
 msgid "Page Not Found"
 msgstr "Không tìm thấy trang"
@@ -683,8 +683,8 @@ msgstr "GIỎ HÀNG CỦA BẠN."
 msgid "DRAG TO EXPLORE"
 msgstr "KÉO ĐỂ KHÁM PHÁ"
 
-msgid "VYRE / WORLDWIDE"
-msgstr "VYRE / TOÀN CẦU"
+msgid "PAXG'Shop / WORLDWIDE"
+msgstr "PAXG'Shop / TOÀN CẦU"
 
 msgid "BETTER MATERIALS. BOLDER IDEAS."
 msgstr "CHẤT LIỆU CAO CẤP HƠN. Ý TƯỞNG TÁO BẠO HƠN."
@@ -725,7 +725,7 @@ msgstr "CÓ THỂ BẠN CŨNG THÍCH."
 msgid "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
 msgstr "ĐÃ CÓ TÀI KHOẢN? <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
 
-msgid "NEW TO VYRE? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+msgid "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
 msgstr "CHƯA CÓ TÀI KHOẢN? <a href=\"%s\">TẠO TÀI KHOẢN ↗</a>"
 
 msgid "Email verification is temporarily unavailable. Please try again later."

@@ -1,8 +1,8 @@
 /*
-Theme Name: PAXIG's Shoes
+Theme Name: PAXG'Shop
 Theme URI: http://localhost:8888/paxig-shoes/
-Author: PAXIG's Shoes Team
-Description: Theme giao diện riêng cho website bán giày PAXIG's Shoes.
+Author: PAXG'Shop
+Description: Theme giao diện riêng cho website bán giày PAXG'Shop.
 Version: 1.1.7
 Text Domain: paxig-shoes
 */
@@ -57,11 +57,39 @@ body {
 }
 
 .paxig-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     color: var(--paxig-light);
     font-size: 24px;
     font-weight: 700;
     text-decoration: none;
 }
+
+.paxig-brand__mark {
+    display: block;
+    flex: 0 0 auto;
+    width: 44px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.paxig-brand__wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    color: inherit;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: inherit;
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+.paxig-brand__wordmark-primary { color: currentColor; }
+.paxig-brand__wordmark-shop { color: #ff647c; font-weight: 600; }
 
 .paxig-nav {
     display: flex;

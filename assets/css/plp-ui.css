@@ -130,7 +130,7 @@ body.paxig-plp-drawer-open{overflow:hidden}
 .paxig-plp ul.products li.product .price:has(ins){gap:5px}
 .paxig-plp-dialog .paxig-plp-group>summary{min-height:56px}
 @media(max-width:1200px){.paxig-plp .paxig-shop-products ul.products{column-gap:24px}}
-/* VYRE ARCHIVE DESIGN (03_All_Sneakers_Collection.png) */
+/* PAXG'Shop archive design (03_All_Sneakers_Collection.png) */
 body.paxig-style-3.paxig-plp { background: #faf8f5 !important; color: #151514; }
 body.paxig-style-3.paxig-plp .paxig-main,
 body.paxig-style-3.paxig-plp .site-main { padding-top: 32px; padding-bottom: 80px; }
@@ -198,7 +198,7 @@ body.paxig-style-3.paxig-plp .paxig-container { max-width: 1360px; margin: 0 aut
 .vyre-shop-sidebar details[open] summary::after { content: '∧'; }
 .vyre-shop-sidebar .paxig-plp-group-body { padding: 14px 0 18px; }
 
-/* 3-Column VYRE Grid */
+/* 3-Column PAXG'Shop Grid */
 .vyre-shop-products ul.products {
   display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 36px 24px !important; list-style: none !important; padding: 0 !important; margin: 0 !important;

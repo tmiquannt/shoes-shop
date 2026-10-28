@@ -1,8 +1,8 @@
-# Translation of PAXIG's Shoes in English (US)
-# Copyright (C) 2026 PAXIG's Shoes
+# Translation of PAXG'Shop in English (US)
+# Copyright (C) 2026 PAXG'Shop
 msgid ""
 msgstr ""
-"Project-Id-Version: PAXIG's Shoes 1.0.0\n"
+"Project-Id-Version: PAXG'Shop 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: English (US)\n"
@@ -31,8 +31,8 @@ msgstr "+%d more"
 msgid "About"
 msgstr "About"
 
-msgid "About PAXIG"
-msgstr "About PAXIG"
+msgid "About PAXG'Shop"
+msgstr "About PAXG'Shop"
 
 msgid "Accessories"
 msgstr "Accessories"
@@ -157,8 +157,8 @@ msgstr "Could not update quantity."
 msgid "Create Account"
 msgstr "Create Account"
 
-msgid "Create your PAXIG’S SHOES account. We’ll email you a verification link before you can sign in."
-msgstr "Create your PAXIG’S SHOES account. We’ll email you a verification link before you can sign in."
+msgid "Create your PAXG'Shop account. We’ll email you a verification link before you can sign in."
+msgstr "Create your PAXG'Shop account. We’ll email you a verification link before you can sign in."
 
 msgid "Curated Pick"
 msgstr "Curated Pick"
@@ -361,8 +361,8 @@ msgstr "Outdoor"
 msgid "Overview"
 msgstr "Overview"
 
-msgid "PAXIG's Shoes"
-msgstr "PAXIG's Shoes"
+msgid "PAXG'Shop"
+msgstr "PAXG'Shop"
 
 msgid "Page Not Found"
 msgstr "Page Not Found"
@@ -683,8 +683,8 @@ msgstr "YOUR BAG."
 msgid "DRAG TO EXPLORE"
 msgstr "DRAG TO EXPLORE"
 
-msgid "VYRE / WORLDWIDE"
-msgstr "VYRE / WORLDWIDE"
+msgid "PAXG'Shop / WORLDWIDE"
+msgstr "PAXG'Shop / WORLDWIDE"
 
 msgid "BETTER MATERIALS. BOLDER IDEAS."
 msgstr "BETTER MATERIALS. BOLDER IDEAS."
@@ -725,8 +725,8 @@ msgstr "YOU MIGHT ALSO LIKE."
 msgid "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
 msgstr "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
 
-msgid "NEW TO VYRE? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
-msgstr "NEW TO VYRE? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+msgid "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+msgstr "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
 
 msgid "Email verification is temporarily unavailable. Please try again later."
 msgstr "Email verification is temporarily unavailable. Please try again later."

@@ -1,5 +1,5 @@
 /**
- * Wishlist / Favorites System Script for PAXIG's Shoes.
+ * Wishlist / Favorites System Script for PAXG'Shop.
  */
 document.addEventListener('DOMContentLoaded', function () {
     const STORAGE_KEY = 'paxig_wishlist';

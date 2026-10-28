@@ -1,6 +1,6 @@
 <?php
 /**
- * Mini-Cart Slide-Out Drawer for PAXIG's Shoes.
+ * Mini-Cart Slide-Out Drawer for PAXG'Shop.
  * Production-ready WooCommerce integration benchmarked against Nike VN UX.
  */
 

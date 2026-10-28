@@ -12,7 +12,7 @@ do_action('woocommerce_before_customer_login_form');
 ?>
 <section class="paxig-auth-card vyre-auth-card" aria-labelledby="paxig-auth-title">
 <header class="paxig-auth-card-heading vyre-auth-card-heading">
-	<span class="vyre-auth-eyebrow"><?php echo esc_html__( 'ENTER THE WORLD OF VYRE', 'paxig-shoes' ); ?></span>
+	<span class="vyre-auth-eyebrow"><?php echo esc_html__( "ENTER THE WORLD OF PAXG'Shop", 'paxig-shoes' ); ?></span>
 	<h2 id="paxig-auth-title" class="vyre-auth-title"><?php echo $register_view ? esc_html__( 'JOIN THE MOVEMENT.', 'paxig-shoes' ) : esc_html__( 'WELCOME BACK.', 'paxig-shoes' ); ?></h2>
 	<p class="vyre-auth-subtitle"><?php echo $register_view ? esc_html__( 'Create an account for faster checkout, saved styles and exclusive releases.', 'paxig-shoes' ) : esc_html__( 'Sign in to your account. Your favorites, orders and next moves are waiting.', 'paxig-shoes' ); ?></p>
 </header>
@@ -101,7 +101,7 @@ do_action('woocommerce_before_customer_login_form');
 
 		</form>
 <?php if ($registration_enabled) : ?>
-<p class="paxig-auth-switch vyre-auth-switch"><?php printf( __( 'NEW TO VYRE? <a href="%s">CREATE AN ACCOUNT ↗</a>', 'paxig-shoes' ), esc_url(paxig_auth_switch_url(true)) ); ?></p>
+<p class="paxig-auth-switch vyre-auth-switch"><?php printf( __( "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>", 'paxig-shoes' ), esc_url(paxig_auth_switch_url(true)) ); ?></p>
 <?php endif; ?>
 <?php endif; ?>
 </section>

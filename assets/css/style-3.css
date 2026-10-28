@@ -739,9 +739,8 @@ body.paxig-style-3.paxig-home .paxig-brand {
   justify-self: start;
   width: max-content;
   margin-left: 6px;
-  font-size: 34px;
-  transform: scaleX(1.32);
-  transform-origin: left center;
+  font-size: 26px;
+  transform: none;
 }
 body.paxig-style-3.paxig-home .paxig-navigation { justify-self: center; }
 body.paxig-style-3.paxig-home .paxig-nav--poster { display: flex; align-items: center; justify-content: center; gap: clamp(20px,2.8vw,44px); }
@@ -851,7 +850,7 @@ body.paxig-style-3.paxig-home #home-new .paxig-home-product-heart { display: inl
 }
 
 /* ==========================================================================
-   VYRE Art Direction matching FULL_UI_PAXG (Warm Minimalist Luxe)
+   PAXG'Shop art direction matching FULL_UI_PAXG (Warm Minimalist Luxe)
    ========================================================================== */
 
 /* Brand & Header */
@@ -867,11 +866,17 @@ body.paxig-style-3 .paxig-brand {
     font-size: 26px;
     font-weight: 900;
     letter-spacing: -0.05em;
-    text-transform: uppercase;
+    text-transform: none;
     text-decoration: none;
     display: inline-flex;
+    gap: 8px;
     align-items: center;
 }
+
+body.paxig-style-3 .paxig-brand__mark { width: 42px; height: 40px; }
+body.paxig-style-3 .paxig-brand__wordmark { font-family: Arial, Helvetica, sans-serif; font-size: inherit; text-transform: none; }
+body.paxig-style-3 .paxig-brand__wordmark-primary { color: #151514; }
+body.paxig-style-3 .paxig-brand__wordmark-shop { color: #df1739; }
 
 body.paxig-style-3.paxig-home .paxig-header {
     background: #151515;
@@ -883,6 +888,9 @@ body.paxig-style-3.paxig-home .paxig-nav > li > a,
 body.paxig-style-3.paxig-home .paxig-header-action {
     color: #ffffff;
 }
+
+body.paxig-style-3.paxig-home .paxig-brand__wordmark-primary { color: #ffffff; }
+body.paxig-style-3.paxig-home .paxig-brand__wordmark-shop { color: #ff647c; }
 
 body.paxig-style-3.paxig-home .paxig-cart-count {
     background: #ffffff;
@@ -1367,7 +1375,7 @@ body.paxig-style-3.paxig-home .paxig-cart-count {
     color: #ffffff !important;
 }
 
-/* VYRE Minimalist Black Footer */
+/* PAXG'Shop minimalist black footer */
 .vyre-footer {
     background: #151515;
     color: #ffffff;
@@ -1391,6 +1399,12 @@ body.paxig-style-3.paxig-home .paxig-cart-count {
     text-decoration: none;
     text-transform: uppercase;
 }
+
+.vyre-footer-brand .paxig-brand { gap: 8px; text-transform: none; }
+.vyre-footer-brand .paxig-brand__mark { width: 42px; height: 40px; }
+.vyre-footer-brand .paxig-brand__wordmark { text-transform: none; }
+body.paxig-style-3 .vyre-footer-brand .paxig-brand__wordmark-primary { color: #ffffff; }
+body.paxig-style-3 .vyre-footer-brand .paxig-brand__wordmark-shop { color: #ff647c; }
 
 .vyre-footer-tagline {
     text-align: center;
@@ -1519,7 +1533,7 @@ body.paxig-style-3.paxig-home .paxig-cart-count {
     }
 }
 
-/* VYRE Search Modal Overlay (06_Search_Overlay.png) */
+/* PAXG'Shop search modal overlay (06_Search_Overlay.png) */
 .vyre-search-modal {
   display: none;
   position: fixed;
@@ -1661,5 +1675,12 @@ body.paxig-style-3.paxig-home .paxig-cart-count {
 }
 .vyre-search-explore:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 380px) {
+  body.paxig-style-3 .paxig-brand { gap: 5px; }
+  body.paxig-style-3 .paxig-brand__mark { width: 32px; height: 30px; }
+  body.paxig-style-3 .paxig-brand__wordmark { font-size: 18px; }
+  body.paxig-style-3.paxig-home .paxig-brand__wordmark { font-size: 18px; }
 }
 

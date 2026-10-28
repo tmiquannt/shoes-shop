@@ -26,7 +26,7 @@ function paxig_store_labels(){
       'Chuyển khoản ngân hàng (BACS)'=>'Bank Transfer (BACS)','Thanh toán khi nhận hàng (COD)'=>'Cash on Delivery (COD)','Chờ xác minh'=>'Awaiting Verification','Đã yêu cầu hoàn tiền'=>'Refund Requested','Hư hỏng / không nhập kho'=>'Damaged / Not Restockable',
       'Liên kết in không hợp lệ hoặc đã hết hạn.'=>'The print link is invalid or has expired.','Không thể đọc chứng từ.'=>'We cannot load this document.','Không tìm thấy chứng từ.'=>'Document not found.',
       'Chi tiết đơn đã thay đổi; tải lại trước khi gửi.'=>'Order details have changed. Reload before submitting.','Kho dữ liệu chưa hỗ trợ giao dịch an toàn.'=>'The data store is not ready for this transaction.','Dữ liệu đang được xử lý; hãy tải lại.'=>'This data is being processed. Please reload.','Không thể lưu. Hãy tải lại dữ liệu để kiểm tra trước khi thử lại.'=>'We could not save your request. Reload to check the current data before trying again.',
-      'Yêu cầu hủy đơn'=>'Request Cancellation','Yêu cầu trả hàng'=>'Request Return','Trạng thái đơn hàng'=>'PAXIG Fulfillment & Payment',
+      'Yêu cầu hủy đơn'=>'Request Cancellation','Yêu cầu trả hàng'=>'Request Return','Trạng thái đơn hàng'=>'Order Fulfillment & Payment',
       'Chờ xác minh thanh toán'=>'Awaiting Payment Verification','Chờ xử lý'=>'Pending','Đã xác nhận'=>'Confirmed','Đang chuẩn bị hàng'=>'Preparing','Đang giao hàng'=>'Shipped','Đã giao hàng'=>'Delivered','Đã hủy'=>'Cancelled',
       'Chưa thanh toán'=>'Unpaid','Đã thanh toán'=>'Paid','Đã đối soát'=>'Reconciled','Đã hoàn tiền'=>'Refunded','Đang yêu cầu hoàn tiền'=>'Refund Requested',
       'Đã yêu cầu trả hàng'=>'Return Requested','Đã chấp nhận trả hàng'=>'Return Approved','Đã nhận hàng trả'=>'Return Received','Từ chối trả hàng'=>'Return Rejected','Hoàn tiền đã xử lý'=>'Refund Processed','Hoàn tiền một phần'=>'Partially Refunded','Hoàn tiền đã ghi nhận'=>'Refund Recorded',
@@ -45,7 +45,7 @@ function paxig_store_labels(){
       'Kích cỡ'=>'Size','Màu sắc'=>'Color','Giới tính'=>'Gender','Môn thể thao'=>'Sport','Nam'=>'Men','Nữ'=>'Women','Trẻ em'=>'Kids',
       'Đỏ / đen'=>'Red / Black','Trắng / xám'=>'White / Grey','Xanh / đen'=>'Lime / Black','Running — Chạy bộ'=>'Running','Basketball — Bóng rổ'=>'Basketball','Football — Bóng đá'=>'Football','Training — Tập luyện'=>'Training',
       'Mới lên kệ'=>'New Arrivals','Đang nổi bật'=>'Trending','Tuyển chọn được yêu thích'=>'Best Sellers','Ưu đãi'=>'Sale',
-      'Cửa hàng'=>'All Shoes','Sản phẩm vừa xem'=>'Recently Viewed','Giỏ hàng'=>'Cart','Thanh toán'=>'Payment','Tài khoản'=>'My Account','Hướng dẫn mua sắm'=>'Shopping Guide','Về PAXIG\'s Shoes'=>'About PAXIG\'S SHOES',
+      'Cửa hàng'=>'All Shoes','Sản phẩm vừa xem'=>'Recently Viewed','Giỏ hàng'=>'Cart','Thanh toán'=>'Payment','Tài khoản'=>'My Account','Hướng dẫn mua sắm'=>'Shopping Guide',"Về PAXG'Shop"=>"About PAXG'Shop",
       'In / Lưu PDF'=>'Print / Save PDF','Chứng từ khách hàng'=>'Customer Document','Số:'=>'Number:','Ngày lập:'=>'Created:','Đơn hàng'=>'Order','Mã đơn:'=>'Order:','Phương thức thanh toán gốc:'=>'Original Payment Method:','Phương thức:'=>'Method:','Khách hàng'=>'Customer','Họ tên:'=>'Name:','Điện thoại:'=>'Phone:','Địa chỉ:'=>'Address:',
       'Sản phẩm / biến thể'=>'Product / Variation','Sản phẩm hoàn'=>'Refunded Item','Số lượng'=>'Quantity','Đơn giá'=>'Unit Price','Thành tiền'=>'Line Total','Tạm tính'=>'Subtotal','Giảm giá'=>'Discount','Điều chỉnh / vận chuyển'=>'Adjustment / Shipping','Tổng cộng'=>'Total','Số tiền'=>'Amount',
       'Tiền hàng (chưa thuế)'=>'Items (Excluding Tax)','Giảm giá (chưa thuế)'=>'Discount (Excluding Tax)','Phí vận chuyển (chưa thuế)'=>'Shipping (Excluding Tax)','Phụ phí (chưa thuế)'=>'Fees (Excluding Tax)','Thuế (hàng, vận chuyển và phụ phí)'=>'Tax (Items, Shipping and Fees)','Điều chỉnh khác'=>'Other Adjustment','Phương thức vận chuyển'=>'Shipping Method','Tổng thanh toán'=>'Total Payment','Miễn phí'=>'Free',
@@ -98,10 +98,10 @@ add_filter('the_title',function($title,$id){
     $slug=get_post_field('post_name',$id);
     $is_vi=function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi';
     if($is_vi){
-        $vi_titles=['cart'=>'Giỏ hàng','checkout'=>'Thanh toán','my-account'=>'Tài khoản của tôi','shop'=>'Cửa hàng','huong-dan'=>'Hướng dẫn mua sắm','ve-paxig'=>"Về PAXIG'S SHOES"];
+        $vi_titles=['cart'=>'Giỏ hàng','checkout'=>'Thanh toán','my-account'=>'Tài khoản của tôi','shop'=>'Cửa hàng','huong-dan'=>'Hướng dẫn mua sắm','ve-paxig'=>"Về PAXG'Shop"];
         return $vi_titles[$slug]??$title;
     }
-    return ['cart'=>'Cart','checkout'=>'Checkout','my-account'=>'My Account','huong-dan'=>'Shopping Guide','ve-paxig'=>"About PAXIG'S SHOES"][$slug]??paxig_store_text($title);
+    return ['cart'=>'Cart','checkout'=>'Checkout','my-account'=>'My Account','huong-dan'=>'Shopping Guide','ve-paxig'=>"About PAXG'Shop"][$slug]??paxig_store_text($title);
 },999,2);
 function paxig_store_term($term){
     if(!paxig_store_frontend()||!$term instanceof WP_Term||!in_array($term->taxonomy,['product_cat','pa_gender','pa_sport','pa_color','pa_kich-thuoc'],true))return $term;
@@ -178,9 +178,9 @@ add_filter('the_content',function($content){
     if(is_product()){
         global $product;if($product instanceof WC_Product&&str_contains($product->get_sku(),'PAXIG-DEMO-')){
             if ($is_vi) {
-                return '<p>Khám phá '.esc_html($product->get_name()).' từ bộ sưu tập PAXIG demo.</p><p>Chọn kích cỡ EU của bạn bằng cách tham khảo bảng kích thước. Đây là hình ảnh minh họa cho giày mẫu; không xác nhận kiểu dáng, thông số hay giá thực tế.</p>'.paxig_store_demo_image_credit_html($product->get_id()).'<p>Yêu cầu hủy và trả hàng tuân theo trạng thái đơn hàng hiện tại và quyền hạn tài khoản.</p>';
+                return '<p>Khám phá '.esc_html($product->get_name())." từ bộ sưu tập PAXG'Shop demo.</p><p>Chọn kích cỡ EU của bạn bằng cách tham khảo bảng kích thước. Đây là hình ảnh minh họa cho giày mẫu; không xác nhận kiểu dáng, thông số hay giá thực tế.</p>".paxig_store_demo_image_credit_html($product->get_id()).'<p>Yêu cầu hủy và trả hàng tuân theo trạng thái đơn hàng hiện tại và quyền hạn tài khoản.</p>';
             }
-            return '<p>Explore '.esc_html($product->get_name()).' from the PAXIG demo collection.</p><p>Select your EU size using the size guide. This is an illustrative shoe photo; it does not confirm the exact model, specifications, or price.</p>'.paxig_store_demo_image_credit_html($product->get_id()).'<p>Cancellation and return requests follow the current order status and account permissions.</p>';
+            return '<p>Explore '.esc_html($product->get_name())." from the PAXG'Shop demo collection.</p><p>Select your EU size using the size guide. This is an illustrative shoe photo; it does not confirm the exact model, specifications, or price.</p>".paxig_store_demo_image_credit_html($product->get_id()).'<p>Cancellation and return requests follow the current order status and account permissions.</p>';
         }
     }
     if(is_page('huong-dan')){
@@ -191,9 +191,9 @@ add_filter('the_content',function($content){
     }
     if(is_page('ve-paxig')){
         if ($is_vi) {
-            return '<p>PAXIG’S SHOES là cửa hàng giày thể thao thử nghiệm. Tên thương hiệu và mẫu mã mô tả danh mục mẫu và không ngụ ý đại lý phân phối chính thức.</p><p>Hình ảnh sản phẩm là hình ảnh minh họa danh mục; thông tin nguồn và giấy phép xuất hiện cùng từng mục. Sản phẩm, giá cả và đơn hàng là dữ liệu thử nghiệm. Không chấp nhận thanh toán hoặc mua hàng thật.</p>';
+            return '<p>PAXG\'Shop là cửa hàng giày thể thao thử nghiệm. Tên thương hiệu và mẫu mã mô tả danh mục mẫu và không ngụ ý đại lý phân phối chính thức.</p><p>Hình ảnh sản phẩm là hình ảnh minh họa danh mục; thông tin nguồn và giấy phép xuất hiện cùng từng mục. Sản phẩm, giá cả và đơn hàng là dữ liệu thử nghiệm. Không chấp nhận thanh toán hoặc mua hàng thật.</p>';
         }
-        return '<p>PAXIG’S SHOES is a demonstration footwear store. Brand and model names describe the demo catalog and do not imply an official dealership.</p><p>Product photos are illustrative catalog images; source and license credits appear with each listing. Products, prices and orders are demonstration data. No real payments or purchases are accepted.</p>';
+        return '<p>PAXG\'Shop is a demonstration footwear store. Brand and model names describe the demo catalog and do not imply an official dealership.</p><p>Product photos are illustrative catalog images; source and license credits appear with each listing. Products, prices and orders are demonstration data. No real payments or purchases are accepted.</p>';
     }
     return $content;
 },999);
@@ -211,13 +211,13 @@ add_filter('document_title_parts',function($parts){
     if(!paxig_store_frontend())return $parts;
     $is_vi=function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi';
     if(!$is_vi)return $parts;
-    if(is_front_page()){$parts['title']="PAXIG'S SHOES";}
+    if(is_front_page()){$parts['title']="PAXG'Shop";}
     elseif(is_cart()){$parts['title']='Giỏ hàng';}
     elseif(is_checkout()){$parts['title']='Thanh toán';}
     elseif(is_account_page()){$parts['title']='Tài khoản của tôi';}
     elseif(is_shop()){$parts['title']='Cửa hàng';}
     elseif(is_page('huong-dan')){$parts['title']='Hướng dẫn mua sắm';}
-    elseif(is_page('ve-paxig')){$parts['title']="Về PAXIG'S SHOES";}
+    elseif(is_page('ve-paxig')){$parts['title']="Về PAXG'Shop";}
     elseif(is_search()){$parts['title']='Tìm kiếm: '.get_search_query();}
     return $parts;
 },999);

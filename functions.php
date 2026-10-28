@@ -3,7 +3,7 @@ require_once __DIR__ . '/includes/i18n.php';
 require_once __DIR__ . '/includes/home-ui.php';
 require_once __DIR__ . '/includes/style-3.php';
 /**
- * Theme functions for PAXIG's Shoes.
+ * Theme functions for PAXG'Shop.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,6 +20,7 @@ function paxig_shoes_setup() {
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
+	remove_action( 'wp_head', 'wp_site_icon', 99 );
 
 	register_nav_menus(
 		array(
@@ -28,6 +29,40 @@ function paxig_shoes_setup() {
 	);
 }
 add_action( 'after_setup_theme', 'paxig_shoes_setup' );
+
+/**
+ * Use the approved brand name on the public storefront without changing the
+ * WordPress option or its value in the dashboard.
+ */
+function paxig_shoes_frontend_blogname( $blogname ) {
+	return is_admin() ? $blogname : "PAXG'Shop";
+}
+add_filter( 'option_blogname', 'paxig_shoes_frontend_blogname' );
+
+/**
+ * Output the theme's approved favicon set instead of a separately configured
+ * WordPress Site Icon.
+ */
+function paxig_shoes_output_site_icons() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$icons_uri  = get_template_directory_uri() . '/assets/images/';
+	$icons_path = get_template_directory() . '/assets/images/';
+	$icon_url   = static function ( $filename ) use ( $icons_uri, $icons_path ) {
+		$path    = $icons_path . $filename;
+		$version = file_exists( $path ) ? filemtime( $path ) : '1';
+		return add_query_arg( 'ver', $version, $icons_uri . $filename );
+	};
+
+	printf( '<link rel="icon" href="%s" type="image/svg+xml" sizes="any">' . "\n", esc_url( $icon_url( 'favicon.svg' ) ) );
+	printf( '<link rel="icon" href="%s" type="image/png" sizes="32x32">' . "\n", esc_url( $icon_url( 'favicon-32x32.png' ) ) );
+	printf( '<link rel="icon" href="%s" type="image/png" sizes="192x192">' . "\n", esc_url( $icon_url( 'favicon-192x192.png' ) ) );
+	printf( '<link rel="icon" href="%s" type="image/png" sizes="512x512">' . "\n", esc_url( $icon_url( 'favicon-512x512.png' ) ) );
+	printf( '<link rel="apple-touch-icon" href="%s" sizes="180x180">' . "\n", esc_url( $icon_url( 'apple-touch-icon.png' ) ) );
+}
+add_action( 'wp_head', 'paxig_shoes_output_site_icons', 1 );
 
 /**
  * Load theme CSS and JavaScript.

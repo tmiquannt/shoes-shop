@@ -1,6 +1,6 @@
 <?php
 /**
- * VYRE storefront home matching 01_Homepage_Video_Hero.png
+ * PAXG'Shop storefront home matching the approved brand direction.
  */
 get_header();
 
@@ -108,7 +108,7 @@ if (empty($new_products) && function_exists('wc_get_products')) {
     <!-- TICKER MARQUEE STRIP MATCHING 01_Homepage_Video_Hero.png -->
     <div class="vyre-ticker" aria-hidden="true">
         <div class="paxig-container vyre-ticker-row">
-            <span class="vyre-ticker-col vyre-ticker-col--left"><?php echo esc_html__( 'VYRE / WORLDWIDE', 'paxig-shoes' ); ?></span>
+            <span class="vyre-ticker-col vyre-ticker-col--left"><?php echo esc_html__( "PAXG'Shop / WORLDWIDE", 'paxig-shoes' ); ?></span>
             <span class="vyre-ticker-col vyre-ticker-col--center"><?php echo esc_html__( 'BETTER MATERIALS. BOLDER IDEAS.', 'paxig-shoes' ); ?></span>
             <a href="<?php echo esc_url($shop_url); ?>" class="vyre-ticker-col vyre-ticker-col--right">
                 <span><?php echo esc_html__( 'THE NEXT MOVE STARTS HERE', 'paxig-shoes' ); ?></span>
