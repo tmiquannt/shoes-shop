@@ -21,14 +21,17 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
     return $fragments;
 });
 
-function paxig_reference_category() {
+function paxig_reference_category_term() {
     global $product;
-    if (!$product instanceof WC_Product) return;
+    if (!$product instanceof WC_Product) return null;
     $terms = wc_get_product_terms($product->get_id(), 'product_cat', ['fields'=>'all']);
     $collection = ['new-arrivals','best-sellers','sale','trending','men','women','kids','unisex','uncategorized'];
-    $names = [];
-    foreach ($terms as $term) if (!in_array($term->slug, $collection, true)) $names[] = $term->name;
-    if ($names) echo '<p class="paxig-reference-category">'.esc_html($names[0]).'</p>';
+    foreach ($terms as $term) if (!in_array($term->slug, $collection, true)) return $term;
+    return null;
+}
+function paxig_reference_category() {
+    $term = paxig_reference_category_term();
+    if ($term) echo '<p class="paxig-reference-category">'.esc_html($term->name).'</p>';
 }
 function paxig_reference_badge() {
     global $product;
@@ -51,7 +54,10 @@ function paxig_reference_details() {
         woocommerce_product_additional_information_tab();
         echo '</div></details>';
     }
-    echo '<details><summary>'.esc_html__( 'Delivery & Returns', 'paxig-shoes' ).'</summary><div class="paxig-reference-content"><p>'.esc_html(paxig_shipping_summary()).'</p><p><a href="'.esc_url(home_url('/huong-dan/')).'">'.esc_html__( 'Read the shopping, cancellation and returns guide', 'paxig-shoes' ).'</a></p></div></details></div>';
+    echo '<details><summary>'.esc_html__( 'Delivery', 'paxig-shoes' ).'</summary><div class="paxig-reference-content"><p>'.esc_html(paxig_shipping_summary()).'</p>';
+    $guide_url = function_exists('paxig_storefront_page_url') ? paxig_storefront_page_url('guide') : '';
+    if ($guide_url) echo '<p><a href="'.esc_url($guide_url).'">'.esc_html__( 'Read the shopping guide', 'paxig-shoes' ).'</a></p>';
+    echo '</div></details></div>';
 }
 add_action('wp', function () {
     if (!paxig_reference_page()) return;
@@ -73,16 +79,17 @@ add_action('wp', function () {
         add_action('woocommerce_before_single_product', function() {
             global $product;
             if (!$product) return;
-            $cat = 'LIFESTYLE';
-            $terms = wc_get_product_terms($product->get_id(), 'product_cat', ['fields'=>'names']);
-            if (!empty($terms)) $cat = strtoupper($terms[0]);
             $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
             $home_label = $is_vi ? 'TRANG CHỦ' : 'HOME';
             $shoes_label = $is_vi ? 'GIÀY SNEAKER' : 'SNEAKERS';
+            $category = paxig_reference_category_term();
+            $category_label = $category ? strtoupper($category->name) : $shoes_label;
+            $category_url = $category ? get_term_link($category) : wc_get_page_permalink('shop');
+            if (is_wp_error($category_url)) $category_url = wc_get_page_permalink('shop');
             echo '<nav class="vyre-breadcrumb vyre-pdp-breadcrumb" aria-label="' . esc_attr__( 'Breadcrumb', 'paxig-shoes' ) . '">';
             echo '<a href="' . esc_url( home_url('/') ) . '">' . esc_html($home_label) . '</a> <span class="vyre-sep">/</span> ';
             echo '<a href="' . esc_url( wc_get_page_permalink('shop') ) . '">' . esc_html($shoes_label) . '</a> <span class="vyre-sep">/</span> ';
-            echo '<a href="' . esc_url( wc_get_page_permalink('shop') ) . '">' . esc_html($cat) . '</a> <span class="vyre-sep">/</span> ';
+            echo '<a href="' . esc_url( $category_url ) . '">' . esc_html($category_label) . '</a> <span class="vyre-sep">/</span> ';
             echo '<span>' . esc_html( strtoupper($product->get_name()) ) . '</span>';
             echo '</nav>';
         }, 5);
@@ -91,31 +98,32 @@ add_action('wp', function () {
         remove_action('woocommerce_single_product_summary','woocommerce_template_single_excerpt',20);
         remove_action('woocommerce_single_product_summary','paxig_shoes_product_details_in_summary',35);
         add_action('woocommerce_single_product_summary', function() {
-            echo '<span class="vyre-pdp-eyebrow">' . esc_html__( 'LIFESTYLE / NEW SEASON', 'paxig-shoes' ) . '</span>';
+            paxig_reference_category();
         }, 1);
         add_action('woocommerce_single_product_summary', function() {
-            echo '<p class="vyre-pdp-subtitle">' . esc_html__( 'Sandstone / Everyday sneaker', 'paxig-shoes' ) . '</p>';
-            $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
-            $rating_aria = $is_vi ? 'Đánh giá 4.8 trên 5 sao' : 'Rated 4.8 out of 5 stars';
-            $rating_text = $is_vi ? '4.8 / 5 (320 ĐÁNH GIÁ)' : '4.8 / 5 (320 REVIEWS)';
-            echo '<div class="vyre-pdp-rating" aria-label="' . esc_attr($rating_aria) . '">
-                <span class="vyre-stars">★★★★★</span>
-                <span class="vyre-rating-text">' . esc_html($rating_text) . '</span>
-            </div>';
+            global $product;
+            if (!$product instanceof WC_Product) return;
+            $subtitle = trim(wp_trim_words(wp_strip_all_tags($product->get_short_description()), 24, ''));
+            if ($subtitle) echo '<p class="vyre-pdp-subtitle">' . esc_html($subtitle) . '</p>';
+
+            $review_count = $product->get_review_count();
+            if ($review_count > 0) {
+                $average_rating = (float) $product->get_average_rating();
+                echo '<div class="vyre-pdp-rating">' . wp_kses_post(wc_get_rating_html($average_rating, $review_count));
+                echo '<a class="vyre-rating-text" href="#reviews">' . esc_html(sprintf(_n('%1$s / 5 (%2$s review)', '%1$s / 5 (%2$s reviews)', $review_count, 'paxig-shoes'), number_format_i18n($average_rating, 1), number_format_i18n($review_count))) . '</a></div>';
+            } elseif (comments_open($product->get_id()) && get_option('woocommerce_enable_reviews') === 'yes') {
+                echo '<p class="vyre-pdp-rating"><a class="vyre-rating-text" href="#reviews">' . esc_html__( 'Be the first to review this product', 'paxig-shoes' ) . '</a></p>';
+            }
         }, 6);
         add_action('woocommerce_single_product_summary', function () {
-            echo '<div class="vyre-pdp-colors-section">
-                <div class="vyre-pdp-color-head">
-                    <span class="vyre-pdp-color-label">' . esc_html__( 'COLOR: SANDSTONE', 'paxig-shoes' ) . '</span>
-                    <span class="vyre-pdp-color-count">' . esc_html__( '4 AVAILABLE COLORS', 'paxig-shoes' ) . '</span>
-                </div>
-                <div class="vyre-pdp-color-swatches" aria-hidden="true">
-                    <span class="vyre-pdp-swatch is-active" style="background:#c8b79b" title="Sandstone"></span>
-                    <span class="vyre-pdp-swatch" style="background:#525844" title="Olive"></span>
-                    <span class="vyre-pdp-swatch" style="background:#151514" title="Onyx"></span>
-                    <span class="vyre-pdp-swatch" style="background:#eae6df" title="Cream"></span>
-                </div>
-            </div>';
+            global $product;
+            if (!$product instanceof WC_Product) return;
+            $color = trim(wp_strip_all_tags($product->get_attribute('pa_color')));
+            if ($color) {
+                $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+                $color_label = $is_vi ? sprintf('MÀU SẮC: %s', $color) : sprintf(__('COLOR: %s', 'paxig-shoes'), $color);
+                echo '<div class="vyre-pdp-colors-section"><div class="vyre-pdp-color-head"><span class="vyre-pdp-color-label">' . esc_html($color_label) . '</span></div></div>';
+            }
             echo '<div class="vyre-pdp-size-head">
                 <span class="vyre-pdp-size-title">' . esc_html__( 'SELECT SIZE', 'paxig-shoes' ) . '</span>
                 <button type="button" class="vyre-size-guide-trigger" aria-controls="vyre-size-guide-modal">' . esc_html__( 'SIZE GUIDE ↗', 'paxig-shoes' ) . '</button>
@@ -123,16 +131,14 @@ add_action('wp', function () {
         }, 15);
         add_action('woocommerce_after_add_to_cart_form', function () {
             echo '<div class="vyre-pdp-trust-badges">
-                <div class="vyre-trust-item"><span class="vyre-trust-icon">🚚</span><span>' . esc_html__( 'FREE SHIPPING OVER $150', 'paxig-shoes' ) . '</span></div>
-                <div class="vyre-trust-item"><span class="vyre-trust-icon">↺</span><span>' . esc_html__( '30-DAY RETURNS', 'paxig-shoes' ) . '</span></div>
-                <div class="vyre-trust-item"><span class="vyre-trust-icon">🛡</span><span>' . esc_html__( 'SECURE CHECKOUT', 'paxig-shoes' ) . '</span></div>
+                <div class="vyre-trust-item"><span class="vyre-trust-icon">🚚</span><span>' . esc_html__( 'Shipping options confirmed at checkout', 'paxig-shoes' ) . '</span></div>
+                <div class="vyre-trust-item"><span class="vyre-trust-icon">↗</span><span>' . esc_html__( 'Size guide available', 'paxig-shoes' ) . '</span></div>
             </div>';
         }, 25);
         add_action('woocommerce_single_product_summary','paxig_reference_details',35);
         add_filter('woocommerce_product_tabs', function ($tabs) {
             unset($tabs['additional_information']);
             unset($tabs['description']);
-            unset($tabs['reviews']);
             return $tabs;
         }, 110);
     }

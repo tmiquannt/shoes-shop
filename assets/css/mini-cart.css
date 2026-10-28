@@ -551,7 +551,29 @@ body.paxig-style-3 .vyre-cart-page {
   color: #76746e;
   text-decoration: underline;
   text-underline-offset: 3px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
 }
+.vyre-move-wishlist-link:disabled { opacity: .6; cursor: wait; }
+.vyre-cart-update {
+  margin-top: 16px;
+  padding: 10px 16px;
+  border: 1px solid #151514;
+  background: transparent;
+  color: #151514;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.vyre-cart-update:hover { background: #151514; color: #faf8f5; }
+.vyre-cart-update:focus-visible,
+.vyre-move-wishlist-link:focus-visible { outline: 2px solid #151514; outline-offset: 3px; }
 .vyre-qty-control {
   border: 1px solid #d6d0c7;
   padding: 6px 16px;

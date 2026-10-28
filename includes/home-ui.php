@@ -33,6 +33,13 @@ add_action('customize_register', function ($customizer) {
         $customizer->add_setting($setting, ['default'=>0, 'sanitize_callback'=>'absint']);
         $customizer->add_control(new WP_Customize_Media_Control($customizer, $setting, ['label'=>$label, 'section'=>'paxig_energy', 'mime_type'=>'image']));
     }
+    $customizer->add_section('paxig_social', ['title'=>'PAXIG · Social Links', 'priority'=>31]);
+    $customizer->add_setting('paxig_instagram_url', ['default'=>'', 'sanitize_callback'=>'esc_url_raw']);
+    $customizer->add_control('paxig_instagram_url', [
+        'label'   => 'Instagram profile URL',
+        'section' => 'paxig_social',
+        'type'    => 'url',
+    ]);
 });
 add_action('wp_body_open', function () {
     if (is_front_page()) echo '<div class="paxig-home-announcement">'.esc_html(paxig_shipping_summary()).'</div>';

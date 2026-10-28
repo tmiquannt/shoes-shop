@@ -5,6 +5,10 @@
 get_header();
 
 $shop_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/');
+$catalog_url = function_exists('get_post_type_archive_link') ? get_post_type_archive_link('product') : $shop_url;
+if (!$catalog_url) $catalog_url = $shop_url;
+$new_arrivals_url = function_exists('paxig_plp_catalog_url') ? paxig_plp_catalog_url(['orderby' => 'date']) : add_query_arg('orderby', 'date', $catalog_url);
+$about_url = function_exists('paxig_storefront_page_url') ? paxig_storefront_page_url('about') : '';
 $theme_uri = get_template_directory_uri();
 $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
 $hero_slides = [
@@ -16,7 +20,7 @@ $hero_slides = [
 // Retrieve products for Curated / 01 New Arrivals
 $new_products = function_exists('paxig_home_products') ? paxig_home_products(['limit' => 4]) : [];
 if (empty($new_products) && function_exists('wc_get_products')) {
-    $new_products = wc_get_products(['status' => 'publish', 'visibility' => 'visible', 'limit' => 4]);
+    $new_products = wc_get_products(['status' => 'publish', 'visibility' => 'visible', 'limit' => 4, 'orderby' => 'date', 'order' => 'DESC']);
 }
 ?>
 
@@ -63,20 +67,6 @@ if (empty($new_products) && function_exists('wc_get_products')) {
                     <span><?php echo esc_html__( 'SHOP THE COLLECTION', 'paxig-shoes' ); ?></span>
                     <span class="vyre-arrow" aria-hidden="true">→</span>
                 </a>
-                <button
-                    type="button"
-                    class="vyre-hero-video-status"
-                    data-vyre-toggle
-                    data-label-play="<?php echo esc_attr($is_vi ? 'Phát trình chiếu' : 'Play slideshow'); ?>"
-                    data-label-pause="<?php echo esc_attr($is_vi ? 'Tạm dừng trình chiếu' : 'Pause slideshow'); ?>"
-                    data-text-playing="<?php echo esc_attr($is_vi ? 'ĐANG PHÁT TRÌNH CHIẾU' : 'SLIDESHOW PLAYING'); ?>"
-                    data-text-paused="<?php echo esc_attr($is_vi ? 'TẠM DỪNG TRÌNH CHIẾU' : 'SLIDESHOW PAUSED'); ?>"
-                    hidden
-                    aria-label="<?php echo esc_attr($is_vi ? 'Tạm dừng trình chiếu' : 'Pause slideshow'); ?>"
-                >
-                    <span class="vyre-video-pause-icon" data-vyre-toggle-icon aria-hidden="true">Ⅱ</span>
-                    <span data-vyre-toggle-label><?php echo esc_html($is_vi ? 'ĐANG PHÁT TRÌNH CHIẾU' : 'SLIDESHOW PLAYING'); ?></span>
-                </button>
             </div>
         </div>
 
@@ -98,7 +88,7 @@ if (empty($new_products) && function_exists('wc_get_products')) {
             </div>
             <div class="vyre-hero-footer-right">
                 <a href="<?php echo esc_url($shop_url); ?>">
-                    <span><?php echo esc_html__( 'DRAG TO EXPLORE', 'paxig-shoes' ); ?></span>
+                    <span><?php echo esc_html($is_vi ? 'KHÁM PHÁ BỘ SƯU TẬP' : 'EXPLORE THE COLLECTION'); ?></span>
                     <span aria-hidden="true">→</span>
                 </a>
             </div>
@@ -124,40 +114,37 @@ if (empty($new_products) && function_exists('wc_get_products')) {
                 <span class="vyre-section-eyebrow"><?php echo esc_html__( 'CURATED / 01', 'paxig-shoes' ); ?></span>
                 <h2 id="new-arrivals-title" class="vyre-section-title"><?php echo esc_html__( 'NEW ARRIVALS.', 'paxig-shoes' ); ?></h2>
             </div>
-            <a href="<?php echo esc_url($shop_url); ?>" class="vyre-section-link">
+            <a href="<?php echo esc_url($new_arrivals_url); ?>" class="vyre-section-link">
                 <?php echo esc_html__( 'VIEW ALL', 'paxig-shoes' ); ?> <span aria-hidden="true">→</span>
             </a>
         </div>
 
         <ul class="vyre-products-grid">
             <?php
-            $badges = ['', $is_vi ? 'BÁN CHẠY' : 'BESTSELLER', '', ''];
-            $subtitles = $is_vi
-                ? ['Cloud · Hàng ngày', 'Sandstone · Hàng ngày', 'Olive · Thể thao', 'Onyx · Hàng ngày']
-                : ['Cloud · Everyday', 'Sandstone · Everyday', 'Olive · Performance', 'Onyx · Everyday'];
-            $swatch_palettes = [
-                ['#d9d6d0', '#b39b7d', '#4b5320', '#151514'],
-                ['#d2c6b4', '#9e8c78', '#4b5320', '#151514'],
-                ['#808674', '#4b5320', '#d2c6b4', '#151514'],
-                ['#151514', '#3d3d3d', '#9e8c78', '#d2c6b4'],
-            ];
-
             if (!empty($new_products)) :
                 foreach (array_values($new_products) as $i => $item) :
                     $id = $item->get_id();
                     $name = $item->get_name();
                     $permalink = $item->get_permalink();
                     $price_html = $item->get_price_html();
-                    $badge = $badges[$i % 4];
-                    $sub = $subtitles[$i % 4];
-                    $swatches = $swatch_palettes[$i % 4];
+                    $badge = '';
+                    if ($item->is_on_sale()) {
+                        $badge = $is_vi ? 'ƯU ĐÃI' : __( 'SALE', 'paxig-shoes' );
+                    } elseif (has_term('new-arrivals', 'product_cat', $id)) {
+                        $badge = $is_vi ? 'MỚI' : __( 'NEW', 'paxig-shoes' );
+                    } elseif (has_term('best-sellers', 'product_cat', $id)) {
+                        $badge = $is_vi ? 'BÁN CHẠY' : __( 'BESTSELLER', 'paxig-shoes' );
+                    }
+                    $subtitle = trim(wp_trim_words(wp_strip_all_tags($item->get_short_description()), 12, ''));
+                    $color = trim(wp_strip_all_tags($item->get_attribute('pa_color')));
+                    if (!$subtitle) $subtitle = $color;
             ?>
                     <li class="vyre-product-card" data-product-id="<?php echo esc_attr($id); ?>">
                         <div class="vyre-card-media">
                             <?php if ($badge) : ?>
                                 <span class="vyre-card-badge"><?php echo esc_html($badge); ?></span>
                             <?php endif; ?>
-                            <button type="button" class="vyre-card-wishlist paxig-wishlist-card-btn" data-product-id="<?php echo esc_attr($id); ?>" aria-label="<?php echo esc_attr__( 'Add to wishlist', 'paxig-shoes' ); ?>">
+                            <button type="button" class="vyre-card-wishlist paxig-wishlist-btn paxig-wishlist-card-btn" data-product-id="<?php echo esc_attr($id); ?>" aria-pressed="false" aria-label="<?php echo esc_attr__( 'Add to favorites', 'paxig-shoes' ); ?>">
                                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                                     <path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
                                 </svg>
@@ -171,13 +158,9 @@ if (empty($new_products) && function_exists('wc_get_products')) {
                                 <h3 class="vyre-card-title">
                                     <a href="<?php echo esc_url($permalink); ?>"><?php echo esc_html($name); ?></a>
                                 </h3>
-                                <div class="vyre-card-swatches" aria-hidden="true">
-                                    <?php foreach ($swatches as $s_idx => $hex) : ?>
-                                        <span class="vyre-swatch <?php echo $s_idx === 0 ? 'is-active' : ''; ?>" style="background-color: <?php echo esc_attr($hex); ?>;"></span>
-                                    <?php endforeach; ?>
-                                </div>
+                                <?php if ($color) : ?><span class="vyre-card-color"><?php echo esc_html($color); ?></span><?php endif; ?>
                             </div>
-                            <div class="vyre-card-subtitle"><?php echo esc_html($sub); ?></div>
+                            <?php if ($subtitle) : ?><div class="vyre-card-subtitle"><?php echo esc_html($subtitle); ?></div><?php endif; ?>
                             <div class="vyre-card-price price"><?php echo wp_kses_post($price_html); ?></div>
                         </div>
                     </li>
@@ -189,7 +172,7 @@ if (empty($new_products) && function_exists('wc_get_products')) {
     </section>
 
     <!-- WHO WE ARE SECTION MATCHING 01_Homepage_Video_Hero.png -->
-    <section class="vyre-brand-story" aria-labelledby="brand-story-title">
+    <section class="vyre-brand-story" id="brand-story" aria-labelledby="brand-story-title">
         <div class="paxig-container vyre-brand-inner">
             <div class="vyre-brand-left">
                 <span class="vyre-section-eyebrow"><?php echo esc_html__( 'WHO WE ARE', 'paxig-shoes' ); ?></span>
@@ -206,10 +189,12 @@ if (empty($new_products) && function_exists('wc_get_products')) {
                         A new generation of footwear shaped by culture, craftsmanship, and the courage to move differently.
                     <?php endif; ?>
                 </p>
-                <a href="<?php echo esc_url(home_url('/ve-paxig/')); ?>" class="vyre-btn-story">
-                    <span><?php echo esc_html__( 'OUR STORY', 'paxig-shoes' ); ?></span>
-                    <span aria-hidden="true">→</span>
-                </a>
+                <?php if ($about_url) : ?>
+                    <a href="<?php echo esc_url($about_url); ?>" class="vyre-btn-story">
+                        <span><?php echo esc_html__( 'OUR STORY', 'paxig-shoes' ); ?></span>
+                        <span aria-hidden="true">→</span>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </section>

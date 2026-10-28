@@ -21,7 +21,7 @@ function paxig_plp_args() {
     $args = [];
     foreach (wp_unslash($_GET) as $key=>$value) {
         if (!is_string($value)) continue;
-        if (preg_match('/^(filter_|query_type_)/', $key) || in_array($key,['orderby','min_price','max_price','rating_filter','paxig_sale','paxig_best_sellers','s','post_type'],true)) $args[sanitize_key($key)] = wc_clean($value);
+        if (preg_match('/^(filter_|query_type_)/', $key) || in_array($key,['orderby','min_price','max_price','rating_filter','paxig_sale','paxig_best_sellers','paxig_releases','s','post_type'],true)) $args[sanitize_key($key)] = wc_clean($value);
     }
     return $args;
 }
@@ -72,6 +72,10 @@ add_action('wp_enqueue_scripts', function () {
 add_filter('woocommerce_page_title',function ($title) {
     if (!paxig_plp_page()) return $title;
     if (paxig_plp_product_search_page()) return $title;
+    if (isset($_GET['paxig_releases']) && is_string($_GET['paxig_releases']) && wp_unslash($_GET['paxig_releases']) === '1') {
+        $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+        return $is_vi ? 'BỘ SƯU TẬP GIỚI HẠN' : __( 'LIMITED EDITION', 'paxig-shoes' );
+    }
     $profile = paxig_plp_profile();
     if ($profile === 'men') return __( 'MEN’S SNEAKERS', 'paxig-shoes' );
     if ($profile === 'women') return __( 'WOMEN’S SNEAKERS', 'paxig-shoes' );
@@ -81,7 +85,10 @@ add_filter('woocommerce_page_title',function ($title) {
 }, 120);
 function paxig_plp_header() {
     $title = woocommerce_page_title(false);
-    $cat_name = is_product_category() ? strtoupper(get_queried_object()->name) : (paxig_plp_product_search_page() ? strtoupper( __( 'SEARCH', 'paxig-shoes' ) ) : 'ALL');
+    $is_release_collection = isset($_GET['paxig_releases']) && is_string($_GET['paxig_releases']) && wp_unslash($_GET['paxig_releases']) === '1';
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    $release_label = $is_vi ? 'BỘ SƯU TẬP' : __( 'RELEASES', 'paxig-shoes' );
+    $cat_name = is_product_category() ? strtoupper(get_queried_object()->name) : ($is_release_collection ? strtoupper($release_label) : (paxig_plp_product_search_page() ? strtoupper( __( 'SEARCH', 'paxig-shoes' ) ) : 'ALL'));
     echo '<header class="woocommerce-products-header vyre-plp-header">';
     echo '<nav class="vyre-breadcrumb" aria-label="Breadcrumb">';
     echo '<a href="' . esc_url( home_url('/') ) . '">HOME</a> ';
@@ -182,12 +189,12 @@ add_action('wp',function () {
     add_action('woocommerce_before_shop_loop_item_title',function(){paxig_reference_badge();echo '</div>';},21);
     add_action('woocommerce_shop_loop_item_title',function(){echo '<div class="vyre-loop-title-row">';},5);
     add_action('woocommerce_shop_loop_item_title',function(){
-        echo '<div class="vyre-card-swatches" aria-hidden="true">
-            <span class="vyre-swatch is-active" style="background:#ddd7cc"></span>
-            <span class="vyre-swatch" style="background:#c8b79b"></span>
-            <span class="vyre-swatch" style="background:#525844"></span>
-            <span class="vyre-swatch" style="background:#151514"></span>
-        </div></div>';
+        global $product;
+        if ($product instanceof WC_Product) {
+            $color = trim(wp_strip_all_tags($product->get_attribute('pa_color')));
+            if ($color) echo '<span class="vyre-card-color">'.esc_html($color).'</span>';
+        }
+        echo '</div>';
     },15);
     add_action('woocommerce_shop_loop_item_title','paxig_reference_category',16);
 },40);
@@ -205,11 +212,27 @@ add_filter('woocommerce_widget_get_current_page_url',function($url){
     if (is_shop() || (paxig_plp_product_search_page() && !is_product_taxonomy())) {
         $url = paxig_plp_catalog_url(paxig_plp_args());
     }
-    foreach (['paxig_sale','paxig_best_sellers'] as $key) {
+    foreach (['paxig_sale','paxig_best_sellers','paxig_releases'] as $key) {
         $args=paxig_plp_args();
         if (isset($args[$key])) $url=add_query_arg($key,$args[$key],$url);
     }
     return $url;
+});
+add_action('pre_get_posts', function ($query) {
+    if (is_admin() || !$query->is_main_query() || !$query->is_post_type_archive('product')) return;
+    $release_filter = isset($_GET['paxig_releases']) && is_string($_GET['paxig_releases'])
+        ? sanitize_text_field(wp_unslash($_GET['paxig_releases']))
+        : '';
+    if ($release_filter !== '1') return;
+
+    $tax_query = $query->get('tax_query');
+    if (!is_array($tax_query)) $tax_query = array();
+    $tax_query[] = array(
+        'taxonomy' => 'product_cat',
+        'field' => 'slug',
+        'terms' => array('limited-edition'),
+    );
+    $query->set('tax_query', $tax_query);
 });
 add_filter('gettext',function($translated,$text,$domain){
     if ($domain!=='woocommerce'||!paxig_plp_page()) return $translated;

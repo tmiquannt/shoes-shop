@@ -207,9 +207,9 @@ function paxig_shoes_add_size_guide_link(
 	$guide_text  = $is_vi ? 'Bảng kích cỡ' : 'Size Guide';
 
 	return esc_html( $select_text )
-		. ' <a class="paxig-size-guide-link" href="'
-		. esc_url( home_url('/huong-dan/') )
-		. '">' . esc_html( $guide_text ) . '</a>';
+		. ' <button type="button" class="vyre-size-guide-trigger paxig-size-guide-link" aria-controls="vyre-size-guide-modal">'
+		. esc_html( $guide_text )
+		. '</button>';
 }
 add_filter(
 	'woocommerce_attribute_label',

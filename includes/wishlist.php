@@ -247,6 +247,8 @@ function paxig_enqueue_wishlist_assets() {
 			'detail_error' => __( 'Could not load favorites. Please try again.', 'paxig-shoes' ),
 			'favorite'     => __( 'Favorite', 'paxig-shoes' ),
 			'favorited'    => __( 'Favorited', 'paxig-shoes' ),
+			'add_favorite' => __( 'Add to favorites', 'paxig-shoes' ),
+			'remove_favorite' => __( 'Remove from favorites', 'paxig-shoes' ),
 		],
 	] );
 }

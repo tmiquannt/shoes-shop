@@ -100,6 +100,18 @@ do_action('woocommerce_before_customer_login_form');
 			<?php do_action( 'woocommerce_login_form_end' ); ?>
 
 		</form>
+<details class="paxig-verification-resend">
+	<summary><?php esc_html_e( 'Need a new verification link?', 'paxig-shoes' ); ?></summary>
+	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="paxig-verification-resend-form">
+		<input type="hidden" name="action" value="paxig_resend_email_verification">
+		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+			<label for="paxig_resend_verification_email"><?php esc_html_e( 'Email address', 'woocommerce' ); ?></label>
+			<input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="paxig_resend_verification_email" autocomplete="email" required>
+		</p>
+		<?php wp_nonce_field( 'paxig_resend_email_verification', 'paxig_resend_email_verification_nonce' ); ?>
+		<button type="submit" class="woocommerce-button button"><?php esc_html_e( 'Resend verification email', 'paxig-shoes' ); ?></button>
+	</form>
+</details>
 <?php if ($registration_enabled) : ?>
 <p class="paxig-auth-switch vyre-auth-switch"><?php printf( __( "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>", 'paxig-shoes' ), esc_url(paxig_auth_switch_url(true)) ); ?></p>
 <?php endif; ?>

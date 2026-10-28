@@ -100,20 +100,27 @@ $checkout_url = function_exists('wc_get_checkout_url') ? wc_get_checkout_url() :
                                         $item_meta_html = wc_get_formatted_cart_item_data( $cart_item );
                                         if ( $item_meta_html ) :
                                             echo '<div class="vyre-item-meta">' . wp_kses_post( $item_meta_html ) . '</div>';
-                                        else :
-                                            $default_meta = $is_vi ? 'Sandstone / Kích cỡ US 9' : 'Sandstone / Size US 9';
-                                            echo '<p class="vyre-item-meta">' . esc_html( $default_meta ) . '</p>';
                                         endif;
                                         ?>
-                                        <a href="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>" class="vyre-move-wishlist-link">
+                                        <button type="button" class="vyre-move-wishlist-link" data-paxig-wishlist-move data-product-id="<?php echo esc_attr( $product_id ); ?>" data-remove-url="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>">
                                             <?php echo esc_html__( 'Move to wishlist', 'paxig-shoes' ); ?>
-                                        </a>
+                                        </button>
                                     </div>
 
                                     <div class="vyre-item-qty">
-                                        <span class="vyre-qty-control">
-                                            <span class="vyre-qty-val"><?php echo esc_html( $cart_item['quantity'] ); ?></span>
-                                        </span>
+                                        <?php
+                                        echo woocommerce_quantity_input(
+                                            array(
+                                                'input_name'   => 'cart[' . $cart_item_key . '][qty]',
+                                                'input_value'  => $cart_item['quantity'],
+                                                'min_value'    => 0,
+                                                'max_value'    => $_product->get_max_purchase_quantity(),
+                                                'product_name' => $_product->get_name(),
+                                            ),
+                                            $_product,
+                                            false
+                                        );
+                                        ?>
                                     </div>
 
                                     <div class="vyre-item-price">
@@ -126,6 +133,8 @@ $checkout_url = function_exists('wc_get_checkout_url') ? wc_get_checkout_url() :
                                 </li>
                             <?php endforeach; ?>
                         </ul>
+                        <button type="submit" class="vyre-cart-update" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+                        <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
                     </form>
 
                     <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-continue-shopping">
@@ -146,19 +155,46 @@ $checkout_url = function_exists('wc_get_checkout_url') ? wc_get_checkout_url() :
                             </div>
                             <div class="vyre-summary-row">
                                 <span><?php echo esc_html__( 'Shipping', 'paxig-shoes' ); ?></span>
-                                <span class="vyre-free-shipping"><?php echo esc_html__( 'FREE', 'paxig-shoes' ); ?></span>
+                                <span>
+                                    <?php
+                                    $shipping_display = __( 'Calculated at checkout', 'paxig-shoes' );
+                                    if (!$cart->needs_shipping()) {
+                                        $shipping_display = __( 'Not required', 'paxig-shoes' );
+                                    } elseif (WC()->session && WC()->shipping()) {
+                                        $chosen_methods = WC()->session->get('chosen_shipping_methods', array());
+                                        $packages = WC()->shipping()->get_packages();
+                                        $has_selected_rate = false;
+                                        foreach ((array) $chosen_methods as $package_index => $chosen_method) {
+                                            if (isset($packages[$package_index]['rates'][$chosen_method])) {
+                                                $has_selected_rate = true;
+                                                break;
+                                            }
+                                        }
+                                        if ($has_selected_rate) {
+                                            $shipping_display = $cart->get_cart_shipping_total();
+                                        }
+                                    }
+                                    echo is_string($shipping_display) && str_contains($shipping_display, '<')
+                                        ? wp_kses_post($shipping_display)
+                                        : esc_html($shipping_display);
+                                    ?>
+                                </span>
                             </div>
-                            <div class="vyre-summary-row">
-                                <span><?php echo esc_html__( 'Estimated tax', 'paxig-shoes' ); ?></span>
-                                <span>$0.00</span>
-                            </div>
+                            <?php if (wc_tax_enabled()) : ?>
+                                <div class="vyre-summary-row">
+                                    <span><?php echo esc_html__( 'Estimated tax', 'paxig-shoes' ); ?></span>
+                                    <span><?php echo (float) $cart->get_taxes_total() > 0 ? wp_kses_post(wc_price($cart->get_taxes_total())) : esc_html__( 'Calculated at checkout', 'paxig-shoes' ); ?></span>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <!-- PROMO CODE -->
-                        <div class="vyre-promo-wrap">
-                            <input type="text" placeholder="<?php echo esc_attr__( 'PROMO CODE', 'paxig-shoes' ); ?>" class="vyre-promo-input">
-                            <button type="button" class="vyre-promo-btn"><?php echo esc_html__( 'APPLY', 'paxig-shoes' ); ?></button>
-                        </div>
+                        <form class="vyre-promo-wrap" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+                            <label class="screen-reader-text" for="vyre-coupon-code"><?php esc_html_e( 'Coupon code', 'woocommerce' ); ?></label>
+                            <input type="text" name="coupon_code" id="vyre-coupon-code" placeholder="<?php echo esc_attr__( 'PROMO CODE', 'paxig-shoes' ); ?>" class="vyre-promo-input" autocomplete="off">
+                            <button type="submit" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>" class="vyre-promo-btn"><?php echo esc_html__( 'APPLY', 'paxig-shoes' ); ?></button>
+                            <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+                        </form>
 
                         <div class="vyre-summary-divider" aria-hidden="true"></div>
 
@@ -168,13 +204,13 @@ $checkout_url = function_exists('wc_get_checkout_url') ? wc_get_checkout_url() :
                         </div>
 
                         <a href="<?php echo esc_url( $checkout_url ); ?>" class="vyre-checkout-btn">
-                            <span><?php echo esc_html__( 'SECURE CHECKOUT', 'paxig-shoes' ); ?></span>
+                            <span><?php echo esc_html( $is_vi ? 'TIẾP TỤC THANH TOÁN' : 'CONTINUE TO CHECKOUT' ); ?></span>
                             <span aria-hidden="true">→</span>
                         </a>
 
                         <div class="vyre-summary-security">
-                            <span class="vyre-sec-icon" aria-hidden="true">🛡</span>
-                            <span><?php echo esc_html__( 'Secure payments & 30-day returns', 'paxig-shoes' ); ?></span>
+                            <span class="vyre-sec-icon" aria-hidden="true">→</span>
+                            <span><?php echo esc_html__( 'Payment options are shown at checkout', 'paxig-shoes' ); ?></span>
                         </div>
                     </div>
                 </div>

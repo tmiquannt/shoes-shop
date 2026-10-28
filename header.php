@@ -9,7 +9,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<header class="paxig-header">
+<header class="paxig-header paxig-header--landing">
 	<div class="paxig-container">
 		<a class="paxig-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr__( "PAXG'Shop", 'paxig-shoes' ); ?>">
 			<img class="paxig-brand__mark" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/paxg-shop-symbol-header.png' ); ?>" width="176" height="166" alt="" aria-hidden="true">
@@ -51,19 +51,61 @@
     $women_url = function_exists('paxig_plp_catalog_url') ? paxig_plp_catalog_url($women_args) : add_query_arg($women_args, $catalog_url);
     $new_url = add_query_arg(['orderby'=>'date'], $catalog_url);
     $releases_url = add_query_arg(['paxig_releases'=>'1'], $catalog_url);
-    $journal_url = home_url('/ve-paxig/');
+    $story_url = home_url('/#brand-story-title');
     $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
-    $home_nav = [
-        ( $is_vi ? 'NAM' : 'MEN' ) => $men_url,
-        ( $is_vi ? 'NỮ' : 'WOMEN' ) => $women_url,
-        ( $is_vi ? 'MỚI' : 'NEW' ) => $new_url,
-        ( $is_vi ? 'BỘ SƯU TẬP' : 'RELEASES' ) => $releases_url,
-        ( $is_vi ? 'BÀI VIẾT' : 'JOURNAL' ) => $journal_url,
+    $gender_param = isset( $_GET['filter_gender'] ) ? sanitize_text_field( wp_unslash( $_GET['filter_gender'] ) ) : '';
+    $orderby_param = isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : '';
+    $releases_param = isset( $_GET['paxig_releases'] ) ? sanitize_text_field( wp_unslash( $_GET['paxig_releases'] ) ) : '';
+
+    $active_nav_key = '';
+    if ( $releases_param === '1' ) {
+        $active_nav_key = 'releases';
+    } elseif ( $orderby_param === 'date' ) {
+        $active_nav_key = 'new';
+    } elseif ( strpos( $gender_param, 'men' ) !== false && strpos( $gender_param, 'women' ) === false ) {
+        $active_nav_key = 'men';
+    } elseif ( strpos( $gender_param, 'women' ) !== false ) {
+        $active_nav_key = 'women';
+    } elseif ( is_page( 'about' ) || is_page( 'our-story' ) ) {
+        $active_nav_key = 'story';
+    }
+
+    $nav_items = [
+        'men' => [
+            'label' => $is_vi ? 'NAM' : 'MEN',
+            'url'   => $men_url,
+        ],
+        'women' => [
+            'label' => $is_vi ? 'NỮ' : 'WOMEN',
+            'url'   => $women_url,
+        ],
+        'new' => [
+            'label' => $is_vi ? 'MỚI' : 'NEW',
+            'url'   => $new_url,
+        ],
+        'releases' => [
+            'label' => $is_vi ? 'BỘ SƯU TẬP' : 'RELEASES',
+            'url'   => $releases_url,
+        ],
+        'story' => [
+            'label' => $is_vi ? 'CÂU CHUYỆN' : 'OUR STORY',
+            'url'   => $story_url,
+        ],
     ];
     ?>
         <ul class="paxig-nav paxig-nav--poster">
-            <?php foreach ($home_nav as $label => $url) : ?>
-                <li><a href="<?php echo esc_url($url); ?>"><?php echo esc_html($label); ?></a></li>
+            <?php foreach ( $nav_items as $key => $item ) :
+                $is_active = ( $active_nav_key === $key );
+                $li_classes = array();
+                if ( $is_active ) {
+                    $li_classes[] = 'current-menu-item';
+                    $li_classes[] = 'is-active';
+                }
+                $li_class_attr = ! empty( $li_classes ) ? ' class="' . esc_attr( implode( ' ', $li_classes ) ) . '"' : '';
+            ?>
+                <li<?php echo $li_class_attr; ?> data-nav-key="<?php echo esc_attr( $key ); ?>">
+                    <a href="<?php echo esc_url( $item['url'] ); ?>"<?php echo $is_active ? ' class="is-active" aria-current="page"' : ''; ?>><?php echo esc_html( $item['label'] ); ?></a>
+                </li>
             <?php endforeach; ?>
         </ul>
     <?php if ( function_exists( 'paxig_render_language_switcher' ) ) paxig_render_language_switcher( 'paxig-lang-switch--mobile' ); ?>
@@ -149,7 +191,7 @@
             <div class="vyre-search-col">
                 <h4><?php echo esc_html__( 'TRENDING SEARCHES', 'paxig-shoes' ); ?></h4>
                 <ul class="vyre-trending-list">
-                    <li><a href="<?php echo esc_url( add_query_arg('orderby', 'date', $shop_url) ); ?>"><?php echo esc_html__( 'New arrivals', 'paxig-shoes' ); ?> ↗</a></li>
+                    <li><a href="<?php echo esc_url( $new_url ); ?>"><?php echo esc_html__( 'New arrivals', 'paxig-shoes' ); ?> ↗</a></li>
                     <li><a href="<?php echo esc_url( add_query_arg(['product_cat' => 'lifestyle', 'post_type' => 'product'], home_url('/')) ); ?>"><?php echo esc_html__( 'Lifestyle sneakers', 'paxig-shoes' ); ?> ↗</a></li>
                     <li><a href="<?php echo esc_url( add_query_arg(['s' => 'Court', 'post_type' => 'product'], home_url('/')) ); ?>"><?php echo esc_html__( 'Court Series', 'paxig-shoes' ); ?> ↗</a></li>
                     <li><a href="<?php echo esc_url( add_query_arg(['paxig_releases' => '1'], $shop_url) ); ?>"><?php echo esc_html__( 'Limited edition', 'paxig-shoes' ); ?> ↗</a></li>
@@ -158,11 +200,26 @@
             <div class="vyre-search-col">
                 <h4><?php echo esc_html__( 'RECOMMENDED FOR YOU', 'paxig-shoes' ); ?></h4>
                 <div class="vyre-search-recs">
-                    <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-rec-card"><div class="vyre-rec-img"></div><span>PAXG 001</span></a>
-                    <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-rec-card"><div class="vyre-rec-img"></div><span>PAXG 002</span></a>
-                    <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-rec-card"><div class="vyre-rec-img"></div><span>PAXG 003</span></a>
+                    <?php
+                    $recommended_products = function_exists( 'wc_get_products' )
+                        ? wc_get_products( array( 'status' => 'publish', 'visibility' => 'visible', 'limit' => 3, 'orderby' => 'popularity', 'order' => 'DESC' ) )
+                        : array();
+                    foreach ( $recommended_products as $recommended_product ) :
+                        if ( ! $recommended_product instanceof WC_Product || ! $recommended_product->is_visible() ) {
+                            continue;
+                        }
+                    ?>
+                        <a href="<?php echo esc_url( $recommended_product->get_permalink() ); ?>" class="vyre-rec-card">
+                            <div class="vyre-rec-img"><?php echo $recommended_product->get_image( 'woocommerce_thumbnail', array( 'loading' => 'lazy' ) ); ?></div>
+                            <span><?php echo esc_html( $recommended_product->get_name() ); ?></span>
+                            <small><?php echo wp_kses_post( $recommended_product->get_price_html() ); ?></small>
+                        </a>
+                    <?php endforeach; ?>
+                    <?php if ( empty( $recommended_products ) ) : ?>
+                        <p class="vyre-search-rec-empty"><?php echo esc_html__( 'Recommended products will appear here when the catalog is ready.', 'paxig-shoes' ); ?></p>
+                    <?php endif; ?>
                 </div>
-                <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-search-explore"><?php echo esc_html__( 'Shop the latest · Discover more ↗', 'paxig-shoes' ); ?></a>
+                <a href="<?php echo esc_url( $new_url ); ?>" class="vyre-search-explore"><?php echo esc_html__( 'Shop the latest · Discover more ↗', 'paxig-shoes' ); ?></a>
             </div>
         </div>
     </div>

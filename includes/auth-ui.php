@@ -28,26 +28,16 @@ function paxig_render_auth_split_start() {
     $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
     if ($mode === 'register') {
         $step_num = $is_vi ? "02 / GIA NHẬP PAXG'Shop" : "02 / JOIN PAXG'Shop";
-        $path_text = $is_vi ? "PAXG'Shop / ĐĂNG KÝ" : "PAXG'Shop / REGISTER";
     } elseif ($mode === 'lost-password') {
         $step_num = $is_vi ? "03 / QUÊN MẬT KHẨU" : "03 / FORGOT PASSWORD";
-        $path_text = $is_vi ? "PAXG'Shop / QUÊN MẬT KHẨU" : "PAXG'Shop / FORGOT PASSWORD";
     } else {
         $step_num = $is_vi ? "01 / TÀI KHOẢN" : "01 / ACCOUNT";
-        $path_text = $is_vi ? "PAXG'Shop / TÀI KHOẢN" : "PAXG'Shop / ACCOUNT";
     }
     $hero_img = esc_url(get_template_directory_uri() . '/assets/images/vyre-hero-shoe.png');
-    $store_url = esc_url(home_url('/'));
     ?>
     <div class="vyre-auth-split-wrapper">
         <div class="vyre-auth-split-left" style="background-image: url('<?php echo $hero_img; ?>');">
             <div class="vyre-auth-split-overlay"></div>
-            <div class="vyre-auth-left-brand">
-                <a href="<?php echo $store_url; ?>" class="vyre-auth-left-logo" aria-label="<?php echo esc_attr__( "PAXG'Shop", 'paxig-shoes' ); ?>">
-                    <img class="paxig-brand__mark" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/paxg-shop-symbol-header.png' ); ?>" width="176" height="166" alt="" aria-hidden="true">
-                    <span class="paxig-brand__wordmark"><span class="paxig-brand__wordmark-primary">PAXG</span><span class="paxig-brand__wordmark-shop">'Shop</span></span>
-                </a>
-            </div>
             <div class="vyre-auth-left-content">
                 <span class="vyre-auth-left-step"><?php echo esc_html($step_num); ?></span>
                 <h1 class="vyre-auth-left-headline">BUILT<br>DIFFERENT.</h1>
@@ -68,13 +58,6 @@ function paxig_render_auth_split_start() {
             </div>
         </div>
         <div class="vyre-auth-split-right">
-            <header class="vyre-auth-right-topbar">
-                <span class="vyre-auth-path"><?php echo esc_html($path_text); ?></span>
-                <div class="vyre-auth-topbar-actions">
-                    <?php if ( function_exists( 'paxig_render_language_switcher' ) ) paxig_render_language_switcher( 'paxig-lang-switch--auth' ); ?>
-                    <a href="<?php echo $store_url; ?>" class="vyre-auth-back-link"><?php echo $is_vi ? 'QUAY LẠI CỬA HÀNG ↗' : 'BACK TO STORE ↗'; ?></a>
-                </div>
-            </header>
             <div class="vyre-auth-form-inner">
     <?php
 }

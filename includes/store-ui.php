@@ -4,6 +4,38 @@ defined('ABSPATH') || exit;
 function paxig_store_frontend() {
     return PHP_SAPI !== 'cli' && !is_admin() && !(defined('REST_REQUEST') && REST_REQUEST);
 }
+function paxig_storefront_page_url($destination) {
+    $page_id = 0;
+    $fallback_slug = '';
+
+    if ($destination === 'privacy') {
+        $page_id = absint(get_option('wp_page_for_privacy_policy'));
+        $fallback_slug = 'chinh-sach-bao-mat';
+    } elseif ($destination === 'terms') {
+        $page_id = function_exists('wc_get_page_id') ? (int) wc_get_page_id('terms') : 0;
+        if ($page_id < 1) $page_id = 0;
+        $fallback_slug = 'dieu-khoan';
+    } elseif (in_array($destination, ['guide', 'about'], true)) {
+        $fallback_slug = $destination === 'guide' ? 'huong-dan' : 've-paxig';
+    } else {
+        return '';
+    }
+
+    if ($page_id && get_post_status($page_id) === 'publish') {
+        $url = get_permalink($page_id);
+        return $url ? $url : '';
+    }
+
+    if ($fallback_slug) {
+        $page = get_page_by_path($fallback_slug, OBJECT, 'page');
+        if ($page instanceof WP_Post && $page->post_status === 'publish') {
+            $url = get_permalink($page);
+            return $url ? $url : '';
+        }
+    }
+
+    return '';
+}
 add_filter('locale',fn($locale)=>paxig_store_frontend()?(function_exists('paxig_filter_locale')?paxig_filter_locale($locale):'en_US'):$locale,999);
 add_filter('determine_locale',fn($locale)=>paxig_store_frontend()?(function_exists('paxig_filter_locale')?paxig_filter_locale($locale):'en_US'):$locale,999);
 add_filter('language_attributes',fn($attributes)=>paxig_store_frontend()?(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi'?'lang="vi"':'lang="en-US"'):$attributes,999);
@@ -113,9 +145,10 @@ add_filter('get_terms',function($terms){return is_array($terms)?array_map('paxig
 add_filter('woocommerce_attribute_label',function($label,$name){
     if(!paxig_store_frontend())return $label;
     if(function_exists('paxig_get_current_language')&&paxig_get_current_language()==='vi') {
+        if($name==='pa_kich-thuoc'&&(str_contains($label,'<a')||str_contains($label,'<button')))return $label;
         return ['pa_kich-thuoc'=>'Kích cỡ','pa_color'=>'Màu sắc','pa_gender'=>'Giới tính','pa_sport'=>'Môn thể thao'][$name]??$label;
     }
-    if($name==='pa_kich-thuoc'&&str_contains($label,'<a'))return $label;
+    if($name==='pa_kich-thuoc'&&(str_contains($label,'<a')||str_contains($label,'<button')))return $label;
     return ['pa_kich-thuoc'=>'Size','pa_color'=>'Color','pa_gender'=>'Gender','pa_sport'=>'Sport'][$name]??paxig_store_text($label);
 },999,2);
 add_filter('woocommerce_catalog_orderby',function($labels){
@@ -178,16 +211,16 @@ add_filter('the_content',function($content){
     if(is_product()){
         global $product;if($product instanceof WC_Product&&str_contains($product->get_sku(),'PAXIG-DEMO-')){
             if ($is_vi) {
-                return '<p>Khám phá '.esc_html($product->get_name())." từ bộ sưu tập PAXG'Shop demo.</p><p>Chọn kích cỡ EU của bạn bằng cách tham khảo bảng kích thước. Đây là hình ảnh minh họa cho giày mẫu; không xác nhận kiểu dáng, thông số hay giá thực tế.</p>".paxig_store_demo_image_credit_html($product->get_id()).'<p>Yêu cầu hủy và trả hàng tuân theo trạng thái đơn hàng hiện tại và quyền hạn tài khoản.</p>';
+                return '<p>Khám phá '.esc_html($product->get_name())." từ bộ sưu tập PAXG'Shop demo.</p><p>Chọn kích cỡ EU bằng cách tham khảo hướng dẫn kích cỡ. Đây là hình ảnh minh họa cho giày mẫu; không xác nhận kiểu dáng, thông số hay giá thực tế.</p>".paxig_store_demo_image_credit_html($product->get_id());
             }
-            return '<p>Explore '.esc_html($product->get_name())." from the PAXG'Shop demo collection.</p><p>Select your EU size using the size guide. This is an illustrative shoe photo; it does not confirm the exact model, specifications, or price.</p>".paxig_store_demo_image_credit_html($product->get_id()).'<p>Cancellation and return requests follow the current order status and account permissions.</p>';
+            return '<p>Explore '.esc_html($product->get_name())." from the PAXG'Shop demo collection.</p><p>Select your EU size using the size guide. This is an illustrative shoe photo; it does not confirm the exact model, specifications, or price.</p>".paxig_store_demo_image_credit_html($product->get_id());
         }
     }
     if(is_page('huong-dan')){
         if ($is_vi) {
-            return '<h2>Tìm kích cỡ EU của bạn</h2><p>Đo chiều dài bàn chân và đối chiếu với kích cỡ EU bạn thường mang. Bảng size demo không thay thế bảng size chính thức của nhà sản xuất.</p><h2>Vận chuyển</h2><p>'.esc_html(paxig_shipping_summary()).'</p><h2>Hủy đơn &amp; Đổi trả</h2><p>Vào Tài khoản → Đơn hàng → Xem chi tiết để gửi yêu cầu hợp lệ. Đội ngũ chúng tôi sẽ xem xét yêu cầu theo chính sách hiện hành.</p><p>Đây là cửa hàng mô phỏng. Vui lòng không thực hiện thanh toán thật.</p>';
+            return '<h2>Tìm kích cỡ EU của bạn</h2><p>Đo chiều dài bàn chân và đối chiếu với kích cỡ EU bạn thường mang. Bảng size demo không thay thế bảng size chính thức của nhà sản xuất.</p><h2>Vận chuyển</h2><p>'.esc_html(paxig_shipping_summary()).'</p><h2>Trạng thái đơn hàng</h2><p>Với đơn gắn với tài khoản, trạng thái WooCommerce hiện trong Tài khoản → Đơn hàng.</p><p>Đây là cửa hàng mô phỏng. Vui lòng không thực hiện thanh toán thật.</p>';
         }
-        return '<h2>Find Your EU Size</h2><p>Measure your foot length and compare it with your usual EU size. Demo size values do not replace the manufacturer’s size chart.</p><h2>Shipping</h2><p>'.esc_html(paxig_shipping_summary()).'</p><h2>Cancellation &amp; Returns</h2><p>Open My Account → Orders → View Details to submit an eligible request. Our team reviews requests under the existing order policy.</p><p>This is a demonstration store. Do not make a real payment.</p>';
+        return '<h2>Find Your EU Size</h2><p>Measure your foot length and compare it with your usual EU size. Demo size values do not replace the manufacturer’s size chart.</p><h2>Shipping</h2><p>'.esc_html(paxig_shipping_summary()).'</p><h2>Order Status</h2><p>For orders linked to an account, the WooCommerce status appears under My Account → Orders.</p><p>This is a demonstration store. Do not make a real payment.</p>';
     }
     if(is_page('ve-paxig')){
         if ($is_vi) {

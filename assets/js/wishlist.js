@@ -90,8 +90,10 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
             clearPersistenceError();
+            return true;
         } catch (error) {
             setPersistenceError(config.i18n?.save_error || 'Could not save favorites on this device.');
+            return false;
         }
     }
 
@@ -110,6 +112,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const isFavorite = Number.isSafeInteger(id) && wishlist.includes(id);
             button.classList.toggle('is-favorited', isFavorite);
             button.setAttribute('aria-pressed', String(isFavorite));
+            button.setAttribute('aria-label', isFavorite
+                ? (config.i18n?.remove_favorite || config.i18n?.favorited || 'Remove from favorites')
+                : (config.i18n?.add_favorite || config.i18n?.favorite || 'Add to favorites'));
             const label = button.querySelector('.paxig-wishlist-btn-text');
             if (label) label.textContent = isFavorite ? (config.i18n?.favorited || 'Favorited') : (config.i18n?.favorite || 'Favorite');
         });
@@ -153,10 +158,37 @@ document.addEventListener('DOMContentLoaded', function () {
                 clearPersistenceError();
                 if (drawer && drawer.open) renderWishlistDrawer();
             }
+            return true;
         });
-        syncQueue = syncQueue.then(send, send).catch(() => {
+        const request = syncQueue.then(send, send);
+        syncQueue = request.then(() => true, () => {
             if (revision === syncRevision) setPersistenceError(config.i18n?.sync_error || 'Could not sync favorites to your account. Please try again.');
+            return false;
         });
+        return syncQueue.then((synced) => synced && revision === syncRevision);
+    }
+
+    function ensureWishlistItem(productId, control) {
+        const id = Number(productId);
+        if (!Number.isSafeInteger(id) || id < 1) return Promise.resolve(false);
+        if (control) activeControl = control;
+
+        if (!wishlist.includes(id)) {
+            if (wishlist.length >= MAX_IDS) {
+                setPersistenceError(config.i18n?.max_limit || 'You can save up to 100 favorites.');
+                return Promise.resolve(false);
+            }
+            wishlist.push(id);
+            updateBadgeCount();
+            updateButtonStates();
+            if (drawer && drawer.open) renderWishlistDrawer();
+        }
+
+        if (isLoggedIn) {
+            return syncAccountSnapshot().then((synced) => synced && wishlist.includes(id));
+        }
+
+        return Promise.resolve(saveGuestIds(wishlist) && wishlist.includes(id));
     }
 
     function toggleWishlist(productId, control) {
@@ -181,6 +213,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.addEventListener('click', function (event) {
+        const moveToWishlist = event.target.closest('[data-paxig-wishlist-move]');
+        if (moveToWishlist) {
+            event.preventDefault();
+            if (moveToWishlist.disabled) return;
+            const removeUrl = moveToWishlist.dataset.removeUrl;
+            moveToWishlist.disabled = true;
+            moveToWishlist.setAttribute('aria-busy', 'true');
+            ensureWishlistItem(moveToWishlist.dataset.productId, moveToWishlist).then((saved) => {
+                if (saved && removeUrl) {
+                    window.location.assign(removeUrl);
+                    return;
+                }
+                moveToWishlist.disabled = false;
+                moveToWishlist.removeAttribute('aria-busy');
+            }).catch(() => {
+                moveToWishlist.disabled = false;
+                moveToWishlist.removeAttribute('aria-busy');
+            });
+            return;
+        }
+
         const button = event.target.closest('.paxig-wishlist-btn');
         if (button) {
             event.preventDefault();

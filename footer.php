@@ -6,6 +6,11 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+$instagram_url = apply_filters( 'paxig_instagram_url', get_theme_mod( 'paxig_instagram_url', '' ) );
+$instagram_url = is_string( $instagram_url ) ? esc_url( $instagram_url, array( 'http', 'https' ) ) : '';
+$instagram_host = $instagram_url ? wp_parse_url( $instagram_url, PHP_URL_HOST ) : '';
+$guide_url = function_exists( 'paxig_storefront_page_url' ) ? paxig_storefront_page_url( 'guide' ) : '';
+$privacy_url = function_exists( 'paxig_storefront_page_url' ) ? paxig_storefront_page_url( 'privacy' ) : '';
 ?>
 
 <footer class="paxig-footer vyre-footer">
@@ -23,9 +28,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="vyre-footer-meta">
 			<span class="vyre-footer-copy">© <?php echo esc_html( wp_date( 'Y' ) ); ?> PAXG'Shop. <?php echo esc_html__( 'ALL RIGHTS RESERVED.', 'paxig-shoes' ); ?></span>
-			<a href="#" class="vyre-footer-link">INSTAGRAM</a>
-			<a href="<?php echo esc_url( home_url('/huong-dan/') ); ?>" class="vyre-footer-link"><?php echo esc_html__( 'SUPPORT', 'paxig-shoes' ); ?></a>
-			<a href="<?php echo esc_url( home_url('/chinh-sach-bao-mat/') ); ?>" class="vyre-footer-link"><?php echo esc_html__( 'PRIVACY', 'paxig-shoes' ); ?></a>
+			<?php if ( $instagram_url && $instagram_host ) : ?>
+				<a href="<?php echo esc_url( $instagram_url ); ?>" class="vyre-footer-link" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+			<?php endif; ?>
+			<?php if ( $guide_url ) : ?>
+				<a href="<?php echo esc_url( $guide_url ); ?>" class="vyre-footer-link"><?php echo esc_html__( 'SUPPORT', 'paxig-shoes' ); ?></a>
+			<?php endif; ?>
+			<?php if ( $privacy_url ) : ?>
+				<a href="<?php echo esc_url( $privacy_url ); ?>" class="vyre-footer-link"><?php echo esc_html__( 'PRIVACY', 'paxig-shoes' ); ?></a>
+			<?php endif; ?>
 		</div>
 	</div>
 </footer>

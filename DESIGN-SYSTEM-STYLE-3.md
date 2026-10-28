@@ -31,7 +31,7 @@ Keep the accent limited to actionable or selected elements. Keep product photos 
 
 | Token | Role |
 | --- | --- |
-| `--paxig-font-display` | Self-hosted PAXIG Display (Oswald 700), then Arial Narrow/Arial fallbacks |
+| `--paxig-font-display` | Self-hosted variable PAXIG Display (Oswald 200–700), then Arial Narrow/Arial fallbacks |
 | `--paxig-font-body` | Arial, Helvetica, sans-serif for descriptions, help text, and form entry |
 | `--paxig-type-caption` | 12px metadata and compact counts |
 | `--paxig-type-small` | 14px supporting UI text |
@@ -44,7 +44,7 @@ Keep the accent limited to actionable or selected elements. Keep product photos 
 | `--paxig-type-product-title` | Fluid product-detail title |
 | `--paxig-type-poster` | Responsive campaign title |
 
-Use the display face for headlines, navigation, product names, prices, short category labels, and uppercase buttons. Keep paragraphs and data-entry fields in the body face. Do not mix both faces within one short label. Keep display weight at 700, tracking between `0` and `.08em`, and avoid negative tracking on Vietnamese headings. Keep Vietnamese diacritics inside the line box: line-height at least `1.02`, no fixed-height title containers, and no crop through the accent marks. The Latin and Vietnamese WOFF2 subsets are self-hosted and preloaded by `includes/style-3.php`.
+Use the display face for headlines, navigation, product names, prices, short category labels, and uppercase buttons. Keep paragraphs and data-entry fields in the body face. Do not mix both faces within one short label. Keep storefront text around weight 400, tracking between `0` and `.08em`, and avoid negative tracking on Vietnamese headings. Use size, spacing, and case for hierarchy. Keep Vietnamese diacritics inside the line box: line-height at least `1.02`, no fixed-height title containers, and no crop through the accent marks. The Latin and Vietnamese variable WOFF2 subsets are self-hosted and preloaded by `includes/style-3.php`.
 
 ### Spacing and geometry
 

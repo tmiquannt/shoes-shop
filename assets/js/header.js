@@ -99,6 +99,120 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Active navigation state & section jump handling
+    const navList = navigation.querySelector('.paxig-nav');
+    if (navList) {
+        const navLinks = navList.querySelectorAll('li > a');
+
+        function setActiveNav(targetLink) {
+            navList.querySelectorAll('li').forEach(function (li) {
+                li.classList.remove('current-menu-item', 'is-active');
+                const a = li.querySelector('a');
+                if (a) {
+                    a.classList.remove('is-active');
+                    a.removeAttribute('aria-current');
+                }
+            });
+
+            if (targetLink) {
+                const li = targetLink.closest('li');
+                if (li) {
+                    li.classList.add('current-menu-item', 'is-active');
+                }
+                targetLink.classList.add('is-active');
+                targetLink.setAttribute('aria-current', 'page');
+            }
+        }
+
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                const href = link.getAttribute('href') || '';
+                const hashIndex = href.indexOf('#');
+                const hasHash = hashIndex !== -1;
+                const hash = hasHash ? href.substring(hashIndex) : '';
+
+                // Check if this is an anchor on the current page
+                const isCurrentPageAnchor = hasHash && (
+                    href.startsWith('#') ||
+                    href.startsWith(window.location.origin + window.location.pathname + '#') ||
+                    (window.location.pathname === '/' && (href.startsWith('/#') || href.startsWith(window.location.origin + '/#')))
+                );
+
+                if (isCurrentPageAnchor && hash) {
+                    const targetElement = document.querySelector(hash) || document.querySelector(hash.replace('-title', ''));
+                    if (targetElement) {
+                        e.preventDefault();
+                        setActiveNav(link);
+                        if (window.history && window.history.pushState) {
+                            window.history.pushState(null, '', hash);
+                        }
+                        const headerHeight = header.offsetHeight || 64;
+                        const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 16;
+                        window.scrollTo({
+                            top: Math.max(0, elementTop),
+                            behavior: 'smooth'
+                        });
+                        closeMenu();
+                        return;
+                    }
+                }
+
+                setActiveNav(link);
+                closeMenu();
+            });
+        });
+
+        function updateActiveFromHash() {
+            const hash = window.location.hash;
+            if (!hash) return;
+
+            let matchedLink = null;
+            navLinks.forEach(function (link) {
+                const href = link.getAttribute('href') || '';
+                if (href.endsWith(hash) || (hash === '#brand-story' && href.includes('#brand-story-title')) || (hash === '#brand-story-title' && href.includes('#brand-story'))) {
+                    matchedLink = link;
+                }
+            });
+
+            if (matchedLink) {
+                setActiveNav(matchedLink);
+            }
+        }
+
+        if (window.location.hash) {
+            setTimeout(updateActiveFromHash, 100);
+        }
+        window.addEventListener('hashchange', updateActiveFromHash);
+
+        // Scrollspy for in-page brand story section on homepage
+        const brandStorySection = document.querySelector('#brand-story') || document.querySelector('#brand-story-title');
+        if (brandStorySection) {
+            const storyLi = navList.querySelector('li[data-nav-key="story"]');
+            const storyLink = storyLi ? storyLi.querySelector('a') : null;
+            if (storyLink) {
+                let isStoryActiveByScroll = false;
+                window.addEventListener('scroll', function () {
+                    const rect = brandStorySection.getBoundingClientRect();
+                    const headerHeight = header.offsetHeight || 64;
+                    if (rect.top <= headerHeight + 120 && rect.bottom >= headerHeight + 60) {
+                        if (!isStoryActiveByScroll) {
+                            setActiveNav(storyLink);
+                            isStoryActiveByScroll = true;
+                        }
+                    } else if (window.pageYOffset < 250) {
+                        if (isStoryActiveByScroll) {
+                            setActiveNav(null);
+                            isStoryActiveByScroll = false;
+                        }
+                    } else if (isStoryActiveByScroll && (rect.bottom < headerHeight || rect.top > window.innerHeight)) {
+                        setActiveNav(null);
+                        isStoryActiveByScroll = false;
+                    }
+                }, { passive: true });
+            }
+        }
+    }
+
     // Search modal toggle matching 06_Search_Overlay.png
     const searchTrigger = document.querySelector('.paxig-header-search-trigger');
     const searchModal = document.querySelector('#vyre-search-modal');

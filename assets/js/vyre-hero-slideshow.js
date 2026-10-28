@@ -9,7 +9,7 @@
         const toggle = hero.querySelector('[data-vyre-toggle]');
         const indicator = hero.querySelector('[data-vyre-indicator]');
         const caption = hero.querySelector('[data-vyre-caption]');
-        if (slides.length < 2 || buttons.length !== slides.length || !controls || !toggle) return;
+        if (slides.length < 2 || buttons.length !== slides.length || !controls) return;
 
         hero.dataset.vyreSlideshowInitialized = 'true';
         let current = Math.max(0, slides.findIndex(slide => slide.classList.contains('is-active')));
@@ -41,17 +41,19 @@
             }
             if (caption) caption.textContent = slides[current].dataset.slideName || '';
 
-            toggle.setAttribute(
-                'aria-label',
-                isPaused ? (toggle.dataset.labelPlay || 'Play slideshow') : (toggle.dataset.labelPause || 'Pause slideshow')
-            );
-            const icon = toggle.querySelector('[data-vyre-toggle-icon]');
-            const label = toggle.querySelector('[data-vyre-toggle-label]');
-            if (icon) icon.textContent = isPaused ? '▶' : 'Ⅱ';
-            if (label) {
-                const pausedText = toggle.dataset.textPaused || 'SLIDESHOW PAUSED';
-                const playingText = toggle.dataset.textPlaying || 'SLIDESHOW PLAYING';
-                label.textContent = isPaused ? pausedText : playingText;
+            if (toggle) {
+                toggle.setAttribute(
+                    'aria-label',
+                    isPaused ? (toggle.dataset.labelPlay || 'Play slideshow') : (toggle.dataset.labelPause || 'Pause slideshow')
+                );
+                const icon = toggle.querySelector('[data-vyre-toggle-icon]');
+                const label = toggle.querySelector('[data-vyre-toggle-label]');
+                if (icon) icon.textContent = isPaused ? '▶' : 'Ⅱ';
+                if (label) {
+                    const pausedText = toggle.dataset.textPaused || 'SLIDESHOW PAUSED';
+                    const playingText = toggle.dataset.textPlaying || 'SLIDESHOW PLAYING';
+                    label.textContent = isPaused ? pausedText : playingText;
+                }
             }
         };
 
@@ -78,11 +80,13 @@
             timer = window.setInterval(showNextReady, 3000);
         };
 
-        toggle.addEventListener('click', () => {
-            isPaused = !isPaused;
-            update();
-            startAutoplay();
-        });
+        if (toggle) {
+            toggle.addEventListener('click', () => {
+                isPaused = !isPaused;
+                update();
+                startAutoplay();
+            });
+        }
 
         buttons.forEach((button, index) => {
             button.addEventListener('click', () => {
@@ -101,7 +105,7 @@
         });
 
         controls.hidden = false;
-        toggle.hidden = false;
+        if (toggle) toggle.hidden = false;
         update();
         startAutoplay();
 
