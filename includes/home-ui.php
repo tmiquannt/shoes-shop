@@ -10,6 +10,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('paxig-reference', get_template_directory_uri().'/assets/css/reference-ui.css', ['paxig-shoes-style'], filemtime(get_template_directory().'/assets/css/reference-ui.css'));
     wp_enqueue_style('paxig-home', get_template_directory_uri().'/assets/css/home-ui.css', ['paxig-reference'], filemtime(get_template_directory().'/assets/css/home-ui.css'));
     wp_enqueue_script('paxig-reference', get_template_directory_uri().'/assets/js/reference-ui.js', [], filemtime(get_template_directory().'/assets/js/reference-ui.js'), true);
+    wp_enqueue_script('paxig-vyre-hero-slideshow', get_template_directory_uri().'/assets/js/vyre-hero-slideshow.js', [], filemtime(get_template_directory().'/assets/js/vyre-hero-slideshow.js'), true);
     wp_enqueue_script('wc-cart-fragments');
 }, 31);
 // Shared shell loads after the existing store styles; the homepage rules are scoped.

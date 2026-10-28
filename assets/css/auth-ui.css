@@ -1,46 +1,497 @@
-/* Guest authentication presentation only; existing store tokens and native Woo JS. */
-.paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main>.paxig-container{padding-top:56px;padding-bottom:80px}
-.paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main article>h1{max-width:520px;margin:0 auto 28px;font-size:36px;text-align:center;letter-spacing:-1px}
-.paxig-store:is(.paxig-auth,.paxig-auth-reset) .woocommerce{max-width:520px;margin:0 auto}
-.paxig-store .paxig-auth-card{background:#fff;border:1px solid #e5e5e5;border-radius:4px;padding:36px;box-shadow:none}
-.paxig-store .paxig-auth-card-heading{margin-bottom:28px}
-.paxig-store .paxig-auth-card-heading h2{font-size:26px;margin:0 0 12px;font-weight:600;letter-spacing:-.5px}
-.paxig-store .paxig-auth-card-heading p{font-size:14px;line-height:1.6;color:#757575;margin:0}
-.paxig-store.paxig-auth .woocommerce form:is(.login,.register){border:0;padding:0;margin:0;box-shadow:none;border-radius:0}
-.paxig-store.paxig-auth .woocommerce form .form-row{padding:0;margin:0 0 24px;float:none;width:100%}
-.paxig-store.paxig-auth .woocommerce form label{font-size:14px;font-weight:500;line-height:1.5;margin-bottom:8px}
-.paxig-store.paxig-auth .woocommerce form input.input-text{height:52px;min-height:52px;border:1px solid #e5e5e5;border-radius:4px;font-size:15px;padding:12px 14px;background:#fff;color:#111;width:100%;font-family:Arial,Helvetica,sans-serif}
-.paxig-store.paxig-auth .woocommerce form .password-input{display:block;position:relative;width:100%}
-.paxig-store.paxig-auth .woocommerce form .password-input input{padding-right:56px}
-.paxig-store.paxig-auth .woocommerce form .show-password-input{position:absolute;right:4px;top:4px;width:44px;height:44px;min-height:44px;margin:0;padding:0;background:transparent;border:0;border-radius:4px;color:#111;display:flex;align-items:center;justify-content:center}
-.paxig-store.paxig-auth .woocommerce form .show-password-input::after{margin:0;font-size:18px;line-height:1}
-.paxig-store.paxig-auth .woocommerce form .woocommerce-form-login__rememberme{display:flex;align-items:center;gap:8px;min-height:44px;margin:0 0 12px;font-size:14px;font-weight:400;float:none}
-.paxig-store.paxig-auth .woocommerce form input[type=checkbox]{width:16px;height:16px;accent-color:#111;margin:0;flex:none}
-.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit,.woocommerce-form-register__submit){display:block;float:none;width:100%;min-height:52px;height:auto;margin:0;padding:14px 20px;border:1px solid #111;border-radius:4px;background:#111;color:#fff;font-size:14px;font-weight:600;line-height:1.5}
-.paxig-store.paxig-auth .woocommerce-LostPassword{margin:0;font-size:14px}
-.paxig-store.paxig-auth .woocommerce-LostPassword a{display:inline-flex;align-items:center;min-height:44px;color:#111;text-underline-offset:4px}
-.paxig-store .paxig-auth-switch{border-top:1px solid #e5e5e5;margin:24px 0 0;padding-top:20px;font-size:14px;line-height:1.6;color:#757575;text-align:center}
-.paxig-store .paxig-auth-switch a{color:#111;font-weight:600;text-underline-offset:4px;display:inline-flex;align-items:center;min-height:44px}
-.paxig-store .paxig-resend-verification{border-top:1px solid #e5e5e5;margin:24px 0 0;padding:20px 0 0}
-.paxig-store .paxig-resend-verification h3{font-size:16px;margin:0 0 8px;font-weight:600}
-.paxig-store .paxig-resend-verification>p{font-size:14px;line-height:1.6;color:#757575;margin:0 0 20px}
-.paxig-store.paxig-auth .woocommerce form.paxig-resend-verification__form{border:0;padding:0;margin:0;box-shadow:none;border-radius:0}
-.paxig-store.paxig-auth .woocommerce form.paxig-resend-verification__form .form-row{margin-bottom:16px}
-.paxig-store.paxig-auth .woocommerce-privacy-policy-text{background:#f5f5f5;color:#555;padding:12px 16px;border-radius:4px;margin:0 0 24px;font-size:13px;line-height:1.6}
-.paxig-store.paxig-auth .woocommerce-privacy-policy-text p{margin:0}
-.paxig-store:is(.paxig-auth,.paxig-auth-reset) :is(.woocommerce-error,.woocommerce-message,.woocommerce-info){font-size:14px;line-height:1.6;overflow-wrap:anywhere}
-.paxig-store:is(.paxig-auth,.paxig-auth-reset) .woocommerce-error{border-top-color:#d93025}
-.paxig-store:is(.paxig-auth,.paxig-auth-reset) .woocommerce-error::before{color:#d93025}
-.paxig-store.paxig-auth-reset .woocommerce-ResetPassword{padding:32px;border:1px solid #e5e5e5;border-radius:4px;margin:0}
-.paxig-store.paxig-auth-reset .woocommerce-ResetPassword .form-row{float:none;width:100%}
-.paxig-store.paxig-auth-reset .woocommerce-ResetPassword button{width:100%;min-height:52px;background:#111;color:#fff;border-radius:4px}
-@media(max-width:768px){.paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main>.paxig-container{padding-top:40px;padding-bottom:56px}}
-@media(max-width:600px){
- .paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main>.paxig-container{padding-top:32px;padding-bottom:48px}
- .paxig-store:is(.paxig-auth,.paxig-auth-reset) .paxig-main article>h1{font-size:30px;margin-bottom:24px}
- .paxig-store .paxig-auth-card{padding:24px 20px}
- .paxig-store .paxig-auth-card-heading h2{font-size:24px}
- .paxig-store.paxig-auth-reset .woocommerce-ResetPassword{padding:24px 20px}
+/* ==========================================================================
+   VYRE AUTHENTICATION — 19_Sign_In.png & 20_Create_Account.png
+   Split-screen 50/50 hero visual + precision minimal auth form
+   ========================================================================== */
+
+/* Full-bleed split layout overrides on auth page */
+body.paxig-auth {
+    background: #faf8f5 !important;
 }
 
-.paxig-store.paxig-auth .woocommerce form .show-password-input{transform:none}
+body.paxig-auth :is(.paxig-header, .paxig-site-header),
+body.paxig-auth :is(.vyre-footer, .paxig-footer),
+body.paxig-auth .paxig-main article > h1 {
+    display: none !important;
+}
+
+body.paxig-auth :is(.paxig-auth-card, .woocommerce form:is(.login, .register)) {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+body.paxig-auth .paxig-main {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+body.paxig-auth .paxig-main > .paxig-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body.paxig-auth .paxig-main article {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body.paxig-auth .woocommerce {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 50/50 Split Container */
+.vyre-auth-split-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background: #faf8f5;
+}
+
+/* Left Column: Visual Poster */
+.vyre-auth-split-left {
+    position: sticky;
+    top: 0;
+    width: 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 48px;
+    box-sizing: border-box;
+    color: #ffffff;
+}
+
+.vyre-auth-split-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.85) 100%);
+    z-index: 1;
+}
+
+.vyre-auth-left-brand {
+    position: relative;
+    z-index: 2;
+}
+
+.vyre-auth-left-logo {
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: #ffffff !important;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.vyre-auth-left-content {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 12px;
+}
+
+.vyre-auth-left-step {
+    display: block;
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #ffffff;
+    opacity: 0.8;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.vyre-auth-left-headline {
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+}
+
+.vyre-auth-left-desc {
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    opacity: 0.85;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+}
+
+.vyre-auth-left-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.vyre-auth-left-dots .vyre-dot {
+    width: 36px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.35);
+    display: inline-block;
+}
+
+.vyre-auth-left-dots .vyre-dot.is-active {
+    background: #ffffff;
+}
+
+/* Right Column: Form Container */
+.vyre-auth-split-right {
+    width: 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 72px;
+    box-sizing: border-box;
+    background: #faf8f5;
+}
+
+.vyre-auth-right-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #76746e;
+    margin-bottom: 40px;
+}
+
+.vyre-auth-back-link {
+    color: #151514 !important;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+}
+
+.vyre-auth-back-link:hover {
+    opacity: 0.7;
+}
+
+.vyre-auth-form-inner {
+    max-width: 440px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Minimal Card Overrides */
+.paxig-store .paxig-auth-card.vyre-auth-card {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    width: 100%;
+}
+
+.vyre-auth-card-heading {
+    margin-bottom: 32px !important;
+}
+
+.vyre-auth-eyebrow {
+    display: block;
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #76746e;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.vyre-auth-title {
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 42px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.04em !important;
+    color: #151514 !important;
+    text-transform: uppercase;
+    margin: 0 0 14px !important;
+}
+
+.vyre-auth-subtitle {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: #76746e !important;
+    margin: 0 !important;
+}
+
+/* Inputs & Form Fields */
+.paxig-store.paxig-auth .woocommerce form label {
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #151514;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.paxig-store.paxig-auth .woocommerce form input.input-text {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    background: #faf8f5 !important;
+    border: 1px solid #d6d0c7 !important;
+    border-radius: 0 !important;
+    padding: 0 16px !important;
+    font-size: 14px !important;
+    color: #151514 !important;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.paxig-store.paxig-auth .woocommerce form input.input-text:focus {
+    border-color: #151514 !important;
+}
+
+.paxig-store.paxig-auth .woocommerce form .form-row {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    float: none !important;
+    clear: both !important;
+    margin-bottom: 20px !important;
+}
+
+/* Remember me & Forgot Password Row */
+.vyre-auth-options-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    margin: -4px 0 24px 0 !important;
+}
+
+.vyre-auth-options-row .woocommerce-form-login__rememberme {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    color: #76746e !important;
+    margin: 0 !important;
+    cursor: pointer;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.vyre-auth-options-row .woocommerce-LostPassword {
+    margin: 0 !important;
+    text-align: right !important;
+}
+
+.vyre-auth-options-row .woocommerce-LostPassword a {
+    font-size: 12px !important;
+    color: #151514 !important;
+    text-decoration: underline !important;
+    min-height: auto !important;
+}
+
+/* Solid Black Submit Buttons */
+.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit, .woocommerce-form-register__submit) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    background: #151514 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif) !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    margin-top: 24px !important;
+}
+
+.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit, .woocommerce-form-register__submit) span {
+    color: #ffffff !important;
+}
+
+.paxig-store.paxig-auth .woocommerce form button:is(.woocommerce-form-login__submit, .woocommerce-form-register__submit):hover {
+    background: #2e2e2d !important;
+}
+
+/* Social Buttons */
+.vyre-social-auth {
+    margin-top: 32px;
+}
+
+.vyre-social-divider {
+    position: relative;
+    text-align: center;
+    margin: 24px 0 20px;
+}
+
+.vyre-social-divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e2ded7;
+    z-index: 0;
+}
+
+.vyre-social-divider span {
+    position: relative;
+    z-index: 1;
+    background: #faf8f5;
+    padding: 0 16px;
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #8c8982;
+    text-transform: uppercase;
+}
+
+.vyre-social-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.vyre-btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 48px;
+    background: #ffffff;
+    border: 1px solid #d6d0c7;
+    border-radius: 0;
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #151514;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.vyre-btn-social:hover {
+    border-color: #151514;
+}
+
+.vyre-social-icon {
+    font-size: 14px;
+    font-weight: 900;
+}
+
+/* Switch links */
+.vyre-auth-switch {
+    border-top: none !important;
+    margin: 32px 0 0 !important;
+    padding: 0 !important;
+    text-align: center;
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #76746e;
+    text-transform: uppercase;
+}
+
+.vyre-auth-switch a {
+    color: #151514 !important;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    margin-left: 6px;
+}
+
+/* Right footer */
+.vyre-auth-right-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #8c8982;
+    text-transform: uppercase;
+    padding-top: 32px;
+}
+
+.vyre-auth-footer-links {
+    display: flex;
+    gap: 16px;
+}
+
+.vyre-auth-footer-links a {
+    color: #8c8982 !important;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.vyre-auth-footer-links a:hover {
+    color: #151514 !important;
+}
+
+/* Verification section */
+.paxig-store .paxig-resend-verification {
+    border-top: 1px solid #e2ded7 !important;
+    margin-top: 28px !important;
+    padding-top: 20px !important;
+}
+
+/* Responsive down to mobile */
+@media (max-width: 991px) {
+    .vyre-auth-split-wrapper {
+        flex-direction: column;
+    }
+    .vyre-auth-split-left {
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 auto;
+        min-height: 380px;
+        height: auto;
+        position: relative;
+        padding: 36px 24px;
+    }
+    .vyre-auth-split-right {
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 auto;
+        min-height: auto;
+        padding: 40px 24px;
+    }
+}
+

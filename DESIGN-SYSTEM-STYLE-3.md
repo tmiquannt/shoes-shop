@@ -1,6 +1,6 @@
 # PAXIG Style 3 — Design system
 
-Style 3 carries the supplied night-court campaign image across the full storefront. The visual anchor is black court lighting, off-white product photography, condensed poster typography, and one acid-lime action color. The system applies to the homepage, category and search pages, product detail, cart, checkout, account, and content pages.
+Style 3 embodies the Warm Minimalist Luxe aesthetic captured across the 40 official PAXIG interface screens (`Downloads/FULL_UI_PAXG`). The visual signature is an ivory/warm stone canvas, refined neutral surface panels, crisp obsidian black typography, and bold solid black action buttons. The system applies consistently across homepage, collections (PLP), product detail (PDP), cart drawer, multi-step checkout, customer my-account, and support pages.
 
 The live token definitions are in `assets/css/style-3.css`, scoped to `body.paxig-style-3`. Use those tokens when adding or changing storefront components; the values below are the shared source of truth.
 
@@ -10,17 +10,20 @@ The live token definitions are in `assets/css/style-3.css`, scoped to `body.paxi
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--paxig-color-canvas` | `#080909` | Main page background and night-court field |
-| `--paxig-color-surface` | `#121414` | Product tiles, order panels, footer |
-| `--paxig-color-surface-raised` | `#1a1d1c` | Raised or active surface |
-| `--paxig-color-media` | `#e9e9e5` | Neutral product-image field |
-| `--paxig-color-text` | `#f6f6f2` | Primary text |
-| `--paxig-color-text-muted` | `#c2c5bd` | Secondary text; keep at 4.5:1 contrast for body copy |
-| `--paxig-color-border` | `#343735` | Quiet dividers and control outlines |
-| `--paxig-color-accent` | `#dfff00` | Primary action, selected states, focus ring |
-| `--paxig-color-accent-hover` | `#efff70` | Hover state for lime actions |
+| `--paxig-color-canvas` | `#f9f7f2` | Primary page canvas / warm stone background |
+| `--paxig-color-surface` | `#efebe4` | Container panels, order cards, checkout summary boxes |
+| `--paxig-color-surface-raised` | `#e5e0d8` | Interactive cards, hover states, active navigation |
+| `--paxig-color-media` | `#eae6df` | Product photography image tile background |
+| `--paxig-color-paper` | `#ffffff` | Modals, flyout drawers, dropdowns, input fields |
+| `--paxig-color-text` | `#151514` | Primary obsidian black typography, headings, labels |
+| `--paxig-color-text-muted` | `#767671` | Subtitles, breadcrumbs, placeholder text, quiet metadata |
+| `--paxig-color-border` | `#d6d0c7` | Clean structural dividers and subtle container outlines |
+| `--paxig-color-border-subtle` | `#e2ded7` | Header bottom hairline and delicate row rules |
+| `--paxig-color-accent` | `#151514` | Primary CTA buttons, pills, active badges |
+| `--paxig-color-accent-hover` | `#333330` | Button hover and active press states |
+| `--paxig-color-on-accent` | `#ffffff` | Text and icons on black buttons/badges |
 | `--paxig-color-danger` | `#d94a43` | Form errors and destructive feedback |
-| `--paxig-color-on-accent` | `#080909` | Text/icons on lime controls |
+| `--paxig-color-footer` | `#151515` | Deep black contrasting footer |
 
 Keep the accent limited to actionable or selected elements. Keep product photos on a neutral field so black and white shoes retain their shape.
 
@@ -61,12 +64,12 @@ Use square corners for this direction. Separate content with surface tone and wh
 
 ## Component rules
 
-- **Header:** black, compact, and shared across pages. Use condensed uppercase labels; switch to the menu drawer at tablet width. Keep the logo in its existing brand face.
+- **Header:** `#faf8f5` warm off-white header, compact and shared across pages with subtle `#e2ded7` bottom hairline. Use condensed uppercase labels in `#151514`; switch to the menu drawer at tablet width. Keep the logo in its existing brand face.
 - **Campaign hero:** use the provided campaign image and crop it with `object-fit: cover`. Keep the two-part poster title clear of the sticky header and let Vietnamese marks breathe above the glyphs. On phones, stack the title and let the call to action span the content width.
-- **Product tiles:** use square neutral image fields, `object-fit: contain`, a clear name, a category/meta label, and a high-contrast price. Keep the image field consistent across home and listing pages.
+- **Product tiles:** use square neutral image fields (`#eae6df`), `object-fit: contain`, a clear uppercase name, a muted category label, and a high-contrast obsidian black price. Keep the image field consistent across home and listing pages.
 - **Filters and sorting:** keep controls at least 44px high. On tablet and phone, hide the desktop filter column and expose it through the existing filter drawer.
-- **Product detail:** place gallery and purchase information side by side when they fit; stack them on phones. Keep size choices, quantity, and add-to-cart controls easy to tap.
-- **Cart, checkout, and account:** use the same dark surface, body copy face, condensed button labels, lime active/focus states, and single-column form flow on phones.
+- **Product detail:** place gallery and purchase information side by side when they fit; stack them on phones. Keep size choices, quantity, and solid black add-to-cart controls easy to tap.
+- **Cart, checkout, and account:** clean paper `#ffffff` drawers/cards with warm neutral `#efebe4` summary panels, crisp obsidian black buttons, pill status badges (`#d8e2dc` for In Transit, `#e5e2db` for Delivered), and single-column form flow on phones.
 - **Accessibility:** body copy and muted metadata must reach WCAG AA contrast; keyboard focus is always visible; honor `prefers-reduced-motion`; do not rely on color alone for errors or selected states.
 
 ## Responsive rules

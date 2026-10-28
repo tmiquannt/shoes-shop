@@ -1,5 +1,5 @@
 /* Sport Energy: shared shell and a scoped, product-led homepage. */
-body.paxig-store{--energy-lime:#dfff00;--energy-paper:#f7f7f2;--energy-ink:#111}
+body.paxig-store{--energy-lime:#151514;--energy-paper:#f9f7f2;--energy-ink:#151514}
 .paxig-store .paxig-header{position:sticky;top:0;z-index:100;background:#fff}
 .paxig-store .paxig-header .paxig-container{min-height:80px;gap:24px}
 .paxig-store .paxig-brand{display:inline-flex;align-items:center;gap:10px;font-size:22px;font-weight:800;letter-spacing:-.8px;text-decoration:none;color:#111}
@@ -26,8 +26,8 @@ body.paxig-store{--energy-lime:#dfff00;--energy-paper:#f7f7f2;--energy-ink:#111}
 .paxig-store.paxig-home .energy-hero h1{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-size:clamp(64px,7.7vw,112px);font-weight:400;font-synthesis:none;line-height:1.08;letter-spacing:.02em;word-spacing:.06em;color:#fff;margin:0 0 24px;max-width:720px}
 .energy-hero-copy>p:not(.energy-eyebrow){font-size:18px;max-width:440px;margin-bottom:28px}
 .energy-actions{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
-.energy-button{display:inline-flex;justify-content:center;align-items:center;gap:24px;min-height:50px;padding:14px 24px;border-radius:28px;background:var(--energy-lime);color:#111;font-size:14px;font-weight:700;text-decoration:none;transition:background .18s,transform .18s}
-.energy-button:hover{background:#eaff75;color:#111;transform:translateY(-2px)}
+.energy-button{display:inline-flex;justify-content:center;align-items:center;gap:24px;min-height:50px;padding:14px 24px;border-radius:28px;background:var(--energy-lime);color:#fff;font-size:14px;font-weight:700;text-decoration:none;transition:background .18s,transform .18s}
+.energy-button:hover{background:#333;color:#fff;transform:translateY(-2px)}
 .energy-text-link{color:#fff;font-size:14px;text-underline-offset:6px;min-height:44px;display:inline-flex;align-items:center;gap:16px}
 .energy-hero-caption{position:absolute;bottom:25px;right:48px;letter-spacing:2px;font-size:10px}
 .paxig-store.paxig-home .paxig-home-section{margin-top:80px;scroll-margin-top:100px}

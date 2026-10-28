@@ -640,3 +640,123 @@ msgstr "Thiếu mã định danh sản phẩm giỏ hàng."
 
 msgid "Missing required parameters."
 msgstr "Thiếu các tham số bắt buộc."
+
+msgid "BUILT DIFFERENT. MOVE FORWARD."
+msgstr "KHÁC BIỆT TỪ BẢN LĨNH. TIẾN BƯỚC KHÔNG NGỪNG."
+
+msgid "ALL RIGHTS RESERVED."
+msgstr "BẢN QUYỀN ĐÃ ĐƯỢC BẢO LƯU."
+
+msgid "SUPPORT"
+msgstr "HỖ TRỢ"
+
+msgid "PRIVACY"
+msgstr "CHÍNH SÁCH BẢO MẬT"
+
+msgid "TERMS"
+msgstr "ĐIỀU KHOẢN"
+
+msgid "HELP"
+msgstr "TRỢ GIÚP"
+
+msgid "HOME"
+msgstr "TRANG CHỦ"
+
+msgid "SHOP"
+msgstr "CỬA HÀNG"
+
+msgid "SAVED"
+msgstr "ĐÃ LƯU"
+
+msgid "BAG"
+msgstr "GIỎ HÀNG"
+
+msgid "ME"
+msgstr "TÀI KHOẢN"
+
+msgid "SHOPPING BAG"
+msgstr "GIỎ HÀNG"
+
+msgid "YOUR BAG."
+msgstr "GIỎ HÀNG CỦA BẠN."
+
+msgid "DRAG TO EXPLORE"
+msgstr "KÉO ĐỂ KHÁM PHÁ"
+
+msgid "VYRE / WORLDWIDE"
+msgstr "VYRE / TOÀN CẦU"
+
+msgid "BETTER MATERIALS. BOLDER IDEAS."
+msgstr "CHẤT LIỆU CAO CẤP HƠN. Ý TƯỞNG TÁO BẠO HƠN."
+
+msgid "THE NEXT MOVE STARTS HERE"
+msgstr "BƯỚC TIẾP THEO BẮT ĐẦU TẠI ĐÂY"
+
+msgid "CURATED / 01"
+msgstr "TUYỂN CHỌN / 01"
+
+msgid "NEW ARRIVALS."
+msgstr "SẢN PHẨM MỚI."
+
+msgid "WHO WE ARE"
+msgstr "CHÚNG TÔI LÀ AI"
+
+msgid "OUR STORY"
+msgstr "CÂU CHUYỆN CỦA CHÚNG TÔI"
+
+msgid "FOOT LENGTH (CM)"
+msgstr "CHIỀU DÀI BÀN CHÂN (CM)"
+
+msgid "YOUR PERFECT FIT"
+msgstr "KÍCH CỠ VỪA VẶN"
+
+msgid "SIZE GUIDE."
+msgstr "BẢNG KÍCH CỠ."
+
+msgid "Measure your foot from heel to toe. If you're between sizes, we recommend sizing up for all-day comfort."
+msgstr "Đo chiều dài bàn chân từ gót đến ngón chân. Nếu bạn ở giữa hai cỡ, chúng tôi khuyên bạn nên chọn cỡ lớn hơn để thoải mái cả ngày."
+
+msgid "GOT IT ✓"
+msgstr "ĐÃ HIỂU ✓"
+
+msgid "YOU MIGHT ALSO LIKE."
+msgstr "CÓ THỂ BẠN CŨNG THÍCH."
+
+msgid "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
+msgstr "ĐÃ CÓ TÀI KHOẢN? <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+
+msgid "NEW TO VYRE? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+msgstr "CHƯA CÓ TÀI KHOẢN? <a href=\"%s\">TẠO TÀI KHOẢN ↗</a>"
+
+msgid "Email verification is temporarily unavailable. Please try again later."
+msgstr "Tính năng xác thực email tạm thời không khả dụng. Vui lòng thử lại sau."
+
+msgid "Please verify your email before logging in. Use the resend form on this page if you need another link."
+msgstr "Vui lòng xác thực email trước khi đăng nhập. Sử dụng biểu mẫu gửi lại trên trang này nếu bạn cần liên kết mới."
+
+msgid "Sandstone / Everyday sneaker"
+msgstr "Sandstone / Giày sneaker hàng ngày"
+
+msgid "LIFESTYLE / NEW SEASON"
+msgstr "LIFESTYLE / MÙA MỚI"
+
+msgid "COLOR: SANDSTONE"
+msgstr "MÀU: SANDSTONE"
+
+msgid "4 AVAILABLE COLORS"
+msgstr "4 MÀU KHẢ DỤNG"
+
+msgid "SELECT SIZE"
+msgstr "CHỌN KÍCH CỠ"
+
+msgid "SIZE GUIDE ↗"
+msgstr "BẢNG KÍCH CỠ ↗"
+
+msgid "FREE SHIPPING OVER $150"
+msgstr "MIỄN PHÍ VẬN CHUYỂN TỪ 150.000₫"
+
+msgid "30-DAY RETURNS"
+msgstr "ĐỔI TRẢ TRONG 30 NGÀY"
+
+msgid "SECURE CHECKOUT"
+msgstr "THANH TOÁN BẢO MẬT"

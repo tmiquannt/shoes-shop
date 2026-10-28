@@ -59,7 +59,7 @@ function paxig_email_verification_is_registration_request() {
 /** Do not create an account that cannot receive its required activation link. */
 add_filter('woocommerce_process_registration_errors', function($errors, $username, $password, $email) {
     if (paxig_email_verification_is_registration_request() && !paxig_email_verification_smtp_is_configured()) {
-        $errors->add('paxig_email_verification_mail_unavailable', 'Email verification is temporarily unavailable. Please try again later.');
+        $errors->add('paxig_email_verification_mail_unavailable', __( 'Email verification is temporarily unavailable. Please try again later.', 'paxig-shoes' ));
     }
     return $errors;
 }, 10, 4);
@@ -143,7 +143,7 @@ add_filter('wp_authenticate_user', function($user) {
         || get_user_meta($user->ID, '_paxig_email_verified', true) === 'yes') {
         return $user;
     }
-    return new WP_Error('paxig_email_not_verified', 'Please verify your email before logging in. Use the resend form on this page if you need another link.');
+    return new WP_Error('paxig_email_not_verified', __( 'Please verify your email before logging in. Use the resend form on this page if you need another link.', 'paxig-shoes' ));
 }, 20, 1);
 
 function paxig_email_verification_redirect($status, $url = '') {

@@ -10,10 +10,11 @@ $registration_enabled = 'yes' === get_option('woocommerce_enable_myaccount_regis
 $register_view = $registration_enabled && paxig_auth_mode() === 'register';
 do_action('woocommerce_before_customer_login_form');
 ?>
-<section class="paxig-auth-card" aria-labelledby="paxig-auth-title">
-<header class="paxig-auth-card-heading">
-<h2 id="paxig-auth-title"><?php echo $register_view ? esc_html__( 'Create Account', 'paxig-shoes' ) : esc_html__( 'Log In', 'paxig-shoes' ); ?></h2>
-<p><?php echo $register_view ? esc_html__( 'Create your PAXIG’S SHOES account. We’ll email you a verification link before you can sign in.', 'paxig-shoes' ) : esc_html__( 'Welcome back. Sign in to your account.', 'paxig-shoes' ); ?></p>
+<section class="paxig-auth-card vyre-auth-card" aria-labelledby="paxig-auth-title">
+<header class="paxig-auth-card-heading vyre-auth-card-heading">
+	<span class="vyre-auth-eyebrow"><?php echo esc_html__( 'ENTER THE WORLD OF VYRE', 'paxig-shoes' ); ?></span>
+	<h2 id="paxig-auth-title" class="vyre-auth-title"><?php echo $register_view ? esc_html__( 'JOIN THE MOVEMENT.', 'paxig-shoes' ) : esc_html__( 'WELCOME BACK.', 'paxig-shoes' ); ?></h2>
+	<p class="vyre-auth-subtitle"><?php echo $register_view ? esc_html__( 'Create an account for faster checkout, saved styles and exclusive releases.', 'paxig-shoes' ) : esc_html__( 'Sign in to your account. Your favorites, orders and next moves are waiting.', 'paxig-shoes' ); ?></p>
 </header>
 <?php if ($register_view) : ?>
 		<form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action( 'woocommerce_register_form_tag' ); ?> >
@@ -54,13 +55,16 @@ do_action('woocommerce_before_customer_login_form');
 
 			<p class="woocommerce-form-row form-row">
 				<?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
-				<button type="submit" class="woocommerce-Button woocommerce-button button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?> woocommerce-form-register__submit" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>"><?php echo esc_html__( 'Create Account', 'paxig-shoes' ); ?></button>
+				<button type="submit" class="woocommerce-Button woocommerce-button button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?> woocommerce-form-register__submit" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>">
+					<span><?php echo esc_html__( 'CREATE ACCOUNT', 'paxig-shoes' ); ?></span>
+					<span aria-hidden="true">→</span>
+				</button>
 			</p>
 
 			<?php do_action( 'woocommerce_register_form_end' ); ?>
 
 		</form>
-<p class="paxig-auth-switch"><?php printf( __( 'Already have an account? <a href="%s">Log In</a>', 'paxig-shoes' ), esc_url(paxig_auth_switch_url()) ); ?></p>
+<p class="paxig-auth-switch vyre-auth-switch"><?php printf( __( 'ALREADY A MEMBER? <a href="%s">SIGN IN ↗</a>', 'paxig-shoes' ), esc_url(paxig_auth_switch_url()) ); ?></p>
 <?php else : ?>
 		<form class="woocommerce-form woocommerce-form-login login" method="post" novalidate>
 
@@ -77,37 +81,27 @@ do_action('woocommerce_before_customer_login_form');
 
 			<?php do_action( 'woocommerce_login_form' ); ?>
 
-			<p class="form-row">
+			<div class="vyre-auth-options-row">
 				<label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
-					<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <span><?php esc_html_e( 'Remember me', 'woocommerce' ); ?></span>
+					<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <span><?php esc_html_e( 'Keep me signed in', 'paxig-shoes' ); ?></span>
 				</label>
+				<p class="woocommerce-LostPassword lost_password">
+					<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Forgot password?', 'paxig-shoes' ); ?></a>
+				</p>
+			</div>
+			<p class="form-row form-row-submit">
 				<?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
-				<button type="submit" class="woocommerce-button button woocommerce-form-login__submit<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>"><?php echo esc_html__( 'Log In', 'paxig-shoes' ); ?></button>
-			</p>
-			<p class="woocommerce-LostPassword lost_password">
-				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Forgot your password?', 'woocommerce' ); ?></a>
+				<button type="submit" class="woocommerce-button button woocommerce-form-login__submit<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>">
+					<span><?php echo esc_html__( 'SIGN IN', 'paxig-shoes' ); ?></span>
+					<span aria-hidden="true">→</span>
+				</button>
 			</p>
 
 			<?php do_action( 'woocommerce_login_form_end' ); ?>
 
 		</form>
 <?php if ($registration_enabled) : ?>
-<p class="paxig-auth-switch"><?php printf( __( 'Don’t have an account? <a href="%s">Register</a>', 'paxig-shoes' ), esc_url(paxig_auth_switch_url(true)) ); ?></p>
-<section class="paxig-resend-verification" id="paxig-resend-verification" aria-labelledby="paxig-resend-verification-title">
-	<h3 id="paxig-resend-verification-title"><?php echo esc_html__( 'Didn’t receive your verification email?', 'paxig-shoes' ); ?></h3>
-	<p><?php echo esc_html__( 'Enter your email address and we’ll send a new link if your account is waiting for verification.', 'paxig-shoes' ); ?></p>
-	<form class="woocommerce-form woocommerce-form-login login paxig-resend-verification__form" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-		<input type="hidden" name="action" value="paxig_resend_email_verification" />
-		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-			<label for="paxig-resend-email"><?php echo esc_html__( 'Email address', 'paxig-shoes' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span></label>
-			<input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="paxig-resend-email" autocomplete="email" required aria-required="true" />
-		</p>
-		<?php wp_nonce_field('paxig_resend_email_verification', 'paxig_resend_email_verification_nonce'); ?>
-		<p class="form-row">
-			<button type="submit" class="woocommerce-button button woocommerce-form-login__submit"><?php echo esc_html__( 'Resend verification email', 'paxig-shoes' ); ?></button>
-		</p>
-	</form>
-</section>
+<p class="paxig-auth-switch vyre-auth-switch"><?php printf( __( 'NEW TO VYRE? <a href="%s">CREATE AN ACCOUNT ↗</a>', 'paxig-shoes' ), esc_url(paxig_auth_switch_url(true)) ); ?></p>
 <?php endif; ?>
 <?php endif; ?>
 </section>

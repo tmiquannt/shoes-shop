@@ -167,10 +167,14 @@ function paxig_shoes_add_size_guide_link(
 		return $label;
 	}
 
-	return 'Select Size'
+	$is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
+	$select_text = $is_vi ? 'Chọn kích cỡ' : 'Select Size';
+	$guide_text  = $is_vi ? 'Bảng kích cỡ' : 'Size Guide';
+
+	return esc_html( $select_text )
 		. ' <a class="paxig-size-guide-link" href="'
 		. esc_url( home_url('/huong-dan/') )
-		. '">Size Guide</a>';
+		. '">' . esc_html( $guide_text ) . '</a>';
 }
 add_filter(
 	'woocommerce_attribute_label',
@@ -700,15 +704,11 @@ add_filter(
 );
 
 /**
- * Centered shell around shop archives.
+ * Centered shell around shop archives and product search results.
  */
 function paxig_shoes_shop_shell_open() {
 	if (
-		function_exists( 'is_shop' ) &&
-		(
-			is_shop() ||
-			is_product_taxonomy()
-		)
+		function_exists( 'paxig_plp_page' ) && paxig_plp_page()
 	) {
 		echo '<div class="paxig-shop-shell">';
 	}
@@ -721,11 +721,7 @@ add_action(
 
 function paxig_shoes_shop_shell_close() {
 	if (
-		function_exists( 'is_shop' ) &&
-		(
-			is_shop() ||
-			is_product_taxonomy()
-		)
+		function_exists( 'paxig_plp_page' ) && paxig_plp_page()
 	) {
 		echo '</div>';
 	}

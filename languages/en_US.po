@@ -640,3 +640,123 @@ msgstr "Missing cart item key."
 
 msgid "Missing required parameters."
 msgstr "Missing required parameters."
+
+msgid "BUILT DIFFERENT. MOVE FORWARD."
+msgstr "BUILT DIFFERENT. MOVE FORWARD."
+
+msgid "ALL RIGHTS RESERVED."
+msgstr "ALL RIGHTS RESERVED."
+
+msgid "SUPPORT"
+msgstr "SUPPORT"
+
+msgid "PRIVACY"
+msgstr "PRIVACY"
+
+msgid "TERMS"
+msgstr "TERMS"
+
+msgid "HELP"
+msgstr "HELP"
+
+msgid "HOME"
+msgstr "HOME"
+
+msgid "SHOP"
+msgstr "SHOP"
+
+msgid "SAVED"
+msgstr "SAVED"
+
+msgid "BAG"
+msgstr "BAG"
+
+msgid "ME"
+msgstr "ME"
+
+msgid "SHOPPING BAG"
+msgstr "SHOPPING BAG"
+
+msgid "YOUR BAG."
+msgstr "YOUR BAG."
+
+msgid "DRAG TO EXPLORE"
+msgstr "DRAG TO EXPLORE"
+
+msgid "VYRE / WORLDWIDE"
+msgstr "VYRE / WORLDWIDE"
+
+msgid "BETTER MATERIALS. BOLDER IDEAS."
+msgstr "BETTER MATERIALS. BOLDER IDEAS."
+
+msgid "THE NEXT MOVE STARTS HERE"
+msgstr "THE NEXT MOVE STARTS HERE"
+
+msgid "CURATED / 01"
+msgstr "CURATED / 01"
+
+msgid "NEW ARRIVALS."
+msgstr "NEW ARRIVALS."
+
+msgid "WHO WE ARE"
+msgstr "WHO WE ARE"
+
+msgid "OUR STORY"
+msgstr "OUR STORY"
+
+msgid "FOOT LENGTH (CM)"
+msgstr "FOOT LENGTH (CM)"
+
+msgid "YOUR PERFECT FIT"
+msgstr "YOUR PERFECT FIT"
+
+msgid "SIZE GUIDE."
+msgstr "SIZE GUIDE."
+
+msgid "Measure your foot from heel to toe. If you're between sizes, we recommend sizing up for all-day comfort."
+msgstr "Measure your foot from heel to toe. If you're between sizes, we recommend sizing up for all-day comfort."
+
+msgid "GOT IT ✓"
+msgstr "GOT IT ✓"
+
+msgid "YOU MIGHT ALSO LIKE."
+msgstr "YOU MIGHT ALSO LIKE."
+
+msgid "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
+msgstr "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
+
+msgid "NEW TO VYRE? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+msgstr "NEW TO VYRE? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+
+msgid "Email verification is temporarily unavailable. Please try again later."
+msgstr "Email verification is temporarily unavailable. Please try again later."
+
+msgid "Please verify your email before logging in. Use the resend form on this page if you need another link."
+msgstr "Please verify your email before logging in. Use the resend form on this page if you need another link."
+
+msgid "Sandstone / Everyday sneaker"
+msgstr "Sandstone / Everyday sneaker"
+
+msgid "LIFESTYLE / NEW SEASON"
+msgstr "LIFESTYLE / NEW SEASON"
+
+msgid "COLOR: SANDSTONE"
+msgstr "COLOR: SANDSTONE"
+
+msgid "4 AVAILABLE COLORS"
+msgstr "4 AVAILABLE COLORS"
+
+msgid "SELECT SIZE"
+msgstr "SELECT SIZE"
+
+msgid "SIZE GUIDE ↗"
+msgstr "SIZE GUIDE ↗"
+
+msgid "FREE SHIPPING OVER $150"
+msgstr "FREE SHIPPING OVER $150"
+
+msgid "30-DAY RETURNS"
+msgstr "30-DAY RETURNS"
+
+msgid "SECURE CHECKOUT"
+msgstr "SECURE CHECKOUT"

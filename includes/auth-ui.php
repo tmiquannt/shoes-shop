@@ -15,10 +15,70 @@ add_filter('body_class',function($classes){
     elseif(function_exists('is_account_page') && is_account_page() && !is_user_logged_in() && is_wc_endpoint_url('lost-password'))$classes[]='paxig-auth-reset';
     return $classes;
 });
+add_action('woocommerce_before_customer_login_form', function() {
+    $mode = paxig_auth_mode();
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    $step_num = $is_vi
+        ? ( $mode === 'register' ? '02 / GIA NHẬP VYRE' : '01 / TÀI KHOẢN' )
+        : ( $mode === 'register' ? '02 / JOIN VYRE' : '01 / ACCOUNT' );
+    $hero_img = esc_url(get_template_directory_uri() . '/assets/images/vyre-hero-shoe.png');
+    $store_url = esc_url(home_url('/'));
+    ?>
+    <div class="vyre-auth-split-wrapper">
+        <div class="vyre-auth-split-left" style="background-image: url('<?php echo $hero_img; ?>');">
+            <div class="vyre-auth-split-overlay"></div>
+            <div class="vyre-auth-left-brand">
+                <a href="<?php echo $store_url; ?>" class="vyre-auth-left-logo">VYRE™</a>
+            </div>
+            <div class="vyre-auth-left-content">
+                <span class="vyre-auth-left-step"><?php echo esc_html($step_num); ?></span>
+                <h1 class="vyre-auth-left-headline">BUILT<br>DIFFERENT.</h1>
+                <p class="vyre-auth-left-desc">
+                    <?php if ($is_vi) : ?>
+                        GIÀY THỂ THAO CHO MỘT TƯƠNG LAI RỰC RỠ HƠN.<br>
+                        VĂN HOÁ THÚC ĐẨY CON NGƯỜI TIẾN BƯỚC.
+                    <?php else : ?>
+                        SNEAKERS FOR A BRIGHTER TOMORROW.<br>
+                        CULTURE MOVES PEOPLE FORWARD.
+                    <?php endif; ?>
+                </p>
+                <div class="vyre-auth-left-dots" aria-hidden="true">
+                    <span class="vyre-dot <?php echo $mode !== 'register' ? 'is-active' : ''; ?>"></span>
+                    <span class="vyre-dot <?php echo $mode === 'register' ? 'is-active' : ''; ?>"></span>
+                    <span class="vyre-dot"></span>
+                </div>
+            </div>
+        </div>
+        <div class="vyre-auth-split-right">
+            <header class="vyre-auth-right-topbar">
+                <span class="vyre-auth-path"><?php echo $is_vi ? 'VYRE / TÀI KHOẢN' : 'VYRE / ACCOUNT'; ?></span>
+                <a href="<?php echo $store_url; ?>" class="vyre-auth-back-link"><?php echo $is_vi ? 'QUAY LẠI CỬA HÀNG ↗' : 'BACK TO STORE ↗'; ?></a>
+            </header>
+            <div class="vyre-auth-form-inner">
+    <?php
+}, 1);
+
+add_action('woocommerce_after_customer_login_form', function() {
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    ?>
+            </div>
+            <footer class="vyre-auth-right-footer">
+                <span>© VYRE <?php echo esc_html( wp_date('Y') ); ?></span>
+                <div class="vyre-auth-footer-links">
+                    <a href="<?php echo esc_url(home_url('/chinh-sach-bao-mat/')); ?>"><?php echo $is_vi ? 'CHÍNH SÁCH BẢO MẬT' : 'PRIVACY'; ?></a>
+                    <a href="<?php echo esc_url(home_url('/dieu-khoan/')); ?>"><?php echo $is_vi ? 'ĐIỀU KHOẢN' : 'TERMS'; ?></a>
+                    <a href="<?php echo esc_url(home_url('/huong-dan/')); ?>"><?php echo $is_vi ? 'TRỢ GIÚP' : 'HELP'; ?></a>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <?php
+}, 999);
+
 add_action('wp_enqueue_scripts',function(){
     if(!paxig_auth_page() && !(is_account_page() && !is_user_logged_in() && is_wc_endpoint_url('lost-password')))return;
-    wp_enqueue_style('paxig-auth',get_template_directory_uri().'/assets/css/auth-ui.css',['paxig-store'],filemtime(get_template_directory().'/assets/css/auth-ui.css'));
-},110);
+    wp_enqueue_style('paxig-auth',get_template_directory_uri().'/assets/css/auth-ui.css',['paxig-store', 'paxig-style-3'],filemtime(get_template_directory().'/assets/css/auth-ui.css'));
+},999);
 
 /** Use the password entered on the storefront registration form. */
 add_filter('pre_option_woocommerce_registration_generate_password',function($value){

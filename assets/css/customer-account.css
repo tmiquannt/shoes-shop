@@ -264,21 +264,36 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content a:
 .paxig-account-status {
   display: inline-flex;
   align-items: center;
-  min-height: 26px;
-  padding: 4px 8px;
+  min-height: 24px;
+  padding: 3px 10px;
+  border-radius: 999px;
   background: var(--paxig-color-surface-raised);
   color: var(--paxig-color-text-muted);
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
   line-height: 1.25;
 }
 
-.paxig-account-status--completed,
-.paxig-account-status--processing,
 .paxig-account-status--shipped,
-.paxig-account-status--delivered { color: var(--paxig-color-accent); }
+.paxig-account-status--processing {
+  background: #d8e2dc;
+  color: #2d4a3e;
+}
+
+.paxig-account-status--delivered,
+.paxig-account-status--completed {
+  background: #e5e2db;
+  color: #4a4742;
+}
+
 .paxig-account-status--failed,
 .paxig-account-status--cancelled,
-.paxig-account-status--refunded { color: #ff8981; }
+.paxig-account-status--refunded {
+  background: #fae1df;
+  color: #9c2d25;
+}
 
 .paxig-account-order__action {
   color: var(--paxig-color-accent);

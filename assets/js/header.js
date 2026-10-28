@@ -98,4 +98,44 @@ document.addEventListener('DOMContentLoaded', function () {
             closeMenu();
         }
     });
+
+    // Search modal toggle matching 06_Search_Overlay.png
+    const searchTrigger = document.querySelector('.paxig-header-search-trigger');
+    const searchModal = document.querySelector('#vyre-search-modal');
+    if (searchTrigger && searchModal) {
+        const searchClose = searchModal.querySelector('.vyre-search-close');
+        const searchBackdrop = searchModal.querySelector('.vyre-search-backdrop');
+        const searchInput = searchModal.querySelector('input[type="search"]');
+
+        function openSearch() {
+            searchModal.classList.add('is-open');
+            searchModal.setAttribute('aria-hidden', 'false');
+            searchTrigger.setAttribute('aria-expanded', 'true');
+            if (searchInput) setTimeout(function () { searchInput.focus(); }, 60);
+        }
+
+        function closeSearch() {
+            searchModal.classList.remove('is-open');
+            searchModal.setAttribute('aria-hidden', 'true');
+            searchTrigger.setAttribute('aria-expanded', 'false');
+        }
+
+        searchTrigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (searchModal.classList.contains('is-open')) {
+                closeSearch();
+            } else {
+                openSearch();
+            }
+        });
+
+        if (searchClose) searchClose.addEventListener('click', closeSearch);
+        if (searchBackdrop) searchBackdrop.addEventListener('click', closeSearch);
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && searchModal.classList.contains('is-open')) {
+                closeSearch();
+            }
+        });
+    }
 });

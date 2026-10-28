@@ -641,3 +641,123 @@ msgstr ""
 
 msgid "Missing required parameters."
 msgstr ""
+
+msgid "BUILT DIFFERENT. MOVE FORWARD."
+msgstr ""
+
+msgid "ALL RIGHTS RESERVED."
+msgstr ""
+
+msgid "SUPPORT"
+msgstr ""
+
+msgid "PRIVACY"
+msgstr ""
+
+msgid "TERMS"
+msgstr ""
+
+msgid "HELP"
+msgstr ""
+
+msgid "HOME"
+msgstr ""
+
+msgid "SHOP"
+msgstr ""
+
+msgid "SAVED"
+msgstr ""
+
+msgid "BAG"
+msgstr ""
+
+msgid "ME"
+msgstr ""
+
+msgid "SHOPPING BAG"
+msgstr ""
+
+msgid "YOUR BAG."
+msgstr ""
+
+msgid "DRAG TO EXPLORE"
+msgstr ""
+
+msgid "VYRE / WORLDWIDE"
+msgstr ""
+
+msgid "BETTER MATERIALS. BOLDER IDEAS."
+msgstr ""
+
+msgid "THE NEXT MOVE STARTS HERE"
+msgstr ""
+
+msgid "CURATED / 01"
+msgstr ""
+
+msgid "NEW ARRIVALS."
+msgstr ""
+
+msgid "WHO WE ARE"
+msgstr ""
+
+msgid "OUR STORY"
+msgstr ""
+
+msgid "FOOT LENGTH (CM)"
+msgstr ""
+
+msgid "YOUR PERFECT FIT"
+msgstr ""
+
+msgid "SIZE GUIDE."
+msgstr ""
+
+msgid "Measure your foot from heel to toe. If you're between sizes, we recommend sizing up for all-day comfort."
+msgstr ""
+
+msgid "GOT IT ✓"
+msgstr ""
+
+msgid "YOU MIGHT ALSO LIKE."
+msgstr ""
+
+msgid "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
+msgstr ""
+
+msgid "NEW TO VYRE? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+msgstr ""
+
+msgid "Email verification is temporarily unavailable. Please try again later."
+msgstr ""
+
+msgid "Please verify your email before logging in. Use the resend form on this page if you need another link."
+msgstr ""
+
+msgid "Sandstone / Everyday sneaker"
+msgstr ""
+
+msgid "LIFESTYLE / NEW SEASON"
+msgstr ""
+
+msgid "COLOR: SANDSTONE"
+msgstr ""
+
+msgid "4 AVAILABLE COLORS"
+msgstr ""
+
+msgid "SELECT SIZE"
+msgstr ""
+
+msgid "SIZE GUIDE ↗"
+msgstr ""
+
+msgid "FREE SHIPPING OVER $150"
+msgstr ""
+
+msgid "30-DAY RETURNS"
+msgstr ""
+
+msgid "SECURE CHECKOUT"
+msgstr ""
