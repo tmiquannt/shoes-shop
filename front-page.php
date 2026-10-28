@@ -65,7 +65,7 @@ if (empty($new_products) && function_exists('wc_get_products')) {
             <div class="vyre-hero-ctas">
                 <a href="<?php echo esc_url($shop_url); ?>" class="vyre-hero-pill-btn">
                     <span><?php echo esc_html__( 'SHOP THE COLLECTION', 'paxig-shoes' ); ?></span>
-                    <span class="vyre-arrow" aria-hidden="true">→</span>
+                    <span class="vyre-arrow" aria-hidden="true"><?php echo paxig_icon('arrow-right', 18); ?></span>
                 </a>
             </div>
         </div>
@@ -89,7 +89,7 @@ if (empty($new_products) && function_exists('wc_get_products')) {
             <div class="vyre-hero-footer-right">
                 <a href="<?php echo esc_url($shop_url); ?>">
                     <span><?php echo esc_html($is_vi ? 'KHÁM PHÁ BỘ SƯU TẬP' : 'EXPLORE THE COLLECTION'); ?></span>
-                    <span aria-hidden="true">→</span>
+                    <?php echo paxig_icon('arrow-right', 18); ?>
                 </a>
             </div>
         </div>
@@ -102,7 +102,7 @@ if (empty($new_products) && function_exists('wc_get_products')) {
             <span class="vyre-ticker-col vyre-ticker-col--center"><?php echo esc_html__( 'BETTER MATERIALS. BOLDER IDEAS.', 'paxig-shoes' ); ?></span>
             <a href="<?php echo esc_url($shop_url); ?>" class="vyre-ticker-col vyre-ticker-col--right">
                 <span><?php echo esc_html__( 'THE NEXT MOVE STARTS HERE', 'paxig-shoes' ); ?></span>
-                <span aria-hidden="true">→</span>
+                <?php echo paxig_icon('arrow-right', 18); ?>
             </a>
         </div>
     </div>
@@ -115,56 +115,15 @@ if (empty($new_products) && function_exists('wc_get_products')) {
                 <h2 id="new-arrivals-title" class="vyre-section-title"><?php echo esc_html__( 'NEW ARRIVALS.', 'paxig-shoes' ); ?></h2>
             </div>
             <a href="<?php echo esc_url($new_arrivals_url); ?>" class="vyre-section-link">
-                <?php echo esc_html__( 'VIEW ALL', 'paxig-shoes' ); ?> <span aria-hidden="true">→</span>
+                <?php echo esc_html__( 'VIEW ALL', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-right', 18); ?>
             </a>
         </div>
 
         <ul class="vyre-products-grid">
             <?php
             if (!empty($new_products)) :
-                foreach (array_values($new_products) as $i => $item) :
-                    $id = $item->get_id();
-                    $name = $item->get_name();
-                    $permalink = $item->get_permalink();
-                    $price_html = $item->get_price_html();
-                    $badge = '';
-                    if ($item->is_on_sale()) {
-                        $badge = $is_vi ? 'ƯU ĐÃI' : __( 'SALE', 'paxig-shoes' );
-                    } elseif (has_term('new-arrivals', 'product_cat', $id)) {
-                        $badge = $is_vi ? 'MỚI' : __( 'NEW', 'paxig-shoes' );
-                    } elseif (has_term('best-sellers', 'product_cat', $id)) {
-                        $badge = $is_vi ? 'BÁN CHẠY' : __( 'BESTSELLER', 'paxig-shoes' );
-                    }
-                    $subtitle = trim(wp_trim_words(wp_strip_all_tags($item->get_short_description()), 12, ''));
-                    $color = trim(wp_strip_all_tags($item->get_attribute('pa_color')));
-                    if (!$subtitle) $subtitle = $color;
-            ?>
-                    <li class="vyre-product-card" data-product-id="<?php echo esc_attr($id); ?>">
-                        <div class="vyre-card-media">
-                            <?php if ($badge) : ?>
-                                <span class="vyre-card-badge"><?php echo esc_html($badge); ?></span>
-                            <?php endif; ?>
-                            <button type="button" class="vyre-card-wishlist paxig-wishlist-btn paxig-wishlist-card-btn" data-product-id="<?php echo esc_attr($id); ?>" aria-pressed="false" aria-label="<?php echo esc_attr__( 'Add to favorites', 'paxig-shoes' ); ?>">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                                    <path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
-                                </svg>
-                            </button>
-                            <a href="<?php echo esc_url($permalink); ?>" class="vyre-card-img-link">
-                                <?php echo $item->get_image('woocommerce_thumbnail', ['loading'=>'lazy']); ?>
-                            </a>
-                        </div>
-                        <div class="vyre-card-info">
-                            <div class="vyre-card-row">
-                                <h3 class="vyre-card-title">
-                                    <a href="<?php echo esc_url($permalink); ?>"><?php echo esc_html($name); ?></a>
-                                </h3>
-                                <?php if ($color) : ?><span class="vyre-card-color"><?php echo esc_html($color); ?></span><?php endif; ?>
-                            </div>
-                            <?php if ($subtitle) : ?><div class="vyre-card-subtitle"><?php echo esc_html($subtitle); ?></div><?php endif; ?>
-                            <div class="vyre-card-price price"><?php echo wp_kses_post($price_html); ?></div>
-                        </div>
-                    </li>
-            <?php
+                foreach (array_values($new_products) as $item) :
+                    get_template_part('template-parts/product-card', null, ['product' => $item]);
                 endforeach;
             endif;
             ?>
@@ -192,7 +151,7 @@ if (empty($new_products) && function_exists('wc_get_products')) {
                 <?php if ($about_url) : ?>
                     <a href="<?php echo esc_url($about_url); ?>" class="vyre-btn-story">
                         <span><?php echo esc_html__( 'OUR STORY', 'paxig-shoes' ); ?></span>
-                        <span aria-hidden="true">→</span>
+                        <?php echo paxig_icon('arrow-right', 18); ?>
                     </a>
                 <?php endif; ?>
             </div>

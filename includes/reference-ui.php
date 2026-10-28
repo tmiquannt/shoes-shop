@@ -45,16 +45,16 @@ function paxig_reference_details() {
     if (!$product instanceof WC_Product) return;
     echo '<div class="paxig-reference-accordions">';
     if ($product->get_description() || $product->get_short_description()) {
-        echo '<details open><summary>'.esc_html__( 'Description', 'paxig-shoes' ).'</summary><div class="paxig-reference-content">';
+        echo '<details open><summary>'.esc_html__( 'Description', 'paxig-shoes' ).paxig_disclosure_icons().'</summary><div class="paxig-reference-content">';
         echo apply_filters('the_content', $product->get_description() ?: $product->get_short_description());
         echo '</div></details>';
     }
     if ($product->has_attributes() || $product->has_dimensions() || $product->has_weight()) {
-        echo '<details><summary>'.esc_html__( 'Product Details', 'paxig-shoes' ).'</summary><div class="paxig-reference-content">';
+        echo '<details><summary>'.esc_html__( 'Product Details', 'paxig-shoes' ).paxig_disclosure_icons().'</summary><div class="paxig-reference-content">';
         woocommerce_product_additional_information_tab();
         echo '</div></details>';
     }
-    echo '<details><summary>'.esc_html__( 'Delivery', 'paxig-shoes' ).'</summary><div class="paxig-reference-content"><p>'.esc_html(paxig_shipping_summary()).'</p>';
+    echo '<details><summary>'.esc_html__( 'Delivery', 'paxig-shoes' ).paxig_disclosure_icons().'</summary><div class="paxig-reference-content"><p>'.esc_html(paxig_shipping_summary()).'</p>';
     $guide_url = function_exists('paxig_storefront_page_url') ? paxig_storefront_page_url('guide') : '';
     if ($guide_url) echo '<p><a href="'.esc_url($guide_url).'">'.esc_html__( 'Read the shopping guide', 'paxig-shoes' ).'</a></p>';
     echo '</div></details></div>';
@@ -126,13 +126,13 @@ add_action('wp', function () {
             }
             echo '<div class="vyre-pdp-size-head">
                 <span class="vyre-pdp-size-title">' . esc_html__( 'SELECT SIZE', 'paxig-shoes' ) . '</span>
-                <button type="button" class="vyre-size-guide-trigger" aria-controls="vyre-size-guide-modal">' . esc_html__( 'SIZE GUIDE ↗', 'paxig-shoes' ) . '</button>
+                <button type="button" class="vyre-size-guide-trigger" aria-controls="vyre-size-guide-modal">' . paxig_icon_text(esc_html__( 'SIZE GUIDE ↗', 'paxig-shoes' )) . '</button>
             </div>';
         }, 15);
         add_action('woocommerce_after_add_to_cart_form', function () {
             echo '<div class="vyre-pdp-trust-badges">
-                <div class="vyre-trust-item"><span class="vyre-trust-icon">🚚</span><span>' . esc_html__( 'Shipping options confirmed at checkout', 'paxig-shoes' ) . '</span></div>
-                <div class="vyre-trust-item"><span class="vyre-trust-icon">↗</span><span>' . esc_html__( 'Size guide available', 'paxig-shoes' ) . '</span></div>
+                <div class="vyre-trust-item"><span class="vyre-trust-icon">' . paxig_icon('truck', 22) . '</span><span>' . esc_html__( 'Shipping options confirmed at checkout', 'paxig-shoes' ) . '</span></div>
+                <div class="vyre-trust-item"><span class="vyre-trust-icon">' . paxig_icon('ruler', 22) . '</span><span>' . esc_html__( 'Size guide available', 'paxig-shoes' ) . '</span></div>
             </div>';
         }, 25);
         add_action('woocommerce_single_product_summary','paxig_reference_details',35);
@@ -152,7 +152,7 @@ add_action('wp_footer', function() {
     <div id="vyre-size-guide-modal" class="vyre-size-guide-modal" aria-hidden="true">
         <div class="vyre-size-guide-backdrop"></div>
         <div class="vyre-size-guide-dialog" role="dialog" aria-modal="true" aria-labelledby="vyre-size-guide-title">
-            <button type="button" class="vyre-size-guide-close" aria-label="<?php echo esc_attr__( 'Close size guide', 'paxig-shoes' ); ?>">×</button>
+            <button type="button" class="vyre-size-guide-close" aria-label="<?php echo esc_attr__( 'Close size guide', 'paxig-shoes' ); ?>"><?php echo paxig_icon('x', 22); ?></button>
             <span class="vyre-size-guide-eyebrow"><?php echo esc_html__( 'YOUR PERFECT FIT', 'paxig-shoes' ); ?></span>
             <h2 id="vyre-size-guide-title" class="vyre-size-guide-title"><?php echo esc_html__( 'SIZE GUIDE.', 'paxig-shoes' ); ?></h2>
             <p class="vyre-size-guide-desc"><?php echo esc_html__( 'Measure your foot from heel to toe. If you\'re between sizes, we recommend sizing up for all-day comfort.', 'paxig-shoes' ); ?></p>
@@ -171,7 +171,7 @@ add_action('wp_footer', function() {
                     </tbody>
                 </table>
             </div>
-            <button type="button" class="vyre-size-guide-gotit"><?php echo esc_html__( 'GOT IT ✓', 'paxig-shoes' ); ?></button>
+            <button type="button" class="vyre-size-guide-gotit"><?php echo paxig_icon_text(esc_html__( 'GOT IT ✓', 'paxig-shoes' )); ?></button>
         </div>
     </div>
     <script>

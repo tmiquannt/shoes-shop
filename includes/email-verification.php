@@ -51,9 +51,20 @@ function paxig_email_verification_configure_smtp($mailer) {
 add_action('phpmailer_init', 'paxig_email_verification_configure_smtp');
 
 function paxig_email_verification_is_registration_request() {
-    return function_exists('is_account_page')
-        && is_account_page()
-        && isset($_POST['register']);
+    // WooCommerce processes this form at wp_loaded, before is_account_page()
+    // can resolve the main query. Match its form fields and nonce selection.
+    if (is_admin() || (defined('REST_REQUEST') && REST_REQUEST)
+        || !isset($_POST['register'], $_POST['email'])
+        || !is_string($_POST['email'])) {
+        return false;
+    }
+
+    $nonce = isset($_POST['woocommerce-register-nonce'])
+        ? $_POST['woocommerce-register-nonce']
+        : ($_POST['_wpnonce'] ?? '');
+
+    return is_string($nonce)
+        && (bool) wp_verify_nonce(wp_unslash($nonce), 'woocommerce-register');
 }
 
 /** Do not create an account that cannot receive its required activation link. */

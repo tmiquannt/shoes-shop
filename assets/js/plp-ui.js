@@ -68,13 +68,21 @@ document.addEventListener('DOMContentLoaded', () => {
         list.id = 'paxig-plp-options-' + Array.from(sidebar.querySelectorAll('.paxig-plp-group')).indexOf(group);
         more.setAttribute('aria-controls', list.id);
         let expanded = false;
-        const show = () => { extras.forEach(item => item.hidden = !expanded); more.textContent = expanded ? lblShowLess : lblShowMore; more.setAttribute('aria-expanded', String(expanded)); };
+        const show = () => {
+            extras.forEach(item => item.hidden = !expanded);
+            more.textContent = (expanded ? lblShowLess : lblShowMore).replace(/^[+−]\s*/, '') + ' ';
+            const icon = document.createElement('span');
+            icon.setAttribute('data-paxig-icon', expanded ? 'minus' : 'plus');
+            icon.setAttribute('data-icon-size', '16');
+            icon.setAttribute('aria-hidden', 'true');
+            more.append(icon);
+            more.setAttribute('aria-expanded', String(expanded));
+        };
         more.addEventListener('click', () => { expanded = !expanded; show(); });
         group.querySelector('.paxig-plp-group-body').append(more); show();
     });
     const sort = document.querySelector('.woocommerce-ordering select');
     if (sort) {
-        sort.setAttribute('aria-label', lblFilters);
-        Array.from(sort.options).forEach(option => { option.textContent = lblSortBy + option.textContent; });
+        sort.setAttribute('aria-label', lblSortBy.replace(/[:\s]+$/, ''));
     }
 });

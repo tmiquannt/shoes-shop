@@ -114,6 +114,9 @@ function paxig_shoes_enqueue_assets() {
 					'add_to_bag'         => __( 'Add to Bag', 'paxig-shoes' ),
 					'unavailable_suffix' => __( ' — Out of stock or unavailable', 'paxig-shoes' ),
 					'add_to_cart_error'  => __( 'Could not add item to bag.', 'paxig-shoes' ),
+					'add_to_cart_uncertain' => function_exists( 'paxig_get_current_language' ) && 'vi' === paxig_get_current_language()
+						? 'Chưa xác nhận được sản phẩm đã thêm hay chưa. Vui lòng kiểm tra giỏ hàng trước khi thử lại.'
+						: __( 'We could not confirm whether the item was added. Check your bag before trying again.', 'paxig-shoes' ),
 				),
 			)
 		);
@@ -860,6 +863,7 @@ add_action(
 	99
 );
 
+require_once get_template_directory() . '/includes/icons.php';
 require_once get_template_directory().'/includes/ui-compat.php';
 require_once get_template_directory().'/includes/reference-ui.php';
 require_once get_template_directory().'/includes/plp-ui.php';

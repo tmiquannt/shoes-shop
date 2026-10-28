@@ -59,12 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Toggle ' + link.textContent.trim() + ' submenu'
             );
 
-            submenuToggle.innerHTML = [
-                '<svg viewBox="0 0 24 24" width="20" height="20"',
-                ' aria-hidden="true">',
-                '<path d="M6 9l6 6 6-6"></path>',
-                '</svg>'
-            ].join('');
+            submenuToggle.innerHTML = '<span data-paxig-icon="chevron-down" aria-hidden="true"></span>';
 
             link.insertAdjacentElement('afterend', submenuToggle);
 
@@ -94,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('resize', function () {
-        if (window.innerWidth > 900) {
+        if (window.innerWidth > 1200) {
             closeMenu();
         }
     });

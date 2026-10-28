@@ -24,16 +24,7 @@
 >
     <span class="screen-reader-text"><?php echo esc_html__( 'Open menu', 'paxig-shoes' ); ?></span>
 
-    <svg
-        viewBox="0 0 24 24"
-        width="26"
-        height="26"
-        aria-hidden="true"
-    >
-        <path d="M4 7h16"></path>
-        <path d="M4 12h16"></path>
-        <path d="M4 17h16"></path>
-    </svg>
+    <?php echo paxig_icon('menu', 24); ?>
 </button>
 
 <nav
@@ -45,14 +36,36 @@
     $shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' );
     $catalog_url = function_exists('get_post_type_archive_link') ? get_post_type_archive_link('product') : '';
     if (!$catalog_url) $catalog_url = $shop_url;
-    $men_args = ['filter_gender'=>'men,unisex','query_type_gender'=>'or'];
-    $women_args = ['filter_gender'=>'women,unisex','query_type_gender'=>'or'];
+    $men_args = ['filter_gender'=>'men','query_type_gender'=>'or'];
+    $women_args = ['filter_gender'=>'women','query_type_gender'=>'or'];
     $men_url = function_exists('paxig_plp_catalog_url') ? paxig_plp_catalog_url($men_args) : add_query_arg($men_args, $catalog_url);
     $women_url = function_exists('paxig_plp_catalog_url') ? paxig_plp_catalog_url($women_args) : add_query_arg($women_args, $catalog_url);
     $new_url = add_query_arg(['orderby'=>'date'], $catalog_url);
     $releases_url = add_query_arg(['paxig_releases'=>'1'], $catalog_url);
     $story_url = home_url('/#brand-story-title');
     $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    $category_labels = [
+        'lifestyle'  => $is_vi ? 'Phong cách' : 'Lifestyle',
+        'running'    => $is_vi ? 'Chạy bộ' : 'Running',
+        'basketball' => $is_vi ? 'Bóng rổ' : 'Basketball',
+        'football'   => $is_vi ? 'Bóng đá' : 'Football',
+        'training'   => $is_vi ? 'Tập luyện' : 'Training',
+    ];
+    $category_nav_items = [];
+    foreach ($category_labels as $category_slug => $category_label) {
+        $category_term = get_term_by('slug', $category_slug, 'product_cat');
+        $category_url = $category_term && !is_wp_error($category_term)
+            ? (function_exists('paxig_plp_term_url') ? paxig_plp_term_url($category_term) : get_term_link($category_term))
+            : add_query_arg(['product_cat' => $category_slug, 'post_type' => 'product'], $shop_url);
+        if (is_wp_error($category_url)) {
+            continue;
+        }
+        $category_nav_items[$category_slug] = [
+            'label' => $category_label,
+            'url' => $category_url,
+        ];
+    }
+    $current_category_slug = is_product_category() ? get_queried_object()->slug : '';
     $gender_param = isset( $_GET['filter_gender'] ) ? sanitize_text_field( wp_unslash( $_GET['filter_gender'] ) ) : '';
     $orderby_param = isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : '';
     $releases_param = isset( $_GET['paxig_releases'] ) ? sanitize_text_field( wp_unslash( $_GET['paxig_releases'] ) ) : '';
@@ -60,14 +73,16 @@
     $active_nav_key = '';
     if ( $releases_param === '1' ) {
         $active_nav_key = 'releases';
+    } elseif ( $gender_param === 'men' || ( strpos( $gender_param, 'men' ) !== false && strpos( $gender_param, 'women' ) === false ) ) {
+        $active_nav_key = 'men';
+    } elseif ( $gender_param === 'women' || strpos( $gender_param, 'women' ) !== false ) {
+        $active_nav_key = 'women';
     } elseif ( $orderby_param === 'date' ) {
         $active_nav_key = 'new';
-    } elseif ( strpos( $gender_param, 'men' ) !== false && strpos( $gender_param, 'women' ) === false ) {
-        $active_nav_key = 'men';
-    } elseif ( strpos( $gender_param, 'women' ) !== false ) {
-        $active_nav_key = 'women';
     } elseif ( is_page( 'about' ) || is_page( 'our-story' ) ) {
         $active_nav_key = 'story';
+    } elseif ( is_shop() || $current_category_slug !== '' ) {
+        $active_nav_key = 'categories';
     }
 
     $nav_items = [
@@ -78,6 +93,11 @@
         'women' => [
             'label' => $is_vi ? 'NỮ' : 'WOMEN',
             'url'   => $women_url,
+        ],
+        'categories' => [
+            'label' => $is_vi ? 'DANH MỤC' : 'CATEGORIES',
+            'url' => $shop_url,
+            'children' => $category_nav_items,
         ],
         'new' => [
             'label' => $is_vi ? 'MỚI' : 'NEW',
@@ -95,16 +115,35 @@
     ?>
         <ul class="paxig-nav paxig-nav--poster">
             <?php foreach ( $nav_items as $key => $item ) :
+                $has_children = ! empty( $item['children'] );
                 $is_active = ( $active_nav_key === $key );
+                $is_category_ancestor = $key === 'categories' && $current_category_slug !== '';
                 $li_classes = array();
                 if ( $is_active ) {
                     $li_classes[] = 'current-menu-item';
                     $li_classes[] = 'is-active';
                 }
+                if ( $has_children ) {
+                    $li_classes[] = 'menu-item-has-children';
+                }
+                if ( $is_category_ancestor ) {
+                    $li_classes[] = 'current-menu-ancestor';
+                }
                 $li_class_attr = ! empty( $li_classes ) ? ' class="' . esc_attr( implode( ' ', $li_classes ) ) . '"' : '';
             ?>
                 <li<?php echo $li_class_attr; ?> data-nav-key="<?php echo esc_attr( $key ); ?>">
-                    <a href="<?php echo esc_url( $item['url'] ); ?>"<?php echo $is_active ? ' class="is-active" aria-current="page"' : ''; ?>><?php echo esc_html( $item['label'] ); ?></a>
+                    <a href="<?php echo esc_url( $item['url'] ); ?>"<?php echo $is_active && !$is_category_ancestor ? ' class="is-active" aria-current="page"' : ''; ?>><?php echo esc_html( $item['label'] ); ?></a>
+                    <?php if ( $has_children ) : ?>
+                        <ul class="sub-menu">
+                            <?php foreach ( $item['children'] as $category_slug => $category_item ) :
+                                $is_current_category = $current_category_slug === $category_slug;
+                            ?>
+                                <li<?php echo $is_current_category ? ' class="current-menu-item is-active"' : ''; ?>>
+                                    <a href="<?php echo esc_url( $category_item['url'] ); ?>"<?php echo $is_current_category ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $category_item['label'] ); ?></a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -119,10 +158,7 @@
         aria-controls="vyre-search-modal"
         aria-expanded="false"
     >
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <circle cx="11" cy="11" r="7"></circle>
-            <path d="M20 20l-4-4"></path>
-        </svg>
+        <?php echo paxig_icon('search', 22); ?>
     </button>
 
     <a
@@ -130,10 +166,7 @@
         href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"
         aria-label="<?php echo esc_attr__( 'My Account', 'paxig-shoes' ); ?>"
     >
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <circle cx="12" cy="8" r="4"></circle>
-            <path d="M4 21a8 8 0 0 1 16 0"></path>
-        </svg>
+        <?php echo paxig_icon('user-round', 22); ?>
     </a>
 
     <button
@@ -143,9 +176,7 @@
         aria-controls="paxig-wishlist-drawer"
         aria-expanded="false"
     >
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"></path>
-        </svg>
+        <?php echo paxig_icon('heart', 22); ?>
         <span class="paxig-wishlist-count">0</span>
     </button>
 
@@ -156,10 +187,7 @@
         aria-controls="paxig-cart-drawer"
         aria-expanded="false"
     >
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M6 8h12l1 13H5L6 8z"></path>
-            <path d="M9 8a3 3 0 0 1 6 0"></path>
-        </svg>
+        <?php echo paxig_icon('shopping-bag', 22); ?>
         <span class="paxig-cart-count">
             <?php
             echo esc_html(
@@ -177,24 +205,24 @@
 <div id="vyre-search-modal" class="vyre-search-modal" aria-hidden="true">
     <div class="vyre-search-backdrop"></div>
     <div class="vyre-search-dialog" role="dialog" aria-modal="true" aria-labelledby="vyre-search-eyebrow">
-        <button type="button" class="vyre-search-close" aria-label="<?php echo esc_attr__( 'Close search', 'paxig-shoes' ); ?>">×</button>
+        <button type="button" class="vyre-search-close" aria-label="<?php echo esc_attr__( 'Close search', 'paxig-shoes' ); ?>"><?php echo paxig_icon('x', 22); ?></button>
         <span id="vyre-search-eyebrow" class="vyre-search-eyebrow"><?php echo esc_html__( 'WHAT ARE YOU LOOKING FOR?', 'paxig-shoes' ); ?></span>
         <form class="vyre-search-form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
             <div class="vyre-search-input-wrap">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+                <?php echo paxig_icon('search', 22); ?>
                 <input type="search" name="s" placeholder="<?php echo esc_attr__( 'Search sneakers, collections...', 'paxig-shoes' ); ?>" autocomplete="off">
                 <input type="hidden" name="post_type" value="product">
-                <button type="submit" class="vyre-search-submit" aria-label="<?php echo esc_attr__( 'Submit search', 'paxig-shoes' ); ?>">→</button>
+                <button type="submit" class="vyre-search-submit" aria-label="<?php echo esc_attr__( 'Submit search', 'paxig-shoes' ); ?>"><?php echo paxig_icon('arrow-right', 22); ?></button>
             </div>
         </form>
         <div class="vyre-search-cols">
             <div class="vyre-search-col">
                 <h4><?php echo esc_html__( 'TRENDING SEARCHES', 'paxig-shoes' ); ?></h4>
                 <ul class="vyre-trending-list">
-                    <li><a href="<?php echo esc_url( $new_url ); ?>"><?php echo esc_html__( 'New arrivals', 'paxig-shoes' ); ?> ↗</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg(['product_cat' => 'lifestyle', 'post_type' => 'product'], home_url('/')) ); ?>"><?php echo esc_html__( 'Lifestyle sneakers', 'paxig-shoes' ); ?> ↗</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg(['s' => 'Court', 'post_type' => 'product'], home_url('/')) ); ?>"><?php echo esc_html__( 'Court Series', 'paxig-shoes' ); ?> ↗</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg(['paxig_releases' => '1'], $shop_url) ); ?>"><?php echo esc_html__( 'Limited edition', 'paxig-shoes' ); ?> ↗</a></li>
+                    <li><a href="<?php echo esc_url( $new_url ); ?>"><?php echo esc_html__( 'New arrivals', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-up-right', 18); ?></a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg(['product_cat' => 'lifestyle', 'post_type' => 'product'], home_url('/')) ); ?>"><?php echo esc_html__( 'Lifestyle sneakers', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-up-right', 18); ?></a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg(['s' => 'Court', 'post_type' => 'product'], home_url('/')) ); ?>"><?php echo esc_html__( 'Court Series', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-up-right', 18); ?></a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg(['paxig_releases' => '1'], $shop_url) ); ?>"><?php echo esc_html__( 'Limited edition', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-up-right', 18); ?></a></li>
                 </ul>
             </div>
             <div class="vyre-search-col">
@@ -219,7 +247,7 @@
                         <p class="vyre-search-rec-empty"><?php echo esc_html__( 'Recommended products will appear here when the catalog is ready.', 'paxig-shoes' ); ?></p>
                     <?php endif; ?>
                 </div>
-                <a href="<?php echo esc_url( $new_url ); ?>" class="vyre-search-explore"><?php echo esc_html__( 'Shop the latest · Discover more ↗', 'paxig-shoes' ); ?></a>
+                <a href="<?php echo esc_url( $new_url ); ?>" class="vyre-search-explore"><?php echo paxig_icon_text(esc_html__( 'Shop the latest · Discover more ↗', 'paxig-shoes' )); ?></a>
             </div>
         </div>
     </div>

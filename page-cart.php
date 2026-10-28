@@ -40,17 +40,14 @@ $checkout_url = function_exists('wc_get_checkout_url') ? wc_get_checkout_url() :
             <!-- EMPTY CART STATE (11_Empty_Cart.png) -->
             <div class="vyre-empty-cart-card">
                 <div class="vyre-empty-cart-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.6">
-                        <path d="M6 8h12l1 13H5L6 8z"></path>
-                        <path d="M9 8a3 3 0 0 1 6 0"></path>
-                    </svg>
+                    <?php echo paxig_icon('shopping-bag', 48); ?>
                 </div>
                 <span class="vyre-empty-cart-eyebrow"><?php echo esc_html__( 'NO ITEMS / YET', 'paxig-shoes' ); ?></span>
                 <h2 class="vyre-empty-cart-title"><?php echo esc_html__( 'YOUR BAG IS EMPTY.', 'paxig-shoes' ); ?></h2>
                 <p class="vyre-empty-cart-desc"><?php echo esc_html__( 'Great things start with one step. Find a pair worth making moves in.', 'paxig-shoes' ); ?></p>
                 <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-btn-explore">
                     <span><?php echo esc_html__( 'EXPLORE SNEAKERS', 'paxig-shoes' ); ?></span>
-                    <span aria-hidden="true">→</span>
+                    <?php echo paxig_icon('arrow-right', 18); ?>
                 </a>
             </div>
         <?php else : ?>
@@ -128,7 +125,7 @@ $checkout_url = function_exists('wc_get_checkout_url') ? wc_get_checkout_url() :
                                     </div>
 
                                     <div class="vyre-item-remove">
-                                        <a href="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>" class="vyre-remove-btn" aria-label="<?php echo esc_attr__( 'Remove this item', 'paxig-shoes' ); ?>">×</a>
+                                        <a href="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>" class="vyre-remove-btn" aria-label="<?php echo esc_attr__( 'Remove this item', 'paxig-shoes' ); ?>"><?php echo paxig_icon('x', 20); ?></a>
                                     </div>
                                 </li>
                             <?php endforeach; ?>
@@ -138,7 +135,7 @@ $checkout_url = function_exists('wc_get_checkout_url') ? wc_get_checkout_url() :
                     </form>
 
                     <a href="<?php echo esc_url( $shop_url ); ?>" class="vyre-continue-shopping">
-                        <span aria-hidden="true">←</span>
+                        <?php echo paxig_icon('arrow-left', 18); ?>
                         <span><?php echo esc_html__( 'CONTINUE SHOPPING', 'paxig-shoes' ); ?></span>
                     </a>
                 </div>
@@ -205,11 +202,11 @@ $checkout_url = function_exists('wc_get_checkout_url') ? wc_get_checkout_url() :
 
                         <a href="<?php echo esc_url( $checkout_url ); ?>" class="vyre-checkout-btn">
                             <span><?php echo esc_html( $is_vi ? 'TIẾP TỤC THANH TOÁN' : 'CONTINUE TO CHECKOUT' ); ?></span>
-                            <span aria-hidden="true">→</span>
+                            <?php echo paxig_icon('arrow-right', 18); ?>
                         </a>
 
                         <div class="vyre-summary-security">
-                            <span class="vyre-sec-icon" aria-hidden="true">→</span>
+                            <span class="vyre-sec-icon" aria-hidden="true"><?php echo paxig_icon('lock-keyhole', 18); ?></span>
                             <span><?php echo esc_html__( 'Payment options are shown at checkout', 'paxig-shoes' ); ?></span>
                         </div>
                     </div>

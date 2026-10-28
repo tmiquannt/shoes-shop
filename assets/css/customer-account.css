@@ -47,7 +47,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation
   color: var(--paxig-color-text-muted);
   content: "PAXIG ACCOUNT";
   font-family: var(--paxig-font-display);
-  font-size: 13px;
+  font-size: var(--paxig-type-small);
   font-weight: 700;
   letter-spacing: .07em;
 }
@@ -77,7 +77,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation
   color: var(--paxig-color-text-muted);
   background: transparent;
   font-family: var(--paxig-font-display);
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   font-weight: 700;
   letter-spacing: .04em;
   line-height: 1.3;
@@ -123,7 +123,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :i
 body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content > h2,
 body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content form > h2 {
   margin: 0 0 20px;
-  font-size: 24px !important;
+  font-size: var(--paxig-type-panel-title) !important;
   line-height: 1.2;
 }
 
@@ -162,14 +162,14 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content a:
 
 .paxig-account-section-heading h2 {
   margin: 0;
-  font-size: 22px !important;
+  font-size: var(--paxig-type-price) !important;
   line-height: 1.2;
   text-transform: uppercase;
 }
 
 .paxig-account-section-heading p {
   margin: 6px 0 0;
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   line-height: 1.5;
 }
 
@@ -179,7 +179,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content a:
   min-height: 44px;
   flex: 0 0 auto;
   color: var(--paxig-color-accent) !important;
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   font-weight: 700;
   text-decoration: none;
 }
@@ -214,7 +214,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content a:
   background: var(--paxig-color-media);
   color: var(--paxig-color-on-accent);
   font-family: var(--paxig-font-display);
-  font-size: 24px;
+  font-size: var(--paxig-type-panel-title);
   font-weight: 700;
 }
 
@@ -236,13 +236,13 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content a:
 .paxig-account-order__details strong,
 .paxig-account-order__summary strong {
   color: var(--paxig-color-text);
-  font-size: 15px;
+  font-size: var(--paxig-type-body);
   font-weight: 700;
 }
 
 .paxig-account-order__details > span {
   color: var(--paxig-color-text-muted);
-  font-size: 13px;
+  font-size: var(--paxig-type-small);
   line-height: 1.45;
 }
 
@@ -269,7 +269,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content a:
   border-radius: 999px;
   background: var(--paxig-color-surface-raised);
   color: var(--paxig-color-text-muted);
-  font-size: 11px;
+  font-size: var(--paxig-type-caption);
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -297,7 +297,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content a:
 
 .paxig-account-order__action {
   color: var(--paxig-color-accent);
-  font-size: 13px;
+  font-size: var(--paxig-type-small);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -312,24 +312,24 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content a:
   min-height: 174px;
   padding: 24px;
   border-top: 1px solid var(--paxig-color-border);
-  background: #101211;
+  background: var(--paxig-color-paper);
 }
 
 .paxig-account-empty h3 {
   margin: 0 0 8px;
-  font-size: 18px;
+  font-size: var(--paxig-type-lead);
   line-height: 1.3;
 }
 
 .paxig-account-empty p {
   max-width: 48ch;
   margin: 0;
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   line-height: 1.55;
 }
 
 body.logged-in.paxig-store.woocommerce-account .woocommerce a.button.paxig-account-primary,
-body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :is(button, input[type=submit], .button) {
+body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :is(button[type=submit], input[type=submit], .button) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -340,7 +340,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :i
   color: var(--paxig-color-on-accent) !important;
   background: var(--paxig-color-accent) !important;
   font-family: var(--paxig-font-display);
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   font-weight: 700;
   line-height: 1.25;
   text-decoration: none;
@@ -348,7 +348,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :i
 }
 
 body.logged-in.paxig-store.woocommerce-account .woocommerce a.button.paxig-account-primary:hover,
-body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :is(button, input[type=submit], .button):hover {
+body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :is(button[type=submit], input[type=submit], .button):hover {
   border-color: var(--paxig-color-accent-hover);
   color: var(--paxig-color-on-accent) !important;
   background: var(--paxig-color-accent-hover) !important;
@@ -381,7 +381,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :i
 .paxig-account-definition-list dt,
 .paxig-account-definition-list dd {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
@@ -392,7 +392,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :i
 .paxig-account-address-preview h3 {
   margin: 0 0 8px;
   font-family: var(--paxig-font-body);
-  font-size: 13px;
+  font-size: var(--paxig-type-small);
   font-weight: 700;
   line-height: 1.4;
   text-transform: uppercase;
@@ -401,7 +401,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content :i
 .paxig-account-address-preview :is(address, p) {
   margin: 0 0 16px;
   color: var(--paxig-color-text-muted);
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   font-style: normal;
   line-height: 1.55;
 }
@@ -452,7 +452,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-Address-title a {
   border: 1px solid var(--paxig-color-border) !important;
   background: transparent !important;
   color: var(--paxig-color-accent) !important;
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   text-decoration: none;
   white-space: nowrap;
 }
@@ -490,7 +490,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table thead t
   border: 0;
   border-bottom: 1px solid var(--paxig-color-border);
   color: var(--paxig-color-text-muted);
-  font-size: 12px;
+  font-size: var(--paxig-type-caption);
   font-weight: 700;
   letter-spacing: .04em;
   text-align: left;
@@ -506,7 +506,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table tbody t
   border: 0;
   border-bottom: 1px solid var(--paxig-color-border);
   color: var(--paxig-color-text);
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   vertical-align: middle;
 }
 
@@ -518,7 +518,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table .woocom
 body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table .button {
   min-height: 40px !important;
   padding: 9px 12px !important;
-  font-size: 12px !important;
+  font-size: var(--paxig-type-caption) !important;
 }
 
 body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content form {
@@ -540,7 +540,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content fo
   display: block;
   margin-bottom: 7px;
   color: var(--paxig-color-text);
-  font-size: 14px;
+  font-size: var(--paxig-type-small);
   font-weight: 600;
 }
 
@@ -548,12 +548,12 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content fo
   width: 100%;
   min-height: 48px;
   padding: 11px 13px;
-  border: 1px solid #444743;
+  border: 1px solid var(--paxig-color-border);
   border-radius: 0;
   color: var(--paxig-color-text);
-  background: #0c0e0d;
+  background: var(--paxig-color-paper);
   font-family: var(--paxig-font-body);
-  font-size: 15px;
+  font-size: var(--paxig-type-body);
 }
 
 body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content .select2-container--default .select2-selection--single {
@@ -561,9 +561,9 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content .s
   height: 48px;
   align-items: center;
   padding: 0 12px;
-  border: 1px solid #444743;
+  border: 1px solid var(--paxig-color-border);
   border-radius: 0;
-  background: #0c0e0d;
+  background: var(--paxig-color-paper);
 }
 
 body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -650,7 +650,7 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content .p
   body.logged-in.paxig-store.woocommerce-account .woocommerce { gap: 16px; }
   body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation { padding: 12px; }
   body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation li a { justify-content: flex-start; min-height: 44px; padding: 8px 10px; border-bottom: 0; border-left: 2px solid transparent; font-size: 13px; text-align: left; }
+  body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation li a { justify-content: flex-start; min-height: 44px; padding: 8px 10px; border-bottom: 0; border-left: 2px solid transparent; font-size: var(--paxig-type-small); text-align: left; }
   body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation li a:hover,
   body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation li.is-active a { border-bottom-color: transparent; border-left-color: var(--paxig-color-accent); }
   body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-navigation li.woocommerce-MyAccount-navigation-link--customer-logout { grid-column: 1 / -1; }
@@ -658,15 +658,15 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content .p
   .paxig-account-recent, .paxig-account-summary { padding: 18px 16px; }
   .paxig-account-section-heading { gap: 10px; margin-bottom: 14px; }
   .paxig-account-section-heading h2 { font-size: 19px; }
-  .paxig-account-section-heading p { font-size: 13px; }
+  .paxig-account-section-heading p { font-size: var(--paxig-type-small); }
   .paxig-account-order__main { grid-template-columns: 60px minmax(0, 1fr); gap: 12px; min-height: 0; padding: 12px 0; }
   .paxig-account-order__image { width: 60px; grid-row: span 2; }
   .paxig-account-order__summary { grid-column: 2; flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; }
   .paxig-account-order__action { display: none; }
-  .paxig-account-order__details strong, .paxig-account-order__summary strong { font-size: 14px; }
-  .paxig-account-order__details > span { font-size: 12px; }
+  .paxig-account-order__details strong, .paxig-account-order__summary strong { font-size: var(--paxig-type-small); }
+  .paxig-account-order__details > span { font-size: var(--paxig-type-caption); }
   .paxig-account-order__item-name { max-width: 100%; }
-  .paxig-account-status { min-height: 24px; font-size: 11px; }
+  .paxig-account-status { min-height: 24px; font-size: var(--paxig-type-caption); }
   .paxig-account-empty { align-items: flex-start; flex-direction: column; gap: 18px; min-height: 0; padding: 20px 16px; }
   .paxig-account-empty .button { width: 100%; }
   .paxig-account-summary-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
@@ -680,8 +680,8 @@ body.logged-in.paxig-store.woocommerce-account .woocommerce-MyAccount-content .p
   body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table tr,
   body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table td { display: block; width: 100%; }
   body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; padding: 8px 0; border-bottom: 1px solid var(--paxig-color-border); }
-  body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table tbody td { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 7px 4px; border: 0; font-size: 13px; text-align: right; }
-  body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table tbody td::before { color: var(--paxig-color-text-muted); content: attr(data-title); font-size: 11px; font-weight: 600; text-align: left; }
+  body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table tbody td { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 7px 4px; border: 0; font-size: var(--paxig-type-small); text-align: right; }
+  body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table tbody td::before { color: var(--paxig-color-text-muted); content: attr(data-title); font-size: var(--paxig-type-caption); font-weight: 600; text-align: left; }
   body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table .woocommerce-orders-table__cell-order-actions { grid-column: 1 / -1; justify-content: flex-end; }
   body.logged-in.paxig-store.woocommerce-account .woocommerce-orders-table .woocommerce-orders-table__cell-order-actions::before { content: ""; }
 }

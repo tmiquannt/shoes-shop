@@ -2,11 +2,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gallery = document.querySelector('.woocommerce-product-gallery');
     if (gallery) {
+        const galleryControls = {
+            '.pswp__button--zoom': 'zoom-in',
+            '.pswp__button--fs': 'maximize',
+            '.pswp__button--share': 'share-2',
+            '.pswp__button--close': 'x',
+            '.pswp__button--arrow--left': 'chevron-left',
+            '.pswp__button--arrow--right': 'chevron-right',
+        };
+        Object.entries(galleryControls).forEach(([selector, icon]) => {
+            document.querySelectorAll(selector).forEach(button => {
+                button.innerHTML = '<span data-paxig-icon="' + icon + '" data-icon-size="24" aria-hidden="true"></span>';
+            });
+        });
         const localZoomIcon = () => {
             const trigger = gallery.querySelector('.woocommerce-product-gallery__trigger');
             if (!trigger || trigger.dataset.paxigLocalIcon) return;
             trigger.dataset.paxigLocalIcon = 'true';
-            trigger.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10" cy="10" r="6"/><path d="m14.5 14.5 5 5M10 7v6M7 10h6"/></svg>';
+            trigger.innerHTML = '<span data-paxig-icon="zoom-in" aria-hidden="true"></span>';
         };
         const enhanceThumbnails = () => gallery.querySelectorAll('.flex-control-thumbs img:not([tabindex])').forEach((thumb, index) => {
             thumb.tabIndex = 0; thumb.setAttribute('role','button');
@@ -42,8 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const input = wrapper.querySelector('input.qty');
         if (!input || input.type === 'hidden' || wrapper.querySelector('.paxig-quantity-step')) return;
         const minus = document.createElement('button'), plus = document.createElement('button');
-        for (const [button, text, label, method] of [[minus, '−', 'Decrease quantity', 'stepDown'], [plus, '+', 'Increase quantity', 'stepUp']]) {
-            button.type = 'button'; button.className = 'paxig-quantity-step'; button.textContent = text;
+        for (const [button, icon, label, method] of [[minus, 'minus', 'Decrease quantity', 'stepDown'], [plus, 'plus', 'Increase quantity', 'stepUp']]) {
+            button.type = 'button'; button.className = 'paxig-quantity-step';
+            button.innerHTML = '<span data-paxig-icon="' + icon + '" data-icon-size="16" aria-hidden="true"></span>';
             button.setAttribute('aria-label', label);
             button.addEventListener('click', () => {
                 try { input[method](); } catch (_) { return; }
@@ -62,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.type = 'button'; toggle.className = 'paxig-reference-search-toggle';
         toggle.setAttribute('aria-label','Open search'); toggle.setAttribute('aria-expanded','false');
         toggle.setAttribute('aria-controls','paxig-reference-search'); search.id = 'paxig-reference-search';
-        toggle.innerHTML = '<svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>';
+        toggle.innerHTML = '<span data-paxig-icon="search" data-icon-size="22" aria-hidden="true"></span>';
         actions.prepend(toggle);
         const close = () => { search.classList.remove('is-open'); toggle.setAttribute('aria-expanded','false'); };
         toggle.addEventListener('click', () => {

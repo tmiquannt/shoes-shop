@@ -350,7 +350,10 @@ document.addEventListener('DOMContentLoaded', function () {
             removeButton.className = 'paxig-wishlist-item-remove';
             removeButton.dataset.productId = String(id);
             removeButton.setAttribute('aria-label', config.i18n?.remove || 'Remove from favorites');
-            removeButton.textContent = '×';
+            const removeIcon = document.createElement('span');
+            removeIcon.setAttribute('data-paxig-icon', 'x');
+            removeIcon.setAttribute('aria-hidden', 'true');
+            removeButton.append(removeIcon);
             header.append(title, removeButton);
 
             const price = document.createElement('div');
@@ -360,7 +363,12 @@ document.addEventListener('DOMContentLoaded', function () {
             action.className = 'paxig-wishlist-drawer-item__action';
             const actionLink = document.createElement('a');
             if (permalink) actionLink.href = permalink;
-            actionLink.textContent = config.i18n?.select_size || 'Select Size / View →';
+            actionLink.textContent = (config.i18n?.select_size || 'Select Size / View').replace(/\s*[→↗]\s*$/, '') + ' ';
+            const actionIcon = document.createElement('span');
+            actionIcon.setAttribute('data-paxig-icon', 'arrow-right');
+            actionIcon.setAttribute('data-icon-size', '18');
+            actionIcon.setAttribute('aria-hidden', 'true');
+            actionLink.append(actionIcon);
             action.append(actionLink);
             info.append(header, price, action);
             row.append(media, info);

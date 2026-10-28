@@ -34,7 +34,7 @@ $is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_la
 		$switch_text = $is_vi
 			? __( 'QUAY LẠI <a href="%s">ĐĂNG NHẬP ↗</a>', 'paxig-shoes' )
 			: __( 'RETURN TO <a href="%s">SIGN IN ↗</a>', 'paxig-shoes' );
-		printf( $switch_text, esc_url( paxig_auth_switch_url() ) );
+		echo paxig_icon_text(sprintf( $switch_text, esc_url( paxig_auth_switch_url() ) ));
 		?>
 	</p>
 </section>

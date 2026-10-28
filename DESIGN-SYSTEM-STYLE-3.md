@@ -31,20 +31,23 @@ Keep the accent limited to actionable or selected elements. Keep product photos 
 
 | Token | Role |
 | --- | --- |
-| `--paxig-font-display` | Self-hosted variable PAXIG Display (Oswald 200–700), then Arial Narrow/Arial fallbacks |
+| `--paxig-font-display` | Self-hosted variable PAXIG Display (Oswald 400–700), then Arial Narrow/Arial fallbacks |
 | `--paxig-font-body` | Arial, Helvetica, sans-serif for descriptions, help text, and form entry |
 | `--paxig-type-caption` | 12px metadata and compact counts |
 | `--paxig-type-small` | 14px supporting UI text |
 | `--paxig-type-body` | 16px default reading size |
 | `--paxig-type-lead` | 18px supporting/intro copy |
-| `--paxig-type-card` | 15px product names |
+| `--paxig-type-card` | 16px product names and card prices across home, catalog and related products |
+| `--paxig-type-nav` | 14px navigation and compact actions |
+| `--paxig-type-price` | 20px primary product/total prices |
+| `--paxig-type-panel-title` | 24px drawer and account panel headings |
 | `--paxig-type-title-small` | Fluid section/card title |
 | `--paxig-type-title` | Fluid product and section title |
 | `--paxig-type-page-title` | Fluid category/content page title |
 | `--paxig-type-product-title` | Fluid product-detail title |
 | `--paxig-type-poster` | Responsive campaign title |
 
-Use the display face for headlines, navigation, product names, prices, short category labels, and uppercase buttons. Keep paragraphs and data-entry fields in the body face. Do not mix both faces within one short label. Keep storefront text around weight 400, tracking between `0` and `.08em`, and avoid negative tracking on Vietnamese headings. Use size, spacing, and case for hierarchy. Keep Vietnamese diacritics inside the line box: line-height at least `1.02`, no fixed-height title containers, and no crop through the accent marks. The Latin and Vietnamese variable WOFF2 subsets are self-hosted and preloaded by `includes/style-3.php`.
+Use the display face for headlines, navigation, product names, prices, short category labels, and uppercase buttons. Keep paragraphs and data-entry fields in the body face. Do not mix both faces within one short label. Body copy uses 16px, supporting text/controls use 14px, and compact metadata uses 12px; avoid one-off intermediate sizes and sub-12px labels. Keep body weight 400 and headings/actions 700, tracking between `0` and `.08em`, and avoid negative tracking on Vietnamese headings. Use size, spacing, and case for hierarchy. Keep Vietnamese diacritics inside the line box: line-height at least `1.02`, no fixed-height title containers, and no crop through the accent marks. The Latin and Vietnamese variable WOFF2 subsets are self-hosted and preloaded by `includes/style-3.php`.
 
 ### Spacing and geometry
 
@@ -59,6 +62,7 @@ Use the display face for headlines, navigation, product names, prices, short cat
 | `--paxig-control-height` | 46px minimum control height |
 | `--paxig-tap-target` | 44px minimum interactive target |
 | `--paxig-focus-width` | 3px visible focus ring |
+| `--paxig-mobile-nav-height` | 64px plus the device bottom safe area; shared by bottom navigation, page padding and sticky purchase offset |
 
 Use square corners for this direction. Separate content with surface tone and whitespace; reserve thin lines for controls, real tables, and meaningful boundaries.
 
@@ -66,7 +70,7 @@ Use square corners for this direction. Separate content with surface tone and wh
 
 - **Header:** `#faf8f5` warm off-white header, compact and shared across pages with subtle `#e2ded7` bottom hairline. Use condensed uppercase labels in `#151514`; switch to the menu drawer at tablet width. Keep the logo in its existing brand face.
 - **Campaign hero:** use the provided campaign image and crop it with `object-fit: cover`. Keep the two-part poster title clear of the sticky header and let Vietnamese marks breathe above the glyphs. On phones, stack the title and let the call to action span the content width.
-- **Product tiles:** use square neutral image fields (`#eae6df`), `object-fit: contain`, a clear uppercase name, a muted category label, and a high-contrast obsidian black price. Keep the image field consistent across home and listing pages.
+- **Product tiles:** use square edge-to-edge product images with `object-fit: cover`, no padding or contrasting frame around photography with its own background, a clear uppercase name, a muted category label, and a high-contrast obsidian black price. Keep the same shared card across home, listings and related products. Wishlist controls remain circular and overlay the top-right corner.
 - **Filters and sorting:** keep controls at least 44px high. On tablet and phone, hide the desktop filter column and expose it through the existing filter drawer.
 - **Product detail:** place gallery and purchase information side by side when they fit; stack them on phones. Keep size choices, quantity, and solid black add-to-cart controls easy to tap.
 - **Cart, checkout, and account:** clean paper `#ffffff` drawers/cards with warm neutral `#efebe4` summary panels, crisp obsidian black buttons, pill status badges (`#d8e2dc` for In Transit, `#e5e2db` for Delivered), and single-column form flow on phones.
@@ -82,6 +86,8 @@ Breakpoints in the stylesheet are mobile-first adjustments to three layout range
 | 901–1200px — compact desktop | Condensed header gaps; 4 home products and 3 listing columns; 24px gutters |
 | 601–900px — tablet | Menu drawer; 3 home/listing columns; 20px gutters; filters open in a drawer; collections use two columns. The campaign title stacks at 780px and below so both lines stay within the safe area. |
 | 600px and below — phone | 2 home/listing columns; 16px gutters; stacked product detail and collections; two-column cart/account navigation where space allows |
+
+The shared header switches to its expandable menu at 1200px and below so navigation never competes with the brand and language/account controls. The catalog retains the grid breakpoints above. Keep the header's CSS breakpoint and `assets/js/header.js` resize threshold synchronized.
 
 At every width from 320px upward, content must fit without horizontal scrolling. Use `minmax(0, 1fr)` for grid tracks, allow chip groups to wrap, and keep controls from forcing a minimum page width. Use `clamp()` tokens for titles instead of one-off viewport font sizes. Check the poster headline, product grid, filter/sort row, purchase controls, cart rows, and account navigation at phone, tablet, compact desktop, and desktop widths after layout changes.
 
@@ -106,3 +112,11 @@ body.paxig-style-3 .my-component h2 {
 ```
 
 Add or change a token at the scope root, adjust its breakpoint override when needed, and update this file when a public token or rule changes. Avoid introducing one-off colors, font families, and viewport-specific title sizes in component selectors.
+
+## Icons
+
+Use the locally hosted **Lucide Static 1.63.0** sprite in `assets/vendor/lucide/sprite.svg`; source, pinned checksum and upstream license are beside it. Do not add emoji, Unicode arrows/close glyphs or hand-drawn SVG paths for storefront UI controls. Brand artwork and native WooCommerce rating marks retain their own assets.
+
+PHP uses `paxig_icon('shopping-bag', 22)` from `includes/icons.php`. Dynamic JavaScript can create a decorative placeholder with `data-paxig-icon="shopping-bag"` and `data-icon-size="22"`; the shared `assets/js/icons.js` renderer hydrates it using the same sprite. Icons have a 24px viewBox, stroke width 2, and ignore pointer events so native buttons receive clicks. Keep a translated accessible label on icon-only controls; decorative SVGs have `aria-hidden="true"`.
+
+Use `paxig_disclosure_icons()` for native details/summary controls. CSS shows plus when closed and minus when open; do not also generate text pseudo-icons. Preserve the existing control's classes/data attributes and handler ownership when replacing an icon.

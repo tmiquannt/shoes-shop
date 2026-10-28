@@ -43,7 +43,7 @@ $is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_la
 			<input type="hidden" name="wc_reset_password" value="true" />
 			<button type="submit" class="woocommerce-Button button woocommerce-form-login__submit woocommerce-form-lost-password__submit<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" value="<?php esc_attr_e( 'Save', 'woocommerce' ); ?>">
 				<span><?php echo $is_vi ? 'LƯU MẬT KHẨU' : esc_html__( 'Save', 'woocommerce' ); ?></span>
-				<span aria-hidden="true">→</span>
+				<?php echo paxig_icon('arrow-right', 18); ?>
 			</button>
 		</p>
 
@@ -56,7 +56,7 @@ $is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_la
 		$switch_text = $is_vi
 			? __( 'QUAY LẠI <a href="%s">ĐĂNG NHẬP ↗</a>', 'paxig-shoes' )
 			: __( 'BACK TO <a href="%s">SIGN IN ↗</a>', 'paxig-shoes' );
-		printf( $switch_text, esc_url( paxig_auth_switch_url() ) );
+		echo paxig_icon_text(sprintf( $switch_text, esc_url( paxig_auth_switch_url() ) ));
 		?>
 	</p>
 </section>

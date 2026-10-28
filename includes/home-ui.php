@@ -59,26 +59,14 @@ function paxig_home_viewed_ids() {
     return array_slice(array_reverse(array_unique(array_filter(array_map('absint', explode('|', $cookie))))), 0, 8);
 }
 function paxig_home_card($item) {
-    global $product;
-    $previous = $product; $product = $item;
-    ?>
-    <li class="paxig-home-product" data-product-id="<?php echo esc_attr($item->get_id()); ?>">
-        <a href="<?php echo esc_url($item->get_permalink()); ?>" class="paxig-home-product-link">
-            <div class="paxig-reference-image"><?php paxig_reference_badge(); echo $item->get_image('woocommerce_thumbnail', ['loading'=>'lazy']); ?></div>
-            <?php paxig_reference_category(); ?>
-            <h3 class="paxig-home-product-title"><?php echo esc_html($item->get_name()); ?></h3>
-            <span class="paxig-home-product-price-row"><span class="price"><?php echo wp_kses_post($item->get_price_html()); ?></span><span class="paxig-home-product-heart" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg></span></span>
-        </a>
-        <?php if (function_exists('paxig_store_demo_image_credit_html')) echo paxig_store_demo_image_credit_html($item->get_id()); ?>
-    </li>
-    <?php $product = $previous;
+    get_template_part('template-parts/product-card', null, ['product' => $item]);
 }
 function paxig_home_product_section($id, $title, $items, $url = '', $rail = false, $note = '') {
     if (!$items) return;
     ?>
     <section class="paxig-home-section paxig-home-section--<?php echo esc_attr($id); ?>" id="<?php echo esc_attr($id); ?>" aria-labelledby="<?php echo esc_attr($id); ?>-title">
         <div class="paxig-home-section-head"><div><h2 id="<?php echo esc_attr($id); ?>-title"><?php echo esc_html($title); ?></h2><?php if ($note) : ?><p><?php echo esc_html($note); ?></p><?php endif; ?></div>
-            <?php if ($url) : ?><a class="paxig-home-more" href="<?php echo esc_url($url); ?>"><?php echo esc_html__( 'Shop All', 'paxig-shoes' ); ?> <span aria-hidden="true">↗</span></a><?php endif; ?>
+            <?php if ($url) : ?><a class="paxig-home-more" href="<?php echo esc_url($url); ?>"><?php echo esc_html__( 'Shop All', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-up-right', 18); ?></a><?php endif; ?>
         </div>
         <ul class="paxig-home-products <?php echo $rail ? 'paxig-home-rail' : ''; ?>" <?php if ($rail) echo 'tabindex="0" aria-label="'.esc_attr($title).'"'; ?>><?php foreach ($items as $item) paxig_home_card($item); ?></ul>
     </section>

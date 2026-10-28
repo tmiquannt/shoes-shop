@@ -98,14 +98,12 @@ add_action('wp_enqueue_scripts',function(){
 
 /** Use the password entered on the storefront registration form. */
 add_filter('pre_option_woocommerce_registration_generate_password',function($value){
-    if(is_admin() || !function_exists('is_account_page') || !is_account_page())return $value;
-    $register_requested=(isset($_GET['action']) && is_string($_GET['action']) && wp_unslash($_GET['action'])==='register') || isset($_POST['register']);
-    return $register_requested ? 'no' : $value;
+    return paxig_email_verification_is_registration_request() ? 'no' : $value;
 });
 
 /** Validate required customer details before WooCommerce creates the account. */
 add_filter('woocommerce_registration_errors',function($errors,$username,$email){
-    if(!is_account_page() || !isset($_POST['register']))return $errors;
+    if(!paxig_email_verification_is_registration_request())return $errors;
 
     $first_name=isset($_POST['first_name']) && is_string($_POST['first_name']) ? trim(wc_clean(wp_unslash($_POST['first_name']))) : '';
     $last_name=isset($_POST['last_name']) && is_string($_POST['last_name']) ? trim(wc_clean(wp_unslash($_POST['last_name']))) : '';
@@ -124,7 +122,7 @@ add_filter('woocommerce_registration_errors',function($errors,$username,$email){
 
 /** Include the submitted name before WooCommerce sends the new-account email. */
 add_filter('woocommerce_new_customer_data',function($customer_data){
-    if(!is_account_page() || !isset($_POST['register']))return $customer_data;
+    if(!paxig_email_verification_is_registration_request())return $customer_data;
     $customer_data['first_name']=isset($_POST['first_name']) && is_string($_POST['first_name']) ? wc_clean(wp_unslash($_POST['first_name'])) : '';
     $customer_data['last_name']=isset($_POST['last_name']) && is_string($_POST['last_name']) ? wc_clean(wp_unslash($_POST['last_name'])) : '';
     return $customer_data;
@@ -132,7 +130,7 @@ add_filter('woocommerce_new_customer_data',function($customer_data){
 
 /** Save the customer details WooCommerce uses to prefill checkout. */
 add_action('woocommerce_created_customer',function($customer_id){
-    if(!is_account_page() || !isset($_POST['register']))return;
+    if(!paxig_email_verification_is_registration_request())return;
     $first_name=isset($_POST['first_name']) && is_string($_POST['first_name']) ? wc_clean(wp_unslash($_POST['first_name'])) : '';
     $last_name=isset($_POST['last_name']) && is_string($_POST['last_name']) ? wc_clean(wp_unslash($_POST['last_name'])) : '';
     $phone=isset($_POST['phone']) && is_string($_POST['phone']) ? wc_sanitize_phone_number(wp_unslash($_POST['phone'])) : '';

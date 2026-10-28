@@ -179,8 +179,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Display error alert inside drawer if adding to cart fails
     document.body.addEventListener('paxig_add_to_cart_error', function (event) {
         if (event.detail && event.detail.message) {
-            showAlert(event.detail.message);
             openDrawer();
+            showAlert(event.detail.message);
         }
     });
 

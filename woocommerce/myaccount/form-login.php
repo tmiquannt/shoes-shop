@@ -57,14 +57,14 @@ do_action('woocommerce_before_customer_login_form');
 				<?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
 				<button type="submit" class="woocommerce-Button woocommerce-button button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?> woocommerce-form-register__submit" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>">
 					<span><?php echo esc_html__( 'CREATE ACCOUNT', 'paxig-shoes' ); ?></span>
-					<span aria-hidden="true">→</span>
+					<?php echo paxig_icon('arrow-right', 18); ?>
 				</button>
 			</p>
 
 			<?php do_action( 'woocommerce_register_form_end' ); ?>
 
 		</form>
-<p class="paxig-auth-switch vyre-auth-switch"><?php printf( __( 'ALREADY A MEMBER? <a href="%s">SIGN IN ↗</a>', 'paxig-shoes' ), esc_url(paxig_auth_switch_url()) ); ?></p>
+<p class="paxig-auth-switch vyre-auth-switch"><?php echo paxig_icon_text(sprintf( __( 'ALREADY A MEMBER? <a href="%s">SIGN IN ↗</a>', 'paxig-shoes' ), esc_url(paxig_auth_switch_url()) )); ?></p>
 <?php else : ?>
 		<form class="woocommerce-form woocommerce-form-login login" method="post" novalidate>
 
@@ -93,7 +93,7 @@ do_action('woocommerce_before_customer_login_form');
 				<?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
 				<button type="submit" class="woocommerce-button button woocommerce-form-login__submit<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>">
 					<span><?php echo esc_html__( 'SIGN IN', 'paxig-shoes' ); ?></span>
-					<span aria-hidden="true">→</span>
+					<?php echo paxig_icon('arrow-right', 18); ?>
 				</button>
 			</p>
 
@@ -113,7 +113,7 @@ do_action('woocommerce_before_customer_login_form');
 	</form>
 </details>
 <?php if ($registration_enabled) : ?>
-<p class="paxig-auth-switch vyre-auth-switch"><?php printf( __( "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>", 'paxig-shoes' ), esc_url(paxig_auth_switch_url(true)) ); ?></p>
+<p class="paxig-auth-switch vyre-auth-switch"><?php echo paxig_icon_text(sprintf( __( "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>", 'paxig-shoes' ), esc_url(paxig_auth_switch_url(true)) )); ?></p>
 <?php endif; ?>
 <?php endif; ?>
 </section>

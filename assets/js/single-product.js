@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!formData.has('product_id') && formData.has('add-to-cart')) {
                 formData.append('product_id', formData.get('add-to-cart'));
             }
+            // Native Woo handles this field before our AJAX action and would add twice.
+            formData.delete('add-to-cart');
             if (!formData.has('action')) {
                 formData.append('action', 'paxig_ajax_add_to_cart');
             }
@@ -165,7 +167,20 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(function (err) {
                 console.error('Add to cart request failed:', err);
-                cartForm.submit();
+                // The server may have added the item before its response was lost.
+                // Never replay that mutation through a native form submission.
+                const msg = (window.paxigSingleProduct && window.paxigSingleProduct.i18n && window.paxigSingleProduct.i18n.add_to_cart_uncertain)
+                    || 'We could not confirm whether the item was added. Check your bag before trying again.';
+                if (typeof CustomEvent === 'function') {
+                    document.body.dispatchEvent(new CustomEvent('paxig_add_to_cart_error', {
+                        detail: { message: msg }
+                    }));
+                } else {
+                    alert(msg);
+                }
+                if (window.jQuery) {
+                    window.jQuery(document.body).trigger('wc_fragment_refresh');
+                }
             })
             .finally(function () {
                 cartForm.classList.remove('is-submitting');

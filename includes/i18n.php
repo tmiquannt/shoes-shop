@@ -160,11 +160,7 @@ function paxig_render_language_switcher( $class = '' ) {
 		</label>
 		<div class="paxig-lang-control">
 			<span class="paxig-lang-icon" aria-hidden="true">
-				<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8">
-					<circle cx="12" cy="12" r="10"></circle>
-					<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-					<path d="M2 12h20"></path>
-				</svg>
+				<?php echo paxig_icon('globe', 14); ?>
 			</span>
 			<select
 				id="<?php echo esc_attr( $select_id ); ?>"
@@ -180,9 +176,7 @@ function paxig_render_language_switcher( $class = '' ) {
 				</option>
 			</select>
 			<span class="paxig-lang-chevron" aria-hidden="true">
-				<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.2">
-					<polyline points="6 9 12 15 18 9"></polyline>
-				</svg>
+				<?php echo paxig_icon('chevron-down', 10); ?>
 			</span>
 		</div>
 	</div>

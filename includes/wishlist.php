@@ -58,9 +58,7 @@ function paxig_wishlist_card_button() {
 		data-product-id="<?php echo esc_attr( $product_id ); ?>"
 		aria-label="<?php echo esc_attr( sprintf( __( 'Favorite %s', 'paxig-shoes' ), $product->get_name() ) ); ?>"
 	>
-		<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-			<path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
-		</svg>
+		<?php echo paxig_icon('heart', 20); ?>
 	</button>
 	<?php
 }
@@ -82,9 +80,7 @@ function paxig_wishlist_pdp_button() {
 		data-product-id="<?php echo esc_attr( $product_id ); ?>"
 		aria-label="<?php echo esc_attr( sprintf( __( 'Favorite %s', 'paxig-shoes' ), $product->get_name() ) ); ?>"
 	>
-		<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-			<path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
-		</svg>
+		<?php echo paxig_icon('heart', 22); ?>
 		<span class="paxig-wishlist-btn-text"><?php echo esc_html__( 'Favorite', 'paxig-shoes' ); ?></span>
 	</button>
 	<?php
@@ -103,15 +99,13 @@ function paxig_render_wishlist_drawer() {
 				<h2 id="paxig-wishlist-drawer-title" class="paxig-drawer-title">
 					<?php echo esc_html__( 'Favorites', 'paxig-shoes' ); ?> (<span class="paxig-wishlist-count">0</span>)
 				</h2>
-				<button type="button" class="paxig-drawer-close" aria-label="<?php echo esc_attr__( 'Close favorites', 'paxig-shoes' ); ?>">&times;</button>
+				<button type="button" class="paxig-drawer-close" aria-label="<?php echo esc_attr__( 'Close favorites', 'paxig-shoes' ); ?>"><?php echo paxig_icon('x', 22); ?></button>
 			</div>
 
 			<div class="paxig-wishlist-drawer-content">
 				<div class="paxig-drawer-empty paxig-wishlist-empty">
 					<div class="paxig-drawer-empty__icon" aria-hidden="true">
-						<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
-							<path d="M20.8 8.7c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
-						</svg>
+						<?php echo paxig_icon('heart', 48); ?>
 					</div>
 					<h3><?php echo esc_html__( 'Your Wishlist is Empty', 'paxig-shoes' ); ?></h3>
 					<p><?php echo esc_html__( 'Explore our catalogue and tap the heart icon on any pair to save it here.', 'paxig-shoes' ); ?></p>

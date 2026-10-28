@@ -29,10 +29,7 @@ function paxig_mini_cart_drawer_content() {
 		<?php if ( empty( $items ) ) : ?>
 			<div class="paxig-drawer-empty">
 				<div class="paxig-drawer-empty__icon" aria-hidden="true">
-					<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
-						<path d="M6 8h12l1 13H5L6 8z"></path>
-						<path d="M9 8a3 3 0 0 1 6 0"></path>
-					</svg>
+					<?php echo paxig_icon('shopping-bag', 48); ?>
 				</div>
 				<h3><?php echo esc_html__( 'Your Shopping Bag is Empty', 'paxig-shoes' ); ?></h3>
 				<p><?php echo esc_html__( 'Looks like you haven’t added any sneakers to your bag yet.', 'paxig-shoes' ); ?></p>
@@ -75,7 +72,7 @@ function paxig_mini_cart_drawer_content() {
 									<?php endif; ?>
 								</h4>
 								<button type="button" class="paxig-cart-item-remove" data-cart-item-key="<?php echo esc_attr( $cart_item_key ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Remove %s from bag', 'paxig-shoes' ), $product_name ) ); ?>">
-									&times;
+									<?php echo paxig_icon('x', 20); ?>
 								</button>
 							</div>
 
@@ -98,9 +95,9 @@ function paxig_mini_cart_drawer_content() {
 
 							<div class="paxig-cart-drawer-item__footer">
 								<div class="paxig-cart-qty-control" data-cart-item-key="<?php echo esc_attr( $cart_item_key ); ?>">
-									<button type="button" class="paxig-qty-btn paxig-qty-btn--minus" aria-label="<?php echo esc_attr__( 'Decrease quantity', 'paxig-shoes' ); ?>" <?php echo $cart_item['quantity'] <= 1 ? 'disabled' : ''; ?>>-</button>
+									<button type="button" class="paxig-qty-btn paxig-qty-btn--minus" aria-label="<?php echo esc_attr__( 'Decrease quantity', 'paxig-shoes' ); ?>" <?php echo $cart_item['quantity'] <= 1 ? 'disabled' : ''; ?>><?php echo paxig_icon('minus', 16); ?></button>
 									<span class="paxig-qty-val" aria-live="polite"><?php echo esc_html( $cart_item['quantity'] ); ?></span>
-									<button type="button" class="paxig-qty-btn paxig-qty-btn--plus" aria-label="<?php echo esc_attr__( 'Increase quantity', 'paxig-shoes' ); ?>">+</button>
+									<button type="button" class="paxig-qty-btn paxig-qty-btn--plus" aria-label="<?php echo esc_attr__( 'Increase quantity', 'paxig-shoes' ); ?>"><?php echo paxig_icon('plus', 16); ?></button>
 								</div>
 								<div class="paxig-cart-drawer-item__price">
 									<?php echo wp_kses_post( $item_subtotal ); ?>
@@ -149,7 +146,7 @@ function paxig_render_cart_drawer() {
 				<h2 id="paxig-cart-drawer-title" class="paxig-drawer-title">
 					<?php echo esc_html__( 'Shopping Bag', 'paxig-shoes' ); ?> (<span class="paxig-cart-count"><?php echo esc_html( $count ); ?></span>)
 				</h2>
-				<button type="button" class="paxig-drawer-close" aria-label="<?php echo esc_attr__( 'Close bag', 'paxig-shoes' ); ?>">&times;</button>
+				<button type="button" class="paxig-drawer-close" aria-label="<?php echo esc_attr__( 'Close bag', 'paxig-shoes' ); ?>"><?php echo paxig_icon('x', 22); ?></button>
 			</div>
 			<div class="paxig-drawer-alert" role="alert" aria-live="assertive" style="display:none;"></div>
 			<?php echo paxig_mini_cart_drawer_content(); // phpcs:ignore ?>
