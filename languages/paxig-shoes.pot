@@ -761,3 +761,690 @@ msgstr ""
 
 msgid "SECURE CHECKOUT"
 msgstr ""
+msgid "Home"
+msgstr ""
+
+msgid "My account"
+msgstr ""
+
+msgid "Additional information"
+msgstr ""
+
+msgid "Reviews"
+msgstr ""
+
+msgid "Choose an option"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Quantity"
+msgstr ""
+
+msgid "Your cart is currently empty."
+msgstr ""
+
+msgid "Return to shop"
+msgstr ""
+
+msgid "No products were found matching your selection."
+msgstr ""
+
+msgid "Product"
+msgstr ""
+
+msgid "Subtotal:"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "Total:"
+msgstr ""
+
+msgid "Shipping"
+msgstr ""
+
+msgid "Shipping:"
+msgstr ""
+
+msgid "Cart totals"
+msgstr ""
+
+msgid "Proceed to checkout"
+msgstr ""
+
+msgid "Update cart"
+msgstr ""
+
+msgid "Coupon code"
+msgstr ""
+
+msgid "Apply coupon"
+msgstr ""
+
+msgid "Billing details"
+msgstr ""
+
+msgid "Your order"
+msgstr ""
+
+msgid "Place order"
+msgstr ""
+
+msgid "Your account was created successfully. Your login details have been sent to your email address."
+msgstr ""
+
+msgid "Country / Region"
+msgstr ""
+
+msgid "Street address"
+msgstr ""
+
+msgid "Town / City"
+msgstr ""
+
+msgid "State / County"
+msgstr ""
+
+msgid "Username or email address"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Remember me"
+msgstr ""
+
+msgid "Lost your password?"
+msgstr ""
+
+msgid "Forgot your password?"
+msgstr ""
+
+msgid "Lost your password? Please enter your username or email address. You will receive a link to create a new password via email."
+msgstr ""
+
+msgid "Username or email"
+msgstr ""
+
+msgid "Reset password"
+msgstr ""
+
+msgid "Password reset email has been sent."
+msgstr ""
+
+msgid "The following addresses will be used on the checkout page by default."
+msgstr ""
+
+msgid "You have not set up this type of address yet."
+msgstr ""
+
+msgid "Add billing address"
+msgstr ""
+
+msgid "Add shipping address"
+msgstr ""
+
+msgid "Edit billing address"
+msgstr ""
+
+msgid "Edit shipping address"
+msgstr ""
+
+msgid "Display name"
+msgstr ""
+
+msgid "This will be how your name will be displayed in the account section and in reviews"
+msgstr ""
+
+msgid "Password change"
+msgstr ""
+
+msgid "Current password (leave blank to leave unchanged)"
+msgstr ""
+
+msgid "New password (leave blank to leave unchanged)"
+msgstr ""
+
+msgid "Confirm new password"
+msgstr ""
+
+msgid "Order #%1$s was placed on %2$s and is currently %3$s."
+msgstr ""
+
+msgid "Pending payment"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "On hold"
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Refunded"
+msgstr ""
+
+msgid "Failed"
+msgstr ""
+
+msgid "Order again"
+msgstr ""
+
+msgid "Order updates"
+msgstr ""
+
+msgid "Invalid order."
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Order details"
+msgstr ""
+
+msgid "No order has been made yet."
+msgstr ""
+
+msgid "Browse products"
+msgstr ""
+
+msgid "Save changes"
+msgstr ""
+
+msgid "Remove this item"
+msgstr ""
+
+msgid "Free shipping"
+msgstr ""
+
+msgid "Order number:"
+msgstr ""
+
+msgid "Order number"
+msgstr ""
+
+msgid "Date:"
+msgstr ""
+
+msgid "Payment method:"
+msgstr ""
+
+msgid "Thank you. Your order has been received."
+msgstr ""
+
+msgid "Pay with cash upon delivery."
+msgstr ""
+
+msgid "Make your payment directly into our bank account."
+msgstr ""
+
+msgid "Related products"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Customer Details"
+msgstr ""
+
+msgid "Order Summary"
+msgstr ""
+
+msgid "Proceed to Checkout"
+msgstr ""
+
+msgid "Update Cart"
+msgstr ""
+
+msgid "View Details"
+msgstr ""
+
+msgid "Explore products"
+msgstr ""
+
+msgid "Your Order"
+msgstr ""
+
+msgid "Place Order"
+msgstr ""
+
+msgid "Billing Address"
+msgstr ""
+
+msgid "Shipping Address"
+msgstr ""
+
+msgid "Relevance"
+msgstr ""
+
+msgid "Shop order"
+msgstr ""
+
+msgid "Min price"
+msgstr ""
+
+msgid "Max price"
+msgstr ""
+
+msgid "Price:"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "View cart"
+msgstr ""
+
+msgid "Show password"
+msgstr ""
+
+msgid "Hide password"
+msgstr ""
+
+msgid "Save my name, email, and website in this browser for the next time I comment."
+msgstr ""
+
+msgid "Your email address will not be published."
+msgstr ""
+
+msgid "Required fields are marked %s"
+msgstr ""
+
+msgid "Required fields are marked *"
+msgstr ""
+
+msgid "Cancel reply"
+msgstr ""
+
+msgid "Rate…"
+msgstr ""
+
+msgid "Perfect"
+msgstr ""
+
+msgid "Good"
+msgstr ""
+
+msgid "Average"
+msgstr ""
+
+msgid "Not that bad"
+msgstr ""
+
+msgid "Very poor"
+msgstr ""
+
+msgid "Contact information"
+msgstr ""
+
+msgid "Shipping methods"
+msgstr ""
+
+msgid "Order note"
+msgstr ""
+
+msgid "Notes about your order, e.g. special notes for delivery."
+msgstr ""
+
+msgid "Add a note to your order"
+msgstr ""
+
+msgid "Enter a coupon"
+msgstr ""
+
+msgid "Taxes"
+msgstr ""
+
+msgid "Discount"
+msgstr ""
+
+msgid "Fee"
+msgstr ""
+
+msgid "GOT IT ✓"
+msgstr ""
+
+msgid "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
+msgstr ""
+
+msgid "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+msgstr ""
+
+msgid "SIZE GUIDE ↗"
+msgstr ""
+
+msgid "Close search"
+msgstr ""
+
+msgid "WHAT ARE YOU LOOKING FOR?"
+msgstr ""
+
+msgid "Search sneakers, collections..."
+msgstr ""
+
+msgid "Submit search"
+msgstr ""
+
+msgid "TRENDING SEARCHES"
+msgstr ""
+
+msgid "New arrivals"
+msgstr ""
+
+msgid "Lifestyle sneakers"
+msgstr ""
+
+msgid "Court Series"
+msgstr ""
+
+msgid "Limited edition"
+msgstr ""
+
+msgid "RECOMMENDED FOR YOU"
+msgstr ""
+
+msgid "Recommended products will appear here when the catalog is ready."
+msgstr ""
+
+msgid "Shop the latest · Discover more ↗"
+msgstr ""
+
+msgid "SHOP THE COLLECTION"
+msgstr ""
+
+msgid "VIEW ALL"
+msgstr ""
+
+msgid "EXPLORE THE COLLECTION"
+msgstr ""
+
+msgid "NEW SEASON — AUTUMN / WINTER 2026"
+msgstr ""
+
+msgid "RUN THE NIGHT"
+msgstr ""
+
+msgid "OWN THE COURT"
+msgstr ""
+
+msgid "MADE TO MOVE"
+msgstr ""
+
+msgid "Hero slides"
+msgstr ""
+
+msgid "Breadcrumb"
+msgstr ""
+
+msgid "ALL SNEAKERS"
+msgstr ""
+
+msgid "MEN’S SNEAKERS"
+msgstr ""
+
+msgid "WOMEN’S SNEAKERS"
+msgstr ""
+
+msgid "KIDS’ SNEAKERS"
+msgstr ""
+
+msgid "LIMITED EDITION"
+msgstr ""
+
+msgid "SEARCH"
+msgstr ""
+
+msgid "RELEASES"
+msgstr ""
+
+msgid "Find your next favorite pair. Made to move with you."
+msgstr ""
+
+msgid "%s PRODUCT"
+msgstr ""
+
+msgid "%s PRODUCTS"
+msgstr ""
+
+msgid "FILTERS"
+msgstr ""
+
+msgid "CLEAR ALL"
+msgstr ""
+
+msgid "CATEGORY"
+msgstr ""
+
+msgid "GENDER"
+msgstr ""
+
+msgid "SIZE"
+msgstr ""
+
+msgid "COLOR"
+msgstr ""
+
+msgid "SPORT"
+msgstr ""
+
+msgid "PRICE"
+msgstr ""
+
+msgid "SORT BY"
+msgstr ""
+
+msgid "View products"
+msgstr ""
+
+msgid "Add to cart"
+msgstr ""
+
+msgid "Add %s to cart"
+msgstr ""
+
+msgid "Select options"
+msgstr ""
+
+msgid "Select options for %s"
+msgstr ""
+
+msgid "SALE"
+msgstr ""
+
+msgid "NEW"
+msgstr ""
+
+msgid "BESTSELLER"
+msgstr ""
+
+msgid "Delivery"
+msgstr ""
+
+msgid "Read the shopping guide"
+msgstr ""
+
+msgid "Be the first to review this product"
+msgstr ""
+
+msgid "COLOR: %s"
+msgstr ""
+
+msgid "Close size guide"
+msgstr ""
+
+msgid "Shipping options confirmed at checkout"
+msgstr ""
+
+msgid "Size guide available"
+msgstr ""
+
+msgid "Almost yours. Review your picks before checking out."
+msgstr ""
+
+msgid "NO ITEMS / YET"
+msgstr ""
+
+msgid "YOUR BAG IS EMPTY."
+msgstr ""
+
+msgid "Great things start with one step. Find a pair worth making moves in."
+msgstr ""
+
+msgid "EXPLORE SNEAKERS"
+msgstr ""
+
+msgid "YOUR ITEMS"
+msgstr ""
+
+msgid "Move to wishlist"
+msgstr ""
+
+msgid "CONTINUE SHOPPING"
+msgstr ""
+
+msgid "ORDER SUMMARY"
+msgstr ""
+
+msgid "Calculated at checkout"
+msgstr ""
+
+msgid "Not required"
+msgstr ""
+
+msgid "Estimated tax"
+msgstr ""
+
+msgid "PROMO CODE"
+msgstr ""
+
+msgid "APPLY"
+msgstr ""
+
+msgid "TOTAL"
+msgstr ""
+
+msgid "CONTINUE TO CHECKOUT"
+msgstr ""
+
+msgid "Payment options are shown at checkout"
+msgstr ""
+
+msgid "Add to favorites"
+msgstr ""
+
+msgid "CHECK OUT YOUR WAY"
+msgstr ""
+
+msgid "Sign in to view orders linked to your account, or continue as a guest."
+msgstr ""
+
+msgid "CONTINUE AS GUEST"
+msgstr ""
+
+msgid "ENTER THE WORLD OF PAXG'Shop"
+msgstr ""
+
+msgid "JOIN THE MOVEMENT."
+msgstr ""
+
+msgid "WELCOME BACK."
+msgstr ""
+
+msgid "Create an account for faster checkout, saved styles and exclusive releases."
+msgstr ""
+
+msgid "Sign in to your account. Your favorites, orders and next moves are waiting."
+msgstr ""
+
+msgid "Keep me signed in"
+msgstr ""
+
+msgid "Need a new verification link?"
+msgstr ""
+
+msgid "REMEMBER YOUR PASSWORD? <a href=\"%s\">SIGN IN ↗</a>"
+msgstr ""
+
+msgid "BẠN ĐÃ NHỚ MẬT KHẨU? <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+msgstr ""
+
+msgid "BACK TO <a href=\"%s\">SIGN IN ↗</a>"
+msgstr ""
+
+msgid "QUAY LẠI <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+msgstr ""
+
+msgid "RETURN TO <a href=\"%s\">SIGN IN ↗</a>"
+msgstr ""
+
+msgid "Mobile bottom navigation"
+msgstr ""
+
+msgid "We could not confirm whether the item was added. Check your bag before trying again."
+msgstr ""
+
+msgid "Pay online via VNPAY."
+msgstr ""
+
+msgid "Redirect customers to VNPAY to pay for their order."
+msgstr ""
+
+msgid "VNPAY returned a successful result. We are waiting for VNPAY server confirmation before marking this order as paid."
+msgstr ""
+
+msgid "VNPAY did not report a successful payment. You can retry payment from your order details."
+msgstr ""
+
+msgid "VNPAY only supports orders in VND."
+msgstr ""
+
+msgid "VNPAY is not configured yet. Please choose another payment method."
+msgstr ""
+
+msgid "We could not start VNPAY checkout. Please try again."
+msgstr ""
+
+msgid "This order total cannot be sent to VNPAY. Please contact the store."
+msgstr ""
+
+msgid "We could not load this order. Please try again."
+msgstr ""
+
+msgid "We could not verify the VNPAY return. Payment status will be confirmed through the automated VNPAY notification."
+msgstr ""
+
+msgid "Forgot password?"
+msgstr ""
+

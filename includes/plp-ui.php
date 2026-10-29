@@ -93,7 +93,25 @@ add_filter('woocommerce_page_title',function ($title) {
     if ($profile === 'men') return __( 'MEN’S SNEAKERS', 'paxig-shoes' );
     if ($profile === 'women') return __( 'WOMEN’S SNEAKERS', 'paxig-shoes' );
     if ($profile === 'kids') return __( 'KIDS’ SNEAKERS', 'paxig-shoes' );
-    if (is_product_category()) return strtoupper(single_cat_title('', false));
+    if (is_product_category()) {
+        $cat_obj = get_queried_object();
+        $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+        if ($is_vi && $cat_obj instanceof WP_Term) {
+            $vi_cat_names = [
+                'lifestyle'    => 'PHONG CÁCH',
+                'running'      => 'CHẠY BỘ',
+                'basketball'   => 'BÓNG RỔ',
+                'football'     => 'BÓNG ĐÁ',
+                'training'     => 'TẬP LUYỆN',
+                'new-arrivals' => 'MỚI LÊN KỆ',
+                'best-sellers' => 'BÁN CHẠY',
+            ];
+            if (isset($vi_cat_names[$cat_obj->slug])) {
+                return $vi_cat_names[$cat_obj->slug];
+            }
+        }
+        return strtoupper(single_cat_title('', false));
+    }
     return __( 'ALL SNEAKERS', 'paxig-shoes' );
 }, 120);
 function paxig_plp_header() {
@@ -101,12 +119,15 @@ function paxig_plp_header() {
     $is_release_collection = isset($_GET['paxig_releases']) && is_string($_GET['paxig_releases']) && wp_unslash($_GET['paxig_releases']) === '1';
     $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
     $release_label = $is_vi ? 'BỘ SƯU TẬP' : __( 'RELEASES', 'paxig-shoes' );
-    $cat_name = is_product_category() ? strtoupper(get_queried_object()->name) : ($is_release_collection ? strtoupper($release_label) : (paxig_plp_product_search_page() ? strtoupper( __( 'SEARCH', 'paxig-shoes' ) ) : 'ALL'));
+    $all_label = $is_vi ? 'TẤT CẢ' : 'ALL';
+    $cat_name = is_product_category() ? strtoupper(woocommerce_page_title(false)) : ($is_release_collection ? strtoupper($release_label) : (paxig_plp_product_search_page() ? strtoupper( __( 'SEARCH', 'paxig-shoes' ) ) : $all_label));
+    $home_label = $is_vi ? 'TRANG CHỦ' : 'HOME';
+    $sneakers_label = $is_vi ? 'GIÀY SNEAKER' : 'SNEAKERS';
     echo '<header class="woocommerce-products-header vyre-plp-header">';
-    echo '<nav class="vyre-breadcrumb" aria-label="Breadcrumb">';
-    echo '<a href="' . esc_url( home_url('/') ) . '">HOME</a> ';
+    echo '<nav class="vyre-breadcrumb" aria-label="' . esc_attr__( 'Breadcrumb', 'paxig-shoes' ) . '">';
+    echo '<a href="' . esc_url( home_url('/') ) . '">' . esc_html( $home_label ) . '</a> ';
     echo '<span class="vyre-sep">/</span> ';
-    echo '<a href="' . esc_url( wc_get_page_permalink('shop') ) . '">SNEAKERS</a> ';
+    echo '<a href="' . esc_url( wc_get_page_permalink('shop') ) . '">' . esc_html( $sneakers_label ) . '</a> ';
     echo '<span class="vyre-sep">/</span> ';
     echo '<span>' . esc_html( $cat_name ) . '</span>';
     echo '</nav>';
@@ -212,6 +233,16 @@ function paxig_plp_category_filter($slugs) {
         if ($current instanceof WP_Term && in_array($current->slug, $slugs, true)) $selected[] = $current->slug;
     }
 
+    $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
+    $known_cats = [
+        'lifestyle'    => $is_vi ? 'Phong cách' : 'Lifestyle',
+        'running'      => $is_vi ? 'Chạy bộ' : 'Running',
+        'basketball'   => $is_vi ? 'Bóng rổ' : 'Basketball',
+        'football'     => $is_vi ? 'Bóng đá' : 'Football',
+        'training'     => $is_vi ? 'Tập luyện' : 'Training',
+        'new-arrivals' => $is_vi ? 'Mới lên kệ' : 'New Arrivals',
+        'best-sellers' => $is_vi ? 'Bán chạy' : 'Best Sellers',
+    ];
     $html='<ul class="woocommerce-widget-layered-nav-list paxig-plp-category-list">';
     foreach ($terms as $term) {
         $is_selected = in_array($term->slug, $selected, true);
@@ -221,8 +252,9 @@ function paxig_plp_category_filter($slugs) {
         $next_args = $args;
         if ($next_selected) $next_args['paxig_categories'] = implode(',', $next_selected);
         else unset($next_args['paxig_categories']);
+        $label = $known_cats[$term->slug] ?? $term->name;
         $html .= '<li class="woocommerce-widget-layered-nav-list__item' . ($is_selected ? ' chosen' : '') . '">';
-        $html .= '<a ' . ($is_selected ? 'aria-current="true" ' : '') . 'href="' . esc_url(paxig_plp_catalog_url($next_args)) . '">' . esc_html($term->name) . '</a></li>';
+        $html .= '<a ' . ($is_selected ? 'aria-current="true" ' : '') . 'href="' . esc_url(paxig_plp_catalog_url($next_args)) . '">' . esc_html($label) . '</a></li>';
     }
     $html .= '</ul>';
     paxig_plp_group('categories', __( 'CATEGORY', 'paxig-shoes' ), $html);
@@ -267,8 +299,25 @@ add_filter('woocommerce_layered_nav_term_html',function($html,$term,$link,$count
     if (!paxig_plp_page()) return $html;
     $chosen=WC_Query::get_layered_nav_chosen_attributes();
     if (in_array($term->slug,$chosen[$term->taxonomy]['terms'] ?? [],true)) $html=str_replace('<a ','<a aria-current="true" ',$html);
-    $colors=['red-black'=>'linear-gradient(135deg,#b32928 50%,#111 50%)','neutral'=>'linear-gradient(135deg,#fff 50%,#999 50%)','lime-black'=>'linear-gradient(135deg,#7eb832 50%,#111 50%)'];
-    if ($term->taxonomy==='pa_color' && isset($colors[$term->slug])) $html=preg_replace('/(<a\b[^>]*>)/','$1<span class="paxig-plp-swatch" aria-hidden="true" style="background:'.esc_attr($colors[$term->slug]).'"></span>',$html,1);
+    $colors=[
+        'red-black'    => 'linear-gradient(135deg,#b32928 50%,#111 50%)',
+        'neutral'      => 'linear-gradient(135deg,#fff 50%,#999 50%)',
+        'white-grey'   => 'linear-gradient(135deg,#fff 50%,#999 50%)',
+        'lime-black'   => 'linear-gradient(135deg,#7eb832 50%,#111 50%)',
+        'navy-white'   => 'linear-gradient(135deg,#1b2f4f 50%,#fff 50%)',
+        'sand-orange'  => 'linear-gradient(135deg,#d2b48c 50%,#e65100 50%)',
+        'blue-grey'    => 'linear-gradient(135deg,#2b6cb0 50%,#a0aec0 50%)',
+        'black-white'  => 'linear-gradient(135deg,#111 50%,#fff 50%)',
+        'purple-pink'  => 'linear-gradient(135deg,#6b46c1 50%,#ed64a6 50%)',
+        'olive-cream'  => 'linear-gradient(135deg,#556b2f 50%,#f5f5dc 50%)',
+        'silver-blue'  => 'linear-gradient(135deg,#c0c0c0 50%,#3182ce 50%)',
+        'black'        => '#111',
+        'white'        => '#fff',
+    ];
+    if ($term->taxonomy==='pa_color') {
+        $swatch_bg = $colors[$term->slug] ?? '#d6d0c7';
+        $html=preg_replace('/(<a\b[^>]*>)/','$1<span class="paxig-plp-swatch" aria-hidden="true" style="background:'.esc_attr($swatch_bg).'"></span>',$html,1);
+    }
     return $html;
 },10,4);
 // Keep existing collection refinements when native widgets build their URLs.

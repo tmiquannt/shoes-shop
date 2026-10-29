@@ -7,7 +7,9 @@ get_header();
 $shop_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/');
 $catalog_url = function_exists('get_post_type_archive_link') ? get_post_type_archive_link('product') : $shop_url;
 if (!$catalog_url) $catalog_url = $shop_url;
+$best_sellers_url = function_exists('paxig_plp_catalog_url') ? paxig_plp_catalog_url(['orderby' => 'popularity']) : add_query_arg('orderby', 'popularity', $catalog_url);
 $new_arrivals_url = function_exists('paxig_plp_catalog_url') ? paxig_plp_catalog_url(['orderby' => 'date']) : add_query_arg('orderby', 'date', $catalog_url);
+$popular_url = function_exists('paxig_plp_catalog_url') ? paxig_plp_catalog_url(['orderby' => 'rating']) : $shop_url;
 $about_url = function_exists('paxig_storefront_page_url') ? paxig_storefront_page_url('about') : '';
 $theme_uri = get_template_directory_uri();
 $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
@@ -17,10 +19,71 @@ $hero_slides = [
     ['image' => 'vyre-slide-city-v2.webp', 'name' => $is_vi ? 'SINH RA ĐỂ CHUYỂN ĐỘNG' : 'MADE TO MOVE'],
 ];
 
-// Retrieve products for Curated / 01 New Arrivals
-$new_products = function_exists('paxig_home_products') ? paxig_home_products(['limit' => 4]) : [];
-if (empty($new_products) && function_exists('wc_get_products')) {
-    $new_products = wc_get_products(['status' => 'publish', 'visibility' => 'visible', 'limit' => 4, 'orderby' => 'date', 'order' => 'DESC']);
+// Retrieve products for Best Sellers (top total sales)
+$best_seller_products = [];
+if (function_exists('wc_get_products')) {
+    $best_seller_products = wc_get_products([
+        'status'     => 'publish',
+        'visibility' => 'visible',
+        'limit'      => 4,
+        'orderby'    => 'meta_value_num',
+        'meta_key'   => 'total_sales',
+        'order'      => 'DESC',
+    ]);
+}
+if (empty($best_seller_products) && function_exists('wc_get_products')) {
+    $best_seller_products = wc_get_products([
+        'status'     => 'publish',
+        'visibility' => 'visible',
+        'limit'      => 4,
+        'orderby'    => 'date',
+        'order'      => 'DESC',
+    ]);
+}
+
+// Retrieve products for New Arrivals (latest published, excluding best sellers)
+$best_seller_ids = !empty($best_seller_products) ? wp_list_pluck($best_seller_products, 'id') : [];
+$new_products = [];
+if (function_exists('wc_get_products')) {
+    $new_products = wc_get_products([
+        'status'     => 'publish',
+        'visibility' => 'visible',
+        'limit'      => 4,
+        'orderby'    => 'date',
+        'order'      => 'DESC',
+        'exclude'    => $best_seller_ids,
+    ]);
+}
+if (empty($new_products) && function_exists('paxig_home_products')) {
+    $new_products = paxig_home_products(['limit' => 4]);
+}
+
+// Retrieve products for Popular Products (popular items with high sales/engagement, excluding already shown)
+$shown_ids = array_merge($best_seller_ids, !empty($new_products) ? wp_list_pluck($new_products, 'id') : []);
+$popular_products = [];
+if (function_exists('wc_get_products')) {
+    $popular_products = wc_get_products([
+        'status'     => 'publish',
+        'visibility' => 'visible',
+        'limit'      => 4,
+        'orderby'    => 'meta_value_num',
+        'meta_key'   => 'total_sales',
+        'order'      => 'DESC',
+        'exclude'    => $shown_ids,
+    ]);
+}
+if (count($popular_products) < 4 && function_exists('wc_get_products')) {
+    $needed = 4 - count($popular_products);
+    $exclude_all = array_merge($shown_ids, !empty($popular_products) ? wp_list_pluck($popular_products, 'id') : []);
+    $fallback_popular = wc_get_products([
+        'status'     => 'publish',
+        'visibility' => 'visible',
+        'limit'      => $needed,
+        'orderby'    => 'date',
+        'order'      => 'DESC',
+        'exclude'    => $exclude_all,
+    ]);
+    $popular_products = array_merge($popular_products, $fallback_popular);
 }
 ?>
 
@@ -95,27 +158,40 @@ if (empty($new_products) && function_exists('wc_get_products')) {
         </div>
     </section>
 
-    <!-- TICKER MARQUEE STRIP MATCHING 01_Homepage_Video_Hero.png -->
-    <div class="vyre-ticker" aria-hidden="true">
-        <div class="paxig-container vyre-ticker-row">
-            <span class="vyre-ticker-col vyre-ticker-col--left"><?php echo esc_html__( "PAXG'Shop / WORLDWIDE", 'paxig-shoes' ); ?></span>
-            <span class="vyre-ticker-col vyre-ticker-col--center"><?php echo esc_html__( 'BETTER MATERIALS. BOLDER IDEAS.', 'paxig-shoes' ); ?></span>
-            <a href="<?php echo esc_url($shop_url); ?>" class="vyre-ticker-col vyre-ticker-col--right">
-                <span><?php echo esc_html__( 'THE NEXT MOVE STARTS HERE', 'paxig-shoes' ); ?></span>
-                <?php echo paxig_icon('arrow-right', 18); ?>
+
+
+    <!-- 01 - BEST SELLERS SECTION -->
+    <section class="vyre-curated paxig-container" id="best-sellers" aria-labelledby="best-sellers-title">
+        <div class="vyre-section-head">
+            <div class="vyre-section-title-wrap">
+                <span class="vyre-section-eyebrow"><?php echo $is_vi ? 'TUYỂN CHỌN / 01' : esc_html__( 'CURATED / 01', 'paxig-shoes' ); ?></span>
+                <h2 id="best-sellers-title" class="vyre-section-title"><?php echo $is_vi ? 'BÁN CHẠY NHẤT' : esc_html__( 'BEST SELLERS', 'paxig-shoes' ); ?></h2>
+            </div>
+            <a href="<?php echo esc_url($best_sellers_url); ?>" class="vyre-section-link">
+                <?php echo $is_vi ? 'XEM TẤT CẢ' : esc_html__( 'VIEW ALL', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-right', 18); ?>
             </a>
         </div>
-    </div>
 
-    <!-- CURATED / 01 - NEW ARRIVALS SECTION -->
+        <ul class="vyre-products-grid">
+            <?php
+            if (!empty($best_seller_products)) :
+                foreach (array_values($best_seller_products) as $item) :
+                    get_template_part('template-parts/product-card', null, ['product' => $item]);
+                endforeach;
+            endif;
+            ?>
+        </ul>
+    </section>
+
+    <!-- 02 - NEW ARRIVALS SECTION -->
     <section class="vyre-curated paxig-container" id="new-arrivals" aria-labelledby="new-arrivals-title">
         <div class="vyre-section-head">
             <div class="vyre-section-title-wrap">
-                <span class="vyre-section-eyebrow"><?php echo esc_html__( 'CURATED / 01', 'paxig-shoes' ); ?></span>
-                <h2 id="new-arrivals-title" class="vyre-section-title"><?php echo esc_html__( 'NEW ARRIVALS.', 'paxig-shoes' ); ?></h2>
+                <span class="vyre-section-eyebrow"><?php echo $is_vi ? 'TUYỂN CHỌN / 02' : esc_html__( 'CURATED / 02', 'paxig-shoes' ); ?></span>
+                <h2 id="new-arrivals-title" class="vyre-section-title"><?php echo $is_vi ? 'SẢN PHẨM MỚI' : esc_html__( 'NEW ARRIVALS', 'paxig-shoes' ); ?></h2>
             </div>
             <a href="<?php echo esc_url($new_arrivals_url); ?>" class="vyre-section-link">
-                <?php echo esc_html__( 'VIEW ALL', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-right', 18); ?>
+                <?php echo $is_vi ? 'XEM TẤT CẢ' : esc_html__( 'VIEW ALL', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-right', 18); ?>
             </a>
         </div>
 
@@ -123,6 +199,29 @@ if (empty($new_products) && function_exists('wc_get_products')) {
             <?php
             if (!empty($new_products)) :
                 foreach (array_values($new_products) as $item) :
+                    get_template_part('template-parts/product-card', null, ['product' => $item]);
+                endforeach;
+            endif;
+            ?>
+        </ul>
+    </section>
+
+    <!-- 03 - POPULAR PRODUCTS SECTION -->
+    <section class="vyre-curated paxig-container" id="popular-products" aria-labelledby="popular-products-title">
+        <div class="vyre-section-head">
+            <div class="vyre-section-title-wrap">
+                <span class="vyre-section-eyebrow"><?php echo $is_vi ? 'TUYỂN CHỌN / 03' : esc_html__( 'CURATED / 03', 'paxig-shoes' ); ?></span>
+                <h2 id="popular-products-title" class="vyre-section-title"><?php echo $is_vi ? 'SẢN PHẨM PHỔ BIẾN' : esc_html__( 'POPULAR PRODUCTS', 'paxig-shoes' ); ?></h2>
+            </div>
+            <a href="<?php echo esc_url($popular_url); ?>" class="vyre-section-link">
+                <?php echo $is_vi ? 'XEM TẤT CẢ' : esc_html__( 'VIEW ALL', 'paxig-shoes' ); ?> <?php echo paxig_icon('arrow-right', 18); ?>
+            </a>
+        </div>
+
+        <ul class="vyre-products-grid">
+            <?php
+            if (!empty($popular_products)) :
+                foreach (array_values($popular_products) as $item) :
                     get_template_part('template-parts/product-card', null, ['product' => $item]);
                 endforeach;
             endif;

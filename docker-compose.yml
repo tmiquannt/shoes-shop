@@ -1,0 +1,63 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: shoes-shop-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-shoes_shop}
+      MYSQL_USER: ${DB_USER:-shoes_shop}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-local_dev_password}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_dev_password}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "${DB_PORT:-3308}:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  wordpress:
+    image: wordpress:6.8.3-php8.3-apache
+    container_name: shoes-shop-wordpress
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${WP_PORT:-8082}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME:-shoes_shop}
+      WORDPRESS_DB_USER: ${DB_USER:-shoes_shop}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-local_dev_password}
+      WORDPRESS_TABLE_PREFIX: wp_
+      # Gmail SMTP settings for customer verification
+      PAXIG_SMTP_HOST: ${PAXIG_SMTP_HOST:-smtp.gmail.com}
+      PAXIG_SMTP_PORT: ${PAXIG_SMTP_PORT:-587}
+      PAXIG_SMTP_ENCRYPTION: ${PAXIG_SMTP_ENCRYPTION:-tls}
+      PAXIG_SMTP_USERNAME: ${PAXIG_SMTP_USERNAME:-}
+      PAXIG_SMTP_APP_PASSWORD: ${PAXIG_SMTP_APP_PASSWORD:-}
+      PAXIG_SMTP_FROM_EMAIL: ${PAXIG_SMTP_FROM_EMAIL:-}
+      PAXIG_SMTP_FROM_NAME: ${PAXIG_SMTP_FROM_NAME:-PAXIG Shoes}
+    volumes:
+      - wp_core:/var/www/html
+      - .:/var/www/html/wp-content/themes/paxig-shoes
+      - ./plugins/paxig-vnpay:/var/www/html/wp-content/plugins/paxig-vnpay
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: shoes-shop-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${PMA_PORT:-8083}:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+
+volumes:
+  db_data:
+  wp_core:

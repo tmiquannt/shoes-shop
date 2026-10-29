@@ -94,9 +94,10 @@ body.paxig-store #main.site-main,body.paxig-store.paxig-plp #main.site-main{widt
 .paxig-store.single-product .paxig-size-button{font-size:var(--paxig-type-small)!important;font-weight:400!important;min-height:48px!important;border-radius:4px!important}
 .paxig-store.single-product .paxig-size-button.is-selected{font-weight:600!important}
 .paxig-store.single-product table.variations label{font-size:var(--paxig-type-small);font-weight:600}
-.paxig-store.single-product form.cart .quantity{margin-bottom:0!important;border-radius:4px}
+.paxig-store.single-product form.cart .quantity{margin-bottom:16px!important;float:none!important;border-radius:4px}
+.paxig-store.single-product .woocommerce-variation-add-to-cart .quantity{margin-bottom:0!important}
 .paxig-store.single-product .woocommerce-variation-add-to-cart{gap:16px}
-.paxig-store.single-product .single_add_to_cart_button{font-weight:600!important;border-radius:4px!important;min-height:52px}
+.paxig-store.single-product .single_add_to_cart_button{float:none!important;font-weight:600!important;border-radius:4px!important;min-height:52px}
 .paxig-store .paxig-reference-policy{font-size:var(--paxig-type-small);line-height:1.6;padding:16px;background:#f5f5f5;margin:24px 0}
 .paxig-store .paxig-reference-accordions summary{font-size:var(--paxig-type-small);text-transform:none;font-weight:600;min-height:60px}
 .paxig-store .paxig-reference-content{font-size:var(--paxig-type-small);line-height:1.65;color:#555}

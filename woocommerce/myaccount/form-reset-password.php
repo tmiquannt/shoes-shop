@@ -17,7 +17,7 @@ $is_vi = function_exists( 'paxig_get_current_language' ) && paxig_get_current_la
 <section class="paxig-auth-card vyre-auth-card" aria-labelledby="paxig-auth-title">
 	<header class="paxig-auth-card-heading vyre-auth-card-heading">
 		<span class="vyre-auth-eyebrow"><?php echo esc_html__( "ENTER THE WORLD OF PAXG'Shop", 'paxig-shoes' ); ?></span>
-		<h2 id="paxig-auth-title" class="vyre-auth-title"><?php echo $is_vi ? 'MẬT KHẨU MỚI.' : 'NEW PASSWORD.'; ?></h2>
+		<h2 id="paxig-auth-title" class="vyre-auth-title"><?php echo $is_vi ? 'MẬT KHẨU MỚI' : 'NEW PASSWORD'; ?></h2>
 		<p class="vyre-auth-subtitle"><?php echo $is_vi ? 'Vui lòng nhập mật khẩu mới cho tài khoản của bạn bên dưới.' : esc_html( apply_filters( 'woocommerce_reset_password_message', __( 'Enter a new password below.', 'woocommerce' ) ) ); ?></p>
 	</header>
 

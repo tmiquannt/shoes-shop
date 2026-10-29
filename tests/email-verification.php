@@ -67,6 +67,10 @@ function add_query_arg($args, $value, $url = null) {
 function wp_mail($recipient, $subject, $message) { $GLOBALS['test_mail'][] = [$recipient, $subject, $message]; return true; }
 function wp_safe_redirect($url) { throw new Registration_Test_Redirect($url); }
 function wc_set_customer_auth_cookie($id) { $GLOBALS['test_auth_cookies'][] = $id; }
+function esc_html($value) { return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8'); }
+function wp_salt($scheme = 'auth') { return 'test-salt'; }
+function get_transient($key) { return $GLOBALS['test_transients'][$key] ?? false; }
+function set_transient($key, $value, $expiration = 0) { $GLOBALS['test_transients'][$key] = $value; return true; }
 
 require __DIR__ . '/../includes/auth-ui.php';
 require __DIR__ . '/../includes/email-verification.php';
@@ -82,6 +86,7 @@ function reset_context() {
     $GLOBALS['test_meta'] = [];
     $GLOBALS['test_mail'] = [];
     $GLOBALS['test_auth_cookies'] = [];
+    $GLOBALS['test_transients'] = [];
     putenv('PAXIG_SMTP_USERNAME');
     putenv('PAXIG_SMTP_APP_PASSWORD');
 }
@@ -144,7 +149,12 @@ run_test('pending registration sends hashed token and prevents automatic auth', 
     expect(get_user_meta(21, '_paxig_email_verification_token_hash'), hash('sha256', $matches[1]), 'Only token hash persisted');
     expect(get_user_meta(21, '_paxig_email_verification_expires_at') > time(), true, 'Token expiry');
     expect(apply_filters('woocommerce_registration_auth_new_customer', true, 21), false, 'No automatic auth');
-    expect(apply_filters('wp_authenticate_user', new WP_User()) instanceof WP_Error, true, 'Pending login denied');
+    $auth_result = apply_filters('wp_authenticate_user', new WP_User());
+    expect($auth_result instanceof WP_Error, true, 'Pending login denied');
+    expect(count($GLOBALS['test_mail']), 2, 'Auto-resends verification email on unverified login attempt');
+    $auth_result2 = apply_filters('wp_authenticate_user', new WP_User());
+    expect($auth_result2 instanceof WP_Error, true, 'Pending login still denied');
+    expect(count($GLOBALS['test_mail']), 2, 'Rate limited from resending on immediate second attempt');
     expect($GLOBALS['test_auth_cookies'], [], 'No auth cookies');
     expect(apply_filters('woocommerce_email_enabled_customer_new_account', true), false, 'Native new-account email suppressed');
 });

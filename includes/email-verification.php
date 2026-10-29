@@ -196,7 +196,35 @@ add_filter('wp_authenticate_user', function($user) {
         || get_user_meta($user->ID, '_paxig_email_verified', true) === 'yes') {
         return $user;
     }
-    return new WP_Error('paxig_email_not_verified', __( 'Please verify your email before logging in. Use the resend form on this page if you need another link.', 'paxig-shoes' ));
+
+    $email = (string) $user->user_email;
+    $rate_key = 'paxig_email_resend_' . substr(hash_hmac('sha256', strtolower($email), function_exists('wp_salt') ? wp_salt('auth') : 'paxig_salt'), 0, 40);
+    $sent = false;
+
+    if (function_exists('get_transient') && function_exists('set_transient')) {
+        if (!get_transient($rate_key) && paxig_email_verification_smtp_is_configured()) {
+            set_transient($rate_key, 1, defined('MINUTE_IN_SECONDS') ? MINUTE_IN_SECONDS : 60);
+            $sent = paxig_email_verification_send($user->ID);
+        }
+    } elseif (paxig_email_verification_smtp_is_configured()) {
+        $sent = paxig_email_verification_send($user->ID);
+    }
+
+    $display_email = function_exists('esc_html') ? esc_html($email) : htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+
+    if ($sent) {
+        $message = sprintf(
+            __( 'Your account has not been verified yet. We have sent a new verification link to %s. Please check your inbox (or spam folder) and verify your email before logging in.', 'paxig-shoes' ),
+            '<strong>' . $display_email . '</strong>'
+        );
+    } else {
+        $message = sprintf(
+            __( 'Your account has not been verified yet. A verification link was recently sent to %s. Please check your inbox (or spam folder) and verify your email before logging in.', 'paxig-shoes' ),
+            '<strong>' . $display_email . '</strong>'
+        );
+    }
+
+    return new WP_Error('paxig_email_not_verified', $message);
 }, 20, 1);
 
 function paxig_email_verification_redirect($status, $url = '') {
@@ -275,10 +303,10 @@ add_action('wp', function() {
     $status = sanitize_key(wp_unslash($_GET['paxig_email_verification']));
     $messages = [
         'sent' => ['success', __( 'Account created. Check your inbox or spam folder for the verification link. It expires in 24 hours.', 'paxig-shoes' )],
-        'delivery_failed' => ['error', __( 'Your account was created, but the verification email could not be sent. Check the SMTP settings and use the resend form.', 'paxig-shoes' )],
+        'delivery_failed' => ['error', __( 'Your account was created, but the verification email could not be sent. Please sign in to try again.', 'paxig-shoes' )],
         'verified' => ['success', __( 'Your email is verified. Your account is ready.', 'paxig-shoes' )],
         'already_verified' => ['notice', __( 'This email address has already been verified.', 'paxig-shoes' )],
-        'expired' => ['error', __( 'That verification link has expired. Use the resend form to get a new one.', 'paxig-shoes' )],
+        'expired' => ['error', __( 'That verification link has expired. Please sign in to receive a new verification link.', 'paxig-shoes' )],
         'invalid' => ['error', __( 'That verification link is invalid or has already been used.', 'paxig-shoes' )],
         'resend_requested' => ['notice', __( 'If an unverified account exists for that email, a new verification link has been sent.', 'paxig-shoes' )],
         'smtp_unconfigured' => ['error', __( 'Google SMTP is not configured yet, so the verification email could not be sent.', 'paxig-shoes' )],

@@ -23,8 +23,16 @@ $price_html = $product->get_price_html();
 $is_vi      = function_exists( 'paxig_get_current_language' ) && paxig_get_current_language() === 'vi';
 
 $badge = '';
+$badge_class = '';
 if ( $product->is_on_sale() ) {
-	$badge = $is_vi ? 'ƯU ĐÃI' : __( 'SALE', 'paxig-shoes' );
+	$regular_price = (float) $product->get_regular_price();
+	$sale_price    = (float) $product->get_sale_price();
+	$percent       = 0;
+	if ( $regular_price > 0 && $sale_price > 0 && $regular_price > $sale_price ) {
+		$percent = (int) round( ( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
+	}
+	$badge       = $percent > 0 ? '-' . $percent . '%' : ( $is_vi ? 'ƯU ĐÃI' : __( 'SALE', 'paxig-shoes' ) );
+	$badge_class = 'vyre-card-badge--sale';
 } elseif ( has_term( 'new-arrivals', 'product_cat', $id ) || has_term( 'limited-edition', 'product_cat', $id ) ) {
 	$badge = $is_vi ? 'MỚI' : __( 'NEW', 'paxig-shoes' );
 } elseif ( has_term( 'best-sellers', 'product_cat', $id ) ) {
@@ -50,7 +58,7 @@ $classes = function_exists( 'wc_get_product_class' )
 <li class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-product-id="<?php echo esc_attr( $id ); ?>">
 	<div class="vyre-card-media paxig-reference-image">
 		<?php if ( $badge ) : ?>
-			<span class="vyre-card-badge paxig-reference-badge"><?php echo esc_html( $badge ); ?></span>
+			<span class="vyre-card-badge <?php echo esc_attr( $badge_class ); ?> paxig-reference-badge"><?php echo esc_html( $badge ); ?></span>
 		<?php endif; ?>
 		<button
 			type="button"

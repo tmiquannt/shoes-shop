@@ -195,3 +195,81 @@ test('an add error opens a closed cart drawer and keeps the actual error visible
     assert.equal(alertElement.textContent, 'Please check your bag before trying again.');
     assert.equal(alertElement.style.display, 'block');
 });
+
+test('card add-to-cart with open_drawer: false updates fragments without opening drawer', () => {
+    const bodyListeners = {};
+    const alertElement = { style: { display: 'none' }, textContent: '' };
+    const drawer = {
+        open: false,
+        addEventListener() {},
+        querySelector: (selector) => selector === '.paxig-drawer-alert' ? alertElement : null,
+        showModal() { this.open = true; },
+    };
+    const document = {
+        getElementById: () => drawer,
+        querySelector: () => null,
+        querySelectorAll: () => [{
+            outerHTML: '<div class="cart-badge">0</div>',
+        }],
+        addEventListener: (name, listener) => { if (name === 'DOMContentLoaded') listener(); },
+        body: {
+            classList: { add() {} },
+            addEventListener: (name, listener) => { bodyListeners[name] = listener; },
+        },
+    };
+    const drawerSource = fs.readFileSync(path.join(__dirname, '../assets/js/mini-cart.js'), 'utf8');
+    vm.runInNewContext(drawerSource, { document, window: {} });
+    bodyListeners.paxig_added_to_cart({
+        detail: {
+            fragments: { '.cart-badge': '<div class="cart-badge">1</div>' },
+            open_drawer: false
+        }
+    });
+    assert.equal(drawer.open, false, 'drawer must remain closed when open_drawer is false');
+
+    // But standard add (like PDP) opens drawer
+    bodyListeners.paxig_added_to_cart({
+        detail: {
+            fragments: { '.cart-badge': '<div class="cart-badge">2</div>' }
+        }
+    });
+    assert.equal(drawer.open, true, 'drawer opens when open_drawer is not false');
+});
+
+test('jQuery added_to_cart event skips opening drawer when triggered from .vyre-card-add-to-cart', () => {
+    const jqueryListeners = {};
+    const drawer = {
+        open: false,
+        addEventListener() {},
+        querySelector: () => null,
+        showModal() { this.open = true; },
+    };
+    const document = {
+        getElementById: () => drawer,
+        querySelector: () => null,
+        addEventListener: (name, listener) => { if (name === 'DOMContentLoaded') listener(); },
+        body: {
+            classList: { add() {} },
+            addEventListener() {},
+        },
+    };
+    const mockJQuery = (el) => ({
+        on: (evt, fn) => { jqueryListeners[evt] = fn; },
+        closest: (selector) => ({
+            length: el && el.classList && el.classList.contains('vyre-card-add-to-cart') ? 1 : 0
+        })
+    });
+    const windowContext = { jQuery: mockJQuery };
+    const drawerSource = fs.readFileSync(path.join(__dirname, '../assets/js/mini-cart.js'), 'utf8');
+    vm.runInNewContext(drawerSource, { document, window: windowContext });
+
+    // When card button is clicked
+    const cardBtn = { classList: { contains: (cls) => cls === 'vyre-card-add-to-cart' } };
+    jqueryListeners.added_to_cart({}, {}, 'hash', cardBtn);
+    assert.equal(drawer.open, false, 'drawer must not open when card button triggered added_to_cart');
+
+    // When other button (e.g. PDP button) is clicked
+    const pdpBtn = { classList: { contains: () => false } };
+    jqueryListeners.added_to_cart({}, {}, 'hash', pdpBtn);
+    assert.equal(drawer.open, true, 'drawer opens when non-card button triggered added_to_cart');
+});

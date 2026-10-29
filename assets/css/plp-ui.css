@@ -32,8 +32,10 @@
 .paxig-plp-group a:hover{text-decoration:underline;color:var(--paxig-color-accent, #151514)}
 .paxig-plp-group a[aria-current]{font-weight:700;text-decoration:underline;text-underline-offset:4px;color:var(--paxig-color-accent, #151514)}
 .paxig-plp .woocommerce-widget-layered-nav-list__item{display:flex!important;align-items:center;justify-content:space-between;gap:8px}
+.paxig-plp .woocommerce-widget-layered-nav-list__item::before,
+.paxig-plp .woocommerce-widget-layered-nav-list__item::after{content:none!important;display:none!important}
 .paxig-plp .woocommerce-widget-layered-nav-list__item a:before{content:''!important;display:block!important;flex:none;width:16px;height:16px;margin:0!important;border:1px solid #bbb;border-radius:2px;background:#fff}
-.paxig-plp .woocommerce-widget-layered-nav-list__item.chosen a:before{background:#111;border-color:#111;box-shadow:inset 0 0 0 3px #fff}
+.paxig-plp :is(.woocommerce-widget-layered-nav-list__item.chosen,.woocommerce-widget-layered-nav-list__item--chosen) a:before{background:#111;border-color:#111;box-shadow:inset 0 0 0 3px #fff}
 .paxig-plp .woocommerce-widget-layered-nav-list__item .count{font-size:var(--paxig-type-caption);color:#757575;flex:none}
 .paxig-plp :is(.paxig-plp-category-list,.paxig-plp-gender-list) .woocommerce-widget-layered-nav-list__item{justify-content:flex-start!important;text-align:left!important}
 .paxig-plp :is(.paxig-plp-category-list,.paxig-plp-gender-list) .woocommerce-widget-layered-nav-list__item>a{width:100%;margin:0!important;justify-content:flex-start!important;text-align:left!important;text-decoration:none!important}
@@ -134,11 +136,11 @@ body.paxig-style-3.paxig-plp .paxig-plp-dialog .paxig-shop-sidebar{display:flex;
 .paxig-plp .woocommerce-widget-layered-nav-list__item .count{font-size:var(--paxig-type-caption);color:#757575;padding-left:8px}
 .paxig-plp .paxig-shop-products ul.products{gap:44px 32px}
 .paxig-plp .paxig-reference-image{background:transparent;padding:0}
-.paxig-plp ul.products li.product .paxig-reference-badge{margin:12px 0 8px;font-size:var(--paxig-type-caption);line-height:1.5}
-.paxig-plp ul.products li.product .woocommerce-loop-product__title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:2.8em}
-.paxig-plp ul.products li.product .paxig-reference-category{margin-top:4px;min-height:1.5em}
-.paxig-plp ul.products li.product .price{margin-top:12px}
-.paxig-plp ul.products li.product .price:has(ins){gap:5px}
+.paxig-plp ul.products li.product:not(.vyre-product-card) .paxig-reference-badge{margin:12px 0 8px;font-size:var(--paxig-type-caption);line-height:1.5}
+.paxig-plp ul.products li.product:not(.vyre-product-card) .woocommerce-loop-product__title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:2.8em}
+.paxig-plp ul.products li.product:not(.vyre-product-card) .paxig-reference-category{margin-top:4px;min-height:1.5em}
+.paxig-plp ul.products li.product:not(.vyre-product-card) .price{margin-top:12px}
+.paxig-plp ul.products li.product:not(.vyre-product-card) .price:has(ins){gap:5px}
 .paxig-plp-dialog .paxig-plp-group>summary{min-height:56px}
 @media(max-width:1200px){.paxig-plp .paxig-shop-products ul.products{column-gap:24px}}
 /* PAXG'Shop archive design (03_All_Sneakers_Collection.png) */
@@ -281,9 +283,14 @@ body.paxig-style-3 .woocommerce-ordering select,
 .vyre-shop-products .vyre-card-badge {
   position: absolute !important; top: 12px !important; left: 12px !important; z-index: 2 !important;
   background: #151514 !important; color: #faf8f5 !important; font-size: var(--paxig-type-caption) !important;
-  font-weight: 400 !important; letter-spacing: 0.08em !important; padding: 4px 8px !important;
+  font-weight: 700 !important; letter-spacing: 0.08em !important; padding: 4px 8px !important;
   text-transform: uppercase !important; border-radius: 2px !important; line-height: 1 !important;
   margin: 0 !important;
+}
+.vyre-shop-products .vyre-card-badge.vyre-card-badge--sale,
+.vyre-shop-products .paxig-reference-badge.is-sale {
+  background: var(--paxig-color-danger, #d94a43) !important;
+  color: #ffffff !important;
 }
 .vyre-shop-products .paxig-wishlist-card-btn,
 .vyre-shop-products .vyre-card-wishlist {
@@ -301,13 +308,21 @@ body.paxig-style-3 .woocommerce-ordering select,
 }
 
 .vyre-loop-title-row {
-  display: flex !important; justify-content: space-between !important; align-items: center !important;
-  gap: 8px !important; margin-top: 2px !important;
+  display: flex !important; justify-content: space-between !important; align-items: flex-start !important;
+  gap: 8px !important; margin: 0 0 4px !important;
 }
-.vyre-shop-products ul.products li.product .woocommerce-loop-product__title {
-  font-family: var(--paxig-font-display) !important; font-size: var(--paxig-type-card) !important; font-weight: 400 !important;
-  letter-spacing: 0 !important; text-transform: uppercase !important; color: #151514 !important;
-  margin: 0 !important; padding: 0 !important; line-height: 1.3 !important;
+.vyre-shop-products ul.products li.product .woocommerce-loop-product__title,
+.vyre-shop-products .vyre-card-title {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  overflow: visible !important;
+  font-family: var(--paxig-font-display) !important; font-size: var(--paxig-type-body) !important; font-weight: 700 !important;
+  letter-spacing: 0.02em !important; text-transform: uppercase !important; color: #151514 !important;
+  margin: 0 !important; padding: 0 !important; line-height: 1.25 !important; min-height: 0 !important;
+}
+.vyre-shop-products .vyre-card-color {
+  font-size: var(--paxig-type-small, 13px) !important; color: var(--paxig-color-text-muted, #76746e) !important;
+  text-align: right !important; flex-shrink: 0 !important; line-height: 1.25 !important;
 }
 .vyre-shop-products .vyre-card-swatches { display: flex !important; gap: 4px !important; align-items: center !important; flex: none !important; }
 .vyre-shop-products .vyre-swatch {
@@ -316,12 +331,47 @@ body.paxig-style-3 .woocommerce-ordering select,
 .vyre-shop-products .vyre-swatch.is-active {
   outline: 1.5px solid #151514 !important; outline-offset: 1.5px !important;
 }
-.vyre-shop-products .paxig-reference-category {
-  font-size: var(--paxig-type-small) !important; color: #76746e !important; margin: 3px 0 0 !important; line-height: 1.4 !important;
+.vyre-shop-products .paxig-reference-category,
+.vyre-shop-products .vyre-card-subtitle {
+  font-family: var(--paxig-font-sans, inherit) !important;
+  font-size: var(--paxig-type-small, 13px) !important;
+  font-weight: 400 !important;
+  color: var(--paxig-color-text-muted, #76746e) !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  line-height: 1.4 !important;
+  min-height: 0 !important;
 }
-.vyre-shop-products ul.products li.product .price {
-  font-size: var(--paxig-type-card) !important; font-weight: 400 !important; color: #151514 !important;
-  margin: 0 !important; line-height: 1.2 !important;
+.vyre-shop-products ul.products li.product .price,
+.vyre-shop-products .vyre-card-price {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+  font-family: var(--paxig-font-display) !important;
+  font-size: var(--paxig-type-body) !important;
+  font-weight: 700 !important;
+  color: var(--paxig-color-text, #151514) !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+.vyre-shop-products ul.products li.product .price ins,
+.vyre-shop-products .vyre-card-price ins {
+  order: 1 !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  color: var(--paxig-color-text, #151514) !important;
+}
+.vyre-shop-products ul.products li.product .price del,
+.vyre-shop-products .vyre-card-price del {
+  order: 0 !important;
+  color: var(--paxig-color-text-muted, #767671) !important;
+  font-size: 0.85em !important;
+  font-weight: 400 !important;
+  text-decoration: line-through !important;
 }
 .vyre-shop-products .vyre-card-footer,
 .vyre-card-footer {

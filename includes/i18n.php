@@ -57,6 +57,23 @@ function paxig_shoes_enqueue_block_i18n_fallback() {
 		'Return to Cart'                => array( 'Quay lại giỏ hàng' ),
 		'Order notes'                   => array( 'Ghi chú đơn hàng' ),
 		'Add a note to your order'      => array( 'Thêm ghi chú cho đơn hàng' ),
+		'Use same address for billing'  => array( 'Sử dụng cùng địa chỉ cho thanh toán' ),
+		'Phone'                         => array( 'Số điện thoại' ),
+		'Email address'                 => array( 'Địa chỉ email' ),
+		'First name'                    => array( 'Tên' ),
+		'Last name'                     => array( 'Họ' ),
+		'Address'                       => array( 'Địa chỉ' ),
+		'Apartment, suite, etc.'        => array( 'Căn hộ, số nhà, v.v.' ),
+		'City'                          => array( 'Tỉnh / Thành phố' ),
+		'State/County'                  => array( 'Quận / Huyện' ),
+		'Postal code'                   => array( 'Mã bưu điện' ),
+		'Additional information'        => array( 'Thông tin bổ sung' ),
+		'Free shipping'                 => array( 'Miễn phí vận chuyển' ),
+		'Cash on delivery'              => array( 'Thanh toán khi nhận hàng (COD)' ),
+		'Direct bank transfer'          => array( 'Chuyển khoản ngân hàng' ),
+		'Have a coupon?'                => array( 'Bạn có mã ưu đãi?' ),
+		'Enter code'                    => array( 'Nhập mã' ),
+		'Including %s in taxes'         => array( 'Đã bao gồm %s tiền thuế' ),
 	);
 
 	$script = 'if ( window.wp && window.wp.i18n ) { window.wp.i18n.setLocaleData( ' . wp_json_encode( $vi_wc_strings ) . ', "woocommerce" ); }';

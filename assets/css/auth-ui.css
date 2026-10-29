@@ -186,13 +186,13 @@ body.paxig-auth .vyre-auth-split-left .vyre-auth-left-desc {
 
 .vyre-auth-title {
     font-family: var(--paxig-font-display, "Space Grotesk", sans-serif);
-    font-size: var(--paxig-type-title) !important;
+    font-size: clamp(1.625rem, 2.2vw, 2.125rem) !important;
     font-weight: 900 !important;
     line-height: 1.15 !important;
     letter-spacing: 0 !important;
     color: #151514 !important;
     text-transform: uppercase;
-    margin: 0 0 14px !important;
+    margin: 0 0 16px !important;
 }
 
 .vyre-auth-subtitle {
@@ -402,32 +402,6 @@ body.paxig-auth .vyre-auth-split-left .vyre-auth-left-desc {
     text-decoration: underline;
     text-underline-offset: 4px;
     margin-left: 6px;
-}
-
-.paxig-verification-resend {
-    margin-top: 24px;
-    border-top: 1px solid #e2ded7;
-    padding-top: 18px;
-    font-size: var(--paxig-type-small);
-}
-.paxig-verification-resend summary {
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-.paxig-verification-resend-form { margin-top: 16px; }
-.paxig-store.paxig-auth .paxig-verification-resend-form button {
-    min-height: 44px;
-    padding: 0 16px;
-    border: 1px solid #151514;
-    background: transparent;
-    color: #151514;
-    font-weight: 700;
-    cursor: pointer;
-}
-.paxig-store.paxig-auth .paxig-verification-resend-form button:hover {
-    background: #151514;
-    color: #fff;
 }
 
 /* Right footer */

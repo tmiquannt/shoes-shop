@@ -24,3 +24,12 @@ BẮT BUỘC ĐỌC VÀ TUÂN THỦ TRƯỚC KHI THỰC HIỆN BẤT KỲ TÁC V
     - `line-height >= 1.15` cho các tiêu đề display để bao trọn bounding box của dấu phụ.
     - Đảm bảo khoảng cách giữa tiêu đề và phụ đề liền kề (`.vyre-plp-subtitle`) tối thiểu `14px - 16px` (`margin-bottom: 16px;`).
     - Kiểm soát độ ưu tiên selector (specificity), tránh để selector toàn cục hoặc modifier ghi đè `margin: 0` làm biến mất khoảng cách giữa tiêu đề và phụ đề.
+
+## 5. Quy tắc Giãn cách Form Mua hàng & Ô số lượng PDP (PDP Cart Form & Quantity Spacing)
+- **Tuyệt đối chống lỗi dính sát / đè chồng giữa ô số lượng và nút Thêm vào giỏ hàng:**
+  - Trong trang chi tiết sản phẩm (PDP), WooCommerce mặc định có thể áp dụng `float: left` cho `.quantity` và `.button`, đồng thời một số style vô tình ghi đè `margin-bottom: 0 !important;` lên toàn bộ `form.cart .quantity`.
+  - Với sản phẩm đơn (simple product), form không sử dụng flex wrapper `.woocommerce-variation-add-to-cart`, dẫn đến ô số lượng (`.quantity`) và nút thêm giỏ hàng (`.single_add_to_cart_button`) dính chặt mép viền (khoảng cách 0px) hoặc gây lỗi trôi dòng (float bug khiến nút yêu thích nhảy lên cùng hàng với ô số lượng).
+- **Quy chuẩn bắt buộc:**
+  - Luôn triệt tiêu float: `float: none !important;` trên cả `.quantity` và `.single_add_to_cart_button`.
+  - Luôn duy trì khoảng cách chuẩn giữa ô số lượng và nút thêm vào giỏ hàng: `margin-bottom: 16px !important;` trên `form.cart .quantity`.
+  - Riêng với sản phẩm biến thể (variable product), chỉ đặt `margin-bottom: 0 !important;` khi nằm bên trong `.woocommerce-variation-add-to-cart` để tận dụng thuộc tính flex `gap` mà không bị cộng dồn khoảng cách thừa.

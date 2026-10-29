@@ -468,6 +468,7 @@ function paxig_enqueue_mini_cart_assets() {
 			'remove_error' => __( 'Could not remove item from bag.', 'paxig-shoes' ),
 			'update_error' => __( 'Could not update quantity.', 'paxig-shoes' ),
 			'comm_error'   => __( 'Communication error. Please check your connection and try again.', 'paxig-shoes' ),
+			'add_error'    => __( 'Could not add product to bag.', 'paxig-shoes' ),
 		],
 	] );
 }

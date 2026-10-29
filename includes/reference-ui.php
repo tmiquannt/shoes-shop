@@ -81,9 +81,15 @@ add_action('wp', function () {
             if (!$product) return;
             $is_vi = function_exists('paxig_get_current_language') && paxig_get_current_language() === 'vi';
             $home_label = $is_vi ? 'TRANG CHỦ' : 'HOME';
-            $shoes_label = $is_vi ? 'GIÀY SNEAKER' : 'SNEAKERS';
             $category = paxig_reference_category_term();
-            $category_label = $category ? strtoupper($category->name) : $shoes_label;
+            $known_cats = [
+                'lifestyle'  => $is_vi ? 'PHONG CÁCH' : 'LIFESTYLE',
+                'running'    => $is_vi ? 'CHẠY BỘ' : 'RUNNING',
+                'basketball' => $is_vi ? 'BÓNG RỔ' : 'BASKETBALL',
+                'football'   => $is_vi ? 'BÓNG ĐÁ' : 'FOOTBALL',
+                'training'   => $is_vi ? 'TẬP LUYỆN' : 'TRAINING',
+            ];
+            $category_label = $category ? ($known_cats[$category->slug] ?? strtoupper($category->name)) : $shoes_label;
             $category_url = $category ? get_term_link($category) : wc_get_page_permalink('shop');
             if (is_wp_error($category_url)) $category_url = wc_get_page_permalink('shop');
             echo '<nav class="vyre-breadcrumb vyre-pdp-breadcrumb" aria-label="' . esc_attr__( 'Breadcrumb', 'paxig-shoes' ) . '">';
@@ -144,7 +150,7 @@ add_action('wp', function () {
     }
 });
 add_filter('woocommerce_product_related_products_heading', function() {
-    return __( 'YOU MIGHT ALSO LIKE.', 'paxig-shoes' );
+    return __( 'YOU MIGHT ALSO LIKE', 'paxig-shoes' );
 });
 add_action('wp_footer', function() {
     if (!is_product()) return;

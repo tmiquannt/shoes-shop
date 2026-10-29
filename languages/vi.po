@@ -719,8 +719,11 @@ msgstr "Đo chiều dài bàn chân từ gót đến ngón chân. Nếu bạn �
 msgid "GOT IT ✓"
 msgstr "ĐÃ HIỂU ✓"
 
+msgid "YOU MIGHT ALSO LIKE"
+msgstr "CÓ THỂ BẠN CŨNG THÍCH"
+
 msgid "YOU MIGHT ALSO LIKE."
-msgstr "CÓ THỂ BẠN CŨNG THÍCH."
+msgstr "CÓ THỂ BẠN CŨNG THÍCH"
 
 msgid "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
 msgstr "ĐÃ CÓ TÀI KHOẢN? <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
@@ -760,3 +763,690 @@ msgstr "ĐỔI TRẢ TRONG 30 NGÀY"
 
 msgid "SECURE CHECKOUT"
 msgstr "THANH TOÁN BẢO MẬT"
+msgid "Home"
+msgstr "Trang chủ"
+
+msgid "My account"
+msgstr "Tài khoản của tôi"
+
+msgid "Additional information"
+msgstr "Thông tin bổ sung"
+
+msgid "Reviews"
+msgstr "Đánh giá"
+
+msgid "Choose an option"
+msgstr "Chọn kích cỡ"
+
+msgid "Clear"
+msgstr "Xóa lựa chọn"
+
+msgid "Quantity"
+msgstr "Số lượng"
+
+msgid "Your cart is currently empty."
+msgstr "Giỏ hàng của bạn đang trống."
+
+msgid "Return to shop"
+msgstr "Tiếp tục mua sắm"
+
+msgid "No products were found matching your selection."
+msgstr "Không có sản phẩm nào phù hợp với lựa chọn của bạn. Thử tìm kiếm khác hoặc xóa bộ lọc."
+
+msgid "Product"
+msgstr "Sản phẩm"
+
+msgid "Subtotal:"
+msgstr "Tạm tính:"
+
+msgid "Total"
+msgstr "Tổng cộng"
+
+msgid "Total:"
+msgstr "Tổng cộng:"
+
+msgid "Shipping"
+msgstr "Vận chuyển"
+
+msgid "Shipping:"
+msgstr "Vận chuyển:"
+
+msgid "Cart totals"
+msgstr "Tóm tắt đơn hàng"
+
+msgid "Proceed to checkout"
+msgstr "Tiến hành thanh toán"
+
+msgid "Update cart"
+msgstr "Cập nhật giỏ hàng"
+
+msgid "Coupon code"
+msgstr "Mã ưu đãi"
+
+msgid "Apply coupon"
+msgstr "Áp dụng"
+
+msgid "Billing details"
+msgstr "Thông tin thanh toán"
+
+msgid "Your order"
+msgstr "Đơn hàng của bạn"
+
+msgid "Place order"
+msgstr "Đặt hàng"
+
+msgid "Your account was created successfully. Your login details have been sent to your email address."
+msgstr "Tài khoản của bạn đã được tạo. Vui lòng kiểm tra email để lấy liên kết xác thực trước khi đăng nhập."
+
+msgid "Country / Region"
+msgstr "Quốc gia / Khu vực"
+
+msgid "Street address"
+msgstr "Địa chỉ đường phố"
+
+msgid "Town / City"
+msgstr "Tỉnh / Thành phố"
+
+msgid "State / County"
+msgstr "Quận / Huyện"
+
+msgid "Username or email address"
+msgstr "Tên tài khoản hoặc email"
+
+msgid "Password"
+msgstr "Mật khẩu"
+
+msgid "Log in"
+msgstr "Đăng nhập"
+
+msgid "Login"
+msgstr "Đăng nhập"
+
+msgid "Register"
+msgstr "Đăng ký"
+
+msgid "Remember me"
+msgstr "Ghi nhớ đăng nhập"
+
+msgid "Lost your password?"
+msgstr "Quên mật khẩu?"
+
+msgid "Forgot your password?"
+msgstr "Quên mật khẩu?"
+
+msgid "Lost your password? Please enter your username or email address. You will receive a link to create a new password via email."
+msgstr "Quên mật khẩu? Vui lòng nhập tên tài khoản hoặc địa chỉ email. Bạn sẽ nhận được liên kết qua email để tạo mật khẩu mới."
+
+msgid "Username or email"
+msgstr "Tên tài khoản hoặc email"
+
+msgid "Reset password"
+msgstr "Đặt lại mật khẩu"
+
+msgid "Password reset email has been sent."
+msgstr "Email đặt lại mật khẩu đã được gửi."
+
+msgid "The following addresses will be used on the checkout page by default."
+msgstr "Các địa chỉ sau sẽ được dùng mặc định tại trang thanh toán."
+
+msgid "You have not set up this type of address yet."
+msgstr "Bạn chưa thiết lập loại địa chỉ này."
+
+msgid "Add billing address"
+msgstr "Thêm địa chỉ thanh toán"
+
+msgid "Add shipping address"
+msgstr "Thêm địa chỉ nhận hàng"
+
+msgid "Edit billing address"
+msgstr "Sửa địa chỉ thanh toán"
+
+msgid "Edit shipping address"
+msgstr "Sửa địa chỉ nhận hàng"
+
+msgid "Display name"
+msgstr "Tên hiển thị"
+
+msgid "This will be how your name will be displayed in the account section and in reviews"
+msgstr "Tên này sẽ hiển thị trong mục tài khoản và phần đánh giá sản phẩm"
+
+msgid "Password change"
+msgstr "Thay đổi mật khẩu"
+
+msgid "Current password (leave blank to leave unchanged)"
+msgstr "Mật khẩu hiện tại (bỏ trống nếu không đổi)"
+
+msgid "New password (leave blank to leave unchanged)"
+msgstr "Mật khẩu mới (bỏ trống nếu không đổi)"
+
+msgid "Confirm new password"
+msgstr "Xác nhận mật khẩu mới"
+
+msgid "Order #%1$s was placed on %2$s and is currently %3$s."
+msgstr "Đơn hàng #%1$s được đặt vào ngày %2$s và hiện đang %3$s."
+
+msgid "Pending payment"
+msgstr "Chờ thanh toán"
+
+msgid "Processing"
+msgstr "Đang xử lý"
+
+msgid "On hold"
+msgstr "Tạm giữ"
+
+msgid "Completed"
+msgstr "Đã hoàn thành"
+
+msgid "Cancelled"
+msgstr "Đã hủy"
+
+msgid "Refunded"
+msgstr "Đã hoàn tiền"
+
+msgid "Failed"
+msgstr "Thất bại"
+
+msgid "Order again"
+msgstr "Đặt lại đơn hàng"
+
+msgid "Order updates"
+msgstr "Cập nhật đơn hàng"
+
+msgid "Invalid order."
+msgstr "Đơn hàng không hợp lệ."
+
+msgid "Order"
+msgstr "Đơn hàng"
+
+msgid "Date"
+msgstr "Ngày"
+
+msgid "Status"
+msgstr "Trạng thái"
+
+msgid "Actions"
+msgstr "Thao tác"
+
+msgid "View"
+msgstr "Xem chi tiết"
+
+msgid "Order details"
+msgstr "Chi tiết đơn hàng"
+
+msgid "No order has been made yet."
+msgstr "Bạn chưa có đơn hàng nào."
+
+msgid "Browse products"
+msgstr "Khám phá sản phẩm"
+
+msgid "Save changes"
+msgstr "Lưu thay đổi"
+
+msgid "Remove this item"
+msgstr "Xóa sản phẩm này"
+
+msgid "Free shipping"
+msgstr "Miễn phí vận chuyển"
+
+msgid "Order number:"
+msgstr "Mã đơn hàng:"
+
+msgid "Order number"
+msgstr "Mã đơn hàng"
+
+msgid "Date:"
+msgstr "Ngày:"
+
+msgid "Payment method:"
+msgstr "Phương thức thanh toán:"
+
+msgid "Thank you. Your order has been received."
+msgstr "Cảm ơn bạn. Đơn hàng của bạn đã được tiếp nhận."
+
+msgid "Pay with cash upon delivery."
+msgstr "Thanh toán tiền mặt khi giao hàng."
+
+msgid "Make your payment directly into our bank account."
+msgstr "Thanh toán chuyển khoản ngân hàng."
+
+msgid "Related products"
+msgstr "Sản phẩm liên quan"
+
+msgid "Required"
+msgstr "Bắt buộc"
+
+msgid "Customer Details"
+msgstr "Thông tin khách hàng"
+
+msgid "Order Summary"
+msgstr "Tóm tắt đơn hàng"
+
+msgid "Proceed to Checkout"
+msgstr "Tiến hành thanh toán"
+
+msgid "Update Cart"
+msgstr "Cập nhật giỏ hàng"
+
+msgid "View Details"
+msgstr "Xem chi tiết"
+
+msgid "Explore products"
+msgstr "Khám phá sản phẩm"
+
+msgid "Your Order"
+msgstr "Đơn hàng của bạn"
+
+msgid "Place Order"
+msgstr "Đặt hàng"
+
+msgid "Billing Address"
+msgstr "Địa chỉ thanh toán"
+
+msgid "Shipping Address"
+msgstr "Địa chỉ nhận hàng"
+
+msgid "Relevance"
+msgstr "Phù hợp nhất"
+
+msgid "Shop order"
+msgstr "Thứ tự sắp xếp"
+
+msgid "Min price"
+msgstr "Giá tối thiểu"
+
+msgid "Max price"
+msgstr "Giá tối đa"
+
+msgid "Price:"
+msgstr "Giá:"
+
+msgid "Filter"
+msgstr "Lọc"
+
+msgid "Apply"
+msgstr "Áp dụng"
+
+msgid "View cart"
+msgstr "Xem giỏ hàng"
+
+msgid "Show password"
+msgstr "Hiện mật khẩu"
+
+msgid "Hide password"
+msgstr "Ẩn mật khẩu"
+
+msgid "Save my name, email, and website in this browser for the next time I comment."
+msgstr "Lưu tên, email và trang web của tôi trong trình duyệt này cho lần bình luận tiếp theo."
+
+msgid "Your email address will not be published."
+msgstr "Địa chỉ email của bạn sẽ không được hiển thị công khai."
+
+msgid "Required fields are marked %s"
+msgstr "Các trường bắt buộc được đánh dấu %s"
+
+msgid "Required fields are marked *"
+msgstr "Các trường bắt buộc được đánh dấu *"
+
+msgid "Cancel reply"
+msgstr "Hủy trả lời"
+
+msgid "Rate…"
+msgstr "Xếp hạng…"
+
+msgid "Perfect"
+msgstr "Rất tốt"
+
+msgid "Good"
+msgstr "Tốt"
+
+msgid "Average"
+msgstr "Trung bình"
+
+msgid "Not that bad"
+msgstr "Không tệ"
+
+msgid "Very poor"
+msgstr "Rất tệ"
+
+msgid "Contact information"
+msgstr "Thông tin liên hệ"
+
+msgid "Shipping methods"
+msgstr "Phương thức vận chuyển"
+
+msgid "Order note"
+msgstr "Ghi chú đơn hàng"
+
+msgid "Notes about your order, e.g. special notes for delivery."
+msgstr "Ghi chú về đơn hàng, ví dụ: lưu ý khi giao hàng."
+
+msgid "Add a note to your order"
+msgstr "Thêm ghi chú cho đơn hàng"
+
+msgid "Enter a coupon"
+msgstr "Nhập mã ưu đãi"
+
+msgid "Taxes"
+msgstr "Thuế"
+
+msgid "Discount"
+msgstr "Giảm giá"
+
+msgid "Fee"
+msgstr "Phụ phí"
+
+msgid "GOT IT ✓"
+msgstr "ĐÃ HIỂU ✓"
+
+msgid "ALREADY A MEMBER? <a href=\"%s\">SIGN IN ↗</a>"
+msgstr "ĐÃ CÓ TÀI KHOẢN? <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+
+msgid "NEW TO PAXG'Shop? <a href=\"%s\">CREATE AN ACCOUNT ↗</a>"
+msgstr "CHƯA CÓ TÀI KHOẢN? <a href=\"%s\">TẠO TÀI KHOẢN ↗</a>"
+
+msgid "SIZE GUIDE ↗"
+msgstr "BẢNG KÍCH CỠ ↗"
+
+msgid "Close search"
+msgstr "Đóng tìm kiếm"
+
+msgid "WHAT ARE YOU LOOKING FOR?"
+msgstr "BẠN ĐANG TÌM KIẾM GÌ?"
+
+msgid "Search sneakers, collections..."
+msgstr "Tìm giày sneaker, bộ sưu tập..."
+
+msgid "Submit search"
+msgstr "Gửi tìm kiếm"
+
+msgid "TRENDING SEARCHES"
+msgstr "TÌM KIẾM NỔI BẬT"
+
+msgid "New arrivals"
+msgstr "Sản phẩm mới"
+
+msgid "Lifestyle sneakers"
+msgstr "Giày lifestyle"
+
+msgid "Court Series"
+msgstr "Dòng giày Court"
+
+msgid "Limited edition"
+msgstr "Phiên bản giới hạn"
+
+msgid "RECOMMENDED FOR YOU"
+msgstr "GỢI Ý CHO BẠN"
+
+msgid "Recommended products will appear here when the catalog is ready."
+msgstr "Sản phẩm gợi ý sẽ xuất hiện tại đây khi danh mục sẵn sàng."
+
+msgid "Shop the latest · Discover more ↗"
+msgstr "Khám phá mới nhất · Xem thêm ↗"
+
+msgid "SHOP THE COLLECTION"
+msgstr "KHÁM PHÁ BỘ SƯU TẬP"
+
+msgid "VIEW ALL"
+msgstr "XEM TẤT CẢ"
+
+msgid "EXPLORE THE COLLECTION"
+msgstr "KHÁM PHÁ BỘ SƯU TẬP"
+
+msgid "NEW SEASON — AUTUMN / WINTER 2026"
+msgstr "MÙA MỚI — THU / ĐÔNG 2026"
+
+msgid "RUN THE NIGHT"
+msgstr "CHINH PHỤC MÀN ĐÊM"
+
+msgid "OWN THE COURT"
+msgstr "LÀM CHỦ SÂN ĐẤU"
+
+msgid "MADE TO MOVE"
+msgstr "SINH RA ĐỂ CHUYỂN ĐỘNG"
+
+msgid "Hero slides"
+msgstr "Ảnh trình chiếu"
+
+msgid "Breadcrumb"
+msgstr "Đường dẫn điều hướng"
+
+msgid "ALL SNEAKERS"
+msgstr "TẤT CẢ GIÀY"
+
+msgid "MEN’S SNEAKERS"
+msgstr "GIÀY SNEAKER NAM"
+
+msgid "WOMEN’S SNEAKERS"
+msgstr "GIÀY SNEAKER NỮ"
+
+msgid "KIDS’ SNEAKERS"
+msgstr "GIÀY SNEAKER TRẺ EM"
+
+msgid "LIMITED EDITION"
+msgstr "BỘ SƯU TẬP GIỚI HẠN"
+
+msgid "SEARCH"
+msgstr "TÌM KIẾM"
+
+msgid "RELEASES"
+msgstr "BỘ SƯU TẬP"
+
+msgid "Find your next favorite pair. Made to move with you."
+msgstr "Tìm đôi giày yêu thích tiếp theo. Đồng hành cùng từng bước chuyển động."
+
+msgid "%s PRODUCT"
+msgstr "%s SẢN PHẨM"
+
+msgid "%s PRODUCTS"
+msgstr "%s SẢN PHẨM"
+
+msgid "FILTERS"
+msgstr "BỘ LỌC"
+
+msgid "CLEAR ALL"
+msgstr "XÓA TẤT CẢ"
+
+msgid "CATEGORY"
+msgstr "DANH MỤC"
+
+msgid "GENDER"
+msgstr "GIỚI TÍNH"
+
+msgid "SIZE"
+msgstr "KÍCH CỠ"
+
+msgid "COLOR"
+msgstr "MÀU SẮC"
+
+msgid "SPORT"
+msgstr "MÔN THỂ THAO"
+
+msgid "PRICE"
+msgstr "GIÁ"
+
+msgid "SORT BY"
+msgstr "SẮP XẾP THEO"
+
+msgid "View products"
+msgstr "Xem sản phẩm"
+
+msgid "Add to cart"
+msgstr "Thêm vào giỏ"
+
+msgid "Add %s to cart"
+msgstr "Thêm %s vào giỏ hàng"
+
+msgid "Select options"
+msgstr "Chọn kích cỡ"
+
+msgid "Select options for %s"
+msgstr "Chọn tùy chọn cho %s"
+
+msgid "SALE"
+msgstr "ƯU ĐÃI"
+
+msgid "NEW"
+msgstr "MỚI"
+
+msgid "BESTSELLER"
+msgstr "BÁN CHẠY"
+
+msgid "Delivery"
+msgstr "Giao hàng"
+
+msgid "Read the shopping guide"
+msgstr "Xem hướng dẫn mua sắm"
+
+msgid "Be the first to review this product"
+msgstr "Hãy là người đầu tiên đánh giá sản phẩm này"
+
+msgid "COLOR: %s"
+msgstr "MÀU SẮC: %s"
+
+msgid "Close size guide"
+msgstr "Đóng bảng kích cỡ"
+
+msgid "Shipping options confirmed at checkout"
+msgstr "Phương thức vận chuyển xác nhận tại thanh toán"
+
+msgid "Size guide available"
+msgstr "Có bảng hướng dẫn kích cỡ"
+
+msgid "Almost yours. Review your picks before checking out."
+msgstr "Gần như là của bạn. Xem lại các lựa chọn trước khi thanh toán."
+
+msgid "NO ITEMS / YET"
+msgstr "CHƯA CÓ SẢN PHẨM"
+
+msgid "YOUR BAG IS EMPTY."
+msgstr "GIỎ HÀNG CỦA BẠN ĐANG TRỐNG."
+
+msgid "Great things start with one step. Find a pair worth making moves in."
+msgstr "Mọi điều tuyệt vời đều bắt đầu từ một bước đi. Hãy tìm một đôi giày xứng đáng để đồng hành cùng bạn."
+
+msgid "EXPLORE SNEAKERS"
+msgstr "KHÁM PHÁ GIÀY SNEAKER"
+
+msgid "YOUR ITEMS"
+msgstr "SẢN PHẨM CỦA BẠN"
+
+msgid "Move to wishlist"
+msgstr "Chuyển vào yêu thích"
+
+msgid "CONTINUE SHOPPING"
+msgstr "TIẾP TỤC MUA SẮM"
+
+msgid "ORDER SUMMARY"
+msgstr "TÓM TẮT ĐƠN HÀNG"
+
+msgid "Calculated at checkout"
+msgstr "Tính tại thanh toán"
+
+msgid "Not required"
+msgstr "Không yêu cầu"
+
+msgid "Estimated tax"
+msgstr "Thuế ước tính"
+
+msgid "PROMO CODE"
+msgstr "MÃ ƯU ĐÃI"
+
+msgid "APPLY"
+msgstr "ÁP DỤNG"
+
+msgid "TOTAL"
+msgstr "TỔNG CỘNG"
+
+msgid "CONTINUE TO CHECKOUT"
+msgstr "TIẾP TỤC THANH TOÁN"
+
+msgid "Payment options are shown at checkout"
+msgstr "Tùy chọn thanh toán được hiển thị tại bước thanh toán"
+
+msgid "Add to favorites"
+msgstr "Thêm vào yêu thích"
+
+msgid "CHECK OUT YOUR WAY"
+msgstr "CHỌN CÁCH THANH TOÁN"
+
+msgid "Sign in to view orders linked to your account, or continue as a guest."
+msgstr "Đăng nhập để xem các đơn hàng liên kết với tài khoản, hoặc tiếp tục với tư cách khách."
+
+msgid "CONTINUE AS GUEST"
+msgstr "TIẾP TỤC VỚI TƯ CÁCH KHÁCH"
+
+msgid "ENTER THE WORLD OF PAXG'Shop"
+msgstr "BƯỚC VÀO THẾ GIỚI PAXG'Shop"
+
+msgid "JOIN THE MOVEMENT."
+msgstr "GIA NHẬP CÙNG CHÚNG TÔI."
+
+msgid "WELCOME BACK."
+msgstr "CHÀO MỪNG TRỞ LẠI."
+
+msgid "Create an account for faster checkout, saved styles and exclusive releases."
+msgstr "Tạo tài khoản để thanh toán nhanh hơn, lưu sản phẩm yêu thích và nhận thông tin các bộ sưu tập giới hạn."
+
+msgid "Sign in to your account. Your favorites, orders and next moves are waiting."
+msgstr "Đăng nhập vào tài khoản của bạn. Sản phẩm yêu thích, đơn hàng và các kế hoạch mới đang chờ bạn."
+
+msgid "Keep me signed in"
+msgstr "Ghi nhớ đăng nhập"
+
+msgid "Need a new verification link?"
+msgstr "Cần nhận lại liên kết xác thực?"
+
+msgid "REMEMBER YOUR PASSWORD? <a href=\"%s\">SIGN IN ↗</a>"
+msgstr "BẠN ĐÃ NHỚ MẬT KHẨU? <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+
+msgid "BẠN ĐÃ NHỚ MẬT KHẨU? <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+msgstr "BẠN ĐÃ NHỚ MẬT KHẨU? <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+
+msgid "BACK TO <a href=\"%s\">SIGN IN ↗</a>"
+msgstr "QUAY LẠI <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+
+msgid "QUAY LẠI <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+msgstr "QUAY LẠI <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+
+msgid "RETURN TO <a href=\"%s\">SIGN IN ↗</a>"
+msgstr "QUAY LẠI <a href=\"%s\">ĐĂNG NHẬP ↗</a>"
+
+msgid "Mobile bottom navigation"
+msgstr "Thanh điều hướng dưới di động"
+
+msgid "We could not confirm whether the item was added. Check your bag before trying again."
+msgstr "Chưa xác nhận được sản phẩm đã thêm hay chưa. Vui lòng kiểm tra giỏ hàng trước khi thử lại."
+
+msgid "Pay online via VNPAY."
+msgstr "Thanh toán trực tuyến qua VNPAY."
+
+msgid "Redirect customers to VNPAY to pay for their order."
+msgstr "Chuyển hướng khách hàng tới cổng VNPAY để thanh toán đơn hàng."
+
+msgid "VNPAY returned a successful result. We are waiting for VNPAY server confirmation before marking this order as paid."
+msgstr "VNPAY đã trả về kết quả thành công. Đang chờ máy chủ VNPAY xác nhận giao dịch để hoàn tất đơn hàng."
+
+msgid "VNPAY did not report a successful payment. You can retry payment from your order details."
+msgstr "Giao dịch VNPAY không thành công. Bạn có thể thử thanh toán lại trong chi tiết đơn hàng."
+
+msgid "VNPAY only supports orders in VND."
+msgstr "Cổng VNPAY chỉ hỗ trợ thanh toán bằng Việt Nam Đồng (VND)."
+
+msgid "VNPAY is not configured yet. Please choose another payment method."
+msgstr "Cổng VNPAY chưa được cấu hình. Vui lòng chọn phương thức thanh toán khác."
+
+msgid "We could not start VNPAY checkout. Please try again."
+msgstr "Không thể bắt đầu thanh toán VNPAY. Vui lòng thử lại."
+
+msgid "This order total cannot be sent to VNPAY. Please contact the store."
+msgstr "Không thể gửi tổng giá trị đơn hàng này sang VNPAY. Vui lòng liên hệ cửa hàng."
+
+msgid "We could not load this order. Please try again."
+msgstr "Không thể tải thông tin đơn hàng này. Vui lòng thử lại."
+
+msgid "We could not verify the VNPAY return. Payment status will be confirmed through the automated VNPAY notification."
+msgstr "Không thể xác minh phản hồi từ VNPAY. Trạng thái thanh toán sẽ được cập nhật tự động khi có thông báo từ VNPAY."
+
+msgid "Forgot password?"
+msgstr "Quên mật khẩu?"
+

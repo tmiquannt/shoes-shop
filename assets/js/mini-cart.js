@@ -161,9 +161,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (headerCartBtn) headerCartBtn.setAttribute('aria-expanded', 'false');
     });
 
-    // Listen for WooCommerce added_to_cart event -> auto open drawer
+    // Listen for WooCommerce added_to_cart event -> auto open drawer (skip card add-to-cart clicks)
     if (window.jQuery) {
-        window.jQuery(document.body).on('added_to_cart', function () {
+        window.jQuery(document.body).on('added_to_cart', function (event, fragments, cartHash, $button) {
+            if ($button && window.jQuery && window.jQuery($button).closest('.vyre-card-add-to-cart').length) {
+                return;
+            }
             openDrawer();
         });
     }
@@ -173,7 +176,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.detail && event.detail.fragments) {
             applyFragments(event.detail.fragments);
         }
-        openDrawer();
+        if (!event.detail || event.detail.open_drawer !== false) {
+            openDrawer();
+        }
     });
 
     // Display error alert inside drawer if adding to cart fails
@@ -312,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (typeof CustomEvent === 'function') {
                         document.body.dispatchEvent(new CustomEvent('paxig_added_to_cart', {
-                            detail: response.data
+                            detail: Object.assign({}, response.data, { open_drawer: false })
                         }));
                     }
                     if (window.jQuery) {
